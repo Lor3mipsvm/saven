@@ -3,11 +3,9 @@ import { useUserVaultShareBalance } from '@generationsoftware/hyperstructure-rea
 import { GiftIcon } from '@heroicons/react/24/solid'
 import { DelegateButton, DepositButton, WithdrawButton } from '@shared/react-components'
 import classNames from 'classnames'
-import * as fathom from 'fathom-client'
 import { useTranslations } from 'next-intl'
 import { Address } from 'viem'
 import { useAccount } from 'wagmi'
-import { FATHOM_EVENTS } from '@constants/config'
 
 interface VaultButtonsProps {
   vault: Vault
@@ -38,7 +36,7 @@ export const VaultButtons = (props: VaultButtonsProps) => {
       {isDelegateButtonShown && (
         <DelegateButton
           vault={vault}
-          extraOnClick={() => fathom.trackEvent(FATHOM_EVENTS.openedDelegateModal)}
+          extraOnClick={() => {}}
           color='transparent'
           className='w-full'
         >
@@ -48,7 +46,7 @@ export const VaultButtons = (props: VaultButtonsProps) => {
       {isWithdrawButtonShown && (
         <WithdrawButton
           vault={vault}
-          extraOnClick={() => fathom.trackEvent(FATHOM_EVENTS.openedWithdrawModal)}
+          extraOnClick={() => {}}
           fullSized={fullSized}
           color='transparent'
         >
@@ -57,7 +55,7 @@ export const VaultButtons = (props: VaultButtonsProps) => {
       )}
       <DepositButton
         vault={vault}
-        extraOnClick={() => fathom.trackEvent(FATHOM_EVENTS.openedDepositModal)}
+        extraOnClick={() => {}}
         fullSized={fullSized}
         intl={{ base: t_common, tooltips: t_tooltips }}
       />

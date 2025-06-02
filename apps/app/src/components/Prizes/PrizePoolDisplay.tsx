@@ -113,20 +113,7 @@ const PrizePoolCarousel = (props: PrizePoolCarouselProps) => {
         className='hidden w-[calc(100vw-4rem)] shrink-0 lg:w-[38rem] lg:flex'
       />
       <div className='absolute w-full h-full pointer-events-none lg:bg-[linear-gradient(90deg,#21064E_15%,transparent_35%,transparent_65%,#21064E_85%)]'>
-        <div className='relative w-full h-full max-w-screen-xl mx-auto'>
-          <button
-            onClick={() => setPrizePoolIndex(prevPrizePoolIndex)}
-            className='absolute top-[calc(50%-0.75rem)] left-4 p-1 bg-pt-purple-600 rounded-full pointer-events-auto lg:top-[calc(50%-1rem)] lg:bg-pt-transparent'
-          >
-            <ArrowLongLeftIcon className='w-6 text-pt-purple-200 stroke-2 lg:w-8' />
-          </button>
-          <button
-            onClick={() => setPrizePoolIndex(nextPrizePoolIndex)}
-            className='absolute top-[calc(50%-0.75rem)] right-4 p-1 bg-pt-purple-600 rounded-full pointer-events-auto lg:top-[calc(50%-1rem)] lg:bg-pt-transparent'
-          >
-            <ArrowLongRightIcon className='w-6 text-pt-purple-200 stroke-2 lg:w-8' />
-          </button>
-        </div>
+        <div className='relative w-full h-full max-w-screen-xl mx-auto'></div>
       </div>
     </div>
   )

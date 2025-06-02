@@ -10,12 +10,10 @@ import { TokenValue } from '@shared/react-components'
 import { SubgraphDraw } from '@shared/types'
 import { getSecondsSinceEpoch, getSimpleDate, SECONDS_PER_DAY } from '@shared/utilities'
 import classNames from 'classnames'
-import * as fathom from 'fathom-client'
 import { atom, useSetAtom } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { Address } from 'viem'
-import { FATHOM_EVENTS } from '@constants/config'
 import { useSelectedPrizePool } from '@hooks/useSelectedPrizePool'
 
 export const drawIdAtom = atom<number>(0)
@@ -95,7 +93,7 @@ const DrawRow = (props: DrawRowProps) => {
   const { data: tokenData } = usePrizeTokenData(prizePool)
 
   const { setIsModalOpen } = useIsModalOpen(MODAL_KEYS.drawWinners, {
-    onOpen: () => fathom.trackEvent(FATHOM_EVENTS.openedDrawModal)
+    onOpen: () => {}
   })
 
   const setSelectedDrawId = useSetAtom(drawIdAtom)
