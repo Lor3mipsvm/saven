@@ -1,22 +1,5 @@
 import { CreateWalletFn } from '@rainbow-me/rainbowkit/dist/wallets/Wallet'
-import {
-  argentWallet,
-  braveWallet,
-  coin98Wallet,
-  coinbaseWallet,
-  imTokenWallet,
-  injectedWallet,
-  ledgerWallet,
-  metaMaskWallet,
-  rainbowWallet,
-  safeWallet,
-  tahoWallet,
-  trustWallet,
-  uniswapWallet,
-  walletConnectWallet,
-  xdefiWallet,
-  zerionWallet
-} from '@rainbow-me/rainbowkit/wallets'
+import { injectedWallet, metaMaskWallet, rainbowWallet } from '@rainbow-me/rainbowkit/wallets'
 import { VaultList } from '@shared/types'
 import {
   DOLPHIN_ADDRESS,
@@ -49,21 +32,8 @@ export const WAGMI_CHAINS = {
  */
 export const WALLETS: { [wallet: string]: CreateWalletFn } = {
   metamask: metaMaskWallet,
-  walletconnect: walletConnectWallet,
   rainbow: rainbowWallet,
-  injected: injectedWallet,
-  argent: argentWallet,
-  coinbase: coinbaseWallet,
-  ledger: ledgerWallet,
-  taho: tahoWallet,
-  trust: trustWallet,
-  zerion: zerionWallet,
-  brave: braveWallet,
-  safe: safeWallet,
-  xdefi: xdefiWallet,
-  uniswap: uniswapWallet,
-  coin98: coin98Wallet,
-  imtoken: imTokenWallet
+  injected: injectedWallet
 }
 
 /**

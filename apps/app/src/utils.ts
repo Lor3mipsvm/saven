@@ -40,20 +40,8 @@ export const createCustomWagmiConfig = (
 const getWalletConnectors = () => {
   const walletGroups: WalletList = []
 
-  const defaultWallets = ['injected', 'walletconnect', 'rainbow', 'metamask', 'coinbase']
-  const otherWallets = [
-    'argent',
-    'brave',
-    'coin98',
-    'imtoken',
-    'ledger',
-    'safe',
-    'taho',
-    'trust',
-    'uniswap',
-    'xdefi',
-    'zerion'
-  ]
+  const defaultWallets = ['injected', 'rainbow', 'metamask']
+  const otherWallets = []
 
   const highlightedWallet = parseQueryParam('wallet', { validValues: Object.keys(WALLETS) })
 
@@ -79,10 +67,6 @@ const getWalletConnectors = () => {
     walletGroups.push({
       groupName: 'Default',
       wallets: defaultWallets.map((wallet) => WALLETS[wallet])
-    })
-    walletGroups.push({
-      groupName: 'Other',
-      wallets: otherWallets.map((wallet) => WALLETS[wallet])
     })
   }
 

@@ -305,7 +305,8 @@ export const SUBGRAPH_API_URLS = {
 /**
  * Token Prices API URL
  */
-export const TOKEN_PRICES_API_URL = 'https://token-prices.api.cabana.fi'
+// export const TOKEN_PRICES_API_URL = `${DOMAINS.app}/api/tokenPrice/480`
+export const TOKEN_PRICES_API_URL = `/api/tokenPrice/480`
 
 /**
  * Networks supported by the price caching API
