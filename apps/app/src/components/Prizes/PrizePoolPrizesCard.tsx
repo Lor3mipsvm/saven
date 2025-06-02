@@ -87,7 +87,7 @@ export const PrizePoolPrizesCard = (props: PrizePoolPrizesCardProps) => {
                       fallback={
                         <TokenAmount
                           token={{ ...tokenData, amount: prize.amount.current }}
-                          maximumFractionDigits={4}
+                          maximumFractionDigits={2}
                         />
                       }
                     />

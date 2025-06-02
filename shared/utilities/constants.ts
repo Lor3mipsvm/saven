@@ -305,8 +305,8 @@ export const SUBGRAPH_API_URLS = {
 /**
  * Token Prices API URL
  */
-// export const TOKEN_PRICES_API_URL = `${DOMAINS.app}/api/tokenPrice/480`
-export const TOKEN_PRICES_API_URL = `/api/tokenPrice/480`
+// export const TOKEN_PRICES_API_URL = `${DOMAINS.app}/api/tokenPrice`
+export const TOKEN_PRICES_API_URL = `/api/tokenPrice`
 
 /**
  * Networks supported by the price caching API
@@ -391,7 +391,7 @@ export const VELODROME_ADDRESSES: {
  * Domains
  */
 export const DOMAINS = {
-  app: 'https://app.cabana.fi',
+  app: 'https://cabana-world-miniapp.vercel.app',
   app_v4: 'https://app.pooltogether.com',
   landingPage: 'https://cabana.fi',
   protocolLandingPage: 'https://pooltogether.com',

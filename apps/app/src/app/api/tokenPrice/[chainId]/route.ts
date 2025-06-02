@@ -2,16 +2,28 @@ import { NextResponse } from 'next/server'
 
 const WORLD_TOKEN_PRICE_API_URL = 'https://api.g.alchemy.com/prices/v1/tokens/by-symbol?symbols=WLD'
 
+const getDate = () => {
+  var now = new Date()
+  return (
+    now.getFullYear() +
+    '-' +
+    ('0' + (now.getMonth() + 1)).slice(-2) +
+    '-' +
+    ('0' + now.getDate()).slice(-2)
+  )
+}
+
 export async function GET(): Promise<NextResponse> {
   try {
     const priceData = await getWldTokenPrice()
 
-    var now = new Date()
     const tokenPriceApiOutput = {
-      '0x2cfc85d8e48f8eab294be644d9e25c3030863003': {
-        date: now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate(),
-        price: JSON.parse(priceData).usd
-      }
+      '0x2cfc85d8e48f8eab294be644d9e25c3030863003': [
+        {
+          date: getDate(),
+          price: Number(JSON.parse(priceData).usd)
+        }
+      ]
     }
 
     return NextResponse.json(tokenPriceApiOutput, { status: 200 })
