@@ -1,9 +1,0 @@
-*.log
-.DS_Store
-node_modules
-dist
-wrangler.toml
-wrangler-local.toml
-wrangler-test.toml
-wrangler-prod.toml
-.wrangler
