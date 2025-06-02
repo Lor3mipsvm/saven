@@ -13,7 +13,7 @@ import { QUERY_KEYS } from '../constants'
 export const useTxReceipt = (
   chainId: number,
   hash: `0x${string}`
-): UseQueryResult<GetTransactionReceiptReturnType> => {
+): UseQueryResult<GetTransactionReceiptReturnType | undefined, Error> => {
   const publicClient = usePublicClient({ chainId })
 
   const queryKey = [QUERY_KEYS.txReceipt, chainId, hash]

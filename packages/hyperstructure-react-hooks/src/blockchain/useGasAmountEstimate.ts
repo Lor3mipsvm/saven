@@ -17,7 +17,7 @@ export const useGasAmountEstimate = <TAbi extends Abi>(
   options?: {
     enabled?: boolean
   }
-): UseQueryResult<bigint> => {
+): UseQueryResult<bigint | undefined, Error> => {
   const publicClient = usePublicClient({ chainId })
 
   const _enabled =

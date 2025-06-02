@@ -10,10 +10,7 @@ import { QUERY_KEYS } from '../constants'
  * @param blockNumber block # to query for (or "latest")
  * @returns
  */
-export const useBlock = (
-  chainId: number,
-  blockNumber: bigint | 'latest'
-): UseQueryResult<GetBlockReturnType> => {
+export const useBlock = (chainId: number, blockNumber: bigint | 'latest') => {
   const publicClient = usePublicClient({ chainId })
 
   const queryKey = [QUERY_KEYS.block, chainId, blockNumber?.toString() ?? 'latest']

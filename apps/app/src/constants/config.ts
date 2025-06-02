@@ -131,8 +131,3 @@ export const ZAP_TOKEN_OPTIONS: { [chainId: number]: Address[] } = {
 export const NATIVE_ASSET_IGNORE_AMOUNT: { [chainId: number]: bigint } = {
   [NETWORK.world]: parseEther('0.002')
 }
-
-/**
- * Wallet stats API
- */
-export const WALLET_STATS_API_URL = 'https://wallet-stats.api.cabana.fi'

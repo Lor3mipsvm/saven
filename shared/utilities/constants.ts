@@ -95,7 +95,7 @@ export const PRIZE_POOLS: {
 /**
  * Stablecoin addresses and their corresponding fiat currency
  */
-export const STABLECOINS: Record<NETWORK, { [address: Lowercase<Address>]: string }> = {
+export const STABLECOINS: Record<number, { [address: Lowercase<Address>]: string }> = {
   [NETWORK.gnosis_chiado]: {
     '0xfc535b2407bb2c8b4f4a4faabbb9981ff031b7ca': 'usd', // USDC
     '0xbe9a62939f82e12f4a48912078a4420f1a5fc2e0': 'usd', // GUSD
@@ -124,7 +124,7 @@ export const OP_GAS_ORACLE_ADDRESS = '0x420000000000000000000000000000000000000f
 /**
  * Native assets' info
  */
-export const NATIVE_ASSETS: Record<NETWORK, Token> = {
+export const NATIVE_ASSETS: Record<number, Token> = {
   [NETWORK.gnosis_chiado]: {
     chainId: NETWORK.gnosis_chiado,
     address: DOLPHIN_ADDRESS,
@@ -144,7 +144,7 @@ export const NATIVE_ASSETS: Record<NETWORK, Token> = {
 /**
  * Wrapped native asset addresses (example: WETH, WMATIC, etc.)
  */
-export const WRAPPED_NATIVE_ASSETS: Record<NETWORK, Lowercase<Address> | null> = {
+export const WRAPPED_NATIVE_ASSETS: Record<number, Lowercase<Address> | null> = {
   [NETWORK.mainnet]: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
   [NETWORK.sepolia]: null,
   [NETWORK.bsc]: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c',
@@ -311,8 +311,8 @@ export const TOKEN_PRICES_API_URL = `/api/tokenPrice/480`
 /**
  * Networks supported by the price caching API
  */
-// export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = [NETWORK.world]
-export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = []
+export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = [NETWORK.world]
+// export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = []
 
 /**
  * Redirects for tokens without pricing data on the caching API
@@ -462,7 +462,7 @@ export const LINKS = {
 /**
  * Block explorer mapping
  */
-export const BLOCK_EXPLORERS: Record<NETWORK, { name: string; url: string }> = {
+export const BLOCK_EXPLORERS: Record<number, { name: string; url: string }> = {
   [NETWORK.gnosis_chiado]: { name: 'Gnosisscan', url: 'https://gnosis-chiado.blockscout.com/' },
   [NETWORK.world]: { name: 'Worldscan', url: 'https://worldscan.org/' }
 }
@@ -484,7 +484,7 @@ export type COINGECKO_PLATFORM = keyof typeof COINGECKO_PLATFORMS
 /**
  * CoinGecko native token IDs
  */
-export const COINGECKO_NATIVE_TOKEN_IDS: Record<NETWORK, string> = {
+export const COINGECKO_NATIVE_TOKEN_IDS: Record<number, string> = {
   [NETWORK.gnosis_chiado]: 'xdai',
   [NETWORK.world]: 'world-chain'
 }

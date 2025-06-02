@@ -24,7 +24,7 @@ export const useTokenAllowances = (
   spenderAddress: Address,
   tokenAddresses: Address[],
   refetchInterval?: number
-): UseQueryResult<{ [tokenAddress: Address]: bigint }> => {
+): UseQueryResult<{ [tokenAddress: Address]: bigint } | undefined, Error> => {
   const queryClient = useQueryClient()
 
   const publicClient = usePublicClient({ chainId })
@@ -85,7 +85,10 @@ export const useTokenAllowance = (
   spenderAddress: Address,
   tokenAddress: Address,
   refetchInterval?: number
-): { data?: bigint } & Omit<UseQueryResult<{ [tokenAddress: Address]: bigint }>, 'data'> => {
+): { data?: bigint } & Omit<
+  UseQueryResult<{ [tokenAddress: Address]: bigint } | undefined, Error>,
+  'data'
+> => {
   const result = useTokenAllowances(
     chainId,
     address,

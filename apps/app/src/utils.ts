@@ -5,7 +5,7 @@ import deepmerge from 'deepmerge'
 import { Chain, formatUnits, http, Transport } from 'viem'
 import { Config, createConfig, CreateConnectorFn, fallback } from 'wagmi'
 import { ConnectMutate } from 'wagmi/query'
-import { RPC_URLS, WAGMI_CHAINS, WALLET_STATS_API_URL, WALLETS } from '@constants/config'
+import { RPC_URLS, WAGMI_CHAINS, WALLETS } from '@constants/config'
 
 /**
  * Returns a Wagmi config with the given networks and RPCs
@@ -116,24 +116,6 @@ export const getMessages = async (locale?: string) => {
   const messages = deepmerge<IntlMessages>(defaultMessages, localeMessages)
 
   return messages
-}
-
-/**
- * Tracks deposit and its respective wallet ID on the wallet stats API
- * @param chainId the chain ID the deposit was made in
- * @param txHash the transaction hash of the deposit
- * @param walletId the ID of the wallet used to perform the deposit
- */
-export const trackDeposit = async (chainId: number, txHash: `0x${string}`, walletId: string) => {
-  try {
-    await fetch(`${WALLET_STATS_API_URL}/addDeposit`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chainId, txHash, walletId })
-    })
-  } catch (e) {
-    console.error(e)
-  }
 }
 
 /**

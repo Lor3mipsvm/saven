@@ -21,7 +21,7 @@ export const useTokenNonces = (
     refetchInterval?: number
     refetchOnWindowFocus?: boolean
   }
-): UseQueryResult<bigint> => {
+): UseQueryResult<bigint | undefined, Error> => {
   const publicClient = usePublicClient({ chainId })
 
   const enabled = !!chainId && !!address && !!tokenAddress && !!publicClient

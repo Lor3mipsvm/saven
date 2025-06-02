@@ -26,7 +26,7 @@ export const useTokenBalances = (
     refetchInterval?: number
     refetchOnWindowFocus?: boolean
   }
-): UseQueryResult<{ [tokenAddress: Address]: TokenWithAmount }> => {
+): UseQueryResult<{ [tokenAddress: Address]: TokenWithAmount } | undefined, Error> => {
   const queryClient = useQueryClient()
 
   const publicClient = usePublicClient({ chainId })
@@ -84,7 +84,7 @@ export const useTokenBalance = (
     refetchOnWindowFocus?: boolean
   }
 ): { data?: TokenWithAmount } & Omit<
-  UseQueryResult<{ [tokenAddress: Address]: TokenWithAmount }>,
+  UseQueryResult<{ [tokenAddress: Address]: TokenWithAmount } | undefined, Error>,
   'data'
 > => {
   const result = useTokenBalances(chainId, address, [tokenAddress], options)

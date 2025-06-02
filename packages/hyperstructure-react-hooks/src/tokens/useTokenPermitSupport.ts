@@ -15,7 +15,7 @@ import { useTokenDomain } from './useTokenDomain'
 export const useTokenPermitSupport = (
   chainId: number,
   tokenAddress: Address
-): UseQueryResult<Awaited<ReturnType<typeof getTokenPermitSupport>>> => {
+): UseQueryResult<Awaited<ReturnType<typeof getTokenPermitSupport>> | undefined, Error> => {
   const publicClient = usePublicClient({ chainId })
 
   const { data: tokenDomain, isFetched: isFetchedTokenDomain } = useTokenDomain(

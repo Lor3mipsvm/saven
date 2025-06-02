@@ -14,7 +14,7 @@ import { QUERY_KEYS } from '../constants'
 export const useTokenDomain = (
   chainId: number,
   tokenAddress: Address
-): UseQueryResult<TypedDataDomain> => {
+): UseQueryResult<TypedDataDomain | undefined, Error> => {
   const publicClient = usePublicClient({ chainId })
 
   const enabled = !!chainId && !!tokenAddress && !!publicClient

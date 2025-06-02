@@ -13,6 +13,8 @@ import { useAllPrizeTokenData } from './useAllPrizeTokenData'
 export const useAllPrizeTokenPrices = (prizePools: PrizePool[]) => {
   const { data: prizeTokens, isFetched: isFetchedPrizeTokens } = useAllPrizeTokenData(prizePools)
 
+  console.log('massy')
+
   const prizeTokenAddresses = useMemo(() => {
     const addresses: { [chainId: number]: Address[] } = {}
 
@@ -32,6 +34,8 @@ export const useAllPrizeTokenPrices = (prizePools: PrizePool[]) => {
     isFetched: isFetchedPrizeTokenPrices,
     refetch
   } = useTokenPricesAcrossChains(prizeTokenAddresses)
+
+  console.log('in "ere')
 
   const isFetched = isFetchedPrizeTokens && isFetchedPrizeTokenPrices
 
