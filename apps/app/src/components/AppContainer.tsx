@@ -19,7 +19,9 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
 
   useEffect(() => {
     const appId = process.env.NEXT_PUBLIC_VITE_APP_ID
-    MiniKit.install(appId)
+    if (!MiniKit.isInstalled()) {
+      MiniKit.install(appId)
+    }
     if (!MiniKit.isInstalled()) {
       console.error('MiniKit is not installed')
     }
