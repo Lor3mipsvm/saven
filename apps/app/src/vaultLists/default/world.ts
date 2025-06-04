@@ -19,5 +19,24 @@ export const worldVaults: VaultList['tokens'] = [
         name: 'PoolTogether'
       }
     }
+  },
+  {
+    chainId: NETWORK.world,
+    address: '0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e',
+    name: 'Prize WLD',
+    decimals: 18,
+    symbol: 'przWLD',
+    logoURI: `${DOMAINS.app}/icons/przWLD.svg`,
+    // tags: ['deprecated'],
+    extensions: {
+      underlyingAsset: {
+        address: '0x2cFc85d8E48F8EAB294be644d9E25C3030863003',
+        symbol: 'WLD',
+        name: 'World'
+      },
+      yieldSource: {
+        name: 'PoolTogether'
+      }
+    }
   }
 ]

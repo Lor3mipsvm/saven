@@ -19,8 +19,6 @@ export const PrizePoolCards = () => {
   })
 
   const { data: allPrizeTokenPrices } = useAllPrizeTokenPrices(prizePoolsArray)
-  console.log('allPrizeTokenPrices')
-  console.log(allPrizeTokenPrices)
 
   const sortedPrizePools = useMemo(() => {
     return [...prizePoolsArray].sort((a, b) => {

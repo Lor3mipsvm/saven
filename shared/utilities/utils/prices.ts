@@ -77,14 +77,11 @@ export const getHistoricalTokenPrices = async (
   tokenAddress: string,
   options?: { requestHeaders?: Record<string, string> }
 ): Promise<{ [address: Address]: { date: string; price: number }[] }> => {
-  console.log('wtfff')
-
   if (!isAddress(tokenAddress)) return {}
 
   try {
     if (TOKEN_PRICE_API_SUPPORTED_NETWORKS.includes(chainId)) {
       const url = new URL(`${TOKEN_PRICES_API_URL}/${chainId}/${tokenAddress}`)
-      console.log(url)
 
       const response = await fetch(
         url.toString(),

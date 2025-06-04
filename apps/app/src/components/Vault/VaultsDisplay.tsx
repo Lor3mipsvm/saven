@@ -34,7 +34,6 @@ export const VaultsDisplay = () => {
   const filteredVaults = useAtomValue(filteredVaultsAtom)
 
   const { localIds, importedIds } = useSelectedVaultListIds()
-
   if (!isFetchedVaultData || !isFetchedSortedVaults || !filteredVaults) {
     return <Spinner />
   }
