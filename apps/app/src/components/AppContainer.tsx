@@ -38,9 +38,9 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
         dev = window?.location.href.match(/staging/)?.length > 0
       }
 
-      if (!dev) {
-        return
-      }
+      // if (!dev) {
+      //   return
+      // }
       const eruda = (await import('eruda')).default
       eruda.init()
     }
