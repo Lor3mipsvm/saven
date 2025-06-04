@@ -1,5 +1,6 @@
 import { useSelectedLanguage } from '@shared/generic-react-hooks'
 import { Flowbite, Toaster } from '@shared/ui'
+import { MiniKit } from '@worldcoin/minikit-js'
 import { NextIntlClientProvider } from 'next-intl'
 import { AppProps } from 'next/app'
 import { ReactNode, useEffect, useState } from 'react'
@@ -15,6 +16,28 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   const { pathname, query, asPath, locale } = router
 
   const [isReady, setIsReady] = useState<boolean>(false)
+
+  useEffect(() => {
+    const appId = process.env.NEXT_PUBLIC_VITE_APP_ID
+    MiniKit.install(appId)
+    if (!MiniKit.isInstalled()) {
+      console.error('MiniKit is not installed')
+    }
+  })
+
+  useEffect(() => {
+    const initEruda = async () => {
+      const dev =
+        process.env.NODE_ENV === 'development' || window.location.href.match(/staging/)?.length > 0
+      if (!dev) {
+        return
+      }
+      const eruda = (await import('eruda')).default
+      eruda.init()
+    }
+
+    initEruda()
+  })
 
   useSelectedLanguage({
     onLanguageChange: (newLanguage) => {
