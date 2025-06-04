@@ -83,7 +83,7 @@ const NoWalletCard = (props: { className?: string }) => {
       </span>
       <Button onClick={openConnectModal}>
         <div className='inline-flex gap-3 font-medium'>
-          <span>{t_common('connectWallet')}</span>
+          <span>{t_common('signIn')}</span>
           <ArrowRightIcon className='h-5 w-5' />
         </div>
       </Button>

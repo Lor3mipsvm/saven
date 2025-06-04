@@ -8,8 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@farcaster/frame-sdk": "0.0.31",
-    "@farcaster/frame-wagmi-connector": "0.0.19",
     "@generationsoftware/hyperstructure-client-js": "workspace:*",
     "@generationsoftware/hyperstructure-react-hooks": "workspace:*",
     "@heroicons/react": "^2.0.16",
