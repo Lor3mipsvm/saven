@@ -1,5 +1,4 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { Logo } from '@shared/ui'
 import classNames from 'classnames'
@@ -8,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
+import { SignInButton } from './SignInButton'
 
 interface NavbarLink {
   href: string
@@ -48,11 +48,7 @@ export const Navbar = () => {
 
         {/* Right Side Content */}
         <div className='flex gap-2 items-center z-20'>
-          <ConnectButton
-            showBalance={false}
-            chainStatus={{ smallScreen: 'icon', largeScreen: 'full' }}
-            accountStatus='full'
-          />
+          <SignInButton />
           <Bars3Icon
             className='h-6 w-6 text-pt-purple-50 hover:text-pt-purple-200 cursor-pointer'
             onClick={() => setIsSettingsModalOpen(true)}
