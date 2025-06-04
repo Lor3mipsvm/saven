@@ -62,7 +62,7 @@ export const getNiceNetworkNameByChainId = (chainId: number): string => {
  * @returns
  */
 export const isTestnet = (chainId: number) => {
-  const values: Record<NETWORK, boolean> = {
+  const values: Record<number, boolean> = {
     [NETWORK.mainnet]: false,
     [NETWORK.sepolia]: true,
     [NETWORK.bsc]: false,
@@ -96,7 +96,7 @@ export const isTestnet = (chainId: number) => {
  * @returns
  */
 export const isOpStack = (chainId: number) => {
-  const values: Record<NETWORK, boolean> = {
+  const values: Record<number, boolean> = {
     [NETWORK.mainnet]: false,
     [NETWORK.sepolia]: false,
     [NETWORK.bsc]: false,

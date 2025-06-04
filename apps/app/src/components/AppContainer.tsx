@@ -4,7 +4,6 @@ import { MiniKit } from '@worldcoin/minikit-js'
 import { NextIntlClientProvider } from 'next-intl'
 import { AppProps } from 'next/app'
 import { ReactNode, useEffect, useState } from 'react'
-import { connectFarcasterWallet } from 'src/utils'
 import { useConnect } from 'wagmi'
 import { CustomAppProps } from '@pages/_app'
 import { AccountFrame } from './Frames/AccountFrame'
@@ -19,18 +18,26 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
 
   useEffect(() => {
     const appId = process.env.NEXT_PUBLIC_VITE_APP_ID
-    if (!MiniKit.isInstalled()) {
-      MiniKit.install(appId)
+
+    if (isReady) {
+      if (!MiniKit.isInstalled()) {
+        MiniKit.install(appId)
+      }
+      if (!MiniKit.isInstalled()) {
+        console.error('MiniKit is not installed')
+      }
     }
-    if (!MiniKit.isInstalled()) {
-      console.error('MiniKit is not installed')
-    }
-  })
+  }, [isReady])
 
   useEffect(() => {
     const initEruda = async () => {
-      const dev =
-        process.env.NODE_ENV === 'development' || window.location.href.match(/staging/)?.length > 0
+      let dev = process.env.NODE_ENV === 'development'
+
+      if (!dev && typeof window !== 'undefined') {
+        // @ts-ignore
+        dev = window?.location.href.match(/staging/)?.length > 0
+      }
+
       if (!dev) {
         return
       }
@@ -59,12 +66,6 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   }, [])
 
   const { connect } = useConnect()
-
-  useEffect(() => {
-    if (isReady && !!connect) {
-      connectFarcasterWallet(connect)
-    }
-  }, [isReady])
 
   const pageFrames: { [href: string]: ReactNode } = {
     account: <AccountFrame user={serverProps.params['user']} />,

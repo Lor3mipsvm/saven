@@ -48,7 +48,7 @@ const tokenLogoUrls = {
 /**
  * Token Logo Overrides
  */
-export const TOKEN_LOGO_OVERRIDES: Record<NETWORK, { [address: Lowercase<string>]: string }> = {
+export const TOKEN_LOGO_OVERRIDES: Record<number, { [address: Lowercase<string>]: string }> = {
   [NETWORK.mainnet]: {
     [DOLPHIN_ADDRESS]: tokenLogoUrls.eth,
     [POOL_TOKEN_ADDRESSES[NETWORK.mainnet].toLowerCase()]: tokenLogoUrls.pool,

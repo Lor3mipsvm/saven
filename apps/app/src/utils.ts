@@ -3,8 +3,7 @@ import { getInitialCustomRPCs } from '@shared/generic-react-hooks'
 import { formatNumberForDisplay, NETWORK, parseQueryParam } from '@shared/utilities'
 import deepmerge from 'deepmerge'
 import { Chain, formatUnits, http, Transport } from 'viem'
-import { Config, createConfig, CreateConnectorFn, fallback } from 'wagmi'
-import { ConnectMutate } from 'wagmi/query'
+import { createConfig, CreateConnectorFn, fallback } from 'wagmi'
 import { RPC_URLS, WAGMI_CHAINS, WALLETS } from '@constants/config'
 
 /**
@@ -41,7 +40,6 @@ const getWalletConnectors = () => {
   const walletGroups: WalletList = []
 
   const defaultWallets = ['injected', 'rainbow', 'metamask']
-  const otherWallets = []
 
   const highlightedWallet = parseQueryParam('wallet', { validValues: Object.keys(WALLETS) })
 
@@ -54,12 +52,6 @@ const getWalletConnectors = () => {
     walletGroups.push({
       groupName: 'Default',
       wallets: defaultWallets
-        .filter((wallet) => wallet !== highlightedWallet)
-        .map((wallet) => WALLETS[wallet])
-    })
-    walletGroups.push({
-      groupName: 'Other',
-      wallets: otherWallets
         .filter((wallet) => wallet !== highlightedWallet)
         .map((wallet) => WALLETS[wallet])
     })
@@ -160,22 +152,4 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
     Math.floor(parseFloat(shiftedAmount) * roundingMultiplier) / roundingMultiplier
 
   return formatNumberForDisplay(roundedAmount, { maximumFractionDigits })
-}
-
-/**
- * Connects to a Farcaster wallet if available
- */
-export const connectFarcasterWallet = async (connect: ConnectMutate<Config, unknown>) => {
-  const frameSdk = (await import('@farcaster/frame-sdk')).default
-
-  const farcasterContext = await frameSdk.context
-
-  if (!!farcasterContext?.client?.clientFid) {
-    const frameConnector = (
-      await import('@farcaster/frame-wagmi-connector')
-    ).default() as CreateConnectorFn
-
-    connect({ connector: frameConnector })
-    frameSdk.actions.ready()
-  }
 }
