@@ -36,7 +36,7 @@ export const HomeHeader = () => {
       <div className='flex flex-col items-center gap-3'>
         <span
           className={classNames(
-            'w-2/3 flex flex-wrap justify-center text-center text-[1.75rem] font-grotesk font-bold',
+            'w-2/3 flex flex-wrap justify-center text-center text-[1.75rem] leading-tight font-averta font-bold',
             'md:w-full md:text-4xl lg:text-5xl'
           )}
         >

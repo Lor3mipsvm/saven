@@ -78,7 +78,7 @@ const NoWalletCard = (props: { className?: string }) => {
 
   return (
     <div className={classNames('flex flex-col max-w-md gap-6 items-center', className)}>
-      <span className='text-center text-3xl font-grotesk font-medium md:text-5xl'>
+      <span className='text-center text-3xl font-averta font-medium md:text-5xl'>
         {t_account('connectWallet')}
       </span>
       <Button onClick={openConnectModal}>

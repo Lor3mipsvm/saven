@@ -160,19 +160,21 @@ export const VaultFilters = (props: VaultFiltersProps) => {
     isFetchedSortedVaults && filterItems.find((item) => item.id === filterId)?.filter()
   }, [filterItems, filterId, listFilteredVaultsArray, isFetchedSortedVaults])
 
-  return (
-    <div className='w-full flex justify-center'>
-      <div
-        className={classNames(
-          'flex justify-between items-center overflow-x-auto no-scrollbar',
-          'lg:bg-pt-bg-purple-dark lg:py-4 lg:px-8 lg:rounded-3xl',
-          className
-        )}
-      >
-        <Selection items={filterItems} activeItem={filterId} buttonColor='purple' />
-      </div>
-    </div>
-  )
+  return null
+
+  // return (
+  //   <div className='w-full flex justify-center'>
+  //     <div
+  //       className={classNames(
+  //         'flex justify-between items-center overflow-x-auto no-scrollbar',
+  //         'lg:bg-pt-bg-purple-dark lg:py-4 lg:px-8 lg:rounded-3xl',
+  //         className
+  //       )}
+  //     >
+  //       <Selection items={filterItems} activeItem={filterId} buttonColor='purple' />
+  //     </div>
+  //   </div>
+  // )
 }
 
 const getVaultListIdFilteredVaults = (

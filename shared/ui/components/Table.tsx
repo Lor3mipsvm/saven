@@ -63,7 +63,7 @@ export const Table = (props: TableProps) => {
     return (
       <div
         className={classNames(
-          'bg-pt-bg-purple-dark px-4 pb-4',
+          'bg-pt-purple-800 bg-opacity-30 px-4 pb-4',
           { 'rounded-lg': rounded },
           className
         )}
@@ -99,7 +99,7 @@ export const Table = (props: TableProps) => {
             <div
               key={`${keyPrefix}-row-${row.id}`}
               className={classNames(
-                'grid px-6 py-3 bg-pt-transparent',
+                'grid px-6 py-3 bg-pt-purple-600',
                 getGridCols(columns),
                 { 'rounded-lg': rounded },
                 rowClassName,

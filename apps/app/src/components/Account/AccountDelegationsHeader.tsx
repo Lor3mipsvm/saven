@@ -38,7 +38,7 @@ export const AccountDelegationsHeader = (props: AccountDelegationsHeaderProps) =
             })
           : t('yourDelegations')}
       </span>
-      <span className='text-[1.75rem] font-grotesk font-medium md:text-4xl'>
+      <span className='text-[1.75rem] font-averta font-medium md:text-4xl'>
         {isFetchedTotalDelegations && !!userAddress && totalDelegations !== undefined ? (
           <CurrencyValue baseValue={totalDelegations} countUp={true} fallback={<Spinner />} />
         ) : (

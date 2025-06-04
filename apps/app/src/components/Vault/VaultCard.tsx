@@ -40,9 +40,9 @@ export const VaultCard = (props: VaultCardProps) => {
 
   return (
     <div
-      className={classNames('flex flex-col gap-4 rounded-lg px-3 pt-3 pb-6', {
-        'bg-pt-purple-600': isPoolStakingVault,
-        'bg-pt-transparent': !isPoolStakingVault
+      className={classNames('flex flex-col gap-4 rounded-lg px-3 pt-3 pb-6 bg-pt-purple-600', {
+        // 'bg-pt-purple-600': isPoolStakingVault,
+        // 'bg-pt-transparent': !isPoolStakingVault
       })}
     >
       <div className='inline-flex gap-2 items-center'>

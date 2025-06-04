@@ -160,8 +160,8 @@ export const VaultsTable = (props: VaultsTableProps) => {
             content: <VaultButtons vault={vault} forceHide={['delegate']} />,
             position: 'right'
           }
-        },
-        className: classNames({ '!bg-pt-purple-600': isPoolStakingVault })
+        }
+        // className: classNames({ '!bg-pt-purple-600': isPoolStakingVault })
       }
     })
   }

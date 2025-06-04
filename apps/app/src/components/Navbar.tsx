@@ -31,10 +31,10 @@ export const Navbar = () => {
         fluid={true}
         theme={{
           root: {
-            base: 'bg-pt-bg-purple-darker text-pt-purple-50 px-8 py-4 border-b-2 border-b-pt-purple-700 border-opacity-0 isolate z-50'
+            base: 'bg-pt-purple-700 text-pt-purple-50 px-8 py-4 border-b-2 border-b-pt-purple-700 border-opacity-0 isolate z-50'
           }
         }}
-        className='font-grotesk'
+        className='font-averta'
       >
         {/* Left Side Branding */}
         <Link href='/' className='cursor-pointer z-30'>

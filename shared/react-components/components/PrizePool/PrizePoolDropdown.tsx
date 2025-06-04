@@ -44,7 +44,7 @@ export const PrizePoolDropdown = (props: PrizePoolDropdownProps) => {
               intl={intl?.common}
               className='w-full justify-center py-4 border-0'
               iconClassName='h-6 w-6'
-              textClassName='font-grotesk font-medium text-pt-purple-100'
+              textClassName='font-averta font-medium text-pt-purple-100'
             />
           ),
           onClick: (id) => onSelect(parseInt(id))
@@ -87,7 +87,7 @@ const Label = (props: LabelProps) => {
       intl={intl}
       className='gap-2 pr-0'
       iconClassName='h-8 w-8'
-      textClassName='text-[1.75rem] font-grotesk font-medium md:text-4xl'
+      textClassName='text-[1.75rem] font-averta font-medium md:text-4xl'
     />
   )
 }

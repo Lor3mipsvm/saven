@@ -38,7 +38,7 @@ export const AccountWinningsHeader = (props: AccountWinningsHeaderProps) => {
             })
           : t('yourWinnings')}
       </span>
-      <span className='text-[1.75rem] font-grotesk font-medium md:text-4xl'>
+      <span className='text-[1.75rem] font-averta font-medium md:text-4xl'>
         {!!userAddress && totalWinnings !== undefined ? (
           <CurrencyValue baseValue={totalWinnings} countUp={true} fallback={<Spinner />} />
         ) : (

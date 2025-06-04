@@ -65,7 +65,7 @@ export const PrizePoolWinners = (props: PrizePoolWinnersProps) => {
           className
         )}
       >
-        <span className='text-2xl font-grotesk text-pt-teal-dark font-medium md:text-4xl'>
+        <span className='text-2xl font-averta text-pt-teal-dark font-medium md:text-4xl'>
           {t('recentWinners')}
         </span>
         <ul className='w-full flex flex-col items-center gap-2 text-center md:gap-4'>

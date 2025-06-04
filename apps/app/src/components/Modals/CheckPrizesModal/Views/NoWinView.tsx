@@ -15,7 +15,7 @@ export const NoWinView = (props: NoWinViewProps) => {
 
   return (
     <div className='flex flex-col items-center'>
-      <span className='text-center text-3xl font-grotesk font-medium text-gray-100'>
+      <span className='text-center text-3xl font-averta font-medium text-gray-100'>
         {t('noPrizes')}
       </span>
       <Lottie

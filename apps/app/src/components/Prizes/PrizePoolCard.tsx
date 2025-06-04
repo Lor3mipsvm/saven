@@ -40,7 +40,7 @@ export const PrizePoolCard = (props: PrizePoolCardProps) => {
   return (
     <Card wrapperClassName={className} className='gap-3 items-center md:gap-4'>
       <NetworkBadge chainId={prizePool.chainId} hideBg={isMobile} />
-      <div className='h-[8.75rem] flex flex-col gap-0.5 items-center text-center text-pt-purple-200 font-grotesk'>
+      <div className='h-[8.75rem] flex flex-col gap-0.5 items-center text-center text-pt-purple-200 font-averta'>
         <span className='text-2xl'>{t_common('grandPrize')}</span>
         {isFetchedGrandPrize ? (
           !!grandPrize ? (
