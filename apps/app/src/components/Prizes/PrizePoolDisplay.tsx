@@ -1,5 +1,4 @@
 import { useSelectedVault, useSelectedVaults } from '@generationsoftware/hyperstructure-react-hooks'
-import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline'
 import { ExternalLink } from '@shared/ui'
 import { LINKS, NETWORK } from '@shared/utilities'
 import classNames from 'classnames'
@@ -90,8 +89,6 @@ const PrizePoolCarousel = (props: PrizePoolCarouselProps) => {
     !!chainId && handleNetworkChange(chainId)
   }, [prizePoolIndex])
 
-  const prevPrizePoolIndex = prizePoolIndex === 0 ? prizePoolsArray.length - 1 : prizePoolIndex - 1
-  const nextPrizePoolIndex = prizePoolIndex === prizePoolsArray.length - 1 ? 0 : prizePoolIndex + 1
 
   return (
     <div
@@ -101,20 +98,9 @@ const PrizePoolCarousel = (props: PrizePoolCarouselProps) => {
       )}
     >
       <PrizePoolPrizesCard
-        prizePool={prizePoolsArray[prevPrizePoolIndex]}
-        className='hidden w-[calc(100vw-4rem)] shrink-0 lg:w-[38rem] lg:flex'
-      />
-      <PrizePoolPrizesCard
         prizePool={prizePoolsArray[prizePoolIndex]}
         className='w-[calc(100vw-4rem)] shrink-0 lg:w-[38rem]'
       />
-      <PrizePoolPrizesCard
-        prizePool={prizePoolsArray[nextPrizePoolIndex]}
-        className='hidden w-[calc(100vw-4rem)] shrink-0 lg:w-[38rem] lg:flex'
-      />
-      <div className='absolute w-full h-full pointer-events-none lg:bg-[linear-gradient(90deg,#21064E_15%,transparent_35%,transparent_65%,#21064E_85%)]'>
-        <div className='relative w-full h-full max-w-screen-xl mx-auto'></div>
-      </div>
     </div>
   )
 }

@@ -1,10 +1,14 @@
 import { connectorsForWallets, WalletList } from '@rainbow-me/rainbowkit'
 import { getInitialCustomRPCs } from '@shared/generic-react-hooks'
 import { formatNumberForDisplay, NETWORK, parseQueryParam } from '@shared/utilities'
+import { MiniKit } from '@worldcoin/minikit-js'
 import deepmerge from 'deepmerge'
-import { Chain, formatUnits, http, Transport } from 'viem'
+import { Address, Chain, formatUnits, http, Transport } from 'viem'
 import { createConfig, CreateConnectorFn, fallback } from 'wagmi'
 import { RPC_URLS, WAGMI_CHAINS, WALLETS } from '@constants/config'
+
+// const { address: _userAddress } = useAccount()
+// const userAddress = address ?? _userAddress
 
 /**
  * Returns a Wagmi config with the given networks and RPCs
@@ -152,4 +156,147 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
     Math.floor(parseFloat(shiftedAmount) * roundingMultiplier) / roundingMultiplier
 
   return formatNumberForDisplay(roundedAmount, { maximumFractionDigits })
+}
+
+export const signInWithWallet = async () => {
+  if (!MiniKit.isInstalled()) {
+    // toast.dismiss()
+    // toast.error(
+    //   `Failed !MiniKit.isInstalled(), make sure you're running this miniapp inside of the World Mobile App`,
+    //   {
+    //     duration: 8000,
+    //     style: 'border: 2px solid var(--pt-warning-med); '
+    //   }
+    // )
+    // console.log('failed !MiniKit.isInstalled()')
+    // return
+
+    console.log('failed !MiniKit.isInstalled()')
+  }
+
+  // const res = await fetch(`/api/nonce`)
+  const nonce = crypto.randomUUID().replace(/-/g, '')
+  // const { nonce } = await res.json()
+
+  const { commandPayload: generateMessageResult, finalPayload } =
+    await MiniKit.commandsAsync.walletAuth({
+      nonce,
+      expirationTime: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
+      notBefore: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
+      statement:
+        'PoolTogether requires your address to check your WLD balance and permit deposits into the Prize Pool'
+    })
+
+  if (finalPayload.status === 'error') {
+    console.log('error')
+
+    return
+  } else {
+    const walletAddress = finalPayload.address as Address
+    userAddress.set(walletAddress)
+
+    // const response = await fetch('/api/complete-siwe', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     payload: finalPayload,
+    //     nonce
+    //   })
+    // })
+  }
+}
+
+// export const connect = async (providerData: EIP6963ProviderData, options?: { onConnected?: (address: Address) => void }) => {
+//   const transport = custom(providerData.provider, transportSettings)
+
+//   const _walletClient = createWalletClient({ chain, transport })
+
+//   // Some providers only support `getAddresses` since `requestAddresses` uses optional RPC calls
+//   let [address] = await _walletClient.getAddresses()
+//   if (!address) {
+//     address = (await _walletClient.requestAddresses())[0]
+//   }
+
+//   const publicClient = createPublicClient({ chain, transport, ...publicClientSettings }) as PublicClient
+//   const walletClient = createWalletClient({ account: address, chain, transport })
+
+//   const walletClientChainId = await walletClient.getChainId()
+
+//   if (walletClientChainId !== chain.id) {
+//     await walletClient.switchChain({ id: chain.id })
+//   }
+
+//   clients.set({ public: publicClient, wallet: walletClient })
+//   userAddress.set(address)
+//   lastConnectedProviderId.set(providerData.info.uuid)
+
+//   options?.onConnected?.(address)
+
+//   providerData.provider.on('accountsChanged', (accounts: Address[]) => {
+//     if (get(lastConnectedProviderId) === providerData.info.uuid) {
+//       userAddress.set(accounts[0])
+//     }
+//   })
+
+//   return address
+// }
+
+export const disconnect = async () => {
+  localStorage.removeItem(localStorageKeys.userAddress)
+  userAddress.set(undefined)
+  // clients.set(getInitialClients())
+}
+
+export const updateAddressVerifiedUntil = async (userAddress: Address) => {
+  const publicClient = get(clients).public
+
+  const until = await publicClient.readContract({
+    address: worldIdAddressBook.address,
+    abi: worldIdABI,
+    functionName: 'addressVerifiedUntil',
+    args: [userAddress]
+  })
+
+  addressVerifiedUntil.set(until)
+}
+
+export const getAccountDepositLimit = async () => {
+  const publicClient = get(clients).public
+
+  if (!get(accountDepositLimit)) {
+    const limit = (await publicClient.readContract({
+      address: prizeVault.address,
+      abi: vaultABI,
+      functionName: 'accountDepositLimit'
+    })) as bigint
+
+    accountDepositLimit.set(limit)
+  }
+}
+
+export const getUsernamesInfo = async (address?: Address) => {
+  const USERNAMES_URL = 'https://usernames.worldcoin.org/api/v1/'
+
+  if (!address) {
+    usernameResult.set({ address: null, username: null, profile_picture_url: null })
+  } else if (!get(usernameResult) || address !== get(usernameResult).address) {
+    usernameResult.set({ address, username: null, profile_picture_url: null })
+
+    const uri = `${USERNAMES_URL}${address}`
+
+    try {
+      const response = await fetch(uri, {
+        method: 'GET'
+      })
+
+      if (!response.ok) {
+        console.error(`Response status: ${response.status}`)
+      }
+      usernameResult.set(await response.json())
+    } catch (error: any) {
+      console.error(error.message)
+    }
+  }
 }
