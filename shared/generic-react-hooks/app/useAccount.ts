@@ -1,13 +1,16 @@
-import { NETWORK } from '@shared/utilities'
 import { atom, useAtom } from 'jotai'
-import { Address } from 'viem'
+import { Address, Chain } from 'viem'
 import { LOCAL_STORAGE_KEYS } from '../constants/keys'
 
 const getInitialUserAddress = (): Address | undefined => {
   if (typeof window === 'undefined') return undefined
 
-  const cachedUserAddress = localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress)
+  // const cachedUserAddress = localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress)
+  const cachedUserAddress: Address | undefined =
+    (localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress) as Address) ?? undefined
 
+  console.log('cachedUserAddress')
+  console.log(cachedUserAddress)
   if (!!cachedUserAddress) {
     return cachedUserAddress as Address
   }
@@ -20,19 +23,16 @@ const userAddressAtom = atom<Address | undefined>(getInitialUserAddress())
  * Stores state in local storage
  * @returns
  */
-// const { address: userAddress } = useAccount()
 export const useAccount = (): {
-  address: string
-  chain: NETWORK
+  address: string | undefined
+  chain: Chain
   isDisconnected: boolean
   setUserAddress: (userAddress: Address) => void
 } => {
   const [userAddress, _setUserAddress] = useAtom(userAddressAtom)
 
-  const address: Address | undefined =
-    (localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress) as Address) ?? undefined
-
-  const chain = NETWORK.world
+  // TODO: Hard-coded Chain ID here, might cause certain things to fall over
+  const chain = { id: 480 } as Chain
   const isDisconnected = false
 
   const setUserAddress = (userAddress: Address) => {
@@ -40,5 +40,5 @@ export const useAccount = (): {
     _setUserAddress(userAddress)
   }
 
-  return { address, chain, isDisconnected, setUserAddress }
+  return { address: userAddress, chain, isDisconnected, setUserAddress }
 }

@@ -19,6 +19,7 @@ A library of shared React hooks with minimal dependencies.
 
 ### App Hooks
 
+- `useAccount`
 - `useCountdown`
 - `useCountup`
 - `useCustomRPCs`

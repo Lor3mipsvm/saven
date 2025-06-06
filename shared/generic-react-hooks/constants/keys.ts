@@ -17,8 +17,8 @@ export const LOCAL_STORAGE_KEYS = {
   selectedCurrency: 'selectedCurrency',
   selectedLanguage: 'selectedLanguage',
   customRPCs: 'customRPCs',
-  miscSettings: 'miscSettings'
-  userAddress: 'userAddress',
+  miscSettings: 'miscSettings',
+  userAddress: 'userAddress'
 } as const
 
 /**

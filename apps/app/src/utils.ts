@@ -158,7 +158,7 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
   return formatNumberForDisplay(roundedAmount, { maximumFractionDigits })
 }
 
-export const signInWithWallet = async () => {
+export const signInWithWallet = async (setUserAddress: (address: Address) => void) => {
   if (!MiniKit.isInstalled()) {
     // toast.dismiss()
     // toast.error(
@@ -172,6 +172,7 @@ export const signInWithWallet = async () => {
     // return
 
     console.log('failed !MiniKit.isInstalled()')
+    return
   }
 
   // const res = await fetch(`/api/nonce`)
@@ -189,11 +190,15 @@ export const signInWithWallet = async () => {
 
   if (finalPayload.status === 'error') {
     console.log('error')
+    console.log('User rejected sign in window?')
 
     return
   } else {
     const walletAddress = finalPayload.address as Address
-    userAddress.set(walletAddress)
+    console.log('made it')
+    console.log('walletAddress')
+    console.log(walletAddress)
+    setUserAddress(walletAddress)
 
     // const response = await fetch('/api/complete-siwe', {
     //   method: 'POST',
@@ -243,60 +248,60 @@ export const signInWithWallet = async () => {
 //   return address
 // }
 
-export const disconnect = async () => {
-  localStorage.removeItem(localStorageKeys.userAddress)
-  userAddress.set(undefined)
-  // clients.set(getInitialClients())
-}
+// export const disconnect = async () => {
+//   localStorage.removeItem(localStorageKeys.userAddress)
+//   userAddress.set(undefined)
+//   // clients.set(getInitialClients())
+// }
 
-export const updateAddressVerifiedUntil = async (userAddress: Address) => {
-  const publicClient = get(clients).public
+// export const updateAddressVerifiedUntil = async (userAddress: Address) => {
+//   const publicClient = get(clients).public
 
-  const until = await publicClient.readContract({
-    address: worldIdAddressBook.address,
-    abi: worldIdABI,
-    functionName: 'addressVerifiedUntil',
-    args: [userAddress]
-  })
+//   const until = await publicClient.readContract({
+//     address: worldIdAddressBook.address,
+//     abi: worldIdABI,
+//     functionName: 'addressVerifiedUntil',
+//     args: [userAddress]
+//   })
 
-  addressVerifiedUntil.set(until)
-}
+//   addressVerifiedUntil.set(until)
+// }
 
-export const getAccountDepositLimit = async () => {
-  const publicClient = get(clients).public
+// export const getAccountDepositLimit = async () => {
+//   const publicClient = get(clients).public
 
-  if (!get(accountDepositLimit)) {
-    const limit = (await publicClient.readContract({
-      address: prizeVault.address,
-      abi: vaultABI,
-      functionName: 'accountDepositLimit'
-    })) as bigint
+//   if (!get(accountDepositLimit)) {
+//     const limit = (await publicClient.readContract({
+//       address: prizeVault.address,
+//       abi: vaultABI,
+//       functionName: 'accountDepositLimit'
+//     })) as bigint
 
-    accountDepositLimit.set(limit)
-  }
-}
+//     accountDepositLimit.set(limit)
+//   }
+// }
 
-export const getUsernamesInfo = async (address?: Address) => {
-  const USERNAMES_URL = 'https://usernames.worldcoin.org/api/v1/'
+// export const getUsernamesInfo = async (address?: Address) => {
+//   const USERNAMES_URL = 'https://usernames.worldcoin.org/api/v1/'
 
-  if (!address) {
-    usernameResult.set({ address: null, username: null, profile_picture_url: null })
-  } else if (!get(usernameResult) || address !== get(usernameResult).address) {
-    usernameResult.set({ address, username: null, profile_picture_url: null })
+//   if (!address) {
+//     usernameResult.set({ address: null, username: null, profile_picture_url: null })
+//   } else if (!get(usernameResult) || address !== get(usernameResult).address) {
+//     usernameResult.set({ address, username: null, profile_picture_url: null })
 
-    const uri = `${USERNAMES_URL}${address}`
+//     const uri = `${USERNAMES_URL}${address}`
 
-    try {
-      const response = await fetch(uri, {
-        method: 'GET'
-      })
+//     try {
+//       const response = await fetch(uri, {
+//         method: 'GET'
+//       })
 
-      if (!response.ok) {
-        console.error(`Response status: ${response.status}`)
-      }
-      usernameResult.set(await response.json())
-    } catch (error: any) {
-      console.error(error.message)
-    }
-  }
-}
+//       if (!response.ok) {
+//         console.error(`Response status: ${response.status}`)
+//       }
+//       usernameResult.set(await response.json())
+//     } catch (error: any) {
+//       console.error(error.message)
+//     }
+//   }
+// }
