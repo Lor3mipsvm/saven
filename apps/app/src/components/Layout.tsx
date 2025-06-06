@@ -16,7 +16,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { useWalletId } from '@hooks/useWalletId'
 import { Footer } from './Footer'
 import { CheckPrizesModal } from './Modals/CheckPrizesModal'
-import { DelegateModal } from './Modals/DelegateModal'
+// import { DelegateModal } from './Modals/DelegateModal'
 import { DepositModal } from './Modals/DepositModal'
 import { SettingsModal } from './Modals/SettingsModal'
 import { WithdrawModal } from './Modals/WithdrawModal'
@@ -122,7 +122,7 @@ export const Layout = (props: LayoutProps) => {
         onSuccessfulWithdrawalWithZap={() => {}}
       />
 
-      <DelegateModal onSuccessfulDelegation={() => {}} />
+      {/* <DelegateModal onSuccessfulDelegation={() => {}} /> */}
 
       <CheckPrizesModal onWin={() => {}} onNoWin={() => {}} />
 

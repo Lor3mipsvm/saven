@@ -27,11 +27,11 @@ export const VaultPageButtons = (props: VaultPageButtonsProps) => {
       <WithdrawButton vault={vault} extraOnClick={() => {}} color='transparent'>
         {t_common('withdraw')}
       </WithdrawButton>
-      {!!userAddress && (
+      {/* {!!userAddress && (
         <DelegateButton vault={vault} extraOnClick={() => {}} color='transparent'>
           {t_common('delegate')}
         </DelegateButton>
-      )}
+      )} */}
     </div>
   )
 }

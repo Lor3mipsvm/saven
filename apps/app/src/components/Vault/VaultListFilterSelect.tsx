@@ -34,7 +34,7 @@ export const VaultListFilterSelect = (props: VaultListFilterSelectProps) => {
             },
             colors: {
               custom:
-                'bg-pt-bg-purple-dark text-pt-purple-100 outline-pt-purple-100 focus:ring-2 focus:ring-pt-purple-50'
+                'bg-pt-purple-600 bg-opacity-30  text-pt-purple-100 outline-pt-purple-100 focus:ring-2 focus:ring-pt-purple-50'
             }
           }
         }
@@ -43,11 +43,11 @@ export const VaultListFilterSelect = (props: VaultListFilterSelectProps) => {
       shadow={false}
       className={classNames('max-w-[12.5rem]', className)}
     >
-      <option value='all' className='bg-pt-bg-purple-dark'>
+      <option value='all' className='bg-pt-purple-600 bg-opacity-30 '>
         {t('allVaultLists')}
       </option>
       {Object.entries({ ...localVaultLists, ...importedVaultLists }).map(([id, list]) => (
-        <option key={id} value={id} className='bg-pt-bg-purple-dark'>
+        <option key={id} value={id} className='bg-pt-purple-600 bg-opacity-30 '>
           {list.name}
         </option>
       ))}

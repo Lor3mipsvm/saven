@@ -63,7 +63,7 @@ export const Table = (props: TableProps) => {
     return (
       <div
         className={classNames(
-          'bg-pt-purple-800 bg-opacity-30 px-4 pb-4',
+          'bg-pt-purple-600 bg-opacity-30 px-4 pb-4',
           { 'rounded-lg': rounded },
           className
         )}

@@ -139,7 +139,7 @@ export const AccountWinningsTable = (props: AccountWinningsTableProps) => {
   return (
     <div
       className={classNames(
-        'w-full flex flex-col bg-pt-bg-purple-dark rounded-t-2xl rounded-b-[2.5rem]',
+        'w-full flex flex-col bg-pt-purple-600 bg-opacity-30  rounded-t-2xl rounded-b-[2.5rem]',
         className
       )}
     >
