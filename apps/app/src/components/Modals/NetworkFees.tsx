@@ -3,6 +3,7 @@ import {
   useGasCostEstimates,
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { CurrencyValue, TX_GAS_ESTIMATES } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import {
@@ -18,7 +19,6 @@ import {
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { zeroAddress } from 'viem'
-import { useAccount } from 'wagmi'
 
 export interface NetworkFeesProps {
   vault: Vault

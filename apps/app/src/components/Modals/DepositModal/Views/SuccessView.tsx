@@ -3,6 +3,7 @@ import {
   useVaultShareData,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { PrizePoolBadge, SocialShareButton, SuccessPooly } from '@shared/react-components'
 import { Token } from '@shared/types'
 import { ExternalLink, Spinner } from '@shared/ui'
@@ -17,7 +18,7 @@ import {
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { Address, decodeEventLog, TransactionReceipt } from 'viem'
-import { useAccount, useTransactionReceipt } from 'wagmi'
+import { useTransactionReceipt } from 'wagmi'
 
 interface SuccessViewProps {
   vault: Vault

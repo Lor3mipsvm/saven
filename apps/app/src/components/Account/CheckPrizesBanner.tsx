@@ -1,11 +1,11 @@
 import { useDrawsToCheckForPrizes } from '@generationsoftware/hyperstructure-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { Button, Spinner } from '@shared/ui'
 import { getSimpleDate } from '@shared/utilities'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { useAccount } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 
 interface CheckPrizesBannerProps {

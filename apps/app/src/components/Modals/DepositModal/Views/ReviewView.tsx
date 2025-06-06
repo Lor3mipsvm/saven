@@ -8,6 +8,7 @@ import {
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useMiscSettings } from '@shared/generic-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { PrizePoolBadge, TokenIcon } from '@shared/react-components'
 import { Token, TokenWithLogo } from '@shared/types'
 import { Spinner } from '@shared/ui'
@@ -25,7 +26,7 @@ import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { walletSupportsPermit } from 'src/utils'
 import { Address } from 'viem'
-import { useAccount, useCapabilities } from 'wagmi'
+import { useCapabilities } from 'wagmi'
 import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
 import { Odds } from '../../Odds'
 import {

@@ -6,6 +6,7 @@ import {
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useMiscSettings } from '@shared/generic-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { AlertIcon, PrizePoolBadge } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import {
@@ -17,7 +18,7 @@ import {
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { walletSupportsPermit } from 'src/utils'
-import { useAccount, useCapabilities } from 'wagmi'
+import { useCapabilities } from 'wagmi'
 import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
 import { Odds } from '../../Odds'
 import {

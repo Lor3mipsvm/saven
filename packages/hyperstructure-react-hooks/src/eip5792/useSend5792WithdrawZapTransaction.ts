@@ -1,8 +1,8 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
+import { useAccount } from '@shared/generic-react-hooks'
 import { erc20ABI, ZAP_SETTINGS, zapRouterABI } from '@shared/utilities'
 import { useMemo } from 'react'
 import { Address, encodeFunctionData, Hash, isAddress, WalletCallReceipt } from 'viem'
-import { useAccount } from 'wagmi'
 import { useTokenAllowance, useZapArgs } from '..'
 import { useSend5792Calls } from './useSend5792Calls'
 

@@ -1,10 +1,10 @@
 import { useToken } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { TokenValueAndAmount } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import { lower } from '@shared/utilities'
 import { useMemo } from 'react'
 import { Address, formatUnits } from 'viem'
-import { useAccount } from 'wagmi'
 import { useUserClaimablePoolWidePromotions } from '@hooks/useUserClaimablePoolWidePromotions'
 import { useUserClaimablePromotions } from '@hooks/useUserClaimablePromotions'
 

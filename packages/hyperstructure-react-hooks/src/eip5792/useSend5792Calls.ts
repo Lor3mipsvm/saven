@@ -1,6 +1,7 @@
+import { useAccount } from '@shared/generic-react-hooks'
 import { useEffect } from 'react'
 import { Address, Hash, isAddress, WalletCallReceipt } from 'viem'
-import { useAccount, useSendCalls, useWaitForCallsStatus } from 'wagmi'
+import { useSendCalls, useWaitForCallsStatus } from 'wagmi'
 
 /**
  * Prepares and submits [EIP-5792](https://eips.ethereum.org/EIPS/eip-5792) calls

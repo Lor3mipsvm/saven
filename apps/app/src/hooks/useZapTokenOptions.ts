@@ -10,11 +10,11 @@ import {
   useTokens,
   useVaults
 } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { TokenWithAmount, TokenWithLogo, TokenWithPrice } from '@shared/types'
 import { DOLPHIN_ADDRESS, getVaultId, lower } from '@shared/utilities'
 import { useMemo } from 'react'
 import { formatUnits } from 'viem'
-import { useAccount } from 'wagmi'
 import { ZAP_TOKEN_OPTIONS } from '@constants/config'
 
 /**

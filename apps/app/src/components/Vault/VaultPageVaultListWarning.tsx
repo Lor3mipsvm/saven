@@ -7,12 +7,12 @@ import {
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { VaultInfo } from '@shared/types'
 import { getFormattedVaultList, getVaultId } from '@shared/utilities'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { useAccount } from 'wagmi'
 import { useSettingsModalView } from '@hooks/useSettingsModalView'
 
 interface VaultPageVaultListWarningProps {

@@ -1,8 +1,8 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
+import { useAccount } from '@shared/generic-react-hooks'
 import { DelegateButton, DepositButton, WithdrawButton } from '@shared/react-components'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
-import { useAccount } from 'wagmi'
 
 interface VaultPageButtonsProps {
   vault: Vault

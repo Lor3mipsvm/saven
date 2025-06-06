@@ -1,9 +1,10 @@
+import { useAccount } from '@shared/generic-react-hooks'
 import { Intl } from '@shared/types'
 import { Button, ButtonProps, Spinner } from '@shared/ui'
 import { getNiceNetworkNameByChainId } from '@shared/utilities'
 import classNames from 'classnames'
 import { useEffect } from 'react'
-import { useAccount, useSwitchChain } from 'wagmi'
+import { useSwitchChain } from 'wagmi'
 
 export interface TransactionButtonProps extends Omit<ButtonProps, 'onClick'> {
   chainId: number

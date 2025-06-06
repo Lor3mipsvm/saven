@@ -7,6 +7,7 @@ import {
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAddRecentTransaction } from '@rainbow-me/rainbowkit'
 import { MODAL_KEYS, useIsModalOpen, useMiscSettings } from '@shared/generic-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { createDepositTxToast } from '@shared/react-components'
 import { Modal } from '@shared/ui'
 import { LINKS, lower, supportsEip5792 } from '@shared/utilities'
@@ -16,7 +17,7 @@ import { useTranslations } from 'next-intl'
 import { ReactNode, useMemo, useState } from 'react'
 import { walletSupportsPermit } from 'src/utils'
 import { Hash } from 'viem'
-import { useAccount, useCapabilities } from 'wagmi'
+import { useCapabilities } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 import {
   depositFormShareAmountAtom,

@@ -3,6 +3,7 @@ import {
   useAllUserVaultDelegationBalances,
   useSelectedVaults
 } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { CaptchaModal } from '@shared/react-components'
 import { toast } from '@shared/ui'
 import { getDiscordInvite } from '@shared/utilities'
@@ -12,7 +13,6 @@ import Head from 'next/head'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'
-import { useAccount } from 'wagmi'
 import { useWalletId } from '@hooks/useWalletId'
 import { Footer } from './Footer'
 import { CheckPrizesModal } from './Modals/CheckPrizesModal'

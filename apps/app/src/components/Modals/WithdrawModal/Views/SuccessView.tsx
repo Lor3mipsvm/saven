@@ -1,5 +1,6 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import { useToken, useVaultTokenAddress } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { PrizePoolBadge, SuccessPooly } from '@shared/react-components'
 import { Token } from '@shared/types'
 import { Button, ExternalLink, Spinner } from '@shared/ui'
@@ -15,7 +16,7 @@ import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { Address, decodeEventLog, TransactionReceipt } from 'viem'
-import { useAccount, useTransactionReceipt } from 'wagmi'
+import { useTransactionReceipt } from 'wagmi'
 import { withdrawFormTokenAddressAtom } from '../WithdrawForm'
 
 interface SuccessViewProps {

@@ -1,12 +1,8 @@
+import { useAccount } from '@shared/generic-react-hooks'
 import { POOL_WIDE_TWAB_REWARDS_ADDRESSES, poolWideTwabRewardsABI } from '@shared/utilities'
 import { useEffect, useMemo } from 'react'
 import { Address, encodeFunctionData, isAddress, TransactionReceipt } from 'viem'
-import {
-  useAccount,
-  useSimulateContract,
-  useWaitForTransactionReceipt,
-  useWriteContract
-} from 'wagmi'
+import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 /**
  * Prepares and submits a `claimRewards` or `multicall` transaction to a pool-wide TWAB rewards contract

@@ -4,11 +4,11 @@ import {
   useUserVaultDelegationBalance,
   useUserVaultShareBalance
 } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { Spinner } from '@shared/ui'
 import { formatNumberForDisplay } from '@shared/utilities'
 import { useTranslations } from 'next-intl'
 import { Address } from 'viem'
-import { useAccount } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 
 interface AccountVaultDelegationOddsProps {

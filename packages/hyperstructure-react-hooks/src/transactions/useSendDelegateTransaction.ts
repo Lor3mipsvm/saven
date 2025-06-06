@@ -1,13 +1,9 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
+import { useAccount } from '@shared/generic-react-hooks'
 import { calculatePercentageOfBigInt, twabControllerABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, isAddress, TransactionReceipt } from 'viem'
-import {
-  useAccount,
-  useSimulateContract,
-  useWaitForTransactionReceipt,
-  useWriteContract
-} from 'wagmi'
+import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { useGasAmountEstimate } from '..'
 
 /**

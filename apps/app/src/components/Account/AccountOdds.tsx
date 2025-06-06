@@ -2,6 +2,7 @@ import {
   useAllDrawPeriods,
   useAllUserPrizeOdds
 } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { Spinner } from '@shared/ui'
 import { formatNumberForDisplay, SECONDS_PER_MONTH } from '@shared/utilities'
 import { calculateUnionProbability, SECONDS_PER_WEEK } from '@shared/utilities'
@@ -9,7 +10,6 @@ import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { Address } from 'viem'
-import { useAccount } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 
 interface AccountOddsProps {

@@ -1,13 +1,9 @@
+import { useAccount } from '@shared/generic-react-hooks'
 import { VaultDeployInfo } from '@shared/types'
 import { VAULT_FACTORY_ADDRESSES, vaultFactoryABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, TransactionReceipt } from 'viem'
-import {
-  useAccount,
-  useSimulateContract,
-  useWaitForTransactionReceipt,
-  useWriteContract
-} from 'wagmi'
+import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { useTokenAllowance } from '../tokens/useTokenAllowances'
 
 /**

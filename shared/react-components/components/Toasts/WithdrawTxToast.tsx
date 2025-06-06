@@ -10,6 +10,7 @@ import {
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { Intl } from '@shared/types'
 import { Spinner, toast } from '@shared/ui'
 import {
@@ -19,7 +20,7 @@ import {
 } from '@shared/utilities'
 import { ReactNode, useEffect } from 'react'
 import { Address } from 'viem'
-import { useAccount, useWaitForTransactionReceipt } from 'wagmi'
+import { useWaitForTransactionReceipt } from 'wagmi'
 import { ErrorPooly } from '../Graphics/ErrorPooly'
 import { SuccessPooly } from '../Graphics/SuccessPooly'
 

@@ -1,12 +1,8 @@
+import { useAccount } from '@shared/generic-react-hooks'
 import { TWAB_REWARDS_ADDRESSES, twabRewardsABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, isAddress, TransactionReceipt } from 'viem'
-import {
-  useAccount,
-  useSimulateContract,
-  useWaitForTransactionReceipt,
-  useWriteContract
-} from 'wagmi'
+import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 /**
  * Prepares and submits a `destroyPromotion` transaction to a TWAB rewards contract

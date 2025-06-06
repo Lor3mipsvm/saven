@@ -1,6 +1,7 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import { useUserVaultDelegate } from '@generationsoftware/hyperstructure-react-hooks'
 import { PencilIcon } from '@heroicons/react/24/outline'
+import { useAccount } from '@shared/generic-react-hooks'
 import { DelegationDescriptionTooltip } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import classNames from 'classnames'
@@ -10,7 +11,6 @@ import { ReactNode, useEffect } from 'react'
 import { useState } from 'react'
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form'
 import { Address, isAddress } from 'viem'
-import { useAccount } from 'wagmi'
 import { DelegateModalView } from '.'
 
 export const delegateFormNewDelegateAddressAtom = atom<Address | undefined>('0x')

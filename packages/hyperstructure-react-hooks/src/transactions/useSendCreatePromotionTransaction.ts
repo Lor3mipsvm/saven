@@ -1,4 +1,5 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
+import { useAccount } from '@shared/generic-react-hooks'
 import {
   getSecondsSinceEpoch,
   SECONDS_PER_DAY,
@@ -9,7 +10,6 @@ import {
 import { useEffect, useMemo } from 'react'
 import { Address, isAddress, TransactionReceipt } from 'viem'
 import {
-  useAccount,
   useReadContract,
   useReadContracts,
   useSimulateContract,

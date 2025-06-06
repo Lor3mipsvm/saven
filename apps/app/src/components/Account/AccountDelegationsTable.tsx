@@ -3,6 +3,7 @@ import {
   useAllUserVaultDelegationBalances,
   useSelectedVaults
 } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import { VaultBadge, WinChanceTooltip } from '@shared/react-components'
 import { Table, TableProps } from '@shared/ui'
 import classNames from 'classnames'
@@ -10,7 +11,6 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useMemo } from 'react'
 import { Address } from 'viem'
-import { useAccount } from 'wagmi'
 import { useSortedVaultsByDelegatedAmount } from '@hooks/useSortedVaultsByDelegatedAmount'
 import { AccountVaultDelegationAmount } from './AccountVaultDelegationAmount'
 import { AccountVaultDelegationOdds } from './AccountVaultDelegationOdds'

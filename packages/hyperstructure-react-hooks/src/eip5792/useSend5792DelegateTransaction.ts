@@ -1,7 +1,7 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
+import { useAccount } from '@shared/generic-react-hooks'
 import { twabControllerABI } from '@shared/utilities'
 import { Address, encodeFunctionData, Hash, isAddress, WalletCallReceipt } from 'viem'
-import { useAccount } from 'wagmi'
 import { useSend5792Calls } from './useSend5792Calls'
 
 /**

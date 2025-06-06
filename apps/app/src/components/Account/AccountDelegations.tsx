@@ -3,10 +3,10 @@ import {
   useAllUserVaultDelegationBalances,
   useSelectedVaults
 } from '@generationsoftware/hyperstructure-react-hooks'
+import { useAccount } from '@shared/generic-react-hooks'
 import classNames from 'classnames'
 import { useMemo } from 'react'
 import { Address } from 'viem'
-import { useAccount } from 'wagmi'
 import { AccountDelegationsCards } from './AccountDelegationsCards'
 import { AccountDelegationsHeader } from './AccountDelegationsHeader'
 import { AccountDelegationsTable } from './AccountDelegationsTable'

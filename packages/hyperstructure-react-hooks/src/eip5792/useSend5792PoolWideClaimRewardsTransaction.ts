@@ -1,7 +1,7 @@
+import { useAccount } from '@shared/generic-react-hooks'
 import { POOL_WIDE_TWAB_REWARDS_ADDRESSES, poolWideTwabRewardsABI } from '@shared/utilities'
 import { useMemo } from 'react'
 import { Address, encodeFunctionData, Hash, isAddress, WalletCallReceipt } from 'viem'
-import { useAccount } from 'wagmi'
 import { useSend5792Calls } from './useSend5792Calls'
 
 /**

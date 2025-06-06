@@ -1,12 +1,8 @@
+import { useAccount } from '@shared/generic-react-hooks'
 import { erc20ABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, TransactionReceipt } from 'viem'
-import {
-  useAccount,
-  useSimulateContract,
-  useWaitForTransactionReceipt,
-  useWriteContract
-} from 'wagmi'
+import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 /**
  * Prepares and submits a generic ERC20 `approve` transaction

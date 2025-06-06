@@ -1,6 +1,6 @@
+import { useAccount } from '@shared/generic-react-hooks'
 import classNames from 'classnames'
 import { Address } from 'viem'
-import { useAccount } from 'wagmi'
 import { useUserClaimablePoolWidePromotions } from '@hooks/useUserClaimablePoolWidePromotions'
 import { useUserClaimablePromotions } from '@hooks/useUserClaimablePromotions'
 import { useUserClaimedPoolWidePromotions } from '@hooks/useUserClaimedPoolWidePromotions'
