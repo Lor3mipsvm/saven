@@ -1,0 +1,20 @@
+span.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--pt-purple-300);
+}
+
+span.user-info > img {
+  height: 1.4rem;
+}
+
+span.user-info > span {
+  max-width: 50vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+span.user-info:hover > span {
+  color: var(--pt-purple-200);
+}

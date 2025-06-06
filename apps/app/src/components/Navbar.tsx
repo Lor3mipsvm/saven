@@ -1,4 +1,5 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
+import { useAccount } from '@shared/generic-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { Logo } from '@shared/ui'
 import classNames from 'classnames'
@@ -8,6 +9,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 import { SignInButton } from './SignInButton'
+import { UserAccountInfo } from './UserAccountInfo'
 
 interface NavbarLink {
   href: string
@@ -16,6 +18,8 @@ interface NavbarLink {
 
 export const Navbar = () => {
   const t_nav = useTranslations('Navigation')
+
+  const { address: userAddress } = useAccount()
 
   const { setIsModalOpen: setIsSettingsModalOpen } = useIsModalOpen(MODAL_KEYS.settings)
 
@@ -48,7 +52,8 @@ export const Navbar = () => {
 
         {/* Right Side Content */}
         <div className='flex gap-2 items-center z-20'>
-          <SignInButton />
+          {userAddress ? <UserAccountInfo /> : <SignInButton />}
+
           <Bars3Icon
             className='h-6 w-6 text-pt-purple-50 hover:text-pt-purple-200 cursor-pointer'
             onClick={() => setIsSettingsModalOpen(true)}
