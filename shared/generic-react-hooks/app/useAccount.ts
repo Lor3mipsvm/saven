@@ -1,62 +1,44 @@
-import { LOCAL_STORAGE_KEYS } from '../constants'
-
-/**
- * Returns current wallet address as object
- * @returns
- */
-// const { address: userAddress } = useAccount()
-export const useAccount = (): { address: string } => {
-  // localStorage.setItem(localStorageKeys.userAddress, address)
-
-  // const getInitialCachedVaultLists = (): { [id: string]: VaultList } => {
-  //   if (typeof window === 'undefined') return {}
-  //   const cachedVaultLists = localStorage.getItem(LOCAL_STORAGE_KEYS.cachedVaultLists)
-  //   return JSON.parse(cachedVaultLists ?? '{}')
-  // }
-
-  const userAddress: Address | undefined =
-    (localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress) as Address) ?? undefined
-
-  return userAddress
-}
-
+import { NETWORK } from '@shared/utilities'
 import { atom, useAtom } from 'jotai'
-import { useEffect } from 'react'
+import { Address } from 'viem'
 import { LOCAL_STORAGE_KEYS } from '../constants/keys'
-import { LANGUAGE_ID, SUPPORTED_LANGUAGES } from '../constants/languages'
 
-const getInitialSelectedLanguage = (): LANGUAGE_ID => {
-  // TODO: set initial language to match user's locale if never set
-  if (typeof window === 'undefined') return 'en'
-  const cachedLanguage = localStorage.getItem(LOCAL_STORAGE_KEYS.selectedLanguage)
-  if (!!cachedLanguage && cachedLanguage in SUPPORTED_LANGUAGES) {
-    return cachedLanguage as LANGUAGE_ID
-  } else {
-    return 'en'
+const getInitialUserAddress = (): Address | undefined => {
+  if (typeof window === 'undefined') return undefined
+
+  const cachedUserAddress = localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress)
+
+  if (!!cachedUserAddress) {
+    return cachedUserAddress as Address
   }
 }
 
-const selectedLanguageAtom = atom<LANGUAGE_ID>(getInitialSelectedLanguage())
+const userAddressAtom = atom<Address | undefined>(getInitialUserAddress())
 
 /**
- * Returns the state of `selectedLanguageAtom` as well as a method to change it
- *
+ * Returns state of user account / wallet  as well as a method to update it
  * Stores state in local storage
  * @returns
  */
-export const useSelectedLanguage = (options?: {
-  onLanguageChange?: (language: LANGUAGE_ID) => void
-}) => {
-  const [selectedLanguage, _setSelectedLanguage] = useAtom(selectedLanguageAtom)
+// const { address: userAddress } = useAccount()
+export const useAccount = (): {
+  address: string
+  chain: NETWORK
+  isDisconnected: boolean
+  setUserAddress: (userAddress: Address) => void
+} => {
+  const [userAddress, _setUserAddress] = useAtom(userAddressAtom)
 
-  const setSelectedLanguage = (language: LANGUAGE_ID) => {
-    localStorage.setItem(LOCAL_STORAGE_KEYS.selectedLanguage, language)
-    _setSelectedLanguage(language)
+  const address: Address | undefined =
+    (localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress) as Address) ?? undefined
+
+  const chain = NETWORK.world
+  const isDisconnected = false
+
+  const setUserAddress = (userAddress: Address) => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.userAddress, userAddress)
+    _setUserAddress(userAddress)
   }
 
-  useEffect(() => {
-    options?.onLanguageChange?.(selectedLanguage)
-  }, [selectedLanguage])
-
-  return { selectedLanguage, setSelectedLanguage }
+  return { address, chain, isDisconnected, setUserAddress }
 }
