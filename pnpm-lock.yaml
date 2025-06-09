@@ -98,9 +98,6 @@ importers:
 
   apps/app:
     dependencies:
-      '@download/blockies':
-        specifier: ^1.0.3
-        version: 1.0.3
       '@generationsoftware/hyperstructure-client-js':
         specifier: workspace:*
         version: link:../../packages/hyperstructure-client-js
@@ -370,9 +367,6 @@ packages:
     peerDependenciesMeta:
       '@effect-ts/otel-node':
         optional: true
-
-  '@download/blockies@1.0.3':
-    resolution: {integrity: sha512-iGDh2M6pFuXg9kyW+U//963LKylSLFpLG5hZvUppCjhkiDwsYquQPyamxCQlLASYySS3gGKAki2eWG9qIHKCew==}
 
   '@ecies/ciphers@0.2.3':
     resolution: {integrity: sha512-tapn6XhOueMwht3E2UzY0ZZjYokdaw9XtL9kEyjhQ/Fb9vL9xTFbOaI+fV0AWvTpYu4BNloC6getKW6NtSg4mA==}
@@ -4600,8 +4594,6 @@ snapshots:
       oo-ascii-tree: 1.112.0
       ts-pattern: 4.3.0
       type-fest: 3.13.1
-
-  '@download/blockies@1.0.3': {}
 
   '@ecies/ciphers@0.2.3(@noble/ciphers@1.3.0)':
     dependencies:
