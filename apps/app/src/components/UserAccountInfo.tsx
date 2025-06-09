@@ -45,30 +45,13 @@ export type BlockiesProps = {
 
 export const Blockies = (props: BlockiesProps) => {
   const { address } = props
-  const seed = address?.toLowerCase()
-  // const avatar = createIcon({
-  //   seed,
-  //   size: 8,
-  //   scale: 16
-  // })
 
   return (
     <BlockiesSvg
       address={address?.toString() || '0x'}
       size={8}
       scale={16}
-      //caseSensitive={false}
       className='icon border-2 border-pt-purple-400'
-      // style={styles}
-      // backgroundImage: `url(${avatar.toDataURL()})`
     />
-
-    // <span
-    //   title={address}
-    //   className='icon border-2 border-pt-purple-400'
-    //   style={{
-    //     backgroundImage: `url(${avatar.toDataURL()})`
-    //   }}
-    // />
   )
 }
