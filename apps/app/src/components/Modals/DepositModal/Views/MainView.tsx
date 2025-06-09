@@ -6,7 +6,7 @@ import {
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useMiscSettings } from '@shared/generic-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
+// import { useAccount } from '@shared/generic-react-hooks'
 import { AlertIcon, PrizePoolBadge } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import {
@@ -17,7 +17,7 @@ import {
 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
-import { walletSupportsPermit } from 'src/utils'
+// import { walletSupportsPermit } from 'src/utils'
 import { useCapabilities } from 'wagmi'
 import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
 import { Odds } from '../../Odds'
@@ -38,7 +38,7 @@ export const MainView = (props: MainViewProps) => {
   const t_common = useTranslations('Common')
   const t_txModals = useTranslations('TxModals')
 
-  const { connector } = useAccount()
+  // const { connector } = useAccount()
 
   const { data: share } = useVaultShareData(vault)
   const { data: vaultTokenAddress } = useVaultTokenAddress(vault)
@@ -60,7 +60,7 @@ export const MainView = (props: MainViewProps) => {
   const isUsingPermits =
     !isUsingEip5792 &&
     tokenPermitSupport === 'eip2612' &&
-    walletSupportsPermit(connector?.id) &&
+    // walletSupportsPermit(connector?.id) &&
     !isPermitDepositsDisabled
 
   const vaultName = vault.name ?? share?.name

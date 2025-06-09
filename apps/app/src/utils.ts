@@ -158,12 +158,12 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
   return formatNumberForDisplay(roundedAmount, { maximumFractionDigits })
 }
 
-export const signInDisconnect = async (setUserAddress: (address: Address | undefined) => void) => {
-  setUserAddress(undefined)
+export const signInDisconnect = async (setUserAddress: (address: Address) => void) => {
+  setUserAddress(`0x`)
   // clients.set(getInitialClients())
 }
 
-export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
+export const signInWithWallet = async (setUserAddress: (address: Address) => void) => {
   if (!MiniKit.isInstalled()) {
     // toast.dismiss()
     // toast.error(

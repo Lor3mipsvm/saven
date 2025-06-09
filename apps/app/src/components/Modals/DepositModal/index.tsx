@@ -7,7 +7,7 @@ import {
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAddRecentTransaction } from '@rainbow-me/rainbowkit'
 import { MODAL_KEYS, useIsModalOpen, useMiscSettings } from '@shared/generic-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
+// import { useAccount } from '@shared/generic-react-hooks'
 import { createDepositTxToast } from '@shared/react-components'
 import { Modal } from '@shared/ui'
 import { LINKS, lower, supportsEip5792 } from '@shared/utilities'
@@ -15,7 +15,7 @@ import classNames from 'classnames'
 import { useAtom, useSetAtom } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { ReactNode, useMemo, useState } from 'react'
-import { walletSupportsPermit } from 'src/utils'
+// import { walletSupportsPermit } from 'src/utils'
 import { Hash } from 'viem'
 import { useCapabilities } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
@@ -57,7 +57,7 @@ export const DepositModal = (props: DepositModalProps) => {
 
   const t_toasts = useTranslations('Toasts.transactions')
 
-  const { connector } = useAccount()
+  // const { connector } = useAccount()
 
   const addRecentTransaction = useAddRecentTransaction()
 
@@ -88,7 +88,7 @@ export const DepositModal = (props: DepositModalProps) => {
   const isUsingPermits =
     !isUsingEip5792 &&
     tokenPermitSupport === 'eip2612' &&
-    walletSupportsPermit(connector?.id) &&
+    // walletSupportsPermit(connector?.id) &&
     !isPermitDepositsDisabled
 
   const { data: vaultExchangeRate } = useVaultExchangeRate(vault!)

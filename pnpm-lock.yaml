@@ -98,6 +98,9 @@ importers:
 
   apps/app:
     dependencies:
+      '@download/blockies':
+        specifier: ^1.0.3
+        version: 1.0.3
       '@generationsoftware/hyperstructure-client-js':
         specifier: workspace:*
         version: link:../../packages/hyperstructure-client-js
@@ -113,12 +116,18 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.20.5
         version: 5.79.2(react@18.3.1)
+      '@types/blockies':
+        specifier: ^0.0.4
+        version: 0.0.4
       '@worldcoin/minikit-js':
         specifier: ^1.9.5
         version: 1.9.5(@types/react@18.3.23)(react@18.3.1)(typescript@5.8.3)(viem@2.28.4(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.48))(zod@3.25.48)
       axios:
         specifier: ^1.4.0
         version: 1.9.0
+      blockies-react-svg:
+        specifier: ^0.0.13
+        version: 0.0.13(react@18.3.1)
       classnames:
         specifier: ^2.3.2
         version: 2.5.1
@@ -367,6 +376,9 @@ packages:
     peerDependenciesMeta:
       '@effect-ts/otel-node':
         optional: true
+
+  '@download/blockies@1.0.3':
+    resolution: {integrity: sha512-iGDh2M6pFuXg9kyW+U//963LKylSLFpLG5hZvUppCjhkiDwsYquQPyamxCQlLASYySS3gGKAki2eWG9qIHKCew==}
 
   '@ecies/ciphers@0.2.3':
     resolution: {integrity: sha512-tapn6XhOueMwht3E2UzY0ZZjYokdaw9XtL9kEyjhQ/Fb9vL9xTFbOaI+fV0AWvTpYu4BNloC6getKW6NtSg4mA==}
@@ -1118,6 +1130,9 @@ packages:
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
 
+  '@types/blockies@0.0.4':
+    resolution: {integrity: sha512-9bRU3A+RQS1kF9Ld+z1vMxQobb9rzlzUITS9Oqe8Smij8Hl1+hJP0SAsuX1EN+wBVq1730oP1cTPKSEARrLJlw==}
+
   '@types/d3-array@3.2.1':
     resolution: {integrity: sha512-Y2Jn2idRrLzUfAKV2LyRImR+y4oa2AntrgID95SHJxuMUrkNXmanDSed71sRNZysveJVt1hLLemQZIady0FpEg==}
 
@@ -1503,6 +1518,11 @@ packages:
 
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
+
+  blockies-react-svg@0.0.13:
+    resolution: {integrity: sha512-w3Upvq5xnO2m0KEf4QhExLDpPMlJZes0Oi5e1EaILTpU+TtDGipoqxJuGGMhFHl2Qg7cuw4P1pAgEMy+Y3nZrg==}
+    peerDependencies:
+      react: '>=16.8.0'
 
   bn.js@5.2.2:
     resolution: {integrity: sha512-v2YAxEmKaBLahNwE1mjp4WON6huMNeuDvagFZW+ASCuA/ku0bXR9hSMw0XpiqMoA3+rmnyck/tPRSFQkoC9Cuw==}
@@ -4595,6 +4615,8 @@ snapshots:
       ts-pattern: 4.3.0
       type-fest: 3.13.1
 
+  '@download/blockies@1.0.3': {}
+
   '@ecies/ciphers@0.2.3(@noble/ciphers@1.3.0)':
     dependencies:
       '@noble/ciphers': 1.3.0
@@ -5596,6 +5618,8 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.7
 
+  '@types/blockies@0.0.4': {}
+
   '@types/d3-array@3.2.1': {}
 
   '@types/d3-color@3.1.3': {}
@@ -6439,6 +6463,10 @@ snapshots:
       buffer: 5.7.1
       inherits: 2.0.4
       readable-stream: 3.6.2
+
+  blockies-react-svg@0.0.13(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   bn.js@5.2.2: {}
 

@@ -1,4 +1,4 @@
-import { useAccount } from '@shared/generic-react-hooks'
+// import { useAccount } from '@shared/generic-react-hooks'
 import { atom, useAtom } from 'jotai'
 
 export const walletIdOverwriteAtom = atom<string>('')
@@ -8,11 +8,12 @@ export const walletIdOverwriteAtom = atom<string>('')
  * @returns
  */
 export const useWalletId = () => {
-  const { connector } = useAccount()
+  // const { connector } = useAccount()
 
   const [walletIdOverwrite, setWalletId] = useAtom(walletIdOverwriteAtom)
 
-  const walletId = walletIdOverwrite || connector?.id
+  // const walletId = walletIdOverwrite || connector?.id
+  const walletId = walletIdOverwrite
 
   return { walletId, setWalletId }
 }

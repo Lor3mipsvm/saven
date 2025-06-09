@@ -8,7 +8,7 @@ import {
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useMiscSettings } from '@shared/generic-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
+// import { useAccount } from '@shared/generic-react-hooks'
 import { PrizePoolBadge, TokenIcon } from '@shared/react-components'
 import { Token, TokenWithLogo } from '@shared/types'
 import { Spinner } from '@shared/ui'
@@ -24,7 +24,7 @@ import classNames from 'classnames'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { walletSupportsPermit } from 'src/utils'
+// import { walletSupportsPermit } from 'src/utils'
 import { Address } from 'viem'
 import { useCapabilities } from 'wagmi'
 import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
@@ -48,7 +48,7 @@ export const ReviewView = (props: ReviewViewProps) => {
   const t_common = useTranslations('Common')
   const t_txModals = useTranslations('TxModals')
 
-  const { connector } = useAccount()
+  // const { connector } = useAccount()
 
   const formTokenAddress = useAtomValue(depositFormTokenAddressAtom)
 
@@ -66,7 +66,7 @@ export const ReviewView = (props: ReviewViewProps) => {
   const isUsingPermits =
     !isUsingEip5792 &&
     tokenPermitSupport === 'eip2612' &&
-    walletSupportsPermit(connector?.id) &&
+    // walletSupportsPermit(connector?.id) &&
     !isPermitDepositsDisabled
 
   const isZapping =

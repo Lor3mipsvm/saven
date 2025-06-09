@@ -1,6 +1,6 @@
-import { createIcon } from '@download/blockies'
 import { useAccount } from '@shared/generic-react-hooks'
 import { Spinner } from '@shared/ui'
+import BlockiesSvg from 'blockies-react-svg'
 import { signInDisconnect } from 'src/utils'
 import { Address } from 'viem'
 import { useWorldUsernameResult } from '@hooks/useWorldUsernameResult'
@@ -46,19 +46,29 @@ export type BlockiesProps = {
 export const Blockies = (props: BlockiesProps) => {
   const { address } = props
   const seed = address?.toLowerCase()
-  const avatar = createIcon({
-    seed,
-    size: 8,
-    scale: 16
-  })
+  // const avatar = createIcon({
+  //   seed,
+  //   size: 8,
+  //   scale: 16
+  // })
 
   return (
-    <span
-      title={address}
+    <BlockiesSvg
+      address={address?.toString() || '0x'}
+      size={8}
+      scale={16}
+      //caseSensitive={false}
       className='icon border-2 border-pt-purple-400'
-      style={{
-        backgroundImage: `url(${avatar.toDataURL()})`
-      }}
+      // style={styles}
+      // backgroundImage: `url(${avatar.toDataURL()})`
     />
+
+    // <span
+    //   title={address}
+    //   className='icon border-2 border-pt-purple-400'
+    //   style={{
+    //     backgroundImage: `url(${avatar.toDataURL()})`
+    //   }}
+    // />
   )
 }
