@@ -1,7 +1,7 @@
 import { useAccount } from '@shared/generic-react-hooks'
 import { Button } from '@shared/ui'
 import { useTranslations } from 'next-intl'
-import { signInWithWallet } from 'src/utils'
+import { signInDisconnect, signInWithWallet } from 'src/utils'
 
 export const SignInButton = () => {
   const t_common = useTranslations('Common')

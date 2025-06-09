@@ -158,7 +158,12 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
   return formatNumberForDisplay(roundedAmount, { maximumFractionDigits })
 }
 
-export const signInWithWallet = async (setUserAddress: (address: Address) => void) => {
+export const signInDisconnect = async (setUserAddress: (address: Address | undefined) => void) => {
+  setUserAddress(undefined)
+  // clients.set(getInitialClients())
+}
+
+export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
   if (!MiniKit.isInstalled()) {
     // toast.dismiss()
     // toast.error(
@@ -195,9 +200,6 @@ export const signInWithWallet = async (setUserAddress: (address: Address) => voi
     return
   } else {
     const walletAddress = finalPayload.address as Address
-    console.log('made it')
-    console.log('walletAddress')
-    console.log(walletAddress)
     setUserAddress(walletAddress)
 
     // const response = await fetch('/api/complete-siwe', {
@@ -246,12 +248,6 @@ export const signInWithWallet = async (setUserAddress: (address: Address) => voi
 //   })
 
 //   return address
-// }
-
-// export const disconnect = async () => {
-//   localStorage.removeItem(localStorageKeys.userAddress)
-//   userAddress.set(undefined)
-//   // clients.set(getInitialClients())
 // }
 
 // export const updateAddressVerifiedUntil = async (userAddress: Address) => {

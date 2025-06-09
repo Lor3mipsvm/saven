@@ -5,12 +5,9 @@ import { LOCAL_STORAGE_KEYS } from '../constants/keys'
 const getInitialUserAddress = (): Address | undefined => {
   if (typeof window === 'undefined') return undefined
 
-  // const cachedUserAddress = localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress)
   const cachedUserAddress: Address | undefined =
     (localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress) as Address) ?? undefined
 
-  console.log('cachedUserAddress')
-  console.log(cachedUserAddress)
   if (!!cachedUserAddress) {
     return cachedUserAddress as Address
   }
@@ -27,7 +24,7 @@ export const useAccount = (): {
   address: string | undefined
   chain: Chain
   isDisconnected: boolean
-  setUserAddress: (userAddress: Address) => void
+  setUserAddress: (userAddress: Address | undefined) => void
 } => {
   const [userAddress, _setUserAddress] = useAtom(userAddressAtom)
 
@@ -35,9 +32,13 @@ export const useAccount = (): {
   const chain = { id: 480 } as Chain
   const isDisconnected = false
 
-  const setUserAddress = (userAddress: Address) => {
-    localStorage.setItem(LOCAL_STORAGE_KEYS.userAddress, userAddress)
+  const setUserAddress = (userAddress: Address | undefined) => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.userAddress, userAddress as Address)
     _setUserAddress(userAddress)
+
+    if (userAddress === undefined) {
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.userAddress)
+    }
   }
 
   return { address: userAddress, chain, isDisconnected, setUserAddress }
