@@ -19,8 +19,6 @@ export const useWorldUsernameResult = (address: Address) => {
       }
 
       const res = await response.json()
-      console.log('res')
-      console.log(res)
       return res
     },
     enabled: !!address,
