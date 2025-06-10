@@ -26,6 +26,7 @@ import {
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
+import { signInWithWallet } from 'src/utils'
 import { Hash, isAddress, parseUnits } from 'viem'
 import { useCapabilities } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
@@ -273,6 +274,7 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
         openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
         innerClassName='flex gap-2 items-center'
+        signInWithWallet={signInWithWallet}
         intl={{ base: t_modals, common: t_common }}
       >
         {t_modals('approvalButton', { symbol: inputToken?.symbol ?? '?' })}
@@ -326,6 +328,7 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
       openConnectModal={openConnectModal}
       openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
+      signInWithWallet={signInWithWallet}
       intl={{ base: t_modals, common: t_common }}
     >
       {t_modals('confirmDeposit')}

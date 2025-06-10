@@ -168,7 +168,6 @@ export const DepositModal = (props: DepositModalProps) => {
             setModalView={setView}
             setDepositTxHash={setDepositTxHash}
             refetchUserBalances={refetchUserBalances}
-            onSuccessfulApproval={onSuccessfulApproval}
             onSuccessfulDeposit={onSuccessfulDeposit}
           />
         )}

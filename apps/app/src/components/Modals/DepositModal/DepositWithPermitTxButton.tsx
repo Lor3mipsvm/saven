@@ -17,6 +17,7 @@ import { Button } from '@shared/ui'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
+import { signInWithWallet } from 'src/utils'
 import { Hash, parseUnits } from 'viem'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
@@ -227,6 +228,7 @@ export const DepositWithPermitTxButton = (props: DepositWithPermitTxButtonProps)
         openConnectModal={openConnectModal}
         openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
+        signInWithWallet={signInWithWallet}
         intl={{ base: t_modals, common: t_common }}
       >
         {t_modals('confirmDeposit')}
@@ -248,6 +250,7 @@ export const DepositWithPermitTxButton = (props: DepositWithPermitTxButtonProps)
       openConnectModal={openConnectModal}
       openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
+      signInWithWallet={signInWithWallet}
       intl={{ base: t_modals, common: t_common }}
     >
       {t_modals('confirmDeposit')}

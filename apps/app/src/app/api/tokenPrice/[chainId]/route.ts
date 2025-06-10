@@ -72,8 +72,6 @@ const getWorldchainTokenPrice = async (): Promise<{
 
         prices[TOKEN_ADDRESSES.WLD] = Number(wldUsd) / Number(ethUsd)
         prices[TOKEN_ADDRESSES.POOL] = Number(poolUsd) / Number(ethUsd)
-        console.log('prices')
-        console.log(prices)
 
         error = undefined
       } else {

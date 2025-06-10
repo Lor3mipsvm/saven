@@ -27,7 +27,6 @@ export const useAccount = (): {
 
   // TODO: Hard-coded Chain ID here, might cause certain things to fall over
   const chain = { id: 480 } as Chain
-  const isDisconnected = false
 
   const setUserAddress = (userAddress: Address | undefined) => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.userAddress, userAddress as Address)
@@ -39,5 +38,5 @@ export const useAccount = (): {
     _setUserAddress(userAddress)
   }
 
-  return { address: userAddress, chain, isDisconnected, setUserAddress }
+  return { address: userAddress, chain, isDisconnected: !userAddress, setUserAddress }
 }

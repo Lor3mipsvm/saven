@@ -107,7 +107,7 @@ export const MainView = (props: MainViewProps) => {
           {!!formShareAmount ? (
             <div className='flex flex-col gap-4 mx-auto md:flex-row md:gap-9'>
               <Odds vault={vault} prizePool={prizePool} />
-              <NetworkFees vault={vault} show={feesToShow} />
+              {/* <NetworkFees vault={vault} show={feesToShow} /> */}
             </div>
           ) : (
             <RisksDisclaimer vault={vault} />

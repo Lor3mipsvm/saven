@@ -41,10 +41,9 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
       // if (!dev) {
       //   return
       // }
-      // const eruda = (await import('eruda')).default
-      // eruda.init()
+      const eruda = (await import('eruda')).default
+      eruda.init()
     }
-
     initEruda()
   })
 

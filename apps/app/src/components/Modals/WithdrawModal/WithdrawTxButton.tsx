@@ -19,6 +19,7 @@ import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
+import { signInWithWallet } from 'src/utils'
 import { Address, parseUnits } from 'viem'
 import { useCapabilities } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
@@ -203,6 +204,7 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
         openConnectModal={openConnectModal}
         openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
+        signInWithWallet={signInWithWallet}
         intl={{ base: t_modals, common: t_common }}
       >
         {t_modals('confirmWithdrawal')}

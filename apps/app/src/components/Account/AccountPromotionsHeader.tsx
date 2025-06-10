@@ -15,6 +15,7 @@ import { getNiceNetworkNameByChainId, supportsEip5792, supportsEip7677 } from '@
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
+import { signInWithWallet } from 'src/utils'
 import { Address } from 'viem'
 import { useCapabilities } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
@@ -289,6 +290,7 @@ const ClaimAllRewardsButton = (props: ClaimAllRewardsButtonProps) => {
         openConnectModal={openConnectModal}
         openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
+        signInWithWallet={signInWithWallet}
         intl={{ base: t_txs, common: t_common }}
         className={classNames('min-w-[6rem]', className)}
       >

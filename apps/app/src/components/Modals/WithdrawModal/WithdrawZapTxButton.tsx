@@ -22,6 +22,7 @@ import { supportsEip5792, supportsEip7677, ZAP_SETTINGS } from '@shared/utilitie
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
+import { signInWithWallet } from 'src/utils'
 import { isAddress, parseUnits } from 'viem'
 import { useCapabilities } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
@@ -259,6 +260,7 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
         openConnectModal={openConnectModal}
         openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
+        signInWithWallet={signInWithWallet}
         innerClassName='flex gap-2 items-center'
         intl={{ base: t_modals, common: t_common }}
       >
@@ -313,6 +315,7 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
       openConnectModal={openConnectModal}
       openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
+      signInWithWallet={signInWithWallet}
       intl={{ base: t_modals, common: t_common }}
     >
       {t_modals('confirmWithdrawal')}

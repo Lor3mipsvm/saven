@@ -4,12 +4,14 @@ import { Button, ButtonProps, Spinner } from '@shared/ui'
 import { getNiceNetworkNameByChainId } from '@shared/utilities'
 import classNames from 'classnames'
 import { useEffect } from 'react'
+import { Address } from 'viem'
 import { useSwitchChain } from 'wagmi'
 
 export interface TransactionButtonProps extends Omit<ButtonProps, 'onClick'> {
   chainId: number
   isTxLoading: boolean
   isTxSuccess: boolean
+  signInWithWallet: (setUserAddress: (address: Address | undefined) => void) => void
   write?: () => void
   txHash?: string
   txDescription?: string
@@ -35,10 +37,11 @@ export const TransactionButton = (props: TransactionButtonProps) => {
     innerClassName,
     disabled,
     children,
+    signInWithWallet,
     ...rest
   } = props
 
-  const { chain, isDisconnected } = useAccount()
+  const { setUserAddress, chain, isDisconnected } = useAccount()
 
   const { switchChain, isPending: isSwitchingChain } = useSwitchChain()
 
@@ -55,7 +58,12 @@ export const TransactionButton = (props: TransactionButtonProps) => {
 
   if (isDisconnected) {
     return (
-      <Button onClick={openConnectModal} {...rest}>
+      <Button
+        onClick={() => {
+          signInWithWallet(setUserAddress)
+        }}
+        {...rest}
+      >
         <span className={classNames('whitespace-nowrap', innerClassName)}>
           {intl?.common?.('signIn') ?? 'Sign In'}
         </span>
@@ -85,6 +93,15 @@ export const TransactionButton = (props: TransactionButtonProps) => {
     )
   }
 
+  console.log('**************')
+  console.log('**************')
+  console.log('**************')
+  console.log('!write')
+  console.log(!write)
+  console.log('isTxLoading')
+  console.log(isTxLoading)
+  console.log('disabled')
+  console.log(disabled)
   return (
     <Button onClick={write} disabled={!write || isTxLoading || disabled} {...rest}>
       <span

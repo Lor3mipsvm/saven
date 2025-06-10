@@ -66,7 +66,7 @@ export const MainView = (props: MainViewProps) => {
       {!!vaultExchangeRate && (
         <>
           <WithdrawForm vault={vault} showInputInfoRows={true} />
-          <NetworkFees vault={vault} show={feesToShow} />
+          {/* <NetworkFees vault={vault} show={feesToShow} /> */}
         </>
       )}
     </div>

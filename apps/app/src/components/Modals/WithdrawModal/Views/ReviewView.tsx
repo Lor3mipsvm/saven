@@ -54,7 +54,7 @@ export const ReviewView = (props: ReviewViewProps) => {
         className='!py-1 mx-auto'
       />
       <BasicWithdrawForm vault={vault} />
-      <NetworkFees vault={vault} show={feesToShow} />
+      {/* <NetworkFees vault={vault} show={feesToShow} /> */}
     </div>
   )
 }

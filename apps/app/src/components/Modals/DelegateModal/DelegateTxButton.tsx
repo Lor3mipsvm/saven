@@ -13,6 +13,7 @@ import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
+import { signInWithWallet } from 'src/utils'
 import { Address, isAddress } from 'viem'
 import { useCapabilities } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
@@ -136,6 +137,7 @@ export const DelegateTxButton = (props: DelegateTxButtonProps) => {
       openConnectModal={openConnectModal}
       openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
+      signInWithWallet={signInWithWallet}
       intl={{ base: t_txModals, common: t_common }}
     >
       {t_txModals('updateDelegatedAddress')}
