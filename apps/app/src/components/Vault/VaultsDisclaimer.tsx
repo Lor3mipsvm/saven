@@ -56,7 +56,7 @@ export const VaultsDisclaimer = (props: VaultsDisclaimerProps) => {
       <a
         href={LINKS.termsOfService}
         target='_blank'
-        className='mx-auto text-xs text-blue-500 whitespace-nowrap lg:hidden'
+        className='mx-auto text-xs text-blue-400 whitespace-nowrap lg:hidden'
       >
         {t_common('termsOfService')}
       </a>
