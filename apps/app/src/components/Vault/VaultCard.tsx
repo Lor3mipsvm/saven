@@ -56,6 +56,13 @@ export const VaultCard = (props: VaultCardProps) => {
       <div className='w-full flex flex-col gap-1 px-3'>
         <div className='flex items-center justify-between'>
           <span className='flex gap-1 items-center text-sm text-pt-purple-200'>
+            {t_vaults('headers.prizes')}
+            <PrizesTooltip intl={t_tooltips('prizes')} className='text-xs' />
+          </span>
+          <VaultPrizes vault={vault} className='text-xs' amountClassName='!text-base' />
+        </div>
+        <div className='flex items-center justify-between'>
+          <span className='flex gap-1 items-center text-sm text-pt-purple-200'>
             {t_vaults('headers.winChance')}
             <RelativeWinChanceTooltip intl={t_tooltips('relativeWinChance')} className='text-xs' />
           </span>
@@ -65,13 +72,6 @@ export const VaultCard = (props: VaultCardProps) => {
             fallbackClassName='!pb-0'
             tooltipClassName='text-xs'
           />
-        </div>
-        <div className='flex items-center justify-between'>
-          <span className='flex gap-1 items-center text-sm text-pt-purple-200'>
-            {t_vaults('headers.prizes')}
-            <PrizesTooltip intl={t_tooltips('prizes')} className='text-xs' />
-          </span>
-          <VaultPrizes vault={vault} className='text-xs' amountClassName='!text-base' />
         </div>
         {!!vaultPromotionsApr?.apr && (
           <div className='flex items-center justify-between'>
@@ -90,7 +90,7 @@ export const VaultCard = (props: VaultCardProps) => {
         )}
         <div className='flex items-center justify-between'>
           <span className='text-sm text-pt-purple-200'>{t_vaults('headers.totalDeposits')}</span>
-          <VaultTotalDeposits vault={vault} amountClassName='hidden' />
+          <VaultTotalDeposits vault={vault} />
         </div>
       </div>
       <VaultButtons

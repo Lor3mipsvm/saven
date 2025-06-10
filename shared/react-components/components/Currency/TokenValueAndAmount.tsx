@@ -36,7 +36,7 @@ export const TokenValueAndAmount = (props: TokenValueAndAmountProps) => {
   }
 
   return (
-    <div className={classNames('flex flex-col items-center', className)}>
+    <div className={classNames('flex flex-col items-end md:items-center', className)}>
       <span className={valueClassName}>
         <TokenValue token={token} fallback={<></>} {...valueOptions} />
       </span>

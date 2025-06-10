@@ -15,8 +15,6 @@ export const useTokenPrices = (
   tokenAddresses: string[]
 ): UseQueryResult<{ [address: Address]: number }> => {
   const enabled = !!chainId && !!tokenAddresses && tokenAddresses.length > 0
-  // console.log(chainId)
-  // console.log(tokenAddresses)
 
   return useQuery({
     queryKey: [QUERY_KEYS.tokenPrices, chainId, tokenAddresses],

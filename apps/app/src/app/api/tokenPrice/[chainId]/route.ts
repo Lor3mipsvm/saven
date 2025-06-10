@@ -14,6 +14,11 @@ const getDate = () => {
   )
 }
 
+const TOKEN_ADDRESSES = {
+  WLD: '0x2cfc85d8e48f8eab294be644d9e25c3030863003'.toLowerCase(),
+  POOL: '0x7077c71b4af70737a08287e279b717dcf64fdc57'.toLowerCase()
+}
+
 export async function GET(): Promise<NextResponse> {
   try {
     const result = await getWorldchainTokenPrice()
@@ -21,16 +26,16 @@ export async function GET(): Promise<NextResponse> {
     // Format our result to match the PoolTogether TokenPriceApi created by @ncookie
     // This matches what's expected from the Cabana app (prices denominated in ETH, etc)
     const tokenPriceApiOutput = {
-      '0x2cfc85d8e48f8eab294be644d9e25c3030863003': [
+      [TOKEN_ADDRESSES.WLD]: [
         {
           date: getDate(),
-          price: Number(result.prices['0x2cfc85d8e48f8eab294be644d9e25c3030863003'])
+          price: Number(result.prices[TOKEN_ADDRESSES.WLD])
         }
       ],
-      '0x7077C71B4AF70737a08287E279B717Dcf64fdC57': [
+      [TOKEN_ADDRESSES.POOL]: [
         {
           date: getDate(),
-          price: Number(result.prices['0x7077C71B4AF70737a08287E279B717Dcf64fdC57'])
+          price: Number(result.prices[TOKEN_ADDRESSES.POOL])
         }
       ]
     }
@@ -65,8 +70,10 @@ const getWorldchainTokenPrice = async (): Promise<{
         const wldUsd = json.data.find((obj: any) => obj.symbol === 'WLD').prices[0].value
         const poolUsd = json.data.find((obj: any) => obj.symbol === 'POOLTOGETHER').prices[0].value
 
-        prices['0x2cfc85d8e48f8eab294be644d9e25c3030863003'] = Number(wldUsd) / Number(ethUsd)
-        prices['0x7077C71B4AF70737a08287E279B717Dcf64fdC57'] = Number(poolUsd) / Number(ethUsd)
+        prices[TOKEN_ADDRESSES.WLD] = Number(wldUsd) / Number(ethUsd)
+        prices[TOKEN_ADDRESSES.POOL] = Number(poolUsd) / Number(ethUsd)
+        console.log('prices')
+        console.log(prices)
 
         error = undefined
       } else {
