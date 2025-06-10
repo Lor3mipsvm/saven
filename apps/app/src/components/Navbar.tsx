@@ -52,7 +52,7 @@ export const Navbar = () => {
 
         {/* Right Side Content */}
         <div className='flex gap-2 items-center z-20'>
-          {userAddress ? <UserAccountInfo /> : <SignInButton />}
+          {!!userAddress ? <UserAccountInfo /> : <SignInButton />}
 
           <Bars3Icon
             className='h-6 w-6 text-pt-purple-50 hover:text-pt-purple-200 cursor-pointer'

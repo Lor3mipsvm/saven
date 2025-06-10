@@ -2,19 +2,15 @@ import { atom, useAtom } from 'jotai'
 import { Address, Chain } from 'viem'
 import { LOCAL_STORAGE_KEYS } from '../constants/keys'
 
-const getInitialUserAddress = (): Address => {
-  if (typeof window === 'undefined') return `0x`
+const getInitialUserAddress = (): Address | undefined => {
+  if (typeof window === 'undefined') return undefined
 
   const cachedUserAddress: Address = localStorage.getItem(LOCAL_STORAGE_KEYS.userAddress) as Address
 
-  if (!!cachedUserAddress) {
-    return cachedUserAddress
-  } else {
-    return `0x`
-  }
+  return cachedUserAddress
 }
 
-const userAddressAtom = atom<Address>(getInitialUserAddress())
+const userAddressAtom = atom<Address | undefined>(getInitialUserAddress())
 
 /**
  * Returns state of user account / wallet  as well as a method to update it
@@ -22,10 +18,10 @@ const userAddressAtom = atom<Address>(getInitialUserAddress())
  * @returns
  */
 export const useAccount = (): {
-  address: Address
+  address: Address | undefined
   chain: Chain
   isDisconnected: boolean
-  setUserAddress: (userAddress: Address) => void
+  setUserAddress: (userAddress: Address | undefined) => void
 } => {
   const [userAddress, _setUserAddress] = useAtom(userAddressAtom)
 
@@ -33,13 +29,14 @@ export const useAccount = (): {
   const chain = { id: 480 } as Chain
   const isDisconnected = false
 
-  const setUserAddress = (userAddress: Address) => {
+  const setUserAddress = (userAddress: Address | undefined) => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.userAddress, userAddress as Address)
-    _setUserAddress(userAddress)
 
-    if (userAddress === `0x`) {
+    if (userAddress === undefined) {
       localStorage.removeItem(LOCAL_STORAGE_KEYS.userAddress)
     }
+
+    _setUserAddress(userAddress)
   }
 
   return { address: userAddress, chain, isDisconnected, setUserAddress }

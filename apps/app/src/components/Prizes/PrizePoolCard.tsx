@@ -39,17 +39,17 @@ export const PrizePoolCard = (props: PrizePoolCardProps) => {
 
   return (
     <Card wrapperClassName={className} className='gap-3 items-center md:gap-4'>
-      <NetworkBadge chainId={prizePool.chainId} hideBg={isMobile} />
+      <NetworkBadge chainId={prizePool.chainId} hideBg={isMobile} className='py-0' />
       <div className='h-[8.75rem] flex flex-col gap-0.5 items-center text-center text-pt-purple-200 font-averta'>
         <span className='text-2xl'>{t_common('grandPrize')}</span>
         {isFetchedGrandPrize ? (
           !!grandPrize ? (
             <>
-              <span className='text-7xl text-pt-teal font-bold'>
+              <span className='text-6xl text-pt-teal font-bold'>
                 <TokenValue token={grandPrize} hideZeroes={true} fallback={<></>} />
               </span>
               {!isTokenEquivalentHidden && (
-                <span className='text-2xl font-light'>
+                <span className='text-2xl font-lighter text-pt-purple-300'>
                   ≈ <TokenAmount token={grandPrize} maximumFractionDigits={2} />
                 </span>
               )}
