@@ -23,14 +23,8 @@ export const AccountDepositsHeader = (props: AccountDepositsHeaderProps) => {
   const userAddress = address ?? _userAddress
 
   const isExternalUser = !!address && address.toLowerCase() !== _userAddress?.toLowerCase()
-  console.log('userAddress')
-  console.log(userAddress)
   const { data: totalBalance, isFetched: isFetchedTotalBalance } = useUserTotalBalance(userAddress!)
-  console.log('isFetchedTotalBalance')
-  console.log(isFetchedTotalBalance)
   // const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: userAddress })
-  console.log('totalBalance')
-  console.log(totalBalance)
 
   return (
     <div className={classNames('flex flex-col items-center gap-1 md:gap-2', className)}>

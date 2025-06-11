@@ -28,17 +28,17 @@ export const useAllVaultSharePrices = (vaults: Vaults) => {
     refetch: refetchAllTokenPrices
   } = useAllVaultTokenPrices(vaults)
   console.log('allTokenPrices')
-  console.log(allTokenPrices)
-  console.log(allTokenPrices?.[480]?.['0x2cfc85d8e48f8eab294be644d9e25c3030863003'])
+  // console.log(allTokenPrices)
+  console.log(`allTokenPrices?.[480]?.['0x7077c71b4af70737a08287e279b717dcf64fdc57']`)
   console.log(allTokenPrices?.[480]?.['0x7077c71b4af70737a08287e279b717dcf64fdc57'])
+  console.log(`allTokenPrices?.[480]?.['0x7077C71B4AF70737a08287E279B717Dcf64fdC57']`)
+  console.log(allTokenPrices?.[480]?.['0x7077C71B4AF70737a08287E279B717Dcf64fdC57'])
 
   const {
     data: allExchangeRates,
     isFetched: isFetchedAllExchangeRates,
     refetch: refetchAllExchangeRates
   } = useAllVaultExchangeRates(vaults)
-  console.log('allExchangeRates')
-  console.log(allExchangeRates)
 
   const { data: allTokenAddresses, isFetched: isFetchedAllTokenAddresses } =
     useAllVaultTokenAddresses(vaults)

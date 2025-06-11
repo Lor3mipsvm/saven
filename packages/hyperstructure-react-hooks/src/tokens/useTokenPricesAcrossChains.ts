@@ -17,6 +17,29 @@ export const useTokenPricesAcrossChains = (tokenAddresses: { [chainId: number]: 
     queries: chainIds.map((chainId) => {
       const enabled = !!chainId && !!tokenAddresses?.[chainId] && tokenAddresses[chainId].length > 0
 
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('13897409237482375823yt5ou2g45g')
+      // console.log('tokenAddresses[chainId]')
+      // console.log('tokenAddresses[chainId]')
+      // console.log('tokenAddresses[chainId]')
+      // console.log('tokenAddresses[chainId]')
+      // console.log('tokenAddresses[chainId]')
+      // console.log('tokenAddresses[chainId]')
+      // console.log('tokenAddresses[chainId]')
+      console.log('tokenAddresses[chainId]')
+      console.log(chainId)
+      console.log(chainId)
+      console.log(tokenAddresses[chainId])
       return {
         queryKey: [QUERY_KEYS.tokenPrices, chainId, tokenAddresses[chainId]],
         queryFn: async () => await getTokenPrices(chainId, tokenAddresses[chainId]),
