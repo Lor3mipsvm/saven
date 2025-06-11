@@ -24,19 +24,6 @@ export const permit2VaultDeposit: { address: Address } = {
   address: '0x263f95fF28347F14956dA6c26d51b2701Ed95013'
 }
 
-export const prizeVault = {
-  address: '0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e',
-  decimals: 18,
-  symbol: 'PRZWLD',
-  asset: {
-    address: '0x2cFc85d8E48F8EAB294be644d9E25C3030863003',
-    decimals: 18,
-    symbol: 'WLD',
-    displayDecimals: 2
-  },
-  deployedAtBlock: 11_550_441n
-}
-
 /**
  * Returns a Wagmi config with the given networks and RPCs
  * @param networks the networks to support throughout the app
