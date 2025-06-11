@@ -24,10 +24,7 @@ export const permit2VaultDeposit: { address: Address } = {
   address: '0x263f95fF28347F14956dA6c26d51b2701Ed95013'
 }
 
-export const prizeVault: Token & {
-  asset: Token & { displayDecimals?: number }
-  deployedAtBlock: bigint
-} = {
+export const prizeVault = {
   address: '0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e',
   decimals: 18,
   symbol: 'PRZWLD',
@@ -231,106 +228,8 @@ export const signInWithWallet = async (setUserAddress: (address: Address | undef
   } else {
     const walletAddress = finalPayload.address as Address
     setUserAddress(walletAddress)
-
-    // const response = await fetch('/api/complete-siwe', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     payload: finalPayload,
-    //     nonce
-    //   })
-    // })
   }
 }
-
-// export const connect = async (providerData: EIP6963ProviderData, options?: { onConnected?: (address: Address) => void }) => {
-//   const transport = custom(providerData.provider, transportSettings)
-
-//   const _walletClient = createWalletClient({ chain, transport })
-
-//   // Some providers only support `getAddresses` since `requestAddresses` uses optional RPC calls
-//   let [address] = await _walletClient.getAddresses()
-//   if (!address) {
-//     address = (await _walletClient.requestAddresses())[0]
-//   }
-
-//   const publicClient = createPublicClient({ chain, transport, ...publicClientSettings }) as PublicClient
-//   const walletClient = createWalletClient({ account: address, chain, transport })
-
-//   const walletClientChainId = await walletClient.getChainId()
-
-//   if (walletClientChainId !== chain.id) {
-//     await walletClient.switchChain({ id: chain.id })
-//   }
-
-//   clients.set({ public: publicClient, wallet: walletClient })
-//   userAddress.set(address)
-//   lastConnectedProviderId.set(providerData.info.uuid)
-
-//   options?.onConnected?.(address)
-
-//   providerData.provider.on('accountsChanged', (accounts: Address[]) => {
-//     if (get(lastConnectedProviderId) === providerData.info.uuid) {
-//       userAddress.set(accounts[0])
-//     }
-//   })
-
-//   return address
-// }
-
-// export const updateAddressVerifiedUntil = async (userAddress: Address) => {
-//   const publicClient = get(clients).public
-
-//   const until = await publicClient.readContract({
-//     address: worldIdAddressBook.address,
-//     abi: worldIdABI,
-//     functionName: 'addressVerifiedUntil',
-//     args: [userAddress]
-//   })
-
-//   addressVerifiedUntil.set(until)
-// }
-
-// export const getAccountDepositLimit = async () => {
-//   const publicClient = get(clients).public
-
-//   if (!get(accountDepositLimit)) {
-//     const limit = (await publicClient.readContract({
-//       address: prizeVault.address,
-//       abi: vaultABI,
-//       functionName: 'accountDepositLimit'
-//     })) as bigint
-
-//     accountDepositLimit.set(limit)
-//   }
-// }
-
-// export const getUsernamesInfo = async (address?: Address) => {
-//   const USERNAMES_URL = 'https://usernames.worldcoin.org/api/v1/'
-
-//   if (!address) {
-//     usernameResult.set({ address: null, username: null, profile_picture_url: null })
-//   } else if (!get(usernameResult) || address !== get(usernameResult).address) {
-//     usernameResult.set({ address, username: null, profile_picture_url: null })
-
-//     const uri = `${USERNAMES_URL}${address}`
-
-//     try {
-//       const response = await fetch(uri, {
-//         method: 'GET'
-//       })
-
-//       if (!response.ok) {
-//         console.error(`Response status: ${response.status}`)
-//       }
-//       usernameResult.set(await response.json())
-//     } catch (error: any) {
-//       console.error(error.message)
-//     }
-//   }
-// }
 
 export const decodeDepositEvent = (
   prizeVaultAddress: Address,
@@ -344,9 +243,9 @@ export const decodeDepositEvent = (
 
 export const deposit = async (
   amount: bigint,
-  publicClient: PublicClient,
+  publicClient: any,
   prizeVaultAddress: Address,
-  prizeVaultAssetAddress: Address,
+  prizeVaultAssetAddress?: Address,
   options?: {
     onSend?: () => void
     onSuccess?: (depositEvent: ReturnType<typeof decodeDepositEvent>) => void
@@ -354,6 +253,11 @@ export const deposit = async (
     onError?: () => void
   }
 ) => {
+  // re-write all this and put it in some useSendWorlDepositTransaction hook so we don't have to do this janky stuff:
+  if (!prizeVaultAssetAddress) {
+    return
+  }
+
   const nonce = Date.now().toString()
   const deadline = Math.floor((Date.now() + 30 * 60 * 1000) / 1000).toString()
 
@@ -383,7 +287,7 @@ export const deposit = async (
 // This differs from the generic sendTx below because it requires an intermediary permit2 contract
 export const sendDepositTx = async (
   txRequest: any,
-  publicClient: PublicClient,
+  publicClient: any,
   prizeVaultAssetAddress: Address,
   options?: {
     onSend?: () => void
@@ -443,7 +347,7 @@ export const sendDepositTx = async (
 }
 
 export const getTxReceipt = async (
-  publicClient: PublicClient,
+  publicClient: any,
   payload: MiniAppSendTransactionSuccessPayload
 ) => {
   let txReceipt
@@ -471,18 +375,21 @@ export const getTxReceipt = async (
   return txReceipt
 }
 
-export const decodeWithdrawEvent = (redeemTxReceipt: TransactionReceipt) => {
-  // redeemTxReceipt.logs.filter((log) => lower(log.address) === lower(prizeVault.address))
+export const decodeWithdrawEvent = (
+  prizeVaultAddress: Address,
+  redeemTxReceipt: TransactionReceipt
+) => {
   const { topics, data } = redeemTxReceipt.logs.filter(
-    (log) => lower(log.address) === lower(prizeVault.address)
+    (log) => lower(log.address) === lower(prizeVaultAddress)
   )[1]
   return decodeEventLog({ abi: vaultABI, eventName: 'Withdraw', topics, data, strict: true })
 }
 
 export const redeem = async (
   amount: bigint,
-  publicClient: PublicClient,
+  publicClient: any,
   userAddress: Address,
+  prizeVaultAddress: Address,
   options?: {
     onSend?: () => void
     onSuccess?: (withdrawEvent: ReturnType<typeof decodeWithdrawEvent>) => void
@@ -492,7 +399,7 @@ export const redeem = async (
 ) => {
   return await sendTx(
     {
-      address: prizeVault.address,
+      address: prizeVaultAddress,
       abi: redeemABI,
       functionName: 'redeem',
       args: [amount.toString(), userAddress, userAddress]
@@ -500,14 +407,15 @@ export const redeem = async (
     publicClient,
     {
       ...options,
-      onSuccess: (txReceipt: any) => options?.onSuccess?.(decodeWithdrawEvent(txReceipt))
+      onSuccess: (txReceipt: any) =>
+        options?.onSuccess?.(decodeWithdrawEvent(prizeVaultAddress, txReceipt))
     }
   )
 }
 
 export const sendTx = async (
   txRequest: any,
-  publicClient: PublicClient,
+  publicClient: any,
   options?: {
     onSend?: () => void
     onSuccess?: (txReceipt: TransactionReceipt) => void
@@ -551,11 +459,12 @@ export const sendTx = async (
 
 // export const decodeTransferEvent = (
 //   userAddress: Address,
+// prizeVaultAddress: Address,
 //   transferTxReceipt: TransactionReceipt
 // ) => {
 //   console.log('transferTxReceipt')
 //   console.log(transferTxReceipt)
-//   // transferTxReceipt.logs.filter((log) => lower(log.address) === lower(prizeVault.address))
+//   // transferTxReceipt.logs.filter((log) => lower(log.address) === lower(prizeVaultAddress))
 //   const { topics, data } = transferTxReceipt.logs.filter((log) => {
 //     console.log(log)
 //     return lower(log.address) === lower(userAddress as Address)
@@ -571,6 +480,7 @@ export const sendTx = async (
 
 // export const test = async (
 //   userAddress: Address,
+//   prizeVaultAddress: Address,
 //   options?: {
 //     onSend?: () => void
 //     onSuccess?: (transferEvent: ReturnType<typeof decodeTransferEvent>) => void
@@ -588,14 +498,14 @@ export const sendTx = async (
 //     {
 //       ...options,
 //       onSuccess: (txReceipt: any) =>
-//         options?.onSuccess?.(decodeTransferEvent(userAddress, txReceipt))
+//         options?.onSuccess?.(decodeTransferEvent(userAddress, prizeVaultAddress, txReceipt))
 //     }
 //   )
 // }
 
 // export const sendTestTx = async (
 //   txRequest: any,
-//   publicClient: PublicClient,
+//   publicClient: any,
 //   options?: {
 //     onSend?: () => void
 //     onSuccess?: (txReceipt: TransactionReceipt) => void
