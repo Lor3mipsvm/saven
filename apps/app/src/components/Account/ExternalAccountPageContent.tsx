@@ -6,7 +6,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { useEffect } from 'react'
 import { Address, isAddress } from 'viem'
 import { normalize } from 'viem/ens'
-import { useEnsAddress } from 'wagmi'
+// import { useEnsAddress } from 'wagmi'
 import { AccountDelegations } from './AccountDelegations'
 import { AccountDeposits } from './AccountDeposits'
 import { AccountOdds } from './AccountOdds'
@@ -32,13 +32,13 @@ export const ExternalAccountPageContent = (props: ExternalAccountPageContentProp
 
   const isEnsUser = !!user && user.endsWith('.eth')
 
-  const { data: addressFromEns, isFetched: isFetchedAddressFromEns } = useEnsAddress({
-    chainId: NETWORK.mainnet,
-    name: !!user ? normalize(user) : undefined,
-    query: { enabled: isEnsUser }
-  })
+  // const { data: addressFromEns, isFetched: isFetchedAddressFromEns } = useEnsAddress({
+  //   chainId: NETWORK.mainnet,
+  //   name: !!user ? normalize(user) : undefined,
+  //   query: { enabled: isEnsUser }
+  // })
 
-  const userAddress = (isEnsUser ? addressFromEns : user) as Address | undefined
+  const userAddress = user as Address | undefined
 
   useEffect(() => {
     if (!user) {
@@ -50,9 +50,9 @@ export const ExternalAccountPageContent = (props: ExternalAccountPageContentProp
     setIsModalOpen(false)
   }, [])
 
-  if (!!isEnsUser && !isFetchedAddressFromEns) {
-    return <Spinner />
-  }
+  // if (!!isEnsUser && !isFetchedAddressFromEns) {
+  //   return <Spinner />
+  // }
 
   if (!!userAddress) {
     return (

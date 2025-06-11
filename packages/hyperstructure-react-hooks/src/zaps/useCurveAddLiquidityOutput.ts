@@ -2,7 +2,7 @@ import { NO_REFETCH } from '@shared/generic-react-hooks'
 import { curveLpTokenABI } from '@shared/utilities'
 import { useQuery } from '@tanstack/react-query'
 import { Address } from 'viem'
-import { usePublicClient } from 'wagmi'
+import { useWorldPublicClient } from '../blockchain/useClients'
 
 /**
  * Returns the expected output in LP tokens of a curve `add_liquidity` call
@@ -18,7 +18,7 @@ export const useCurveAddLiquidityOutput = (
   amounts: [bigint, bigint],
   options?: { enabled?: boolean }
 ) => {
-  const publicClient = usePublicClient({ chainId })
+  const publicClient = useWorldPublicClient()
 
   return useQuery({
     queryKey: ['curveLpOutput', chainId, lpTokenAddress, amounts?.map(String)],

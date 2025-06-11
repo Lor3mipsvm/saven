@@ -7,20 +7,19 @@ import {
   useUserVaultDelegationBalance,
   useUserVaultTokenBalance,
   useVaultBalance,
-  useVaultTokenData
+  useVaultTokenData,
+  useWorldPublicClient
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAddRecentTransaction, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit'
 import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
-import { NETWORK, supportsEip5792, supportsEip7677 } from '@shared/utilities'
+import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
-import { deposit, signInWithWallet } from 'src/utils'
+import { addRecentTransaction, deposit, signInWithWallet } from 'src/utils'
 import { Address, Hash, parseUnits } from 'viem'
-import { useCapabilities, usePublicClient } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
@@ -47,10 +46,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
 
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
-
-  const { openConnectModal } = useConnectModal()
-  const { openChainModal } = useChainModal()
-  const addRecentTransaction = useAddRecentTransaction()
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
@@ -114,8 +109,9 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     }
   })
 
-  const { data: walletCapabilities } = useCapabilities()
-  const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
+  // const { data: walletCapabilities } = useCapabilities()
+  // const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
+  const chainWalletCapabilities = {}
 
   const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
   const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
@@ -160,7 +156,8 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   // console.log('dataDepositTx.sendDepositTransaction')
   // console.log(dataDepositTx.sendDepositTransaction)
 
-  const publicClient = usePublicClient({ chainId: NETWORK.world })
+  const publicClient = useWorldPublicClient()
+  // const publicClient = usePublicClient({ chainId: NETWORK.world })
   const sendDepositTransaction = () =>
     deposit(depositAmount, publicClient, vault.address, tokenData?.address)
 
@@ -216,8 +213,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       txDescription={t_modals('depositTx', { symbol: tokenData?.symbol ?? '?' })}
       fullSized={true}
       disabled={!depositEnabled}
-      openConnectModal={openConnectModal}
-      openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
       signInWithWallet={signInWithWallet}
       intl={{ base: t_modals, common: t_common }}

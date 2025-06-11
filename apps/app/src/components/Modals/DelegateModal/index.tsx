@@ -2,12 +2,12 @@ import {
   useSelectedVault,
   useVaultTwabController
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAddRecentTransaction } from '@rainbow-me/rainbowkit'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { createDelegateTxToast } from '@shared/react-components'
 import { Modal } from '@shared/ui'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import { addRecentTransaction } from 'src/utils'
 import { DelegateModalBody } from './DelegateModalBody'
 import { DelegateTxButton } from './DelegateTxButton'
 
@@ -22,8 +22,6 @@ export const DelegateModal = (props: DelegateModalProps) => {
   const { onClose, onSuccessfulDelegation } = props
 
   const t_toasts = useTranslations('Toasts.transactions')
-
-  const addRecentTransaction = useAddRecentTransaction()
 
   const { vault } = useSelectedVault()
 

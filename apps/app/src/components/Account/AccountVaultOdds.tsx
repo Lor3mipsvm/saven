@@ -11,7 +11,7 @@ import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { Address } from 'viem'
-import { useEnsName } from 'wagmi'
+// import { useEnsName } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 
 interface AccountVaultOddsProps {
@@ -42,7 +42,7 @@ export const AccountVaultOdds = (props: AccountVaultOddsProps) => {
     { refetchOnWindowFocus: true }
   )
 
-  const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: delegate })
+  // const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: delegate })
 
   const prizePools = useSupportedPrizePools()
   const prizePool = Object.values(prizePools).find(
@@ -69,10 +69,10 @@ export const AccountVaultOdds = (props: AccountVaultOddsProps) => {
         {delegate === '0x0000000000000000000000000000000000000001'
           ? t('sponsoring')
           : t.rich('delegatedTo', {
-              account: ensName ?? shorten(delegate),
+              account: shorten(delegate),
               link: (chunks) => (
                 <Link
-                  href={`/account/${ensName ?? delegate}`}
+                  href={`/account/${delegate}`}
                   className='text-pt-teal hover:text-pt-teal-dark'
                 >
                   {chunks}

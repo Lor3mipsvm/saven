@@ -10,10 +10,13 @@ import { CurrencyView } from './Views/CurrencyView'
 import { LanguageView } from './Views/LanguageView'
 import { MenuView } from './Views/MenuView'
 import { MiscSettingsView } from './Views/MiscSettingsView'
-import { RPCsView } from './Views/RPCsView'
-import { VaultListView } from './Views/VaultListView'
 
-export type SettingsModalOption = 'currency' | 'language' | 'vaultLists' | 'customRPCs' | 'misc'
+// import { RPCsView } from './Views/RPCsView'
+
+// import { VaultListView } from './Views/VaultListView'
+
+export type SettingsModalOption = 'currency' | 'language' | 'misc'
+// export type SettingsModalOption = 'currency' | 'language' | 'vaultLists' | 'customRPCs' | 'misc'
 
 export type SettingsModalView = 'menu' | SettingsModalOption
 
@@ -54,16 +57,16 @@ export const SettingsModal = (props: SettingsModalProps) => {
     menu: <MenuView disable={disable} hide={hide} />,
     currency: <CurrencyView onCurrencyChange={onCurrencyChange} />,
     language: <LanguageView locales={locales} onLanguageChange={onLanguageChange} />,
-    vaultLists: <VaultListView onSuccess={onVaultListImport} />,
-    customRPCs: (
-      <RPCsView
-        chainIds={customNetworks}
-        onClickPageReload={() => {
-          onRpcChange?.()
-          router.reload()
-        }}
-      />
-    ),
+    // vaultLists: <VaultListView onSuccess={onVaultListImport} />,
+    // customRPCs: (
+    //   <RPCsView
+    //     chainIds={customNetworks}
+    //     onClickPageReload={() => {
+    //       onRpcChange?.()
+    //       router.reload()
+    //     }}
+    //   />
+    // ),
     misc: <MiscSettingsView />
   }
 

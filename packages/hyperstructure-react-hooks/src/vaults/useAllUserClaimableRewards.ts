@@ -22,7 +22,7 @@ export const useAllUserClaimableRewards = (
   },
   options?: { [chainId: number]: { twabRewardsAddress?: Address } }
 ) => {
-  const publicClients = usePublicClientsByChain({ useAll: true })
+  const publicClients = usePublicClientsByChain()
 
   const chainIds = Object.keys(promotions).map((k) => parseInt(k))
 

@@ -21,6 +21,8 @@ export const useUserTotalBalance = (userAddress: Address) => {
     vaults,
     userAddress
   )
+  console.log('vaultBalances')
+  console.log(vaultBalances)
 
   const isFetched =
     isFetchedVaultData &&

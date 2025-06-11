@@ -2,8 +2,7 @@ import { NO_REFETCH } from '@shared/generic-react-hooks'
 import { VaultList } from '@shared/types'
 import { getVaultList, NETWORK } from '@shared/utilities'
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
-import { usePublicClient } from 'wagmi'
-import { useCachedVaultLists, useSelectedVaultListIds } from '..'
+import { useCachedVaultLists, useSelectedVaultListIds, useWorldPublicClient } from '..'
 import { QUERY_KEYS } from '../constants'
 
 /**
@@ -17,7 +16,8 @@ export const useVaultList = (
   src: string,
   options?: { localVaultLists?: { [id: string]: VaultList }; onSuccess?: (id: string) => void }
 ): UseQueryResult<VaultList | undefined> => {
-  const publicClient = usePublicClient({ chainId: NETWORK.mainnet })
+  // const publicClient = usePublicClient({ chainId: NETWORK.mainnet })
+  const publicClient = useWorldPublicClient()
 
   const { select } = useSelectedVaultListIds()
   const { cache } = useCachedVaultLists()

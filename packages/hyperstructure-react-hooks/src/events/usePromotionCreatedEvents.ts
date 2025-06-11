@@ -68,7 +68,7 @@ export const usePromotionCreatedEventsAcrossChains = (
     }
   }
 ) => {
-  const publicClients = usePublicClientsByChain({ useAll: true })
+  const publicClients = usePublicClientsByChain()
 
   const results = useQueries({
     queries: chainIds.map((chainId) => {

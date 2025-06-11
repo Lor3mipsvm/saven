@@ -10,14 +10,13 @@ import {
   useVaultBalance,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAddRecentTransaction, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
-import { signInWithWallet } from 'src/utils'
+import { addRecentTransaction, signInWithWallet } from 'src/utils'
 import { Hash, parseUnits } from 'viem'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
@@ -47,9 +46,9 @@ export const DepositWithPermitTxButton = (props: DepositWithPermitTxButtonProps)
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
 
-  const { openConnectModal } = useConnectModal()
-  const { openChainModal } = useChainModal()
-  const addRecentTransaction = useAddRecentTransaction()
+  // const { openConnectModal } = useConnectModal()
+  // const { openChainModal } = useChainModal()
+  // const addRecentTransaction = useAddRecentTransaction()
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
@@ -225,8 +224,6 @@ export const DepositWithPermitTxButton = (props: DepositWithPermitTxButtonProps)
         txDescription={t_modals('depositTx', { symbol: tokenData?.symbol ?? '?' })}
         fullSized={true}
         disabled={!depositEnabled}
-        openConnectModal={openConnectModal}
-        openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
         signInWithWallet={signInWithWallet}
         intl={{ base: t_modals, common: t_common }}
@@ -247,8 +244,6 @@ export const DepositWithPermitTxButton = (props: DepositWithPermitTxButtonProps)
       txDescription={t_modals('depositTx', { symbol: tokenData?.symbol ?? '?' })}
       fullSized={true}
       disabled={!depositEnabled}
-      openConnectModal={openConnectModal}
-      openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
       signInWithWallet={signInWithWallet}
       intl={{ base: t_modals, common: t_common }}

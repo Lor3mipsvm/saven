@@ -1,7 +1,9 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import { VaultInfo } from '@shared/types'
 import { PublicClient } from 'viem'
-import { usePublicClient } from 'wagmi'
+import { usePublicClientsByChain } from '../blockchain/useClients'
+
+// import { usePublicClient } from 'wagmi'
 
 /**
  * Returns an instance of a `Vault` class
@@ -9,7 +11,8 @@ import { usePublicClient } from 'wagmi'
  * @returns
  */
 export const useVault = (vaultInfo: VaultInfo): Vault => {
-  const publicClient = usePublicClient({ chainId: vaultInfo.chainId })
+  // const publicClient = usePublicClient({ chainId: vaultInfo.chainId })
+  const publicClient = usePublicClientsByChain()
 
   return new Vault(vaultInfo.chainId, vaultInfo.address, publicClient as PublicClient, {
     decimals: vaultInfo.decimals,

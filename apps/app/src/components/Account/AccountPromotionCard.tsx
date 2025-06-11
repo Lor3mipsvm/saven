@@ -1,5 +1,5 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
-import { usePublicClientsByChain } from '@generationsoftware/hyperstructure-react-hooks'
+import { useWorldPublicClient } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { VaultBadge } from '@shared/react-components'
 import { lower } from '@shared/utilities'
@@ -29,7 +29,7 @@ export const AccountPromotionCard = (props: AccountPromotionCardProps) => {
 
   const t = useTranslations('Account.bonusRewardHeaders')
 
-  const publicClients = usePublicClientsByChain()
+  const publicClient = useWorldPublicClient()
 
   const { address: _userAddress } = useAccount()
 
@@ -68,7 +68,7 @@ export const AccountPromotionCard = (props: AccountPromotionCardProps) => {
   const promotionInfo = claimed ?? claimable
 
   if (!!promotionInfo) {
-    const vault = new Vault(chainId, promotionInfo.vault, publicClients[chainId])
+    const vault = new Vault(chainId, promotionInfo.vault, publicClient)
 
     return (
       <div className='flex flex-col gap-4 bg-pt-transparent rounded-lg px-3 pt-3 pb-6'>

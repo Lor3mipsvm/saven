@@ -2,7 +2,7 @@ import { NO_REFETCH } from '@shared/generic-react-hooks'
 import { curveLpTokenABI, getSimpleMulticallResults } from '@shared/utilities'
 import { useQuery } from '@tanstack/react-query'
 import { Address } from 'viem'
-import { usePublicClient } from 'wagmi'
+import { useWorldPublicClient } from '../blockchain/useClients'
 
 // TODO: enable this to be more general once `useLpToken` supports curve lps with 3+ tokens
 /**
@@ -11,7 +11,7 @@ import { usePublicClient } from 'wagmi'
  * @returns
  */
 export const useIsCurveLp = (token: { chainId: number; address: Address }) => {
-  const publicClient = usePublicClient({ chainId: token?.chainId })
+  const publicClient = useWorldPublicClient()
 
   return useQuery({
     queryKey: ['isCurveLp', token?.chainId, token?.address],

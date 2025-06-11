@@ -5,7 +5,7 @@ import { lower, NETWORK, shorten } from '@shared/utilities'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { Address } from 'viem'
-import { useEnsName } from 'wagmi'
+// import { useEnsName } from 'wagmi'
 import { WALLET_NAMES } from '@constants/config'
 import { useUserTotalWinnings } from '@hooks/useUserTotalWinnings'
 
@@ -28,14 +28,14 @@ export const AccountWinningsHeader = (props: AccountWinningsHeaderProps) => {
     skipPrizeChecking: isExternalUser
   })
 
-  const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: userAddress })
+  // const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: userAddress })
 
   return (
     <div className={classNames('flex flex-col items-center gap-1 md:gap-2', className)}>
       <span className='text-sm text-pt-purple-100 md:text-base'>
         {isExternalUser
           ? t('externalAccountWinnings', {
-              account: WALLET_NAMES[lower(address)]?.name ?? ensName ?? shorten(address)
+              account: WALLET_NAMES[lower(address)]?.name ?? shorten(address)
             })
           : t('yourWinnings')}
       </span>

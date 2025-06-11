@@ -4,7 +4,7 @@ import { MiniKit } from '@worldcoin/minikit-js'
 import { NextIntlClientProvider } from 'next-intl'
 import { AppProps } from 'next/app'
 import { ReactNode, useEffect, useState } from 'react'
-import { useConnect } from 'wagmi'
+// import { useConnect } from 'wagmi'
 import { CustomAppProps } from '@pages/_app'
 import { AccountFrame } from './Frames/AccountFrame'
 import { DefaultFrame } from './Frames/DefaultFrame'
@@ -64,7 +64,7 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
     }
   }, [])
 
-  const { connect } = useConnect()
+  // const { connect } = useConnect()
 
   const pageFrames: { [href: string]: ReactNode } = {
     account: <AccountFrame user={serverProps.params['user']} />,

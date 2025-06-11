@@ -3,8 +3,7 @@ import { getPoolWidePromotionRewardsClaimedEvents } from '@shared/utilities'
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { Address } from 'viem'
-import { usePublicClient } from 'wagmi'
-import { usePublicClientsByChain } from '../blockchain/useClients'
+import { usePublicClientsByChain, useWorldPublicClient } from '../blockchain/useClients'
 import { QUERY_KEYS } from '../constants'
 
 /**
@@ -23,7 +22,7 @@ export const usePoolWidePromotionRewardsClaimedEvents = (
     toBlock?: bigint
   }
 ) => {
-  const publicClient = usePublicClient({ chainId })
+  const publicClient = useWorldPublicClient()
 
   const queryKey = [
     QUERY_KEYS.poolWidePromotionRewardsClaimedEvents,
@@ -65,7 +64,7 @@ export const usePoolWidePromotionRewardsClaimedEventsAcrossChains = (
     }
   }
 ) => {
-  const publicClients = usePublicClientsByChain({ useAll: true })
+  const publicClients = usePublicClientsByChain()
 
   const results = useQueries({
     queries: chainIds.map((chainId) => {

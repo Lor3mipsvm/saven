@@ -11,7 +11,6 @@ import {
   useVaultBalance,
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAddRecentTransaction, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit'
 import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { ApprovalTooltip, TransactionButton } from '@shared/react-components'
@@ -26,9 +25,8 @@ import {
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
-import { signInWithWallet } from 'src/utils'
+import { addRecentTransaction, signInWithWallet } from 'src/utils'
 import { Hash, isAddress, parseUnits } from 'viem'
-import { useCapabilities } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
@@ -58,10 +56,6 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
   const t_tooltips = useTranslations('Tooltips')
-
-  const { openConnectModal } = useConnectModal()
-  const { openChainModal } = useChainModal()
-  const addRecentTransaction = useAddRecentTransaction()
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
@@ -156,8 +150,9 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
     }
   )
 
-  const { data: walletCapabilities } = useCapabilities()
-  const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
+  // const { data: walletCapabilities } = useCapabilities()
+  // const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
+  const chainWalletCapabilities = {}
 
   const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
   const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
@@ -270,8 +265,6 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
         txDescription={t_modals('approvalTx', { symbol: inputToken?.symbol ?? '?' })}
         fullSized={true}
         disabled={!approvalEnabled}
-        openConnectModal={openConnectModal}
-        openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
         innerClassName='flex gap-2 items-center'
         signInWithWallet={signInWithWallet}
@@ -325,8 +318,6 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
       txDescription={t_modals('depositTx', { symbol: inputToken?.symbol ?? '?' })}
       fullSized={true}
       disabled={!depositEnabled}
-      openConnectModal={openConnectModal}
-      openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
       signInWithWallet={signInWithWallet}
       intl={{ base: t_modals, common: t_common }}

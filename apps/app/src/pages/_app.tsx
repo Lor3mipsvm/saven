@@ -1,5 +1,3 @@
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import '@rainbow-me/rainbowkit/styles.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IncomingMessage } from 'http'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
@@ -7,7 +5,6 @@ import App from 'next/app'
 import { WagmiProvider } from 'wagmi'
 import { AppContainer } from '@components/AppContainer'
 import { SUPPORTED_NETWORKS } from '@constants/config'
-import { ptRainbowTheme } from '@constants/theme'
 import '../styles/globals.css'
 import { createCustomWagmiConfig } from '../utils'
 
@@ -15,7 +12,7 @@ import { createCustomWagmiConfig } from '../utils'
 const queryClient = new QueryClient()
 
 const networks = [...SUPPORTED_NETWORKS.mainnets, ...SUPPORTED_NETWORKS.testnets]
-const wagmiConfig = createCustomWagmiConfig(networks, { useCustomRPCs: true })
+const wagmiConfig = createCustomWagmiConfig(networks)
 
 export interface CustomAppProps {
   serverProps: {
@@ -27,13 +24,7 @@ export default function MyApp(props: AppProps & CustomAppProps) {
   return (
     <WagmiProvider config={wagmiConfig} reconnectOnMount={true}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider
-          theme={ptRainbowTheme()}
-          showRecentTransactions={true}
-          appInfo={{ appName: 'Cabana' }}
-        >
-          <AppContainer {...props} />
-        </RainbowKitProvider>
+        <AppContainer {...props} />
       </QueryClientProvider>
     </WagmiProvider>
   )

@@ -1,5 +1,5 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
-import { usePublicClientsByChain } from '@generationsoftware/hyperstructure-react-hooks'
+import { useWorldPublicClient } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { VaultBadge } from '@shared/react-components'
 import { Table, TableProps } from '@shared/ui'
@@ -31,7 +31,7 @@ export const AccountPromotionsTable = (props: AccountPromotionsTableProps) => {
   const baseNumTableRows = 10
   const [numTableRows, setNumTableRows] = useState<number>(baseNumTableRows)
 
-  const publicClients = usePublicClientsByChain()
+  const publicClient = useWorldPublicClient()
 
   const { address: _userAddress } = useAccount()
 
@@ -139,7 +139,7 @@ export const AccountPromotionsTable = (props: AccountPromotionsTableProps) => {
           claimable.find((p) => p.chainId === chainId && p.promotionId === promotionId)
 
       if (!!promotionInfo) {
-        const vault = new Vault(chainId, promotionInfo.vault, publicClients[chainId])
+        const vault = new Vault(chainId, promotionInfo.vault, publicClient)
 
         const cells: TableProps['data']['rows'][0]['cells'] = {
           token: {

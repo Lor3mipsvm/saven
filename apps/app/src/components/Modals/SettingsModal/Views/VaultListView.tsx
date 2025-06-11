@@ -1,6 +1,7 @@
 import {
   useCachedVaultLists,
-  useSelectedVaultListIds
+  useSelectedVaultListIds,
+  useWorldPublicClient
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { ImportedBadge } from '@shared/react-components'
@@ -11,7 +12,7 @@ import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { usePublicClient } from 'wagmi'
+// import { usePublicClient } from 'wagmi'
 import { DEFAULT_VAULT_LISTS } from '@constants/config'
 
 interface VaultListViewProps {
@@ -102,7 +103,9 @@ const ImportVaultListForm = (props: ImportVaultListFormProps) => {
   const t_settings = useTranslations('Settings')
   const t_errors = useTranslations('Error.formErrors')
 
-  const mainnetPublicClient = usePublicClient({ chainId: NETWORK.mainnet })
+  // const mainnetPublicClient = usePublicClient({ chainId: NETWORK.mainnet })
+  // This doesn't make sense but we shouldn't need vault lists to be configurable on World
+  const mainnetPublicClient = useWorldPublicClient()
 
   const { cache } = useCachedVaultLists()
   const { select } = useSelectedVaultListIds()

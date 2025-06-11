@@ -1,5 +1,3 @@
-import { CreateWalletFn } from '@rainbow-me/rainbowkit/dist/wallets/Wallet'
-import { injectedWallet, metaMaskWallet, rainbowWallet } from '@rainbow-me/rainbowkit/wallets'
 import { VaultList } from '@shared/types'
 import {
   DOLPHIN_ADDRESS,
@@ -26,15 +24,6 @@ export const WAGMI_CHAINS = {
   [NETWORK.world]: worldchain,
   [NETWORK.gnosis_chiado]: gnosisChiado
 } as const
-
-/**
- * Wallets
- */
-export const WALLETS: { [wallet: string]: CreateWalletFn } = {
-  metamask: metaMaskWallet,
-  rainbow: rainbowWallet,
-  injected: injectedWallet
-}
 
 /**
  * RPCs

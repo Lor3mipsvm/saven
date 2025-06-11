@@ -4,7 +4,6 @@
 export * from './app/useAccount'
 export * from './app/useCountdown'
 export * from './app/useCountup'
-export * from './app/useCustomRPCs'
 export * from './app/useIsDismissed'
 export * from './app/useIsModalOpen'
 export * from './app/useIsTestnets'

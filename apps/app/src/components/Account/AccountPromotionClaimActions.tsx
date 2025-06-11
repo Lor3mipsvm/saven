@@ -5,7 +5,6 @@ import {
   useSendPoolWideClaimRewardsTransaction,
   useToken
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAddRecentTransaction, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit'
 import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TokenAmount, TransactionButton } from '@shared/react-components'
@@ -13,9 +12,9 @@ import { getSecondsSinceEpoch, lower, supportsEip5792, supportsEip7677 } from '@
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { signInWithWallet } from 'src/utils'
+import { addRecentTransaction, signInWithWallet } from 'src/utils'
 import { Address, formatUnits } from 'viem'
-import { useCapabilities } from 'wagmi'
+// import { useCapabilities } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
 import { useUserClaimablePoolWidePromotions } from '@hooks/useUserClaimablePoolWidePromotions'
 import { useUserClaimablePromotions } from '@hooks/useUserClaimablePromotions'
@@ -73,9 +72,9 @@ const ClaimRewardsButton = (props: ClaimRewardsButtonProps) => {
   const t_account = useTranslations('Account')
   const t_txs = useTranslations('TxModals')
 
-  const { openConnectModal } = useConnectModal()
-  const { openChainModal } = useChainModal()
-  const addRecentTransaction = useAddRecentTransaction()
+  // const { openConnectModal } = useConnectModal()
+  // const { openChainModal } = useChainModal()
+  // const addRecentTransaction = useAddRecentTransaction()
 
   const { refetch: refetchClaimed } = useUserClaimedPromotions(userAddress)
   const { refetch: refetchPoolWideClaimed } = useUserClaimedPoolWidePromotions(userAddress)
@@ -131,8 +130,9 @@ const ClaimRewardsButton = (props: ClaimRewardsButtonProps) => {
     }
   )
 
-  const { data: walletCapabilities } = useCapabilities()
-  const chainWalletCapabilities = walletCapabilities?.[chainId] ?? {}
+  // const { data: walletCapabilities } = useCapabilities()
+  // const chainWalletCapabilities = walletCapabilities?.[chainId] ?? {}
+  const chainWalletCapabilities = {}
 
   const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
   const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
@@ -212,8 +212,6 @@ const ClaimRewardsButton = (props: ClaimRewardsButtonProps) => {
             write={sendTransaction}
             txHash={txHash}
             txDescription={t_account('claimRewardsTx', { symbol: token.symbol })}
-            openConnectModal={openConnectModal}
-            openChainModal={openChainModal}
             addRecentTransaction={addRecentTransaction}
             signInWithWallet={signInWithWallet}
             intl={{ base: t_txs, common: t_common }}

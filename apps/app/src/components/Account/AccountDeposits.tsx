@@ -3,7 +3,6 @@ import {
   useSelectedVaults
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
-import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { Button } from '@shared/ui'
@@ -11,6 +10,7 @@ import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useMemo } from 'react'
+import { signInWithWallet } from 'src/utils'
 import { Address } from 'viem'
 import { PrizePoolCards } from '@components/Prizes/PrizePoolCards'
 import { useSettingsModalView } from '@hooks/useSettingsModalView'
@@ -74,14 +74,20 @@ const NoWalletCard = (props: { className?: string }) => {
   const t_common = useTranslations('Common')
   const t_account = useTranslations('Account')
 
-  const { openConnectModal } = useConnectModal()
+  const { setUserAddress } = useAccount()
+
+  // const { openConnectModal } = useConnectModal()
 
   return (
     <div className={classNames('flex flex-col max-w-md gap-6 items-center', className)}>
       <span className='text-center text-3xl font-averta font-medium md:text-5xl'>
         {t_account('connectWallet')}
       </span>
-      <Button onClick={openConnectModal}>
+      <Button
+        onClick={() => {
+          signInWithWallet(setUserAddress)
+        }}
+      >
         <div className='inline-flex gap-3 font-medium'>
           <span>{t_common('signIn')}</span>
           <ArrowRightIcon className='h-5 w-5' />

@@ -7,7 +7,7 @@ import {
 } from '@shared/utilities'
 import { useQuery } from '@tanstack/react-query'
 import { Address, parseUnits } from 'viem'
-import { usePublicClient } from 'wagmi'
+import { useWorldPublicClient } from '../blockchain/useClients'
 
 // TODO: support curve lps with 3+ tokens
 /**
@@ -20,7 +20,8 @@ export const useLpToken = (
   lpToken: { chainId: number; address: Address },
   options?: { enabled?: boolean }
 ) => {
-  const publicClient = usePublicClient({ chainId: lpToken?.chainId })
+  // const publicClient = usePublicClient({ chainId: lpToken?.chainId })
+  const publicClient = useWorldPublicClient()
 
   return useQuery({
     queryKey: ['lpTokenData', lpToken?.chainId, lpToken?.address],

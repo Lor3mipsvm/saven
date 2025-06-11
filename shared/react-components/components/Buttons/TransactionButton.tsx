@@ -5,7 +5,6 @@ import { getNiceNetworkNameByChainId } from '@shared/utilities'
 import classNames from 'classnames'
 import { useEffect } from 'react'
 import { Address } from 'viem'
-import { useSwitchChain } from 'wagmi'
 
 export interface TransactionButtonProps extends Omit<ButtonProps, 'onClick'> {
   chainId: number
@@ -15,8 +14,6 @@ export interface TransactionButtonProps extends Omit<ButtonProps, 'onClick'> {
   write?: () => void
   txHash?: string
   txDescription?: string
-  openConnectModal?: () => void
-  openChainModal?: () => void
   addRecentTransaction?: (tx: { hash: string; description: string; confirmations?: number }) => void
   intl?: { base?: Intl<'switchNetwork' | 'switchingNetwork'>; common?: Intl<'signIn'> }
   innerClassName?: string
@@ -30,8 +27,6 @@ export const TransactionButton = (props: TransactionButtonProps) => {
     write,
     txHash,
     txDescription,
-    openConnectModal,
-    openChainModal,
     addRecentTransaction,
     intl,
     innerClassName,
@@ -41,9 +36,7 @@ export const TransactionButton = (props: TransactionButtonProps) => {
     ...rest
   } = props
 
-  const { setUserAddress, chain, isDisconnected } = useAccount()
-
-  const { switchChain, isPending: isSwitchingChain } = useSwitchChain()
+  const { setUserAddress, isDisconnected } = useAccount()
 
   const networkName = getNiceNetworkNameByChainId(chainId)
 
@@ -67,28 +60,6 @@ export const TransactionButton = (props: TransactionButtonProps) => {
         <span className={classNames('whitespace-nowrap', innerClassName)}>
           {intl?.common?.('signIn') ?? 'Sign In'}
         </span>
-      </Button>
-    )
-  } else if (chain?.id !== chainId) {
-    return (
-      <Button
-        onClick={() =>
-          !!switchChain ? switchChain({ chainId }) : !!openChainModal ? openChainModal() : undefined
-        }
-        disabled={isSwitchingChain}
-        {...rest}
-      >
-        {isSwitchingChain && (
-          <span className={classNames('whitespace-nowrap', innerClassName)}>
-            {intl?.base?.('switchingNetwork', { network: networkName }) ??
-              `Switching to ${networkName}...`}
-          </span>
-        )}
-        {!isSwitchingChain && (
-          <span className={classNames('whitespace-nowrap', innerClassName)}>
-            {intl?.base?.('switchNetwork', { network: networkName }) ?? `Switch to ${networkName}`}
-          </span>
-        )}
       </Button>
     )
   }

@@ -3,7 +3,6 @@ import {
   useVaultExchangeRate,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAddRecentTransaction } from '@rainbow-me/rainbowkit'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { createWithdrawTxToast } from '@shared/react-components'
 import { Modal } from '@shared/ui'
@@ -12,6 +11,7 @@ import classNames from 'classnames'
 import { useAtom, useSetAtom } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { ReactNode, useState } from 'react'
+import { addRecentTransaction } from 'src/utils'
 import { ConfirmingView } from './Views/ConfirmingView'
 import { ErrorView } from './Views/ErrorView'
 import { MainView } from './Views/MainView'
@@ -46,8 +46,6 @@ export const WithdrawModal = (props: WithdrawModalProps) => {
   } = props
 
   const t_toasts = useTranslations('Toasts.transactions')
-
-  const addRecentTransaction = useAddRecentTransaction()
 
   const { vault } = useSelectedVault()
 

@@ -5,7 +5,7 @@ import { lower, NETWORK, shorten } from '@shared/utilities'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { Address } from 'viem'
-import { useEnsName } from 'wagmi'
+// import { useEnsName } from 'wagmi'
 import { WALLET_NAMES } from '@constants/config'
 import { useUserTotalBalance } from '@hooks/useUserTotalBalance'
 
@@ -23,10 +23,11 @@ export const AccountDepositsHeader = (props: AccountDepositsHeaderProps) => {
   const userAddress = address ?? _userAddress
 
   const isExternalUser = !!address && address.toLowerCase() !== _userAddress?.toLowerCase()
-
+  console.log('userAddress')
+  console.log(userAddress)
   const { data: totalBalance, isFetched: isFetchedTotalBalance } = useUserTotalBalance(userAddress!)
 
-  const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: userAddress })
+  // const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: userAddress })
   console.log('totalBalance')
   console.log(totalBalance)
 
@@ -35,7 +36,7 @@ export const AccountDepositsHeader = (props: AccountDepositsHeaderProps) => {
       <span className='text-sm text-pt-purple-100 md:text-base'>
         {isExternalUser
           ? t('externalAccountDeposits', {
-              account: WALLET_NAMES[lower(address)]?.name ?? ensName ?? shorten(address)
+              account: WALLET_NAMES[lower(address)]?.name ?? shorten(address)
             })
           : t('yourDeposits')}
       </span>

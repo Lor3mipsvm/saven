@@ -22,7 +22,6 @@ A library of shared React hooks with minimal dependencies.
 - `useAccount`
 - `useCountdown`
 - `useCountup`
-- `useCustomRPCs`
 - `useIsDismissed`
 - `useIsModalOpen`
 - `useIsTestnets`

@@ -29,7 +29,7 @@ export const useAllPoolWideVaultPromotions = (
     }
   }
 ) => {
-  const publicClients = usePublicClientsByChain({ useAll: true })
+  const publicClients = usePublicClientsByChain()
 
   const fullOptions = useMemo(() => {
     if (!!vaults && !!options) {

@@ -1,5 +1,3 @@
-import { connectorsForWallets, WalletList } from '@rainbow-me/rainbowkit'
-import { getInitialCustomRPCs } from '@shared/generic-react-hooks'
 import { NoneTransferableERC20Abi, permitDepositABI, redeemABI, vaultABI } from '@shared/utilities'
 import { formatNumberForDisplay, lower, NETWORK, parseQueryParam } from '@shared/utilities'
 // import { lower } from './formatting'
@@ -11,14 +9,13 @@ import {
   decodeEventLog,
   formatUnits,
   type Hash,
-  http,
-  type PublicClient,
+  http, // type PublicClient,
   type TransactionReceipt,
   Transport
 } from 'viem'
 import { waitForTransactionReceipt } from 'viem/actions'
-import { createConfig, CreateConnectorFn, fallback } from 'wagmi'
-import { RPC_URLS, WAGMI_CHAINS, WALLETS } from '@constants/config'
+import { createConfig, fallback } from 'wagmi'
+import { RPC_URLS, WAGMI_CHAINS } from '@constants/config'
 
 export const permit2VaultDeposit: { address: Address } = {
   address: '0x263f95fF28347F14956dA6c26d51b2701Ed95013'
@@ -30,83 +27,35 @@ export const permit2VaultDeposit: { address: Address } = {
  * @param options optional settings
  * @returns
  */
-export const createCustomWagmiConfig = (
-  networks: NETWORK[],
-  options?: { connectors?: CreateConnectorFn[]; useCustomRPCs?: boolean }
-) => {
+export const createCustomWagmiConfig = (networks: NETWORK[]) => {
   const supportedNetworks = Object.values(WAGMI_CHAINS).filter(
     (chain) => networks.includes(chain.id) && !!RPC_URLS[chain.id]
   ) as any as [Chain, ...Chain[]]
+  console.log('supportedNetworks')
+  console.log(supportedNetworks)
 
   return createConfig({
     chains: supportedNetworks,
-    connectors: options?.connectors ?? getWalletConnectors(),
-    transports: getNetworkTransports(
-      supportedNetworks.map((network) => network.id),
-      { useCustomRPCs: options?.useCustomRPCs }
-    ),
+    // connectors: options?.connectors ?? getWalletConnectors(),
+    transports: getNetworkTransports(supportedNetworks.map((network) => network.id)),
     batch: { multicall: { batchSize: 1_024 * 1_024 } },
     ssr: true
   })
 }
 
 /**
- * Returns wallet connectors for Wagmi & RainbowKit
- * @returns
- */
-const getWalletConnectors = () => {
-  const walletGroups: WalletList = []
-
-  const defaultWallets = ['injected', 'rainbow', 'metamask']
-
-  const highlightedWallet = parseQueryParam('wallet', { validValues: Object.keys(WALLETS) })
-
-  // NOTE: Don't highlight solely the injected wallet since it might be something sketchy.
-  if (!!highlightedWallet && highlightedWallet !== 'injected') {
-    walletGroups.push({
-      groupName: 'Recommended',
-      wallets: [WALLETS[highlightedWallet]]
-    })
-    walletGroups.push({
-      groupName: 'Default',
-      wallets: defaultWallets
-        .filter((wallet) => wallet !== highlightedWallet)
-        .map((wallet) => WALLETS[wallet])
-    })
-  } else {
-    walletGroups.push({
-      groupName: 'Default',
-      wallets: defaultWallets.map((wallet) => WALLETS[wallet])
-    })
-  }
-
-  return connectorsForWallets(walletGroups, {
-    appName: 'Cabana',
-    projectId: '3eb812d6ed9689e2ced204df2b9e6c76'
-  })
-}
-
-/**
- * Returns network transports for Wagmi & RainbowKit
+ * Returns network transports for Wagmi
  * @param networks the networks to get transports for
  * @param options optional settings
  * @returns
  */
-const getNetworkTransports = (
-  networks: (keyof typeof RPC_URLS)[],
-  options?: { useCustomRPCs?: boolean }
-) => {
+const getNetworkTransports = (networks: (keyof typeof RPC_URLS)[]) => {
   const transports: { [chainId: number]: Transport } = {}
-
-  const customRPCs = !!options?.useCustomRPCs ? getInitialCustomRPCs() : {}
 
   networks.forEach((network) => {
     const defaultRpcUrl = RPC_URLS[network] as string
-    const customRpcUrl = customRPCs[network]
 
-    transports[network] = !!customRpcUrl
-      ? fallback([http(customRpcUrl), http(defaultRpcUrl), http()])
-      : fallback([http(defaultRpcUrl), http()])
+    transports[network] = fallback([http(defaultRpcUrl), http()])
   })
 
   return transports
@@ -175,6 +124,10 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
 export const signInDisconnect = async (setUserAddress: (address: Address | undefined) => void) => {
   setUserAddress(undefined)
   // clients.set(getInitialClients())
+}
+
+export const addRecentTransaction = () => {
+  alert('implement me!')
 }
 
 export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {

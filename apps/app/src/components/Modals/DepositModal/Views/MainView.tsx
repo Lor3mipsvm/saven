@@ -18,7 +18,7 @@ import {
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 // import { walletSupportsPermit } from 'src/utils'
-import { useCapabilities } from 'wagmi'
+// import { useCapabilities } from 'wagmi'
 import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
 import { Odds } from '../../Odds'
 import {
@@ -50,10 +50,11 @@ export const MainView = (props: MainViewProps) => {
 
   const { data: vaultExchangeRate } = useVaultExchangeRate(vault)
 
-  const { data: walletCapabilities } = useCapabilities()
-  const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
-  const isUsingEip5792 =
-    supportsEip5792(walletCapabilities?.[vault.chainId] ?? {}) && !isEip5792Disabled
+  // const { data: walletCapabilities } = useCapabilities()
+  // const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
+  const isUsingEip5792 = false
+  // const isUsingEip5792 =
+  //   supportsEip5792(walletCapabilities?.[vault.chainId] ?? {}) && !isEip5792Disabled
 
   const { data: tokenPermitSupport } = useTokenPermitSupport(vault.chainId, tokenAddress!)
   const { isActive: isPermitDepositsDisabled } = useMiscSettings('permitDepositsDisabled')

@@ -5,7 +5,6 @@ import {
   useUserVaultDelegate,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAddRecentTransaction, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit'
 import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
@@ -13,9 +12,8 @@ import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
-import { signInWithWallet } from 'src/utils'
+import { addRecentTransaction, signInWithWallet } from 'src/utils'
 import { Address, isAddress } from 'viem'
-import { useCapabilities } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
 import { DelegateModalView } from '.'
 import { delegateFormNewDelegateAddressAtom } from './DelegateForm'
@@ -33,10 +31,6 @@ export const DelegateTxButton = (props: DelegateTxButtonProps) => {
 
   const t_txModals = useTranslations('TxModals')
   const t_common = useTranslations('Common')
-
-  const { openConnectModal } = useConnectModal()
-  const { openChainModal } = useChainModal()
-  const addRecentTransaction = useAddRecentTransaction()
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
@@ -64,8 +58,9 @@ export const DelegateTxButton = (props: DelegateTxButtonProps) => {
     }
   })
 
-  const { data: walletCapabilities } = useCapabilities()
-  const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
+  // const { data: walletCapabilities } = useCapabilities()
+  // const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
+  const chainWalletCapabilities = {}
 
   const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
   const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
@@ -134,8 +129,6 @@ export const DelegateTxButton = (props: DelegateTxButtonProps) => {
       fullSized={true}
       disabled={!delegateEnabled}
       color={!delegateEnabled && chain?.id === vault.chainId ? 'transparent' : 'teal'}
-      openConnectModal={openConnectModal}
-      openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
       signInWithWallet={signInWithWallet}
       intl={{ base: t_txModals, common: t_common }}

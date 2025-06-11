@@ -49,8 +49,6 @@ export const CurrencyValue = (props: CurrencyValueProps) => {
     NETWORK.mainnet,
     [POOL_TOKEN_ADDRESSES[NETWORK.mainnet]]
   )
-  console.log('extraTokenPrices')
-  console.log(extraTokenPrices)
 
   const exchangeRates = useMemo(() => {
     const rates = { ...coingeckoExchangeRates }
@@ -70,9 +68,6 @@ export const CurrencyValue = (props: CurrencyValueProps) => {
 
     return rates
   }, [coingeckoExchangeRates, extraTokenPrices])
-
-  console.log('exchangeRates')
-  console.log(exchangeRates)
 
   const isFetchedExchangeRates = isFetchedCoingeckoExchangeRates && isFetchedExtraTokenPrices
 
@@ -108,8 +103,6 @@ export const CurrencyValue = (props: CurrencyValueProps) => {
       }
     }
   }, [exchangeRates, baseValue, selectedCurrency, baseCurrency])
-  console.log('currencyValue')
-  console.log(currencyValue)
 
   const minValue = 1 / 10 ** (decimals ?? 2)
 

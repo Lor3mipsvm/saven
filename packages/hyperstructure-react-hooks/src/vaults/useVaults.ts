@@ -8,11 +8,8 @@ import { usePublicClientsByChain } from '..'
  * @param options optional settings
  * @returns
  */
-export const useVaults = (
-  allVaultInfo: VaultInfo[],
-  options?: { useAllChains?: boolean }
-): Vaults => {
-  const publicClients = usePublicClientsByChain({ useAll: options?.useAllChains })
+export const useVaults = (allVaultInfo: VaultInfo[]): Vaults => {
+  const publicClients = usePublicClientsByChain()
 
   const vaults = new Vaults(allVaultInfo, publicClients)
 
