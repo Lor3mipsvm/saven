@@ -27,6 +27,8 @@ export const AccountDepositsHeader = (props: AccountDepositsHeaderProps) => {
   const { data: totalBalance, isFetched: isFetchedTotalBalance } = useUserTotalBalance(userAddress!)
 
   const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: userAddress })
+  console.log('totalBalance')
+  console.log(totalBalance)
 
   return (
     <div className={classNames('flex flex-col items-center gap-1 md:gap-2', className)}>
