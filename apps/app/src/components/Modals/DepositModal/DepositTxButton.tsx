@@ -113,8 +113,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       setModalView('error')
     }
   })
-  console.log('dataDepositTx')
-  console.log(dataDepositTx)
 
   const { data: walletCapabilities } = useCapabilities()
   const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
@@ -163,16 +161,8 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   // console.log(dataDepositTx.sendDepositTransaction)
 
   const publicClient = usePublicClient({ chainId: NETWORK.world })
-  console.log('vault.address')
-  console.log(vault.address)
-  console.log('tokenData?.address')
-  console.log(tokenData?.address)
-  console.log('tokenData')
-  console.log(tokenData)
   const sendDepositTransaction = () =>
     deposit(depositAmount, publicClient, vault.address, tokenData?.address)
-  console.log('sendDepositTransaction')
-  console.log(sendDepositTransaction)
 
   useEffect(() => {
     if (!!depositTxHash && isConfirmingDeposit && !isWaitingDeposit && !isSuccessfulDeposit) {

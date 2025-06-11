@@ -93,15 +93,6 @@ export const TransactionButton = (props: TransactionButtonProps) => {
     )
   }
 
-  console.log('**************')
-  console.log('**************')
-  console.log('**************')
-  console.log('!write')
-  console.log(!write)
-  console.log('isTxLoading')
-  console.log(isTxLoading)
-  console.log('disabled')
-  console.log(disabled)
   return (
     <Button onClick={write} disabled={!write || isTxLoading || disabled} {...rest}>
       <span
