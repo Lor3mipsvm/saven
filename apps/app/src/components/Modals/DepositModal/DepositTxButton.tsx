@@ -14,13 +14,13 @@ import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
-import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
+import { NETWORK, supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
-import { signInWithWallet } from 'src/utils'
+import { deposit, signInWithWallet } from 'src/utils'
 import { Address, Hash, parseUnits } from 'viem'
-import { useCapabilities } from 'wagmi'
+import { useCapabilities, usePublicClient } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
@@ -158,7 +158,19 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   //   ? data5792DepositTx.send5792DepositTransaction
   //   : dataDepositTx.sendDepositTransaction
 
-  const sendDepositTransaction = dataDepositTx.sendDepositTransaction
+  // const sendDepositTransaction = dataDepositTx.sendDepositTransaction
+  // console.log('dataDepositTx.sendDepositTransaction')
+  // console.log(dataDepositTx.sendDepositTransaction)
+
+  const publicClient = usePublicClient({ chainId: NETWORK.world })
+  console.log('vault.address')
+  console.log(vault.address)
+  console.log('tokenData?.address')
+  console.log(tokenData?.address)
+  console.log('tokenData')
+  console.log(tokenData)
+  const sendDepositTransaction = () =>
+    deposit(depositAmount, publicClient, vault.address, tokenData?.address)
   console.log('sendDepositTransaction')
   console.log(sendDepositTransaction)
 
