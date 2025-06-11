@@ -16,18 +16,20 @@ export const useUserTotalBalance = (userAddress: Address) => {
 
   const { data: allVaultShareTokens, isFetched: isFetchedAllVaultShareTokens } =
     useAllVaultSharePrices(vaults)
+  console.log('allVaultShareTokens')
+  console.log(allVaultShareTokens)
 
   const { data: vaultBalances, isFetched: isFetchedVaultBalances } = useAllUserVaultBalances(
     vaults,
     userAddress
   )
-  console.log('***************')
-  console.log('vaultBalances')
-  console.log(vaultBalances?.['0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e-480'])
-  console.log(vaultBalances?.['0x0045cc66ecf34da9d8d89ad5b36cb82061c0907c-480'])
-  console.log(vaultBalances?.['0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e-480'].amount)
-  console.log(vaultBalances?.['0x0045cc66ecf34da9d8d89ad5b36cb82061c0907c-480'].amount)
-  console.log('77712387463287463278')
+  // console.log('***************')
+  // console.log('vaultBalances')
+  // console.log(vaultBalances?.['0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e-480'])
+  // console.log(vaultBalances?.['0x0045cc66ecf34da9d8d89ad5b36cb82061c0907c-480'])
+  // console.log(vaultBalances?.['0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e-480'].amount)
+  // console.log(vaultBalances?.['0x0045cc66ecf34da9d8d89ad5b36cb82061c0907c-480'].amount)
+  // console.log('77712387463287463278')
 
   const isFetched =
     isFetchedVaultData &&
@@ -42,15 +44,16 @@ export const useUserTotalBalance = (userAddress: Address) => {
     if (isFetched) {
       let totalBalance: number = 0
       for (const vaultId in vaultBalances) {
-        console.log('in for loop for')
-        console.log(vaultId)
         const decimals = vaultBalances[vaultId].decimals
-        console.log('isNaN(decimals)')
-        console.log(isNaN(decimals))
+
         if (!isNaN(decimals)) {
           const shareBalance = vaultBalances[vaultId].amount
+          console.log('shareBalance')
+          console.log(shareBalance)
 
           const sharePrice = allVaultShareTokens[vaultId]?.price ?? 0
+          console.log('sharePrice')
+          console.log(sharePrice)
 
           const formattedShareBalance = formatUnits(shareBalance, decimals)
           totalBalance += Number(formattedShareBalance) * sharePrice
