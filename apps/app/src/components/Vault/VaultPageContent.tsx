@@ -29,7 +29,8 @@ import { VaultPageInfo } from './VaultPageInfo'
 import { VaultPagePrizesSection } from './VaultPagePrizesSection'
 import { VaultPageRecentWinnersCard } from './VaultPageRecentWinnersCard'
 import { VaultPagePoolStakingContent } from './VaultPageStakingContent'
-import { VaultPageVaultListWarning } from './VaultPageVaultListWarning'
+
+// import { VaultPageVaultListWarning } from './VaultPageVaultListWarning'
 
 interface VaultPageContentProps {
   queryParams: ParsedUrlQuery
@@ -108,7 +109,7 @@ export const VaultPageContent = (props: VaultPageContentProps) => {
       {!!vault && !!prizePool && !!vaultTokenAddress ? (
         <>
           <VaultPageButtons vault={vault} className={classNames(maxWidthClassName, '-mt-4')} />
-          <VaultPageVaultListWarning vault={vault} className={maxWidthClassName} />
+          {/* <VaultPageVaultListWarning vault={vault} className={maxWidthClassName} /> */}
           {!!userAddress && (
             <VaultPageInfo
               vault={vault}

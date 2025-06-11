@@ -2,7 +2,7 @@ import { NO_REFETCH } from '@shared/generic-react-hooks'
 import { getPoolWidePromotionRewardsClaimedEvents } from '@shared/utilities'
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
-import { Address } from 'viem'
+import { Address, PublicClient } from 'viem'
 import { usePublicClientsByChain, useWorldPublicClient } from '../blockchain/useClients'
 import { QUERY_KEYS } from '../constants'
 
@@ -22,7 +22,7 @@ export const usePoolWidePromotionRewardsClaimedEvents = (
     toBlock?: bigint
   }
 ) => {
-  const publicClient = useWorldPublicClient()
+  const publicClient = useWorldPublicClient() as PublicClient
 
   const queryKey = [
     QUERY_KEYS.poolWidePromotionRewardsClaimedEvents,

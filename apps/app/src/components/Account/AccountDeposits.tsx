@@ -129,7 +129,8 @@ const NoVaultListsCard = (props: { className?: string }) => {
         <span className='text-pt-purple-100'>{t_account('noVaultLists')}</span>
         <button
           onClick={() => {
-            setView('vaultLists')
+            setView('menu')
+            // setView('vaultLists')
             setIsModalOpen(true)
           }}
           className='text-pt-teal cursor-pointer hover:text-pt-teal-dark'

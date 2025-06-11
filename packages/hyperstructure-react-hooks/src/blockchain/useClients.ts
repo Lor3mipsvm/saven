@@ -1,13 +1,18 @@
-// import { useIsTestnets } from '@shared/generic-react-hooks'
 import { NETWORK } from '@shared/utilities'
-import { createPublicClient, http } from 'viem'
+import { createPublicClient, http, type PublicClient } from 'viem'
 import { worldchain } from 'viem/chains'
 
-export const useWorldPublicClient = () => {
+export const useWorldPublicClient = (): PublicClient => {
+  console.log(
+    createPublicClient({
+      chain: worldchain,
+      transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)
+    })
+  )
   return createPublicClient({
     chain: worldchain,
-    transport: http()
-  })
+    transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)
+  }) as PublicClient
 }
 
 /**
@@ -18,7 +23,7 @@ export const usePublicClients = (): any[] => {
   return [
     createPublicClient({
       chain: worldchain,
-      transport: http()
+      transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)
     })
   ]
 }
@@ -31,7 +36,7 @@ export const usePublicClientsByChain = (): Record<number, any> => {
   return {
     [NETWORK.world]: createPublicClient({
       chain: worldchain,
-      transport: http()
+      transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)
     })
   }
 }

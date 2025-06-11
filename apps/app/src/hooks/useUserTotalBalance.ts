@@ -21,8 +21,13 @@ export const useUserTotalBalance = (userAddress: Address) => {
     vaults,
     userAddress
   )
+  console.log('***************')
   console.log('vaultBalances')
-  console.log(vaultBalances)
+  console.log(vaultBalances?.['0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e-480'])
+  console.log(vaultBalances?.['0x0045cc66ecf34da9d8d89ad5b36cb82061c0907c-480'])
+  console.log(vaultBalances?.['0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e-480'].amount)
+  console.log(vaultBalances?.['0x0045cc66ecf34da9d8d89ad5b36cb82061c0907c-480'].amount)
+  console.log('77712387463287463278')
 
   const isFetched =
     isFetchedVaultData &&
