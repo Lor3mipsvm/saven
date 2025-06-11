@@ -26,7 +26,8 @@ export const AccountDepositsHeader = (props: AccountDepositsHeaderProps) => {
   console.log('userAddress')
   console.log(userAddress)
   const { data: totalBalance, isFetched: isFetchedTotalBalance } = useUserTotalBalance(userAddress!)
-
+  console.log('isFetchedTotalBalance')
+  console.log(isFetchedTotalBalance)
   // const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: userAddress })
   console.log('totalBalance')
   console.log(totalBalance)

@@ -42,7 +42,11 @@ export const useUserTotalBalance = (userAddress: Address) => {
     if (isFetched) {
       let totalBalance: number = 0
       for (const vaultId in vaultBalances) {
+        console.log('in for loop for')
+        console.log(vaultId)
         const decimals = vaultBalances[vaultId].decimals
+        console.log('isNaN(decimals)')
+        console.log(isNaN(decimals))
         if (!isNaN(decimals)) {
           const shareBalance = vaultBalances[vaultId].amount
 
@@ -64,6 +68,8 @@ export const useUserTotalBalance = (userAddress: Address) => {
     vaultBalances,
     vaults
   ])
+  console.log('data')
+  console.log(data)
 
   return { data, isFetched }
 }
