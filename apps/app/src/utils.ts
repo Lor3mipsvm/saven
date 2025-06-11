@@ -31,8 +31,6 @@ export const createCustomWagmiConfig = (networks: NETWORK[]) => {
   const supportedNetworks = Object.values(WAGMI_CHAINS).filter(
     (chain) => networks.includes(chain.id) && !!RPC_URLS[chain.id]
   ) as any as [Chain, ...Chain[]]
-  console.log('supportedNetworks')
-  console.log(supportedNetworks)
 
   return createConfig({
     chains: supportedNetworks,
