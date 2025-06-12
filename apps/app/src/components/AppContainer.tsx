@@ -31,16 +31,21 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
 
   useEffect(() => {
     const initEruda = async () => {
-      let dev = process.env.NODE_ENV === 'development'
-
-      if (!dev && typeof window !== 'undefined') {
+      if (typeof window !== 'undefined') {
+        // Dev check
         // @ts-ignore
-        dev = window?.location.href.match(/staging/)?.length > 0
+        if (window?.location.href.match(/localhost/)?.length > 0) {
+          return
+        }
+
+        // Staging check
+        /*
+          // @ts-ignore
+        if (window?.location.href.match(/staging/)?.length > 0) {
+        return
+        }*/
       }
 
-      // if (!dev) {
-      //   return
-      // }
       const eruda = (await import('eruda')).default
       eruda.init()
     }

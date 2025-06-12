@@ -14,9 +14,13 @@ const getDate = () => {
   )
 }
 
+// On Staging it expects a checksummed address while on localhost / dev it wants lowercase
+// I'm not sure why nor do I have time to figure it out
 const TOKEN_ADDRESSES = {
-  WLD: '0x2cfc85d8e48f8eab294be644d9e25c3030863003'.toLowerCase(),
-  POOL: '0x7077c71b4af70737a08287e279b717dcf64fdc57'.toLowerCase()
+  WLD: '0x2cFc85d8E48F8EAB294be644d9E25C3030863003'.toLowerCase(),
+  WLDCHECKSUMMED: '0x2cFc85d8E48F8EAB294be644d9E25C3030863003',
+  POOL: '0x7077C71B4AF70737a08287E279B717Dcf64fdC57'.toLowerCase(),
+  POOLCHECKSUMMED: '0x7077C71B4AF70737a08287E279B717Dcf64fdC57'
 }
 
 export async function GET(): Promise<NextResponse> {
@@ -32,13 +36,29 @@ export async function GET(): Promise<NextResponse> {
           price: Number(result.prices[TOKEN_ADDRESSES.WLD])
         }
       ],
+      [TOKEN_ADDRESSES.WLDCHECKSUMMED]: [
+        {
+          date: getDate(),
+          price: Number(result.prices[TOKEN_ADDRESSES.WLD])
+        }
+      ],
       [TOKEN_ADDRESSES.POOL]: [
+        {
+          date: getDate(),
+          price: Number(result.prices[TOKEN_ADDRESSES.POOL])
+        }
+      ],
+      [TOKEN_ADDRESSES.POOLCHECKSUMMED]: [
         {
           date: getDate(),
           price: Number(result.prices[TOKEN_ADDRESSES.POOL])
         }
       ]
     }
+    console.log('result')
+    console.log(result)
+    console.log('tokenPriceApiOutput')
+    console.log(tokenPriceApiOutput)
 
     return NextResponse.json(tokenPriceApiOutput, { status: 200 })
   } catch {
