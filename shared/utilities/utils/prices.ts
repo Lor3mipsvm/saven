@@ -20,13 +20,14 @@ export const getTokenPrices = async (
 ): Promise<{ [address: Address]: number }> => {
   try {
     if (TOKEN_PRICE_API_SUPPORTED_NETWORKS.includes(chainId)) {
-      const base = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : DOMAINS.app
-      const url = new URL(`${TOKEN_PRICES_API_URL}/${chainId}`, base)
+      // const base = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : DOMAINS.app
+      // const url = new URL(`${TOKEN_PRICES_API_URL}/${chainId}`, base)
+      const url = `${TOKEN_PRICES_API_URL}/${chainId}`
       const tokenPrices: { [address: Address]: number } = {}
 
-      if (!!tokenAddresses && tokenAddresses.length > 0) {
-        url.searchParams.set('tokens', tokenAddresses.join(','))
-      }
+      // if (!!tokenAddresses && tokenAddresses.length > 0) {
+      //   url.searchParams.set('tokens', tokenAddresses.join(','))
+      // }
 
       const response = await fetch(
         url.toString(),
