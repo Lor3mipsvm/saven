@@ -153,8 +153,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   //   : dataDepositTx.sendDepositTransaction
 
   // const sendDepositTransaction = dataDepositTx.sendDepositTransaction
-  // console.log('dataDepositTx.sendDepositTransaction')
-  // console.log(dataDepositTx.sendDepositTransaction)
 
   const publicClient = useWorldPublicClient()
   // const publicClient = usePublicClient({ chainId: NETWORK.world })

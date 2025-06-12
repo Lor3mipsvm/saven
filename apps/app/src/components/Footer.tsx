@@ -109,7 +109,7 @@ export const Footer = () => {
     <FlowbiteFooter
       theme={{
         root: {
-          base: 'w-full flex flex-col gap-20 items-center px-12 pt-12 pb-24 shadow z-40 md:px-16 md:pb-12'
+          base: 'w-full flex flex-col gap-20 items-center px-12 pt-12 pb-40 shadow z-40 md:px-16 md:pb-12'
         }
       }}
       className='bg-pt-purple-600'

@@ -27,12 +27,6 @@ export const useAllVaultSharePrices = (vaults: Vaults) => {
     isFetched: isFetchedAllTokenPrices,
     refetch: refetchAllTokenPrices
   } = useAllVaultTokenPrices(vaults)
-  console.log('allTokenPrices')
-  // console.log(allTokenPrices)
-  console.log(`allTokenPrices?.[480]?.['0x7077c71b4af70737a08287e279b717dcf64fdc57']`)
-  console.log(allTokenPrices?.[480]?.['0x7077c71b4af70737a08287e279b717dcf64fdc57'])
-  console.log(`allTokenPrices?.[480]?.['0x7077C71B4AF70737a08287E279B717Dcf64fdC57']`)
-  console.log(allTokenPrices?.[480]?.['0x7077C71B4AF70737a08287E279B717Dcf64fdC57'])
 
   const {
     data: allExchangeRates,

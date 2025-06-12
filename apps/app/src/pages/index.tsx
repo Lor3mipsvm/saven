@@ -3,7 +3,6 @@ import { LINKS, SECONDS_PER_DAY } from '@shared/utilities'
 import classNames from 'classnames'
 import { GetStaticProps } from 'next'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 import Link from 'next/link'
 import { getMessages } from 'src/utils'
 import { HomeHeader } from '@components/HomeHeader'
@@ -47,7 +46,7 @@ const CabanaPoweredBy = (props: { className?: string }) => {
     <div className={classNames('flex gap-2 items-center', className)}>
       {t('cabanaPoweredBy')}
       <Link href={LINKS.protocolLandingPage} target='_blank'>
-        <Image
+        <img
           src='/pooltogether-logo.svg'
           alt='PoolTogether Logo'
           width={183}

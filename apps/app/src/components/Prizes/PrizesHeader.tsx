@@ -3,7 +3,6 @@ import { CurrencyValue } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 
 export const PrizesHeader = () => {
@@ -31,13 +30,7 @@ export const PrizesHeader = () => {
   return (
     <>
       <div className='flex flex-col items-center gap-3'>
-        <Image
-          src='/partyPopperEmoji.svg'
-          alt='Cabana Party Popper Emoji'
-          width={88}
-          height={88}
-          priority={true}
-        />
+        <img src='/partyPopperEmoji.svg' alt='Cabana Party Popper Emoji' width={88} height={88} />
         <span
           className={classNames(
             'w-2/3 flex flex-wrap justify-center text-center text-[1.75rem] leading-tight font-averta font-bold',

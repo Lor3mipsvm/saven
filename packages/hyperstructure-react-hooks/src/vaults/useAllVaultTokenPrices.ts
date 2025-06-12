@@ -27,8 +27,6 @@ export const useAllVaultTokenPrices = (vaults: Vaults) => {
       PRIZE_POOLS.forEach((prizePool) => {
         const chainId = prizePool.chainId
         const prizeTokenAddress = prizePool.options.prizeTokenAddress.toLowerCase() as Address
-        console.log('prizeTokenAddress')
-        console.log(prizeTokenAddress)
         if (addresses[chainId] === undefined) {
           addresses[chainId] = [prizeTokenAddress]
         } else if (!addresses[chainId].includes(prizeTokenAddress)) {

@@ -3,12 +3,6 @@ import { createPublicClient, http, type PublicClient } from 'viem'
 import { worldchain } from 'viem/chains'
 
 export const useWorldPublicClient = (): PublicClient => {
-  console.log(
-    createPublicClient({
-      chain: worldchain,
-      transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)
-    })
-  )
   return createPublicClient({
     chain: worldchain,
     transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)

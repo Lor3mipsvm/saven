@@ -38,7 +38,7 @@ export const PrizePoolCard = (props: PrizePoolCardProps) => {
   }, [prizePool, selectedCurrency])
 
   return (
-    <Card wrapperClassName={className} className='gap-3 items-center md:gap-4'>
+    <Card wrapperClassName={className} className='gap-2 items-center md:gap-4'>
       <NetworkBadge chainId={prizePool.chainId} hideBg={isMobile} className='py-0' />
       <div className='h-[8.75rem] flex flex-col gap-0.5 items-center text-center text-pt-purple-200 font-averta'>
         <span className='text-2xl'>{t_common('grandPrize')}</span>

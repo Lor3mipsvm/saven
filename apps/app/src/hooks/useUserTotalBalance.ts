@@ -16,8 +16,6 @@ export const useUserTotalBalance = (userAddress: Address) => {
 
   const { data: allVaultShareTokens, isFetched: isFetchedAllVaultShareTokens } =
     useAllVaultSharePrices(vaults)
-  console.log('allVaultShareTokens')
-  console.log(allVaultShareTokens)
 
   const { data: vaultBalances, isFetched: isFetchedVaultBalances } = useAllUserVaultBalances(
     vaults,
@@ -59,8 +57,6 @@ export const useUserTotalBalance = (userAddress: Address) => {
     vaultBalances,
     vaults
   ])
-  console.log('data')
-  console.log(data)
 
   return { data, isFetched }
 }
