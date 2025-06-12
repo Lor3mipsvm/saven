@@ -132,7 +132,7 @@ export const VaultPageInfo = (props: VaultPageInfoProps) => {
             <AccountVaultBalance
               vault={vault}
               className='!flex-row gap-1'
-              valueClassName='!text-base md:!text-lg'
+              valueClassName='!text-base md:!text-lg mr-1'
             />
           }
         />

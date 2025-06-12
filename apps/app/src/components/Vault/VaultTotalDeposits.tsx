@@ -40,7 +40,7 @@ export const VaultTotalDeposits = (props: VaultTotalDepositsProps) => {
   return (
     <TokenValueAndAmount
       token={totalDeposits}
-      className={className}
+      className={`${className} items-end md:items-center`}
       valueClassName={classNames('text-sm md:text-base', valueClassName)}
       amountClassName={classNames('text-xs md:text-sm', amountClassName)}
       valueOptions={{ hideZeroes: true, shortenMillions: true }}

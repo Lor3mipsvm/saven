@@ -131,7 +131,7 @@ const ContributionsChart = (props: ContributionsChartProps) => {
             <BarChart data={chartData} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
               <XAxis dataKey='name' stroke='#9CA3AF' />
               <YAxis stroke='#9CA3AF' tickFormatter={(tick) => `${tick} ${prizeToken.symbol}`} />
-              <Bar dataKey='amount' fill='#6538C1' isAnimationActive={false} />
+              <Bar dataKey='amount' fill='#9568f1' isAnimationActive={false} />
               {/* TODO: add tooltip without annoying bg (set in Bar component) */}
             </BarChart>
           </ResponsiveContainer>

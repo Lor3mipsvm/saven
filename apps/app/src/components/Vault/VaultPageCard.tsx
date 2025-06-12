@@ -14,7 +14,7 @@ export const VaultPageCard = (props: VaultPageCardProps) => {
 
   return (
     <Card className={classNames('text-center', className)} wrapperClassName={wrapperClassName}>
-      <span className='mb-2 text-xl text-pt-purple-300 font-semibold md:mb-3 md:text-2xl'>
+      <span className='mb-1 text-xl text-pt-purple-300 font-semibold md:mb-3 md:text-2xl'>
         {title}
       </span>
       <div className='grow flex flex-col items-center justify-center gap-2'>{children}</div>

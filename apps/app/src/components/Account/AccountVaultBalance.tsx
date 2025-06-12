@@ -62,7 +62,7 @@ export const AccountVaultBalance = (props: AccountVaultBalanceProps) => {
     return (
       <TokenValueAndAmount
         token={tokenBalance}
-        className={className}
+        className={`${className} items-center`}
         valueClassName={classNames('text-sm md:text-base', valueClassName)}
         amountClassName={classNames('text-xs md:text-sm', amountClassName)}
         valueOptions={{ hideZeroes: true }}

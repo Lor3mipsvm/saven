@@ -213,7 +213,10 @@ const VaultContributionsChart = (props: VaultContributionsChartProps) => {
 
   return (
     <div
-      className={classNames('w-full h-full flex flex-col items-center justify-center', className)}
+      className={classNames(
+        'w-full md:h-full flex flex-col items-center justify-center',
+        className
+      )}
     >
       <ResponsiveContainer width='100%' height='100%'>
         <PieChart>
@@ -233,7 +236,7 @@ const VaultContributionsChart = (props: VaultContributionsChartProps) => {
             <Cell
               key='totalContributionsCell'
               stroke='none'
-              fill='#6538c1'
+              fill='#9568f1'
               style={{ outline: 'none' }}
             />
             <Cell
@@ -338,7 +341,7 @@ const getKeysData = (
     Math.abs(changes[0]).toLocaleString(undefined, { maximumFractionDigits: 1 }),
     Math.abs(changes[1]).toLocaleString(undefined, { maximumFractionDigits: 1 })
   ]
-  const fillColors = ['#6538c1', '#35f0d0']
+  const fillColors = ['#9568f1', '#35f0d0']
 
   const changeTimeText = intl('lastNDraws', { number: numDraws })
 

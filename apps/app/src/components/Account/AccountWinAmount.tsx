@@ -24,7 +24,7 @@ export const AccountWinAmount = (props: AccountWinAmountProps) => {
     <TokenValueAndAmount
       token={{ ...tokenData, amount }}
       amountOptions={{ maximumFractionDigits: 5 }}
-      className={className}
+      className={`${className} items-end md:items-center`}
       valueClassName={valueClassName}
       amountClassName={amountClassName}
     />

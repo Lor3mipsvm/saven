@@ -54,7 +54,7 @@ export const AccountPromotionClaimedRewards = (props: AccountPromotionClaimedRew
   return (
     <TokenValueAndAmount
       token={{ chainId, address: claimed.token, amount }}
-      className={className}
+      className={`${className} items-end md:items-center`}
       valueClassName='text-sm md:text-base'
       amountClassName='text-xs md:text-sm'
       valueOptions={{ hideZeroes: true }}

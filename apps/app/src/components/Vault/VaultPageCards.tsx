@@ -33,7 +33,7 @@ export const VaultPageCards = (props: VaultPageCardsProps) => {
       <VaultPageCard title={t_vault('headers.totalDeposited')}>
         <VaultTotalDeposits
           vault={vault}
-          className='gap-2'
+          className='gap-1'
           valueClassName='!text-2xl text-pt-purple-100 font-semibold md:!text-3xl'
           amountClassName='!text-sm text-pt-purple-300 md:!text-base'
         />

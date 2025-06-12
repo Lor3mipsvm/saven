@@ -35,15 +35,15 @@ export const Navbar = () => {
         fluid={true}
         theme={{
           root: {
-            base: 'bg-pt-purple-700 text-pt-purple-50 px-8 py-4 border-b-2 border-b-pt-purple-700 border-opacity-0 isolate z-50'
+            base: 'bg-pt-purple-700 text-pt-purple-50 px-6 py-4 border-b-2 border-b-pt-purple-700 border-opacity-0 isolate z-50'
           }
         }}
         className='font-averta'
       >
         {/* Left Side Branding */}
-        <Link href='/' className='cursor-pointer z-30'>
-          <Logo smLogoClassName='w-8' mdLogoClassName='w-[150px]' />
-        </Link>
+        <a href='/'>
+          <img src='/pooltogether-white-mark.svg' alt='PoolTogether' />
+        </a>
 
         {/* Middle Content */}
         <div className='hidden grow pl-8 gap-8 z-10 md:flex lg:absolute lg:w-full lg:justify-center lg:pr-16 lg:pl-0'>
