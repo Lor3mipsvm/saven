@@ -119,7 +119,7 @@ const NoWinsCard = (props: NoWinsCardProps) => {
 
   return (
     <div className={classNames('w-full rounded-lg lg:p-4 lg:bg-pt-purple-600', className)}>
-      <div className='flex flex-col w-full gap-2 items-center justify-center p-3 bg-pt-transparent rounded-lg lg:flex-row lg:gap-3 lg:font-medium'>
+      <div className='flex flex-col w-full gap-2 items-center justify-center p-6 bg-pt-transparent rounded-lg lg:flex-row lg:gap-3 lg:font-medium'>
         <span className='text-sm text-pt-purple-100 lg:text-lg'>{t('noPrizesRecently')}</span>
         <ExternalLink
           href={LINKS.docs}
