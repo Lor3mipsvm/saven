@@ -305,7 +305,6 @@ export const SUBGRAPH_API_URLS = {
 /**
  * Token Prices API URL
  */
-// export const TOKEN_PRICES_API_URL = `${DOMAINS.app}/api/tokenPrice`
 export const TOKEN_PRICES_API_URL = `/api/tokenPrice`
 
 /**
