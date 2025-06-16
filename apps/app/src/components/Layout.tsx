@@ -21,7 +21,6 @@ import { DepositModal } from './Modals/DepositModal'
 import { SettingsModal } from './Modals/SettingsModal'
 import { WithdrawModal } from './Modals/WithdrawModal'
 import { Navbar } from './Navbar'
-import { VaultListHandler } from './VaultListHandler'
 
 interface LayoutProps {
   children: ReactNode
@@ -130,8 +129,6 @@ export const Layout = (props: LayoutProps) => {
         header={t_common('joinDiscord')}
         onVerify={getDiscordInvite}
       />
-
-      <VaultListHandler />
 
       <main
         className={classNames(

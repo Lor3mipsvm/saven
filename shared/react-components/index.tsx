@@ -58,7 +58,6 @@ export * from './components/Toasts/DeployVaultTxToast'
 export * from './components/Toasts/DepositTxToast'
 export * from './components/Toasts/SetClaimerTxToast'
 export * from './components/Toasts/SetLiquidationPairTxToast'
-export * from './components/Toasts/VaultListToast'
 export * from './components/Toasts/WithdrawTxToast'
 
 /**
