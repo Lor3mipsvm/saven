@@ -258,21 +258,26 @@ export const sendDepositTx = async (
       permit2: [permit2]
     })
 
+    console.log('finalPayload')
+    console.log(finalPayload)
+
     if (finalPayload.status === 'error') {
       console.error('debugUrl')
       console.error(finalPayload?.details?.debugUrl)
       console.error('simulationError')
       console.error(finalPayload?.details?.simulationError)
-      throw new Error(finalPayload?.error_code)
+      // throw new Error(finalPayload?.error_code)
     } else {
       options?.onSend?.()
 
       const txReceipt = await getTxReceipt(publicClient, finalPayload)
+      console.log('txReceipt')
+      console.log(txReceipt)
 
       if (txReceipt) {
         options?.onSuccess?.(txReceipt)
       } else {
-        throw new Error('Unable to get txReceipt')
+        // throw new Error('Unable to get txReceipt')
       }
     }
   } catch (e) {

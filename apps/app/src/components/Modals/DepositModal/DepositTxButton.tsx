@@ -117,13 +117,72 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
 
   const publicClient = useWorldPublicClient()
   // const publicClient = usePublicClient({ chainId: NETWORK.world })
+
+  const options = {
+    onSend: () => {
+      // console.log('onSend')
+      setModalView('waiting')
+
+      // isDepositing = true
+      // toast.loading(`Depositing ...`, {
+      //   duration: 30000,
+      //   style: 'border: 2px solid var(--pt-teal-dark); '
+      // })
+    },
+    // onSuccess: (depositEvent: any) => {
+    onSuccess: () => {
+      refetchUserTokenBalance()
+      refetchUserVaultTokenBalance()
+      refetchUserVaultDelegationBalance()
+      refetchVaultBalance()
+      refetchTokenAllowance()
+      refetchUserBalances?.()
+      // onSuccessfulDeposit?.(vault.chainId, txReceipt.transactionHash)
+      setModalView('success')
+      console.log('onSuccess')
+
+      ///
+      ///
+
+      // console.log('onSuccess')
+      // toast.dismiss()
+
+      // console.log('depositEvent')
+      // console.log(depositEvent)
+      // console.log('depositEvent?.args')
+      // console.log(depositEvent?.args)
+      // console.log('depositEvent?.args?.assets')
+      // console.log(depositEvent?.args?.assets)
+
+      // toast.success(`Success! You deposited ${formattedAmount} ${prizeVault.asset.symbol}`, {
+      //   duration: 8000,
+      //   style: 'border: 2px solid var(--pt-teal-dark); '
+      // })
+      // playConfetti()
+
+      // onSuccess(depositEvent?.args?.assets)
+    },
+    onSettled: () => {
+      console.log('onSettled')
+      // updateUserTransferEvents($userAddress, $userTransferEvents ?? [])
+      // updateUserTokenBalances($userAddress)
+      // isDepositing = false
+    },
+    onError: () => {
+      console.log('onError')
+
+      setModalView('error')
+
+      // toast.dismiss()
+      // toast.error(`Something went wrong, please try again.`, {
+      //   duration: 8000,
+      //   style: 'border: 2px solid var(--pt-warning-med); '
+      // })
+    }
+  }
+
   const sendDepositTransaction = () =>
-    deposit(depositAmount, publicClient, vault.address, tokenData?.address, {
-      // onSend?: () => void
-      // onSuccess?: (depositEvent: ReturnType<typeof decodeDepositEvent>) => void
-      // onSettled?: () => void
-      // onError?: () => void
-    })
+    deposit(depositAmount, publicClient, vault.address, tokenData?.address, options)
 
   useEffect(() => {
     if (!!depositTxHash && isConfirmingDeposit && !isWaitingDeposit && !isSuccessfulDeposit) {
