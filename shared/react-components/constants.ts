@@ -94,7 +94,6 @@ export const TOKEN_LOGO_OVERRIDES: Record<number, { [address: Lowercase<string>]
 export const TX_GAS_ESTIMATES = {
   approve: 50_000n,
   deposit: 400_000n,
-  depositWithPermit: 450_000n,
   depositWithZap: 1_000_000n,
   withdraw: 350_000n,
   withdrawWithZap: 900_000n,

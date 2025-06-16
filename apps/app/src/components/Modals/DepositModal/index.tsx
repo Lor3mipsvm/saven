@@ -1,7 +1,6 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
   useSelectedVault,
-  useTokenPermitSupport,
   useVaultExchangeRate,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
@@ -22,7 +21,6 @@ import {
   depositFormTokenAmountAtom
 } from './DepositForm'
 import { DepositTxButton } from './DepositTxButton'
-import { DepositWithPermitTxButton } from './DepositWithPermitTxButton'
 import { DepositZapTxButton } from './DepositZapTxButton'
 import { ConfirmingView } from './Views/ConfirmingView'
 import { ErrorView } from './Views/ErrorView'
@@ -38,7 +36,6 @@ export interface DepositModalProps {
   refetchUserBalances?: () => void
   onSuccessfulApproval?: () => void
   onSuccessfulDeposit?: (chainId: number, txHash: Hash) => void
-  onSuccessfulDepositWithPermit?: (chainId: number, txHash: Hash) => void
   onSuccessfulDepositWithZap?: (chainId: number, txHash: Hash) => void
 }
 
@@ -48,7 +45,6 @@ export const DepositModal = (props: DepositModalProps) => {
     refetchUserBalances,
     onSuccessfulApproval,
     onSuccessfulDeposit,
-    onSuccessfulDepositWithPermit,
     onSuccessfulDepositWithZap
   } = props
 
@@ -67,16 +63,6 @@ export const DepositModal = (props: DepositModalProps) => {
   const setFormShareAmount = useSetAtom(depositFormShareAmountAtom)
 
   const { data: vaultToken } = useVaultTokenData(vault!)
-
-  const isUsingEip5792 = false
-
-  const { data: tokenPermitSupport } = useTokenPermitSupport(
-    vault?.chainId!,
-    formTokenAddress ?? vaultToken?.address!
-  )
-  const { isActive: isPermitDepositsDisabled } = useMiscSettings('permitDepositsDisabled')
-  const isUsingPermits =
-    !isUsingEip5792 && tokenPermitSupport === 'eip2612' && !isPermitDepositsDisabled
 
   const { data: vaultExchangeRate } = useVaultExchangeRate(vault!)
 
@@ -137,16 +123,6 @@ export const DepositModal = (props: DepositModalProps) => {
             refetchUserBalances={refetchUserBalances}
             onSuccessfulApproval={onSuccessfulApproval}
             onSuccessfulDepositWithZap={onSuccessfulDepositWithZap}
-          />
-        ) : isUsingPermits ? (
-          <DepositWithPermitTxButton
-            vault={vault}
-            modalView={view}
-            setModalView={setView}
-            setDepositTxHash={setDepositTxHash}
-            refetchUserBalances={refetchUserBalances}
-            onSuccessfulDeposit={onSuccessfulDeposit}
-            onSuccessfulDepositWithPermit={onSuccessfulDepositWithPermit}
           />
         ) : (
           <DepositTxButton

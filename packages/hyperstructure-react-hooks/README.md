@@ -162,7 +162,6 @@ yarn add @generationsoftware/hyperstructure-react-hooks
 - `useSendDeployLiquidationPairTransaction`
 - `useSendDeployVaultTransaction`
 - `useSendDepositTransaction`
-- `useSendDepositWithPermitTransaction`
 - `useSendGenericApproveTransaction`
 - `useSendPoolWideClaimRewardsTransaction`
 - `useSendRedeemTransaction`

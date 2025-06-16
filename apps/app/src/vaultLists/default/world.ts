@@ -8,7 +8,7 @@ export const worldVaults: VaultList['tokens'] = [
     name: 'Prize POOL',
     decimals: 18,
     symbol: 'przPOOL',
-    logoURI: `${DOMAINS.app}/icons/przPOOL.svg`,
+    logoURI: `https://cabana-world-app-env-staging-g9-software-inc.vercel.app/icons/przPOOL.svg`,
     extensions: {
       underlyingAsset: {
         address: '0x7077C71B4AF70737a08287E279B717Dcf64fdC57',
@@ -26,7 +26,7 @@ export const worldVaults: VaultList['tokens'] = [
     name: 'Prize WLD',
     decimals: 18,
     symbol: 'przWLD',
-    logoURI: `${DOMAINS.app}/icons/przWLD.svg`,
+    logoURI: `https://cabana-world-app-env-staging-g9-software-inc.vercel.app/icons/przWLD.svg`,
     // tags: ['deprecated'],
     extensions: {
       underlyingAsset: {

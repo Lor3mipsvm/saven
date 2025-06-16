@@ -111,7 +111,6 @@ export const Layout = (props: LayoutProps) => {
         refetchUserBalances={refetchUserBalances}
         onSuccessfulApproval={() => {}}
         onSuccessfulDeposit={() => {}}
-        onSuccessfulDepositWithPermit={() => {}}
         onSuccessfulDepositWithZap={() => {}}
       />
 

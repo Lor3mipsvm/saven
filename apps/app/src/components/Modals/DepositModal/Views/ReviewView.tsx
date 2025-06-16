@@ -27,7 +27,6 @@ import { useMemo } from 'react'
 // import { walletSupportsPermit } from 'src/utils'
 import { Address } from 'viem'
 // import { useCapabilities } from 'wagmi'
-import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
 import { Odds } from '../../Odds'
 import {
   depositFormShareAmountAtom,
@@ -74,14 +73,6 @@ export const ReviewView = (props: ReviewViewProps) => {
     !!vaultTokenAddress &&
     !!formTokenAddress &&
     lower(vaultTokenAddress) !== lower(formTokenAddress)
-
-  const feesToShow: NetworkFeesProps['show'] = isZapping
-    ? lower(formTokenAddress) === DOLPHIN_ADDRESS
-      ? ['depositWithZap', 'withdraw']
-      : ['approve', 'depositWithZap', 'withdraw']
-    : isUsingPermits
-    ? ['depositWithPermit', 'withdraw']
-    : ['approve', 'deposit', 'withdraw']
 
   return (
     <div className='flex flex-col gap-6'>

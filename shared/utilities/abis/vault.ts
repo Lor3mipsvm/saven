@@ -428,20 +428,6 @@ export const vaultABI = [
     type: 'function'
   },
   {
-    inputs: [
-      { internalType: 'uint256', name: '_assets', type: 'uint256' },
-      { internalType: 'address', name: '_owner', type: 'address' },
-      { internalType: 'uint256', name: '_deadline', type: 'uint256' },
-      { internalType: 'uint8', name: '_v', type: 'uint8' },
-      { internalType: 'bytes32', name: '_r', type: 'bytes32' },
-      { internalType: 'bytes32', name: '_s', type: 'bytes32' }
-    ],
-    name: 'depositWithPermit',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'nonpayable',
-    type: 'function'
-  },
-  {
     inputs: [],
     name: 'eip712Domain',
     outputs: [

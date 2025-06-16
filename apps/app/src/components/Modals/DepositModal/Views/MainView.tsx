@@ -19,7 +19,6 @@ import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 // import { walletSupportsPermit } from 'src/utils'
 // import { useCapabilities } from 'wagmi'
-import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
 import { Odds } from '../../Odds'
 import {
   DepositForm,
@@ -72,14 +71,6 @@ export const MainView = (props: MainViewProps) => {
     !!formTokenAddress &&
     lower(vaultTokenAddress) !== lower(formTokenAddress)
 
-  const feesToShow: NetworkFeesProps['show'] = isZapping
-    ? lower(formTokenAddress) === DOLPHIN_ADDRESS
-      ? ['depositWithZap', 'withdraw']
-      : ['approve', 'depositWithZap', 'withdraw']
-    : isUsingPermits
-    ? ['depositWithPermit', 'withdraw']
-    : ['approve', 'deposit', 'withdraw']
-
   return (
     <div className='flex flex-col gap-6'>
       <span className='text-lg font-semibold text-center'>
@@ -108,7 +99,6 @@ export const MainView = (props: MainViewProps) => {
           {!!formShareAmount ? (
             <div className='flex flex-col gap-4 mx-auto md:flex-row md:gap-9'>
               <Odds vault={vault} prizePool={prizePool} />
-              {/* <NetworkFees vault={vault} show={feesToShow} /> */}
             </div>
           ) : null}
         </>
