@@ -1,5 +1,5 @@
 import { VaultList } from '@shared/types'
-import { DOMAINS, NETWORK } from '@shared/utilities'
+import { NETWORK } from '@shared/utilities'
 
 export const worldVaults: VaultList['tokens'] = [
   {

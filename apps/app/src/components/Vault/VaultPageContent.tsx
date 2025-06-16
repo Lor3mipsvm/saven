@@ -243,15 +243,9 @@ interface ErrorStateProps {
 }
 
 const ErrorState = (props: ErrorStateProps) => {
-  const { chainId, tokenAddress, className } = props
+  const { className } = props
 
   const t_vault = useTranslations('Vault')
-  const t_error = useTranslations('Error')
-
-  const networks = useNetworks()
-
-  const isInvalidNetwork = !chainId || !networks.includes(chainId)
-  const isInvalidInterface = !tokenAddress
 
   return (
     <div
@@ -261,21 +255,7 @@ const ErrorState = (props: ErrorStateProps) => {
       )}
     >
       <ErrorPooly className='w-full max-w-[50%]' />
-      {isInvalidNetwork ? (
-        <div className='flex flex-col gap-2'>
-          <span>{t_error('vaultInvalidNetwork')}</span>
-          {!!chainId && SUPPORTED_NETWORKS.testnets.includes(chainId) && (
-            <span>{t_error('vaultEnableTestnets')}</span>
-          )}
-          {!!chainId && SUPPORTED_NETWORKS.mainnets.includes(chainId) && (
-            <span>{t_error('vaultDisableTestnets')}</span>
-          )}
-        </div>
-      ) : isInvalidInterface ? (
-        <span>{t_error('vaultInvalidInterface')}</span>
-      ) : (
-        <span>{t_error('vaultQueryError')}</span>
-      )}
+
       <Link href='/vaults' passHref={true}>
         <Button>{t_vault('returnToVaults')}</Button>
       </Link>

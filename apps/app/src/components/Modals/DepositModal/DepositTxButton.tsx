@@ -118,7 +118,12 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   const publicClient = useWorldPublicClient()
   // const publicClient = usePublicClient({ chainId: NETWORK.world })
   const sendDepositTransaction = () =>
-    deposit(depositAmount, publicClient, vault.address, tokenData?.address)
+    deposit(depositAmount, publicClient, vault.address, tokenData?.address, {
+      // onSend?: () => void
+      // onSuccess?: (depositEvent: ReturnType<typeof decodeDepositEvent>) => void
+      // onSettled?: () => void
+      // onError?: () => void
+    })
 
   useEffect(() => {
     if (!!depositTxHash && isConfirmingDeposit && !isWaitingDeposit && !isSuccessfulDeposit) {
