@@ -9,7 +9,6 @@ import { Spinner } from '@shared/ui'
 import { getNiceNetworkNameByChainId, lower } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
-import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
 import { WithdrawForm, withdrawFormTokenAddressAtom } from '../WithdrawForm'
 
 interface MainViewProps {
@@ -37,10 +36,6 @@ export const MainView = (props: MainViewProps) => {
     !!formTokenAddress &&
     lower(vaultTokenAddress) !== lower(formTokenAddress)
 
-  const feesToShow: NetworkFeesProps['show'] = isZapping
-    ? ['approve', 'withdrawWithZap']
-    : ['withdraw']
-
   return (
     <div className='flex flex-col gap-6'>
       <span className='text-lg font-semibold text-center'>
@@ -66,7 +61,6 @@ export const MainView = (props: MainViewProps) => {
       {!!vaultExchangeRate && (
         <>
           <WithdrawForm vault={vault} showInputInfoRows={true} />
-          {/* <NetworkFees vault={vault} show={feesToShow} /> */}
         </>
       )}
     </div>

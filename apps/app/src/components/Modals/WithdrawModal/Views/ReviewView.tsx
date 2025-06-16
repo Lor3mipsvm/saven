@@ -12,7 +12,6 @@ import classNames from 'classnames'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { Address } from 'viem'
-import { NetworkFees, NetworkFeesProps } from '../../NetworkFees'
 import {
   withdrawFormShareAmountAtom,
   withdrawFormTokenAddressAtom,
@@ -40,10 +39,6 @@ export const ReviewView = (props: ReviewViewProps) => {
     !!formTokenAddress &&
     lower(vaultTokenAddress) !== lower(formTokenAddress)
 
-  const feesToShow: NetworkFeesProps['show'] = isZapping
-    ? ['approve', 'withdrawWithZap']
-    : ['withdraw']
-
   return (
     <div className='flex flex-col gap-6'>
       <span className='text-xl font-semibold text-center'>{t_modals('confirmWithdrawal')}</span>
@@ -54,7 +49,6 @@ export const ReviewView = (props: ReviewViewProps) => {
         className='!py-1 mx-auto'
       />
       <BasicWithdrawForm vault={vault} />
-      {/* <NetworkFees vault={vault} show={feesToShow} /> */}
     </div>
   )
 }

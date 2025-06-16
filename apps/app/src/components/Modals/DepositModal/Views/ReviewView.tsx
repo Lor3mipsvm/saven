@@ -86,7 +86,6 @@ export const ReviewView = (props: ReviewViewProps) => {
       <BasicDepositForm vault={vault} />
       <div className='flex flex-col gap-4 mx-auto md:flex-row md:gap-9'>
         <Odds vault={vault} prizePool={prizePool} />
-        {/* <NetworkFees vault={vault} show={feesToShow} /> */}
       </div>
     </div>
   )
