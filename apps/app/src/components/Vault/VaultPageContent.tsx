@@ -109,7 +109,6 @@ export const VaultPageContent = (props: VaultPageContentProps) => {
       {!!vault && !!prizePool && !!vaultTokenAddress ? (
         <>
           <VaultPageButtons vault={vault} className={classNames(maxWidthClassName, '-mt-4')} />
-          {/* <VaultPageVaultListWarning vault={vault} className={maxWidthClassName} /> */}
           {!!userAddress && (
             <VaultPageInfo
               vault={vault}

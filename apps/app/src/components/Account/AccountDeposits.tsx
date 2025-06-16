@@ -61,7 +61,6 @@ export const AccountDeposits = (props: AccountDepositsProps) => {
     >
       <AccountDepositsHeader address={userAddress} />
       {isEmpty && !isEmptyVaultLists && !isExternalUser && <NoDepositsCard />}
-      {isEmpty && isEmptyVaultLists && <NoVaultListsCard />}
       {!isEmpty && <AccountDepositsTable address={userAddress} className='hidden mt-4 lg:block' />}
       {!isEmpty && <AccountDepositsCards address={userAddress} className='lg:hidden' />}
     </div>
@@ -109,34 +108,6 @@ const NoDepositsCard = (props: { className?: string }) => {
         <Link href='/vaults' className='text-pt-teal'>
           {t('depositNow')}
         </Link>
-      </div>
-    </div>
-  )
-}
-
-const NoVaultListsCard = (props: { className?: string }) => {
-  const { className } = props
-
-  const t_account = useTranslations('Account')
-  const t_settings = useTranslations('Settings')
-
-  const { setIsModalOpen } = useIsModalOpen(MODAL_KEYS.settings)
-  const { setView } = useSettingsModalView()
-
-  return (
-    <div className={classNames('w-full rounded-lg lg:p-4 lg:bg-pt-purple-600', className)}>
-      <div className='flex flex-col w-full gap-2 items-center justify-center p-3 text-sm bg-pt-transparent rounded-lg lg:flex-row lg:gap-3 lg:text-lg lg:font-medium'>
-        <span className='text-pt-purple-100'>{t_account('noVaultLists')}</span>
-        <button
-          onClick={() => {
-            setView('menu')
-            // setView('vaultLists')
-            setIsModalOpen(true)
-          }}
-          className='text-pt-teal cursor-pointer hover:text-pt-teal-dark'
-        >
-          {t_settings('manageVaultLists')}
-        </button>
       </div>
     </div>
   )
