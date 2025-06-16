@@ -95,16 +95,6 @@ export const Footer = () => {
     }
   ]
 
-  if (isBrowser) {
-    footerItems[footerItems.length - 1].content.push({
-      content: isTestnets ? t_footer('disableTestnets') : t_footer('enableTestnets'),
-      onClick: () => {
-        setIsTestnets(!isTestnets)
-        router.reload()
-      }
-    })
-  }
-
   return (
     <FlowbiteFooter
       theme={{

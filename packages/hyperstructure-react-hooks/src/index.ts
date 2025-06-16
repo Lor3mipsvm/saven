@@ -122,17 +122,14 @@ export * from './transactions/useSendClaimVaultFeesTransaction'
 export * from './transactions/useSendCreatePromotionTransaction'
 export * from './transactions/useSendDeployLiquidationPairTransaction'
 export * from './transactions/useSendDeployVaultTransaction'
-export * from './transactions/useSendDepositTransaction'
 export * from './transactions/useSendDestroyPromotionTransaction'
 export * from './transactions/useSendEndPromotionTransaction'
 export * from './transactions/useSendExtendPromotionTransaction'
 export * from './transactions/useSendDelegateTransaction'
 export * from './transactions/useSendGenericApproveTransaction'
 export * from './transactions/useSendPoolWideClaimRewardsTransaction'
-export * from './transactions/useSendRedeemTransaction'
 export * from './transactions/useSendSetClaimerTransaction'
 export * from './transactions/useSendSetLiquidationPairTransaction'
-export * from './transactions/useSendWithdrawTransaction'
 
 /**
  * Vault Hooks

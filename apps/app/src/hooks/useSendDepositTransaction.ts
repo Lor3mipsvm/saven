@@ -1,10 +1,13 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
+import {
+  useVaultTokenAddress,
+  useWorldPublicClient
+} from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
-import { calculatePercentageOfBigInt, vaultABI } from '@shared/utilities'
 import { useEffect } from 'react'
+import { deposit } from 'src/minikit_txs'
 import { Address, isAddress, TransactionReceipt } from 'viem'
-import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
-import { useGasAmountEstimate, useTokenAllowance, useVaultTokenAddress } from '..'
+import { useWaitForTransactionReceipt } from 'wagmi'
 
 /**
  * Prepares and submits a `deposit` transaction to a vault
@@ -28,18 +31,12 @@ export const useSendDepositTransaction = (
   isError: boolean
   txHash?: Address
   txReceipt?: TransactionReceipt
+  shares?: string
   sendDepositTransaction?: () => void
 } => {
   const { address: userAddress, chain } = useAccount()
 
   const { data: tokenAddress, isFetched: isFetchedTokenAddress } = useVaultTokenAddress(vault)
-
-  const { data: allowance, isFetched: isFetchedAllowance } = useTokenAllowance(
-    vault?.chainId,
-    userAddress as Address,
-    vault?.address,
-    tokenAddress as Address
-  )
 
   const enabled =
     !!amount &&
@@ -48,43 +45,25 @@ export const useSendDepositTransaction = (
     !!tokenAddress &&
     !!userAddress &&
     isAddress(userAddress) &&
-    chain?.id === vault.chainId &&
-    isFetchedAllowance &&
-    !!allowance &&
-    allowance >= amount
+    chain?.id === vault.chainId
 
-  const { data: gasEstimate } = useGasAmountEstimate(
-    vault?.chainId,
-    {
-      address: vault?.address,
-      abi: vaultABI,
-      functionName: 'deposit',
-      args: [amount, userAddress as Address],
-      account: userAddress as Address
-    },
-    { enabled }
-  )
+  const publicClient = useWorldPublicClient()
+  const _sendDepositTransaction = () =>
+    deposit(amount, publicClient, vault.address, tokenAddress, options)
+  // const _sendDepositTransaction = () =>
+  //   deposit(depositAmount, publicClient, vault.address, tokenData?.address, options)
 
-  const { data } = useSimulateContract({
-    chainId: vault?.chainId,
-    address: vault?.address,
-    abi: vaultABI,
-    functionName: 'deposit',
-    args: [amount, userAddress as Address],
-    gas: !!gasEstimate ? calculatePercentageOfBigInt(gasEstimate, 1.2) : undefined,
-    query: { enabled }
-  })
+  // const {
+  //   data: txHash,
+  //   isPending: isWaiting,
+  //   isError: isSendingError,
+  //   isSuccess: isSendingSuccess,
+  //   writeContract: _sendDepositTransaction
+  // } = useWriteContract()
 
-  const {
-    data: txHash,
-    isPending: isWaiting,
-    isError: isSendingError,
-    isSuccess: isSendingSuccess,
-    writeContract: _sendDepositTransaction
-  } = useWriteContract()
-
-  const sendDepositTransaction =
-    !!data && !!_sendDepositTransaction ? () => _sendDepositTransaction(data.request) : undefined
+  // const sendDepositTransaction = !!_sendDepositTransaction
+  //   ? () => _sendDepositTransaction(data.request)
+  //   : undefined
 
   useEffect(() => {
     if (!!txHash && isSendingSuccess) {

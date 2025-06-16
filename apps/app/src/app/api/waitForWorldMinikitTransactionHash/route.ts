@@ -10,6 +10,7 @@ export interface MinikitTxReceiptApiParams {
   transactionId: string
 }
 
+const MINIKIT_TX_API_BASE_URL = `https://developer.worldcoin.org/api/v2/minikit/transaction`
 const APP_ID = process.env.MINIKIT_APP_ID
 
 // TODO: Could use exponential backoff
@@ -36,7 +37,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
     const transactionHash = await waitForWorldMinikitTransactionHash(transactionId)
 
-    return NextResponse.json(transactionHash, { status: 200 })
+    return NextResponse.json({ transactionHash }, { status: 200 })
   } catch {
     return NextResponse.json(
       { message: 'Could not fetch transaction receipt data' },
@@ -59,15 +60,14 @@ async function waitForWorldMinikitTransactionHash(transactionId: string): Promis
         console.log(`     Retrying:`)
       }
       console.log(`     Attempt #${attemptCount + 1} ...`)
-      const response = await fetch(
-        `https://developer.worldcoin.org/api/v2/minikit/transaction/${transactionId}?app_id=${APP_ID}&type=transaction`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${process.env.WORLD_API_KEY}`
-          }
+      const url = `${MINIKIT_TX_API_BASE_URL}/${transactionId}?app_id=${APP_ID}&type=transaction`
+      console.log(url)
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${process.env.WORLD_API_KEY}`
         }
-      )
+      })
 
       const transaction: WorldMinikitTransaction = await response.json()
       const { transactionHash } = transaction
@@ -75,8 +75,8 @@ async function waitForWorldMinikitTransactionHash(transactionId: string): Promis
       if (transactionHash) {
         return transactionHash
       } else {
-        console.log('no txHash! retrying...')
-        throw new Error('no txHash! retrying...')
+        console.log('Could not get txHash - retrying...')
+        throw new Error('Could not get txHash - retrying...')
       }
     } catch (error) {
       console.log('     error:')

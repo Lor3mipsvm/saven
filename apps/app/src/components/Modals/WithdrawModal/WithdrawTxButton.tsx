@@ -151,12 +151,6 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
         {t_modals('enterAnAmount')}
       </Button>
     )
-  } else if (!isDisconnected && chain?.id === vault.chainId && modalView === 'main') {
-    return (
-      <Button onClick={() => setModalView('review')} fullSized={true} disabled={!withdrawEnabled}>
-        {t_modals('reviewWithdrawal')}
-      </Button>
-    )
   } else {
     return (
       <TransactionButton

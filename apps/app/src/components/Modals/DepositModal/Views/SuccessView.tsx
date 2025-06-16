@@ -40,6 +40,10 @@ export const SuccessView = (props: SuccessViewProps) => {
     hash: txHash as `0x${string}`
   })
 
+  console.log(!!userAddress)
+  console.log(!!share)
+  console.log(!!txReceipt)
+
   const sharesReceived = useMemo(() => {
     if (!!userAddress && !!share && !!txReceipt) {
       return getSharesReceived(userAddress, share, txReceipt)
