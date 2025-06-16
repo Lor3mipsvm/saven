@@ -1,6 +1,5 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
-  useSend5792DepositTransaction,
   useSendDepositTransaction,
   useTokenAllowance,
   useTokenBalance,
@@ -10,17 +9,14 @@ import {
   useVaultTokenData,
   useWorldPublicClient
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
-import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { addRecentTransaction, deposit, signInWithWallet } from 'src/utils'
 import { Address, Hash, parseUnits } from 'viem'
-import { PAYMASTER_URLS } from '@constants/config'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { depositFormTokenAmountAtom } from './DepositForm'
@@ -109,45 +105,10 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     }
   })
 
-  // const { data: walletCapabilities } = useCapabilities()
-  // const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
-  const chainWalletCapabilities = {}
-
-  const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
-  const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
-
-  const { isActive: isEip7677Disabled } = useMiscSettings('eip7677Disabled')
-  const paymasterUrl = PAYMASTER_URLS[vault.chainId]
-  const isUsingEip7677 =
-    !!paymasterUrl && supportsEip7677(chainWalletCapabilities) && !isEip7677Disabled
-
-  const data5792DepositTx = useSend5792DepositTransaction(depositAmount, vault, {
-    paymasterService: isUsingEip7677 ? { url: paymasterUrl, optional: true } : undefined,
-    onSend: () => {
-      setModalView('waiting')
-    },
-    onSuccess: (callReceipts) => {
-      refetchUserTokenBalance()
-      refetchUserVaultTokenBalance()
-      refetchUserVaultDelegationBalance()
-      refetchVaultBalance()
-      refetchTokenAllowance()
-      refetchUserBalances?.()
-      onSuccessfulDeposit?.(vault.chainId, callReceipts.at(-1)?.transactionHash!)
-      setModalView('success')
-    },
-    onError: () => {
-      setModalView('error')
-    },
-    enabled: isUsingEip5792
-  })
-
-  const isWaitingDeposit = isUsingEip5792 ? data5792DepositTx.isWaiting : dataDepositTx.isWaiting
-  const isConfirmingDeposit = isUsingEip5792
-    ? data5792DepositTx.isConfirming
-    : dataDepositTx.isConfirming
-  const isSuccessfulDeposit = isUsingEip5792 ? data5792DepositTx.isSuccess : dataDepositTx.isSuccess
-  const depositTxHash = isUsingEip5792 ? data5792DepositTx.txHashes?.at(-1) : dataDepositTx.txHash
+  const isWaitingDeposit = dataDepositTx.isWaiting
+  const isConfirmingDeposit = dataDepositTx.isConfirming
+  const isSuccessfulDeposit = dataDepositTx.isSuccess
+  const depositTxHash = dataDepositTx.txHash
   // const sendDepositTransaction = isUsingEip5792
   //   ? data5792DepositTx.send5792DepositTransaction
   //   : dataDepositTx.sendDepositTransaction

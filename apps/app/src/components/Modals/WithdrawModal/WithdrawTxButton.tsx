@@ -11,17 +11,14 @@ import {
   useVaultTokenData,
   useWorldPublicClient
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
-import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { addRecentTransaction, redeem, signInWithWallet } from 'src/utils'
 import { Address, parseUnits } from 'viem'
-import { PAYMASTER_URLS } from '@constants/config'
 import { WithdrawModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { withdrawFormShareAmountAtom } from './WithdrawForm'
@@ -110,37 +107,6 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
     }
   })
 
-  const chainWalletCapabilities = {}
-
-  const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
-  const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
-
-  const { isActive: isEip7677Disabled } = useMiscSettings('eip7677Disabled')
-  const paymasterUrl = PAYMASTER_URLS[vault.chainId]
-  const isUsingEip7677 =
-    !!paymasterUrl && supportsEip7677(chainWalletCapabilities) && !isEip7677Disabled
-
-  const data5792Tx = useSend5792RedeemTransaction(withdrawAmount, vault, {
-    minAssets: expectedAssetAmount,
-    paymasterService: isUsingEip7677 ? { url: paymasterUrl, optional: true } : undefined,
-    onSend: () => {
-      setModalView('waiting')
-    },
-    onSuccess: () => {
-      refetchUserTokenBalance()
-      refetchUserVaultTokenBalance()
-      refetchUserVaultDelegationBalance()
-      refetchVaultBalance()
-      refetchUserBalances?.()
-      onSuccessfulWithdrawal?.()
-      setModalView('success')
-    },
-    onError: () => {
-      setModalView('error')
-    },
-    enabled: isUsingEip5792
-  })
-
   // const sendTx = dataTx.sendRedeemTransaction
 
   // amount: bigint,
@@ -151,10 +117,10 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
 
   const sendTx = () => redeem(withdrawAmount, publicClient, userAddress as Address, vault.address)
 
-  const isWaitingWithdrawal = isUsingEip5792 ? data5792Tx.isWaiting : dataTx.isWaiting
-  const isConfirmingWithdrawal = isUsingEip5792 ? data5792Tx.isConfirming : dataTx.isConfirming
-  const isSuccessfulWithdrawal = isUsingEip5792 ? data5792Tx.isSuccess : dataTx.isSuccess
-  const withdrawTxHash = isUsingEip5792 ? data5792Tx.txHashes?.at(-1) : dataTx.txHash
+  const isWaitingWithdrawal = dataTx.isWaiting
+  const isConfirmingWithdrawal = dataTx.isConfirming
+  const isSuccessfulWithdrawal = dataTx.isSuccess
+  const withdrawTxHash = dataTx.txHash
 
   useEffect(() => {
     if (

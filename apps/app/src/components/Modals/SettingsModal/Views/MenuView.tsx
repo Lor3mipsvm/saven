@@ -58,13 +58,6 @@ export const MenuView = (props: MenuViewProps) => {
             title: t('viewEcosystem'),
             onClick: () => window.open(LINKS.ecosystem),
             isExternalLink: true
-          },
-          {
-            iconContent: <EllipsisHorizontalIcon className='h-6 w-6 text-pt-purple-100' />,
-            title: t('otherSettings'),
-            onClick: () => setSettingsModalView('misc'),
-            disabled: disable?.includes('misc'),
-            hidden: hide?.includes('misc')
           }
         ]}
       />

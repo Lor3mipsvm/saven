@@ -4,7 +4,7 @@ import {
   useVaultExchangeRate,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { MODAL_KEYS, useIsModalOpen, useMiscSettings } from '@shared/generic-react-hooks'
+import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { createDepositTxToast } from '@shared/react-components'
 import { Modal } from '@shared/ui'
 import { LINKS, lower } from '@shared/utilities'

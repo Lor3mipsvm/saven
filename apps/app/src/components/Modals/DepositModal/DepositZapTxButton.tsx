@@ -1,6 +1,5 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
-  useSend5792DepositZapTransaction,
   useSendDepositZapTransaction,
   useSendGenericApproveTransaction,
   useToken,
@@ -11,23 +10,15 @@ import {
   useVaultBalance,
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
-import { ApprovalTooltip, TransactionButton } from '@shared/react-components'
+import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
-import {
-  DOLPHIN_ADDRESS,
-  lower,
-  supportsEip5792,
-  supportsEip7677,
-  ZAP_SETTINGS
-} from '@shared/utilities'
+import { DOLPHIN_ADDRESS, lower, ZAP_SETTINGS } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { addRecentTransaction, signInWithWallet } from 'src/utils'
 import { Hash, isAddress, parseUnits } from 'viem'
-import { PAYMASTER_URLS } from '@constants/config'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { depositFormTokenAddressAtom, depositFormTokenAmountAtom } from './DepositForm'
@@ -55,7 +46,6 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
 
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
-  const t_tooltips = useTranslations('Tooltips')
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
@@ -104,25 +94,6 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
     ? parseUnits(formInputTokenAmount, inputToken?.decimals!)
     : 0n
 
-  const {
-    isWaiting: isWaitingApproval,
-    isConfirming: isConfirmingApproval,
-    isSuccess: isSuccessfulApproval,
-    txHash: approvalTxHash,
-    sendApproveTransaction: sendApproveTransaction
-  } = useSendGenericApproveTransaction(
-    vault.chainId,
-    inputToken?.address!,
-    zapTokenManagerAddress,
-    depositAmount,
-    {
-      onSuccess: () => {
-        refetchTokenAllowance()
-        onSuccessfulApproval?.()
-      }
-    }
-  )
-
   const dataTx = useSendDepositZapTransaction(
     {
       address: inputToken?.address!,
@@ -150,57 +121,14 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
     }
   )
 
-  // const { data: walletCapabilities } = useCapabilities()
-  // const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
-  const chainWalletCapabilities = {}
-
-  const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
-  const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
-
-  const { isActive: isEip7677Disabled } = useMiscSettings('eip7677Disabled')
-  const paymasterUrl = PAYMASTER_URLS[vault.chainId]
-  const isUsingEip7677 =
-    !!paymasterUrl && supportsEip7677(chainWalletCapabilities) && !isEip7677Disabled
-
-  const data5792Tx = useSend5792DepositZapTransaction(
-    {
-      address: inputToken?.address!,
-      decimals: inputToken?.decimals!,
-      amount: depositAmount
-    },
-    vault,
-    {
-      paymasterService: isUsingEip7677 ? { url: paymasterUrl, optional: true } : undefined,
-      onSend: () => {
-        setModalView('waiting')
-      },
-      onSuccess: (callReceipts) => {
-        refetchUserInputTokenBalance()
-        refetchUserVaultTokenBalance()
-        refetchUserVaultDelegationBalance()
-        refetchVaultBalance()
-        refetchTokenAllowance()
-        refetchUserBalances?.()
-        onSuccessfulDepositWithZap?.(vault.chainId, callReceipts.at(-1)?.transactionHash!)
-        setModalView('success')
-      },
-      onError: () => {
-        setModalView('error')
-      },
-      enabled: isUsingEip5792
-    }
-  )
-
-  const sendTx = isUsingEip5792
-    ? data5792Tx.send5792DepositZapTransaction
-    : dataTx.sendDepositZapTransaction
-  const isWaitingDepositZap = isUsingEip5792 ? data5792Tx.isWaiting : dataTx.isWaiting
-  const isConfirmingDepositZap = isUsingEip5792 ? data5792Tx.isConfirming : dataTx.isConfirming
-  const isSuccessfulDepositZap = isUsingEip5792 ? data5792Tx.isSuccess : dataTx.isSuccess
-  const depositZapTxHash = isUsingEip5792 ? data5792Tx.txHashes?.at(-1) : dataTx.txHash
-  const amountOut = isUsingEip5792 ? data5792Tx.amountOut : dataTx.amountOut
-  const isFetchedZapArgs = isUsingEip5792 ? data5792Tx.isFetchedZapArgs : dataTx.isFetchedZapArgs
-  const isFetchingZapArgs = isUsingEip5792 ? data5792Tx.isFetchingZapArgs : dataTx.isFetchingZapArgs
+  const sendTx = dataTx.sendDepositZapTransaction
+  const isWaitingDepositZap = dataTx.isWaiting
+  const isConfirmingDepositZap = dataTx.isConfirming
+  const isSuccessfulDepositZap = dataTx.isSuccess
+  const depositZapTxHash = dataTx.txHash
+  const amountOut = dataTx.amountOut
+  const isFetchedZapArgs = dataTx.isFetchedZapArgs
+  const isFetchingZapArgs = dataTx.isFetchingZapArgs
 
   useEffect(() => {
     if (
@@ -228,15 +156,10 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
     chain?.id === vault.chainId &&
     isFetchedZapArgs
 
-  const approvalEnabled =
-    isDataFetched && userInputTokenBalance.amount >= depositAmount && isValidFormInputTokenAmount
-
   const depositEnabled =
     isDataFetched &&
     userInputTokenBalance.amount >= depositAmount &&
-    (lower(inputTokenAddress) === DOLPHIN_ADDRESS ||
-      isUsingEip5792 ||
-      allowance >= depositAmount) &&
+    (lower(inputTokenAddress) === DOLPHIN_ADDRESS || allowance >= depositAmount) &&
     isValidFormInputTokenAmount
 
   // No deposit amount set
@@ -245,38 +168,6 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
       <Button color='transparent' fullSized={true} disabled={true}>
         {t_modals('enterAnAmount')}
       </Button>
-    )
-  }
-
-  // Needs approval
-  if (
-    isDataFetched &&
-    lower(inputTokenAddress) !== DOLPHIN_ADDRESS &&
-    !isUsingEip5792 &&
-    allowance < depositAmount
-  ) {
-    return (
-      <TransactionButton
-        chainId={vault.chainId}
-        isTxLoading={isWaitingApproval || isConfirmingApproval}
-        isTxSuccess={isSuccessfulApproval}
-        write={sendApproveTransaction}
-        txHash={approvalTxHash}
-        txDescription={t_modals('approvalTx', { symbol: inputToken?.symbol ?? '?' })}
-        fullSized={true}
-        disabled={!approvalEnabled}
-        addRecentTransaction={addRecentTransaction}
-        innerClassName='flex gap-2 items-center'
-        signInWithWallet={signInWithWallet}
-        intl={{ base: t_modals, common: t_common }}
-      >
-        {t_modals('approvalButton', { symbol: inputToken?.symbol ?? '?' })}
-        <ApprovalTooltip
-          tokenSymbol={inputToken.symbol}
-          intl={t_tooltips}
-          className='whitespace-normal'
-        />
-      </TransactionButton>
     )
   }
 

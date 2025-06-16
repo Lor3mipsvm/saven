@@ -13,7 +13,6 @@ import {
   useVaultShareData,
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { ApprovalTooltip, TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
@@ -144,52 +143,14 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
     }
   )
 
-  const chainWalletCapabilities = {}
-
-  const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
-  const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
-
-  const { isActive: isEip7677Disabled } = useMiscSettings('eip7677Disabled')
-  const paymasterUrl = PAYMASTER_URLS[vault.chainId]
-  const isUsingEip7677 =
-    !!paymasterUrl && supportsEip7677(chainWalletCapabilities) && !isEip7677Disabled
-
-  const data5792Tx = useSend5792WithdrawZapTransaction(
-    { address: outputToken?.address!, decimals: outputToken?.decimals! },
-    vault,
-    withdrawAmount,
-    {
-      paymasterService: isUsingEip7677 ? { url: paymasterUrl, optional: true } : undefined,
-      onSend: () => {
-        setModalView('waiting')
-      },
-      onSuccess: () => {
-        refetchUserOutputTokenBalance()
-        refetchUserVaultTokenBalance()
-        refetchUserVaultDelegationBalance()
-        refetchVaultBalance()
-        refetchTokenAllowance()
-        refetchUserBalances?.()
-        onSuccessfulWithdrawalWithZap?.()
-        setModalView('success')
-      },
-      onError: () => {
-        setModalView('error')
-      },
-      enabled: isUsingEip5792
-    }
-  )
-
-  const sendTx = isUsingEip5792
-    ? data5792Tx.send5792WithdrawZapTransaction
-    : dataTx.sendWithdrawZapTransaction
-  const isWaitingWithdrawZap = isUsingEip5792 ? data5792Tx.isWaiting : dataTx.isWaiting
-  const isConfirmingWithdrawZap = isUsingEip5792 ? data5792Tx.isConfirming : dataTx.isConfirming
-  const isSuccessfulWithdrawZap = isUsingEip5792 ? data5792Tx.isSuccess : dataTx.isSuccess
-  const withdrawZapTxHash = isUsingEip5792 ? data5792Tx.txHashes?.at(-1) : dataTx.txHash
-  const amountOut = isUsingEip5792 ? data5792Tx.amountOut : dataTx.amountOut
-  const isFetchedZapArgs = isUsingEip5792 ? data5792Tx.isFetchedZapArgs : dataTx.isFetchedZapArgs
-  const isFetchingZapArgs = isUsingEip5792 ? data5792Tx.isFetchingZapArgs : dataTx.isFetchingZapArgs
+  const sendTx = dataTx.sendWithdrawZapTransaction
+  const isWaitingWithdrawZap = dataTx.isWaiting
+  const isConfirmingWithdrawZap = dataTx.isConfirming
+  const isSuccessfulWithdrawZap = dataTx.isSuccess
+  const withdrawZapTxHash = dataTx.txHash
+  const amountOut = dataTx.amountOut
+  const isFetchedZapArgs = dataTx.isFetchedZapArgs
+  const isFetchingZapArgs = dataTx.isFetchingZapArgs
 
   useEffect(() => {
     if (
@@ -226,7 +187,7 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
   const withdrawEnabled =
     isDataFetched &&
     userVaultShareBalance.amount >= withdrawAmount &&
-    (isUsingEip5792 || allowance >= withdrawAmount) &&
+    allowance >= withdrawAmount &&
     isValidFormShareAmount
 
   // No withdraw amount set
@@ -239,7 +200,7 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
   }
 
   // Needs approval
-  if (isDataFetched && !isUsingEip5792 && allowance < withdrawAmount) {
+  if (isDataFetched && allowance < withdrawAmount) {
     return (
       <TransactionButton
         chainId={vault.chainId}

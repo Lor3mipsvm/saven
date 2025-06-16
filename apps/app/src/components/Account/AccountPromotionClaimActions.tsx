@@ -5,7 +5,6 @@ import {
   useSendPoolWideClaimRewardsTransaction,
   useToken
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TokenAmount, TransactionButton } from '@shared/react-components'
 import { getSecondsSinceEpoch, lower, supportsEip5792, supportsEip7677 } from '@shared/utilities'
@@ -130,67 +129,9 @@ const ClaimRewardsButton = (props: ClaimRewardsButtonProps) => {
     }
   )
 
-  // const { data: walletCapabilities } = useCapabilities()
-  // const chainWalletCapabilities = walletCapabilities?.[chainId] ?? {}
-  const chainWalletCapabilities = {}
-
-  const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
-  const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
-
-  const { isActive: isEip7677Disabled } = useMiscSettings('eip7677Disabled')
-  const paymasterUrl = PAYMASTER_URLS[chainId]
-  const isUsingEip7677 =
-    !!paymasterUrl && supportsEip7677(chainWalletCapabilities) && !isEip7677Disabled
-
-  const data5792ClaimRewardsTx = useSend5792ClaimRewardsTransaction(
-    chainId,
-    userAddress,
-    { [promotionId.toString()]: epochsToClaim },
-    {
-      paymasterService: isUsingEip7677 ? { url: paymasterUrl, optional: true } : undefined,
-      onSuccess: () => {
-        refetchClaimed()
-        refetchClaimable()
-      },
-      enabled: isUsingEip5792
-    }
-  )
-
-  const data5792PoolWideClaimRewardsTx = useSend5792PoolWideClaimRewardsTransaction(
-    chainId,
-    userAddress,
-    [{ id: promotionId.toString(), vaultAddress: promotion?.vault!, epochs: epochsToClaim }],
-    {
-      paymasterService: isUsingEip7677 ? { url: paymasterUrl, optional: true } : undefined,
-      onSuccess: () => {
-        refetchPoolWideClaimed()
-        refetchPoolWideClaimable()
-      },
-      enabled: isUsingEip5792
-    }
-  )
-
-  const { isWaiting, isConfirming, isSuccess } = isPoolWide
-    ? isUsingEip5792
-      ? data5792PoolWideClaimRewardsTx
-      : dataPoolWideClaimRewardsTx
-    : isUsingEip5792
-    ? data5792ClaimRewardsTx
-    : dataClaimRewardsTx
-  const txHash = isPoolWide
-    ? isUsingEip5792
-      ? data5792PoolWideClaimRewardsTx.txHashes?.at(-1)
-      : dataPoolWideClaimRewardsTx.txHash
-    : isUsingEip5792
-    ? data5792ClaimRewardsTx.txHashes?.at(-1)
-    : dataClaimRewardsTx.txHash
-  const sendTransaction = isPoolWide
-    ? isUsingEip5792
-      ? data5792PoolWideClaimRewardsTx.send5792PoolWideClaimRewardsTransaction
-      : dataPoolWideClaimRewardsTx.sendPoolWideClaimRewardsTransaction
-    : isUsingEip5792
-    ? data5792ClaimRewardsTx.send5792ClaimRewardsTransaction
-    : dataClaimRewardsTx.sendClaimRewardsTransaction
+  const { isWaiting, isConfirming, isSuccess } = dataClaimRewardsTx
+  const txHash = dataClaimRewardsTx.txHash
+  const sendTransaction = dataClaimRewardsTx.sendClaimRewardsTransaction
 
   if (!!promotion && !!token) {
     const claimableAmount = Object.values(promotion.epochRewards).reduce((a, b) => a + b, 0n)
