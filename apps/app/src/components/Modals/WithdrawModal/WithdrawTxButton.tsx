@@ -8,7 +8,8 @@ import {
   useUserVaultTokenBalance,
   useVaultBalance,
   useVaultExchangeRate,
-  useVaultTokenData
+  useVaultTokenData,
+  useWorldPublicClient
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useMiscSettings } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
@@ -18,7 +19,7 @@ import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
-import { addRecentTransaction, signInWithWallet } from 'src/utils'
+import { addRecentTransaction, redeem, signInWithWallet } from 'src/utils'
 import { Address, parseUnits } from 'viem'
 import { PAYMASTER_URLS } from '@constants/config'
 import { WithdrawModalView } from '.'
@@ -140,9 +141,16 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
     enabled: isUsingEip5792
   })
 
-  const sendTx = isUsingEip5792
-    ? data5792Tx.send5792RedeemTransaction
-    : dataTx.sendRedeemTransaction
+  // const sendTx = dataTx.sendRedeemTransaction
+
+  // amount: bigint,
+  // publicClient: any,
+  // userAddress: Address,
+  // prizeVaultAddress: Address,
+  const publicClient = useWorldPublicClient()
+
+  const sendTx = () => redeem(withdrawAmount, publicClient, userAddress as Address, vault.address)
+
   const isWaitingWithdrawal = isUsingEip5792 ? data5792Tx.isWaiting : dataTx.isWaiting
   const isConfirmingWithdrawal = isUsingEip5792 ? data5792Tx.isConfirming : dataTx.isConfirming
   const isSuccessfulWithdrawal = isUsingEip5792 ? data5792Tx.isSuccess : dataTx.isSuccess
