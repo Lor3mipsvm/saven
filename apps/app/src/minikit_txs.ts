@@ -24,7 +24,7 @@ export const deposit = async (
   prizeVaultAssetAddress?: Address,
   options?: {
     onSend?: () => void
-    onSuccess?: (depositEvent: ReturnType<typeof decodeDepositEvent>) => void
+    onSuccess?: (depositEvent: ReturnType<typeof decodeDepositEvent>, txHash: Address) => void
     onSettled?: () => void
     onError?: () => void
   }
@@ -54,8 +54,8 @@ export const deposit = async (
     prizeVaultAssetAddress,
     {
       ...options,
-      onSuccess: (txReceipt: any) =>
-        options?.onSuccess?.(decodeDepositEvent(prizeVaultAddress, txReceipt))
+      onSuccess: (txReceipt: any, txHash: Address) =>
+        options?.onSuccess?.(decodeDepositEvent(prizeVaultAddress, txReceipt), txHash)
     }
   )
 }
@@ -67,7 +67,7 @@ export const sendDepositTx = async (
   prizeVaultAssetAddress: Address,
   options?: {
     onSend?: () => void
-    onSuccess?: (txReceipt: TransactionReceipt) => void
+    onSuccess?: (txReceipt: TransactionReceipt, txHash: Address) => void
     onSettled?: () => void
     onError?: () => void
   }
@@ -106,9 +106,11 @@ export const sendDepositTx = async (
       options?.onSend?.()
 
       const txReceipt = await getTxReceipt(publicClient, finalPayload)
+      console.log('txReceipt')
+      console.log(txReceipt)
 
       if (txReceipt) {
-        options?.onSuccess?.(txReceipt)
+        options?.onSuccess?.(txReceipt, txReceipt.transactionHash)
       } else {
         // throw new Error('Unable to get txReceipt')
       }
@@ -170,7 +172,7 @@ export const redeem = async (
   prizeVaultAddress: Address,
   options?: {
     onSend?: () => void
-    onSuccess?: (withdrawEvent: ReturnType<typeof decodeWithdrawEvent>) => void
+    onSuccess?: (withdrawEvent: ReturnType<typeof decodeWithdrawEvent>, txHash: Address) => void
     onSettled?: () => void
     onError?: () => void
   }
@@ -185,8 +187,8 @@ export const redeem = async (
     publicClient,
     {
       ...options,
-      onSuccess: (txReceipt: any) =>
-        options?.onSuccess?.(decodeWithdrawEvent(prizeVaultAddress, txReceipt))
+      onSuccess: (txReceipt: any, txHash: Address) =>
+        options?.onSuccess?.(decodeWithdrawEvent(prizeVaultAddress, txReceipt), txHash)
     }
   )
 }
@@ -196,7 +198,7 @@ export const sendTx = async (
   publicClient: any,
   options?: {
     onSend?: () => void
-    onSuccess?: (txReceipt: TransactionReceipt) => void
+    onSuccess?: (txReceipt: TransactionReceipt, txHash: Address) => void
     onSettled?: () => void
     onError?: () => void
   }
@@ -222,7 +224,7 @@ export const sendTx = async (
       const txReceipt = await getTxReceipt(publicClient, finalPayload)
 
       if (txReceipt) {
-        options?.onSuccess?.(txReceipt)
+        options?.onSuccess?.(txReceipt, txReceipt.transactionHash)
       } else {
         // throw new Error('Unable to get txReceipt')
       }

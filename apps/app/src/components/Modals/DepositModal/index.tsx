@@ -35,7 +35,7 @@ export interface DepositModalProps {
   onClose?: () => void
   refetchUserBalances?: () => void
   onSuccessfulApproval?: () => void
-  onSuccessfulDeposit?: (chainId: number, txHash: Hash) => void
+  onSuccessfulDeposit?: (chainId: number, txHash: Hash, shares: bigint) => void
   onSuccessfulDepositWithZap?: (chainId: number, txHash: Hash) => void
 }
 
@@ -57,7 +57,9 @@ export const DepositModal = (props: DepositModalProps) => {
   const [view, setView] = useState<DepositModalView>('main')
 
   const [depositTxHash, setDepositTxHash] = useState<string>()
-  const [depositShares, setDepositShares] = useState<string>()
+  const [depositShares, setDepositShares] = useState<bigint>()
+  console.log('depositShares')
+  console.log(depositShares)
 
   const [formTokenAddress, setFormTokenAddress] = useAtom(depositFormTokenAddressAtom)
   const setFormTokenAmount = useSetAtom(depositFormTokenAmountAtom)
@@ -131,6 +133,7 @@ export const DepositModal = (props: DepositModalProps) => {
             setModalView={setView}
             setDepositTxHash={setDepositTxHash}
             setDepositShares={setDepositShares}
+            depositTxHash={depositTxHash}
             refetchUserBalances={refetchUserBalances}
             onSuccessfulDeposit={onSuccessfulDeposit}
           />

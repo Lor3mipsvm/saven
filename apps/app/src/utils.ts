@@ -107,8 +107,14 @@ export const signInDisconnect = async (setUserAddress: (address: Address | undef
   setUserAddress(undefined)
 }
 
-export const addRecentTransaction = () => {
-  alert('implement me!')
+interface AddRecentTransactionArgs {
+  hash: string
+  description: string
+}
+export const addRecentTransaction = (args: AddRecentTransactionArgs) => {
+  console.log('args')
+  console.log(args)
+  // alert('implement me!')
 }
 
 export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
