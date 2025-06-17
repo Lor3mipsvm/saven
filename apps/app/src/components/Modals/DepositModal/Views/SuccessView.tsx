@@ -16,17 +16,20 @@ import {
   lower
 } from '@shared/utilities'
 import { useTranslations } from 'next-intl'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
+import ConfettiExplosion from 'react-confetti-explosion'
 import { Address, decodeEventLog, TransactionReceipt } from 'viem'
 import { useTransactionReceipt } from 'wagmi'
 
 interface SuccessViewProps {
   vault: Vault
+  isExploding: (isExploding: boolean) => void
+  setIsExploding: (isExploding: boolean) => void
   txHash?: string
 }
 
 export const SuccessView = (props: SuccessViewProps) => {
-  const { vault, txHash } = props
+  const { vault, setIsExploding, txHash } = props
 
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
@@ -50,6 +53,16 @@ export const SuccessView = (props: SuccessViewProps) => {
     }
   }, [userAddress, share, txReceipt])
 
+  useEffect(() => {
+    setIsExploding(true)
+
+    const timer = setTimeout(() => {
+      setIsExploding(false)
+    }, 4000)
+
+    return () => clearTimeout(timer) // Cleanup function
+  }, [])
+
   const formattedSharesReceived =
     !!share && !!sharesReceived
       ? formatBigIntForDisplay(sharesReceived, share.decimals, { maximumFractionDigits: 5 })
@@ -71,6 +84,15 @@ export const SuccessView = (props: SuccessViewProps) => {
           className='!py-1'
         />
         <SuccessPooly className='w-40 h-auto mt-3' />
+        {isExploding && (
+          <ConfettiExplosion
+            // portal={false}
+            force={0.8}
+            duration={3000}
+            particleCount={250}
+            width={1600}
+          />
+        )}
       </div>
       <span className='text-sm text-center md:text-base'>{t_modals('nowEligible')}</span>
       {!!txHash && (

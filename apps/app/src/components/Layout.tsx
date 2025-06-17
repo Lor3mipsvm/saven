@@ -14,7 +14,6 @@ import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'
 import { useWalletId } from '@hooks/useWalletId'
-// import Confetti from './Confetti'
 import { Footer } from './Footer'
 import { CheckPrizesModal } from './Modals/CheckPrizesModal'
 // import { DelegateModal } from './Modals/DelegateModal'
@@ -97,11 +96,7 @@ export const Layout = (props: LayoutProps) => {
       <Head>
         <title>{`Cabana App${!!pageTitle ? ` | ${pageTitle}` : ''}`}</title>
       </Head>
-
       <Navbar />
-
-      {/* <!-- import and call the `playConfetti` function anywhere in the app to play the confetti animation --> */}
-      {/* <Confetti /> */}
 
       <SettingsModal
         locales={['en', 'de', 'ru', 'ko', 'uk', 'hi', 'es']}
@@ -110,33 +105,26 @@ export const Layout = (props: LayoutProps) => {
         onVaultListImport={() => {}}
         onRpcChange={() => {}}
       />
-
       <DepositModal
         refetchUserBalances={refetchUserBalances}
         onSuccessfulApproval={() => {}}
         onSuccessfulDeposit={() => {}}
         onSuccessfulDepositWithZap={() => {}}
       />
-
       <WithdrawModal
         refetchUserBalances={refetchUserBalances}
         onSuccessfulApproval={() => {}}
         onSuccessfulWithdrawal={() => {}}
         onSuccessfulWithdrawalWithZap={() => {}}
       />
-
       {/* <DelegateModal onSuccessfulDelegation={() => {}} /> */}
-
       <CheckPrizesModal onWin={() => {}} onNoWin={() => {}} />
-
       <CaptchaModal
         hCaptchaSiteKey='11cdabde-af7e-42cb-ba97-76e35b7f7c39'
         header={t_common('joinDiscord')}
         onVerify={getDiscordInvite}
       />
-
       <VaultListHandler />
-
       <main
         className={classNames(
           'w-full max-w-screen-xl min-h-[80vh] relative flex flex-col flex-grow items-center mx-auto p-4 mb-20 md:px-8',
@@ -145,7 +133,6 @@ export const Layout = (props: LayoutProps) => {
       >
         {isBrowser && router.isReady && <>{children}</>}
       </main>
-
       <Footer />
     </div>
   )
