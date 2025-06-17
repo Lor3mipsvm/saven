@@ -14,21 +14,20 @@ import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
-import { useEffect } from 'react'
-import { redeem } from 'src/minikit_txs'
+import { useState } from 'react'
+import { redeem, type WithdrawTxOptions } from 'src/minikit_txs'
 import { addRecentTransaction, signInWithWallet } from 'src/utils'
 import { Address, parseUnits } from 'viem'
 import { WithdrawModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { withdrawFormShareAmountAtom } from './WithdrawForm'
 
-// useSendRedeemTransaction,
-
 interface WithdrawTxButtonProps {
   vault: Vault
   modalView: string
   setModalView: (view: WithdrawModalView) => void
   setWithdrawTxHash: (txHash: string) => void
+  withdrawTxHash?: string
   refetchUserBalances?: () => void
   onSuccessfulWithdrawal?: () => void
 }
@@ -36,9 +35,9 @@ interface WithdrawTxButtonProps {
 export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
   const {
     vault,
-    modalView,
     setModalView,
     setWithdrawTxHash,
+    withdrawTxHash,
     refetchUserBalances,
     onSuccessfulWithdrawal
   } = props
@@ -46,7 +45,10 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
 
-  const { address: userAddress, chain, isDisconnected } = useAccount()
+  const [isConfirming, setIsConfirming] = useState<boolean>(false)
+  const [isSuccessful, setIsSuccessful] = useState<boolean>(false)
+
+  const { address: userAddress, isDisconnected } = useAccount()
 
   const { data: tokenData } = useVaultTokenData(vault)
   const decimals = vault.decimals ?? tokenData?.decimals
@@ -89,87 +91,73 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
       ? getAssetsFromShares(withdrawAmount, vaultExchangeRate, decimals as number)
       : 0n
 
-  // const dataTx = useSendRedeemTransaction(withdrawAmount, vault, {
-  //   minAssets: expectedAssetAmount,
-  //   onSend: () => {
-  //     setModalView('waiting')
-  //   },
-  //   onSuccess: () => {
-  //     refetchUserTokenBalance()
-  //     refetchUserVaultTokenBalance()
-  //     refetchUserVaultDelegationBalance()
-  //     refetchVaultBalance()
-  //     refetchUserBalances?.()
-  //     onSuccessfulWithdrawal?.()
-  //     setModalView('success')
-  //   },
-  //   onError: () => {
-  //     setModalView('error')
-  //   }
-  // })
+  const options: WithdrawTxOptions = {
+    onSend: () => {
+      console.log('onSend')
+      setIsConfirming(true)
+      setModalView('confirming')
+    },
+    onSuccess: (txHash: Address) => {
+      setIsSuccessful(true)
+      setModalView('success')
+      onSuccessfulWithdrawal?.()
 
-  return null
-  // const sendTx = dataTx.sendRedeemTransaction
+      refetchUserTokenBalance()
+      refetchUserVaultTokenBalance()
+      refetchUserVaultDelegationBalance()
+      refetchVaultBalance()
+      refetchUserBalances?.()
 
-  // amount: bigint,
-  // publicClient: any,
-  // userAddress: Address,
-  // prizeVaultAddress: Address,
+      setWithdrawTxHash(txHash)
+    },
+    onSettled: () => {
+      setIsConfirming(false)
+    },
+    onError: () => {
+      console.log('not here?')
+      setModalView('error')
+      setIsConfirming(false)
+      setIsSuccessful(false)
+    }
+  }
   const publicClient = useWorldPublicClient()
+  const sendTx = () =>
+    redeem(withdrawAmount, publicClient, userAddress as Address, vault.address, options)
 
-  const sendTx = () => redeem(withdrawAmount, publicClient, userAddress as Address, vault.address)
+  const withdrawEnabled =
+    !isDisconnected &&
+    !!userAddress &&
+    !!tokenData &&
+    isFetchedUserVaultShareBalance &&
+    !!userVaultShareBalance &&
+    isValidFormShareAmount &&
+    !!withdrawAmount &&
+    userVaultShareBalance.amount >= withdrawAmount &&
+    !!sendTx
 
-  // const isWaitingWithdrawal = dataTx.isWaiting
-  // const isConfirmingWithdrawal = dataTx.isConfirming
-  // const isSuccessfulWithdrawal = dataTx.isSuccess
-  // const withdrawTxHash = dataTx.txHash
-
-  // useEffect(() => {
-  //   if (
-  //     !!withdrawTxHash &&
-  //     isConfirmingWithdrawal &&
-  //     !isWaitingWithdrawal &&
-  //     !isSuccessfulWithdrawal
-  //   ) {
-  //     setWithdrawTxHash(withdrawTxHash)
-  //     setModalView('confirming')
-  //   }
-  // }, [withdrawTxHash, isConfirmingWithdrawal])
-
-  // const withdrawEnabled =
-  //   !isDisconnected &&
-  //   !!userAddress &&
-  //   !!tokenData &&
-  //   isFetchedUserVaultShareBalance &&
-  //   !!userVaultShareBalance &&
-  //   isValidFormShareAmount &&
-  //   !!withdrawAmount &&
-  //   userVaultShareBalance.amount >= withdrawAmount &&
-  //   !!sendTx
-
-  // if (withdrawAmount === 0n) {
-  //   return (
-  //     <Button color='transparent' fullSized={true} disabled={true}>
-  //       {t_modals('enterAnAmount')}
-  //     </Button>
-  //   )
-  // } else {
-  //   return (
-  //     <TransactionButton
-  //       chainId={vault.chainId}
-  //       isTxLoading={isWaitingWithdrawal || isConfirmingWithdrawal}
-  //       isTxSuccess={isSuccessfulWithdrawal}
-  //       write={sendTx}
-  //       txHash={withdrawTxHash}
-  //       txDescription={t_modals('withdrawTx', { symbol: tokenData?.symbol ?? '?' })}
-  //       fullSized={true}
-  //       disabled={!withdrawEnabled}
-  //       addRecentTransaction={addRecentTransaction}
-  //       signInWithWallet={signInWithWallet}
-  //       intl={{ base: t_modals, common: t_common }}
-  //     >
-  //       {t_modals('confirmWithdrawal')}
-  //     </TransactionButton>
-  //   )
-  // }
+  if (withdrawAmount === 0n) {
+    return (
+      <Button color='transparent' fullSized={true} disabled={true}>
+        {t_modals('enterAnAmount')}
+      </Button>
+    )
+  } else {
+    return (
+      <TransactionButton
+        chainId={vault.chainId}
+        isTxLoading={isConfirming}
+        isTxSuccess={isSuccessful}
+        write={sendTx}
+        txHash={withdrawTxHash}
+        txDescription={t_modals('withdrawTx', { symbol: tokenData?.symbol ?? '?' })}
+        fullSized={true}
+        disabled={!withdrawEnabled}
+        addRecentTransaction={addRecentTransaction}
+        signInWithWallet={signInWithWallet}
+        intl={{ base: t_modals, common: t_common }}
+      >
+        {t_modals('confirmWithdrawal')}
+      </TransactionButton>
+    )
+  }
 }

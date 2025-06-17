@@ -1,6 +1,5 @@
-import { NoneTransferableERC20Abi, permitDepositABI, redeemABI, vaultABI } from '@shared/utilities'
+import { permitDepositABI, redeemABI, vaultABI } from '@shared/utilities'
 import { lower } from '@shared/utilities'
-// import { lower } from './formatting'
 import { type MiniAppSendTransactionSuccessPayload, MiniKit } from '@worldcoin/minikit-js'
 import { Address, decodeEventLog, type Hash, type TransactionReceipt } from 'viem'
 import { waitForTransactionReceipt } from 'viem/actions'
@@ -10,6 +9,13 @@ const PERMIT_2_VAULT_DEPOSIT_ADDRESS: Address = '0x263f95fF28347F14956dA6c26d51b
 export type DepositTxOptions = {
   onSend?: () => void
   onSuccess?: (depositEvent: ReturnType<typeof decodeDepositEvent>, txHash: Address) => void
+  onSettled?: () => void
+  onError?: () => void
+}
+
+export type WithdrawTxOptions = {
+  onSend?: () => void
+  onSuccess?: (txHash: Address) => void
   onSettled?: () => void
   onError?: () => void
 }
@@ -157,27 +163,22 @@ export const getTxReceipt = async (
   return txReceipt
 }
 
-export const decodeWithdrawEvent = (
-  prizeVaultAddress: Address,
-  redeemTxReceipt: TransactionReceipt
-) => {
-  const { topics, data } = redeemTxReceipt.logs.filter(
-    (log) => lower(log.address) === lower(prizeVaultAddress)
-  )[1]
-  return decodeEventLog({ abi: vaultABI, eventName: 'Withdraw', topics, data, strict: true })
-}
+// export const decodeWithdrawEvent = (
+//   prizeVaultAddress: Address,
+//   redeemTxReceipt: TransactionReceipt
+// ) => {
+//   const { topics, data } = redeemTxReceipt.logs.filter(
+//     (log) => lower(log.address) === lower(prizeVaultAddress)
+//   )[1]
+//   return decodeEventLog({ abi: vaultABI, eventName: 'Withdraw', topics, data, strict: true })
+// }
 
 export const redeem = async (
   amount: bigint,
   publicClient: any,
   userAddress: Address,
   prizeVaultAddress: Address,
-  options?: {
-    onSend?: () => void
-    onSuccess?: (withdrawEvent: ReturnType<typeof decodeWithdrawEvent>, txHash: Address) => void
-    onSettled?: () => void
-    onError?: () => void
-  }
+  options?: WithdrawTxOptions
 ) => {
   return await sendTx(
     {
@@ -189,8 +190,7 @@ export const redeem = async (
     publicClient,
     {
       ...options,
-      onSuccess: (txReceipt: any, txHash: Address) =>
-        options?.onSuccess?.(decodeWithdrawEvent(prizeVaultAddress, txReceipt), txHash)
+      onSuccess: (txReceipt: any, txHash: Address) => options?.onSuccess?.(txHash)
     }
   )
 }
@@ -239,97 +239,3 @@ export const sendTx = async (
     options?.onSettled?.()
   }
 }
-
-// export const decodeTransferEvent = (
-//   userAddress: Address,
-// prizeVaultAddress: Address,
-//   transferTxReceipt: TransactionReceipt
-// ) => {
-//   console.log('transferTxReceipt')
-//   console.log(transferTxReceipt)
-//   // transferTxReceipt.logs.filter((log) => lower(log.address) === lower(prizeVaultAddress))
-//   const { topics, data } = transferTxReceipt.logs.filter((log) => {
-//     console.log(log)
-//     return lower(log.address) === lower(userAddress as Address)
-//   })[0]
-//   return decodeEventLog({
-//     abi: NoneTransferableERC20Abi,
-//     eventName: 'SafeMultiSigTransaction',
-//     topics,
-//     data,
-//     strict: true
-//   })
-// }
-
-// export const test = async (
-//   userAddress: Address,
-//   prizeVaultAddress: Address,
-//   options?: {
-//     onSend?: () => void
-//     onSuccess?: (transferEvent: ReturnType<typeof decodeTransferEvent>) => void
-//     onSettled?: () => void
-//     onError?: () => void
-//   }
-// ) => {
-//   return await sendTestTx(
-//     {
-//       address: '0x4200000000000000000000000000000000000006',
-//       abi: NoneTransferableERC20Abi,
-//       functionName: 'transfer',
-//       args: [userAddress, '1']
-//     },
-//     {
-//       ...options,
-//       onSuccess: (txReceipt: any) =>
-//         options?.onSuccess?.(decodeTransferEvent(userAddress, prizeVaultAddress, txReceipt))
-//     }
-//   )
-// }
-
-// export const sendTestTx = async (
-//   txRequest: any,
-//   publicClient: any,
-//   options?: {
-//     onSend?: () => void
-//     onSuccess?: (txReceipt: TransactionReceipt) => void
-//     onSettled?: () => void
-//     onError?: () => void
-//   }
-// ) => {
-//   if (!MiniKit.isInstalled()) {
-//     return
-//   }
-
-//   try {
-//     const { commandPayload, finalPayload } = await MiniKit.commandsAsync.sendTransaction({
-//       transaction: [txRequest]
-//     })
-
-//     console.log('finalPayload')
-//     console.log(finalPayload)
-
-//     if (finalPayload.status === 'error') {
-//       console.error('debugUrl')
-//       console.error(finalPayload?.details?.debugUrl)
-//       console.error('simulationError')
-//       console.error(finalPayload?.details?.simulationError)
-//       throw new Error(finalPayload?.error_code)
-//     } else {
-//       options?.onSend?.()
-
-//       const txReceipt = await getTxReceipt(publicClient, finalPayload)
-
-//       if (txReceipt) {
-//         options?.onSuccess?.(txReceipt)
-//       } else {
-//         throw new Error('Unable to get txReceipt')
-//       }
-//     }
-//   } catch (e) {
-//     console.error(e)
-//     options?.onError?.()
-//     throw e
-//   } finally {
-//     options?.onSettled?.()
-//   }
-// }

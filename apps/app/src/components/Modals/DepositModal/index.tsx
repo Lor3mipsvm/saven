@@ -57,9 +57,6 @@ export const DepositModal = (props: DepositModalProps) => {
   const [view, setView] = useState<DepositModalView>('main')
 
   const [depositTxHash, setDepositTxHash] = useState<string>()
-  const [depositShares, setDepositShares] = useState<bigint>()
-  console.log('depositShares')
-  console.log(depositShares)
 
   const [formTokenAddress, setFormTokenAddress] = useAtom(depositFormTokenAddressAtom)
   const setFormTokenAmount = useSetAtom(depositFormTokenAmountAtom)
@@ -132,7 +129,6 @@ export const DepositModal = (props: DepositModalProps) => {
             vault={vault}
             setModalView={setView}
             setDepositTxHash={setDepositTxHash}
-            setDepositShares={setDepositShares}
             depositTxHash={depositTxHash}
             refetchUserBalances={refetchUserBalances}
             onSuccessfulDeposit={onSuccessfulDeposit}

@@ -52,7 +52,6 @@ export const WithdrawModal = (props: WithdrawModalProps) => {
   const { isModalOpen, setIsModalOpen } = useIsModalOpen(MODAL_KEYS.withdraw, { onClose })
 
   const [view, setView] = useState<WithdrawModalView>('main')
-
   const [withdrawTxHash, setWithdrawTxHash] = useState<string>()
 
   const setFormShareAmount = useSetAtom(withdrawFormShareAmountAtom)
@@ -119,6 +118,7 @@ export const WithdrawModal = (props: WithdrawModalProps) => {
             modalView={view}
             setModalView={setView}
             setWithdrawTxHash={setWithdrawTxHash}
+            withdrawTxHash={withdrawTxHash}
             refetchUserBalances={refetchUserBalances}
             onSuccessfulWithdrawal={onSuccessfulWithdrawal}
           />

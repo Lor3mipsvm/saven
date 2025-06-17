@@ -25,7 +25,6 @@ interface DepositTxButtonProps {
   vault: Vault
   setModalView: (view: DepositModalView) => void
   setDepositTxHash: (txHash: string) => void
-  setDepositShares: (shares: bigint) => void
   depositTxHash?: string
   refetchUserBalances?: () => void
   onSuccessfulDeposit?: (chainId: number, txHash: Hash, shares: bigint) => void
@@ -36,7 +35,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     vault,
     setModalView,
     setDepositTxHash,
-    setDepositShares,
     depositTxHash,
     refetchUserBalances,
     onSuccessfulDeposit
@@ -45,7 +43,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
 
-  const [isWaiting, setIsWaiting] = useState<boolean>(false)
   const [isConfirming, setIsConfirming] = useState<boolean>(false)
   const [isSuccessful, setIsSuccessful] = useState<boolean>(false)
 
@@ -85,12 +82,12 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     onSend: () => {
       console.log('onSend')
       setIsConfirming(true)
-      setModalView('waiting')
+      setModalView('confirming')
     },
     onSuccess: (decodedEventLogs: ReturnType<typeof decodeDepositEvent>, txHash: Address) => {
       setIsSuccessful(true)
-      onSuccessfulDeposit?.(vault.chainId, txHash, decodedEventLogs?.args?.shares)
       setModalView('success')
+      onSuccessfulDeposit?.(vault.chainId, txHash, decodedEventLogs?.args?.shares)
 
       refetchUserTokenBalance()
       refetchUserVaultTokenBalance()
@@ -99,15 +96,12 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       refetchUserBalances?.()
 
       setDepositTxHash(txHash)
-      setDepositShares(decodedEventLogs?.args?.shares)
     },
     onSettled: () => {
-      console.log('onSettled')
-      setIsWaiting(true)
+      setIsConfirming(false)
     },
     onError: () => {
       setModalView('error')
-      setIsWaiting(false)
       setIsConfirming(false)
       setIsSuccessful(false)
     }
@@ -144,7 +138,7 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   return (
     <TransactionButton
       chainId={vault.chainId}
-      isTxLoading={isWaiting || isConfirming}
+      isTxLoading={isConfirming}
       isTxSuccess={isSuccessful}
       write={sendDepositTransaction}
       txHash={depositTxHash}
