@@ -153,7 +153,6 @@ yarn add @generationsoftware/hyperstructure-react-hooks
 - `useSendPoolWideClaimRewardsTransaction`
 - `useSendSetClaimerTransaction`
 - `useSendSetLiquidationPairTransaction`
-- `useSendWithdrawTransaction`
 
 ### Vault Hooks
 
