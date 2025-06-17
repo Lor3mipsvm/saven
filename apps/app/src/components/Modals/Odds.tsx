@@ -84,7 +84,7 @@ export const Odds = (props: OddsProps) => {
 
   return (
     <div className='flex flex-col items-center font-semibold'>
-      <span className='mb-2 text-xs text-pt-purple-100 md:text-sm'>
+      <span className='mb-1 text-sm text-pt-purple-100 md:text-sm'>
         {!!drawPeriod && drawPeriod > SECONDS_PER_WEEK
           ? t_txModals('monthlyChances')
           : t_txModals('weeklyChances')}

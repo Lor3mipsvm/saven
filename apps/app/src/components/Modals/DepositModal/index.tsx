@@ -110,7 +110,7 @@ export const DepositModal = (props: DepositModalProps) => {
 
     const modalFooterContent = !!vaultExchangeRate ? (
       <div
-        className={classNames('flex flex-col items-center gap-6', {
+        className={classNames('flex flex-col items-center gap-8', {
           hidden: view !== 'main' && view !== 'review'
         })}
       >
@@ -134,7 +134,7 @@ export const DepositModal = (props: DepositModalProps) => {
             onSuccessfulDeposit={onSuccessfulDeposit}
           />
         )}
-        {view === 'review' && <DepositDisclaimer vault={vault} />}
+        {view === 'main' && <DepositDisclaimer vault={vault} />}
       </div>
     ) : undefined
 
@@ -164,7 +164,7 @@ const DepositDisclaimer = (props: DepositDisclaimerProps) => {
   const t_modals = useTranslations('TxModals')
 
   return (
-    <span className='text-xs text-pt-purple-100 px-6'>
+    <span className='text-sm text-pt-purple-100 text-center leading-normal'>
       {t_modals.rich('depositDisclaimer', {
         tosLink: (chunks) => (
           <a href={LINKS.termsOfService} target='_blank' className='text-pt-purple-300'>
