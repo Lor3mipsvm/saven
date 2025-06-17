@@ -303,6 +303,6 @@ const ModalFooter = (props: ModalFooterProps) => {
 
 const ModalTabHandle = () => {
   return (
-    <hr className='absolute top-2 left-1/2 -translate-x-1/2 w-8 rounded border-1 border-pt-purple-200 md:hidden' />
+    <hr className='absolute top-2 left-1/2 -translate-x-1/2 w-8 rounded border-2 border-pt-purple-200 border-opacity-60 md:hidden' />
   )
 }
