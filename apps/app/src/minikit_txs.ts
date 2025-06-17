@@ -103,7 +103,7 @@ export const sendDepositTx = async (
       console.error(finalPayload?.details?.debugUrl)
       console.error('simulationError')
       console.error(finalPayload?.details?.simulationError)
-      // throw new Error(finalPayload?.error_code)
+      options?.onError?.()
     } else {
       options?.onSend?.()
 
@@ -219,7 +219,7 @@ export const sendTx = async (
       console.error(finalPayload?.details?.debugUrl)
       console.error('simulationError')
       console.error(finalPayload?.details?.simulationError)
-      // throw new Error(finalPayload?.error_code)
+      options?.onError?.()
     } else {
       options?.onSend?.()
 

@@ -85,71 +85,31 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     onSend: () => {
       console.log('onSend')
       setIsConfirming(true)
-      // setModalView('confirming')
       setModalView('waiting')
-
-      // isDepositing = true
-      // toast.loading(`Depositing ...`, {
-      //   duration: 30000,
-      //   style: 'border: 2px solid var(--pt-teal-dark); '
-      // })
     },
-    // onSuccess: (depositEvent: any) => {
     onSuccess: (decodedEventLogs: ReturnType<typeof decodeDepositEvent>, txHash: Address) => {
       setIsSuccessful(true)
+      onSuccessfulDeposit?.(vault.chainId, txHash, decodedEventLogs?.args?.shares)
+      setModalView('success')
 
       refetchUserTokenBalance()
       refetchUserVaultTokenBalance()
       refetchUserVaultDelegationBalance()
       refetchVaultBalance()
       refetchUserBalances?.()
-      console.log('decodedEventLogs?.args?.shares')
-      console.log(decodedEventLogs?.args?.shares)
-      // onSuccessfulDeposit?.(vault.chainId, decodedEventLogs.transactionHash)
-      onSuccessfulDeposit?.(vault.chainId, txHash, decodedEventLogs?.args?.shares)
-      setModalView('success')
-      console.log('onSuccess')
 
       setDepositTxHash(txHash)
       setDepositShares(decodedEventLogs?.args?.shares)
-
-      // playConfetti()
-
-      ///
-      ///
-
-      // console.log('onSuccess')
-      // toast.dismiss()
-
-      // console.log('depositEvent')
-      // console.log(depositEvent)
-      // console.log('depositEvent?.args')
-      // console.log(depositEvent?.args)
-      // console.log('depositEvent?.args?.assets')
-      // console.log(depositEvent?.args?.assets)
-
-      // toast.success(`Success! You deposited ${formattedAmount} ${prizeVault.asset.symbol}`, {
-      //   duration: 8000,
-      //   style: 'border: 2px solid var(--pt-teal-dark); '
-      // })
-
-      // onSuccess(depositEvent?.args?.assets)
     },
     onSettled: () => {
       console.log('onSettled')
       setIsWaiting(true)
-      // isDepositing = false
     },
     onError: () => {
-      console.log('onError')
-
       setModalView('error')
-
-      // toast.dismiss()
-      // toast.error(`Something went wrong, please try again.`, {
-      //   duration: 8000,
-      //   style: 'border: 2px solid var(--pt-warning-med); '
-      // })
+      setIsWaiting(false)
+      setIsConfirming(false)
+      setIsSuccessful(false)
     }
   }
   const { data: tokenAddress, isFetched: isFetchedTokenAddress } = useVaultTokenAddress(vault)
