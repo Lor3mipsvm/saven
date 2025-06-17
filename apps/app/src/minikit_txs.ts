@@ -190,7 +190,7 @@ export const redeem = async (
     publicClient,
     {
       ...options,
-      onSuccess: (txReceipt: any, txHash: Address) => options?.onSuccess?.(txHash)
+      onSuccess: (txHash: Address) => options?.onSuccess?.(txHash)
     }
   )
 }
@@ -200,7 +200,7 @@ export const sendTx = async (
   publicClient: any,
   options?: {
     onSend?: () => void
-    onSuccess?: (txReceipt: TransactionReceipt, txHash: Address) => void
+    onSuccess?: (txHash: Address) => void
     onSettled?: () => void
     onError?: () => void
   }
@@ -226,7 +226,7 @@ export const sendTx = async (
       const txReceipt = await getTxReceipt(publicClient, finalPayload)
 
       if (txReceipt) {
-        options?.onSuccess?.(txReceipt, txReceipt.transactionHash)
+        options?.onSuccess?.(txReceipt.transactionHash)
       } else {
         // throw new Error('Unable to get txReceipt')
       }
