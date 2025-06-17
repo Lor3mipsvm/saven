@@ -1,20 +1,17 @@
 import {
-  useSend5792ClaimRewardsTransaction,
-  useSend5792PoolWideClaimRewardsTransaction,
   useSendClaimRewardsTransaction,
   useSendPoolWideClaimRewardsTransaction,
   useToken
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TokenAmount, TransactionButton } from '@shared/react-components'
-import { getSecondsSinceEpoch, lower, supportsEip5792, supportsEip7677 } from '@shared/utilities'
+import { getSecondsSinceEpoch, lower } from '@shared/utilities'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { addRecentTransaction, signInWithWallet } from 'src/utils'
 import { Address, formatUnits } from 'viem'
 // import { useCapabilities } from 'wagmi'
-import { PAYMASTER_URLS } from '@constants/config'
 import { useUserClaimablePoolWidePromotions } from '@hooks/useUserClaimablePoolWidePromotions'
 import { useUserClaimablePromotions } from '@hooks/useUserClaimablePromotions'
 import { useUserClaimedPoolWidePromotions } from '@hooks/useUserClaimedPoolWidePromotions'

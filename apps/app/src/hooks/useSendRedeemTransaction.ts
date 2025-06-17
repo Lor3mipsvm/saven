@@ -1,10 +1,22 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
+import { useUserVaultShareBalance } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { calculatePercentageOfBigInt, vaultABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, isAddress, TransactionReceipt } from 'viem'
 import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
-import { useGasAmountEstimate, useUserVaultShareBalance } from '..'
+
+// import { useGasAmountEstimate, useUserVaultShareBalance } from '..'
+
+// : {
+//   isWaiting: boolean
+//   isConfirming: boolean
+//   isSuccess: boolean
+//   isError: boolean
+//   txHash?: Address
+//   txReceipt?: TransactionReceipt
+//   sendRedeemTransaction?: () => void
+// }
 
 /**
  * Prepares and submits a `redeem` transaction to a vault
@@ -15,22 +27,14 @@ import { useGasAmountEstimate, useUserVaultShareBalance } from '..'
  */
 export const useSendRedeemTransaction = (
   amount: bigint,
-  vault: Vault,
-  options?: {
-    minAssets?: bigint
-    onSend?: (txHash: `0x${string}`) => void
-    onSuccess?: (txReceipt: TransactionReceipt) => void
-    onError?: () => void
-  }
-): {
-  isWaiting: boolean
-  isConfirming: boolean
-  isSuccess: boolean
-  isError: boolean
-  txHash?: Address
-  txReceipt?: TransactionReceipt
-  sendRedeemTransaction?: () => void
-} => {
+  vault: Vault
+  // options?: {
+  //   minAssets?: bigint
+  //   onSend?: (txHash: `0x${string}`) => void
+  //   onSuccess?: (txReceipt: TransactionReceipt) => void
+  //   onError?: () => void
+  // }
+) => {
   const { address: userAddress, chain } = useAccount()
 
   const { data: vaultShareBalance, isFetched: isFetchedVaultShareBalance } =
@@ -46,31 +50,31 @@ export const useSendRedeemTransaction = (
     !!vaultShareBalance &&
     amount <= vaultShareBalance.amount
 
-  const { data: gasEstimate } = useGasAmountEstimate(
-    vault?.chainId,
-    {
-      address: vault?.address,
-      abi: vaultABI,
-      functionName: 'redeem',
-      args: !!options?.minAssets
-        ? [amount, userAddress as Address, userAddress as Address, options.minAssets]
-        : [amount, userAddress as Address, userAddress as Address],
-      account: userAddress as Address
-    },
-    { enabled }
-  )
+  // const { data: gasEstimate } = useGasAmountEstimate(
+  //   vault?.chainId,
+  //   {
+  //     address: vault?.address,
+  //     abi: vaultABI,
+  //     functionName: 'redeem',
+  //     args: !!options?.minAssets
+  //       ? [amount, userAddress as Address, userAddress as Address, options.minAssets]
+  //       : [amount, userAddress as Address, userAddress as Address],
+  //     account: userAddress as Address
+  //   },
+  //   { enabled }
+  // )
 
-  const { data } = useSimulateContract({
-    chainId: vault?.chainId,
-    address: vault?.address,
-    abi: vaultABI,
-    functionName: 'redeem',
-    args: !!options?.minAssets
-      ? [amount, userAddress as Address, userAddress as Address, options.minAssets]
-      : [amount, userAddress as Address, userAddress as Address],
-    gas: !!gasEstimate ? calculatePercentageOfBigInt(gasEstimate, 1.2) : undefined,
-    query: { enabled }
-  })
+  // const { data } = useSimulateContract({
+  //   chainId: vault?.chainId,
+  //   address: vault?.address,
+  //   abi: vaultABI,
+  //   functionName: 'redeem',
+  //   args: !!options?.minAssets
+  //     ? [amount, userAddress as Address, userAddress as Address, options.minAssets]
+  //     : [amount, userAddress as Address, userAddress as Address],
+  //   gas: !!gasEstimate ? calculatePercentageOfBigInt(gasEstimate, 1.2) : undefined,
+  //   query: { enabled }
+  // })
 
   const {
     data: txHash,
@@ -80,35 +84,37 @@ export const useSendRedeemTransaction = (
     writeContract: _sendRedeemTransaction
   } = useWriteContract()
 
-  const sendRedeemTransaction =
-    !!data && !!_sendRedeemTransaction ? () => _sendRedeemTransaction(data.request) : undefined
+  // const sendRedeemTransaction = !!_sendRedeemTransaction
+  //   ? () => _sendRedeemTransaction(data.request)
+  //   : undefined
 
-  useEffect(() => {
-    if (!!txHash && isSendingSuccess) {
-      options?.onSend?.(txHash)
-    }
-  }, [isSendingSuccess])
+  // useEffect(() => {
+  //   if (!!txHash && isSendingSuccess) {
+  //     options?.onSend?.(txHash)
+  //   }
+  // }, [isSendingSuccess])
 
-  const {
-    data: txReceipt,
-    isFetching: isConfirming,
-    isSuccess,
-    isError: isConfirmingError
-  } = useWaitForTransactionReceipt({ chainId: vault?.chainId, hash: txHash })
+  // const {
+  //   data: txReceipt,
+  //   isFetching: isConfirming,
+  //   isSuccess,
+  //   isError: isConfirmingError
+  // } = useWaitForTransactionReceipt({ chainId: vault?.chainId, hash: txHash })
 
-  useEffect(() => {
-    if (!!txReceipt && isSuccess) {
-      options?.onSuccess?.(txReceipt)
-    }
-  }, [isSuccess])
+  // useEffect(() => {
+  //   if (!!txReceipt && isSuccess) {
+  //     options?.onSuccess?.(txReceipt)
+  //   }
+  // }, [isSuccess])
 
-  const isError = isSendingError || isConfirmingError
+  // const isError = isSendingError || isConfirmingError
 
-  useEffect(() => {
-    if (isError) {
-      options?.onError?.()
-    }
-  }, [isError])
+  // useEffect(() => {
+  //   if (isError) {
+  //     options?.onError?.()
+  //   }
+  // }, [isError])
 
-  return { isWaiting, isConfirming, isSuccess, isError, txHash, txReceipt, sendRedeemTransaction }
+  // return { isWaiting, isConfirming, isSuccess, isError, txHash, txReceipt, sendRedeemTransaction }
+  return null
 }

@@ -1,11 +1,21 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
+import { useUserVaultTokenBalance } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { calculatePercentageOfBigInt, vaultABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, isAddress, TransactionReceipt } from 'viem'
 import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
-import { useGasAmountEstimate, useUserVaultTokenBalance } from '..'
 
+// import { useGasAmountEstimate, useUserVaultTokenBalance } from '..'
+// : {
+//   isWaiting: boolean
+//   isConfirming: boolean
+//   isSuccess: boolean
+//   isError: boolean
+//   txHash?: Address
+//   txReceipt?: TransactionReceipt
+//   sendWithdrawTransaction?: () => void
+// }
 /**
  * Prepares and submits a `withdraw` transaction to a vault
  * @param amount the amount of tokens to withdraw
@@ -15,22 +25,14 @@ import { useGasAmountEstimate, useUserVaultTokenBalance } from '..'
  */
 export const useSendWithdrawTransaction = (
   amount: bigint,
-  vault: Vault,
-  options?: {
-    maxShares?: bigint
-    onSend?: (txHash: `0x${string}`) => void
-    onSuccess?: (txReceipt: TransactionReceipt) => void
-    onError?: () => void
-  }
-): {
-  isWaiting: boolean
-  isConfirming: boolean
-  isSuccess: boolean
-  isError: boolean
-  txHash?: Address
-  txReceipt?: TransactionReceipt
-  sendWithdrawTransaction?: () => void
-} => {
+  vault: Vault
+  // options?: {
+  //   maxShares?: bigint
+  //   onSend?: (txHash: `0x${string}`) => void
+  //   onSuccess?: (txReceipt: TransactionReceipt) => void
+  //   onError?: () => void
+  // }
+) => {
   const { address: userAddress, chain } = useAccount()
 
   const { data: vaultTokenBalance, isFetched: isFetchedVaultTokenBalance } =
@@ -46,69 +48,70 @@ export const useSendWithdrawTransaction = (
     !!vaultTokenBalance &&
     amount <= vaultTokenBalance.amount
 
-  const { data: gasEstimate } = useGasAmountEstimate(
-    vault?.chainId,
-    {
-      address: vault?.address,
-      abi: vaultABI,
-      functionName: 'withdraw',
-      args: !!options?.maxShares
-        ? [amount, userAddress as Address, userAddress as Address, options.maxShares]
-        : [amount, userAddress as Address, userAddress as Address],
-      account: userAddress as Address
-    },
-    { enabled }
-  )
+  // const { data: gasEstimate } = useGasAmountEstimate(
+  //   vault?.chainId,
+  //   {
+  //     address: vault?.address,
+  //     abi: vaultABI,
+  //     functionName: 'withdraw',
+  //     args: !!options?.maxShares
+  //       ? [amount, userAddress as Address, userAddress as Address, options.maxShares]
+  //       : [amount, userAddress as Address, userAddress as Address],
+  //     account: userAddress as Address
+  //   },
+  //   { enabled }
+  // )
 
-  const { data } = useSimulateContract({
-    chainId: vault?.chainId,
-    address: vault?.address,
-    abi: vaultABI,
-    functionName: 'withdraw',
-    args: !!options?.maxShares
-      ? [amount, userAddress as Address, userAddress as Address, options.maxShares]
-      : [amount, userAddress as Address, userAddress as Address],
-    gas: !!gasEstimate ? calculatePercentageOfBigInt(gasEstimate, 1.2) : undefined,
-    query: { enabled }
-  })
+  // const { data } = useSimulateContract({
+  //   chainId: vault?.chainId,
+  //   address: vault?.address,
+  //   abi: vaultABI,
+  //   functionName: 'withdraw',
+  //   args: !!options?.maxShares
+  //     ? [amount, userAddress as Address, userAddress as Address, options.maxShares]
+  //     : [amount, userAddress as Address, userAddress as Address],
+  //   gas: !!gasEstimate ? calculatePercentageOfBigInt(gasEstimate, 1.2) : undefined,
+  //   query: { enabled }
+  // })
 
-  const {
-    data: txHash,
-    isPending: isWaiting,
-    isError: isSendingError,
-    isSuccess: isSendingSuccess,
-    writeContract: _sendWithdrawTransaction
-  } = useWriteContract()
+  // const {
+  //   data: txHash,
+  //   isPending: isWaiting,
+  //   isError: isSendingError,
+  //   isSuccess: isSendingSuccess,
+  //   writeContract: _sendWithdrawTransaction
+  // } = useWriteContract()
 
-  const sendWithdrawTransaction =
-    !!data && !!_sendWithdrawTransaction ? () => _sendWithdrawTransaction(data.request) : undefined
+  // const sendWithdrawTransaction =
+  //   !!data && !!_sendWithdrawTransaction ? () => _sendWithdrawTransaction(data.request) : undefined
 
-  useEffect(() => {
-    if (!!txHash && isSendingSuccess) {
-      options?.onSend?.(txHash)
-    }
-  }, [isSendingSuccess])
+  // useEffect(() => {
+  //   if (!!txHash && isSendingSuccess) {
+  //     options?.onSend?.(txHash)
+  //   }
+  // }, [isSendingSuccess])
 
-  const {
-    data: txReceipt,
-    isFetching: isConfirming,
-    isSuccess,
-    isError: isConfirmingError
-  } = useWaitForTransactionReceipt({ chainId: vault?.chainId, hash: txHash })
+  // const {
+  //   data: txReceipt,
+  //   isFetching: isConfirming,
+  //   isSuccess,
+  //   isError: isConfirmingError
+  // } = useWaitForTransactionReceipt({ chainId: vault?.chainId, hash: txHash })
 
-  useEffect(() => {
-    if (!!txReceipt && isSuccess) {
-      options?.onSuccess?.(txReceipt)
-    }
-  }, [isSuccess])
+  // useEffect(() => {
+  //   if (!!txReceipt && isSuccess) {
+  //     options?.onSuccess?.(txReceipt)
+  //   }
+  // }, [isSuccess])
 
-  const isError = isSendingError || isConfirmingError
+  // const isError = isSendingError || isConfirmingError
 
-  useEffect(() => {
-    if (isError) {
-      options?.onError?.()
-    }
-  }, [isError])
+  // useEffect(() => {
+  //   if (isError) {
+  //     options?.onError?.()
+  //   }
+  // }, [isError])
 
-  return { isWaiting, isConfirming, isSuccess, isError, txHash, txReceipt, sendWithdrawTransaction }
+  // return { isWaiting, isConfirming, isSuccess, isError, txHash, txReceipt, sendWithdrawTransaction }
+  return null
 }

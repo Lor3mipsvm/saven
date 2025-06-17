@@ -7,6 +7,13 @@ import { waitForTransactionReceipt } from 'viem/actions'
 
 const PERMIT_2_VAULT_DEPOSIT_ADDRESS: Address = '0x263f95fF28347F14956dA6c26d51b2701Ed95013'
 
+export type DepositTxOptions = {
+  onSend?: () => void
+  onSuccess?: (depositEvent: ReturnType<typeof decodeDepositEvent>, txHash: Address) => void
+  onSettled?: () => void
+  onError?: () => void
+}
+
 export const decodeDepositEvent = (
   prizeVaultAddress: Address,
   depositTxReceipt: TransactionReceipt
@@ -22,12 +29,7 @@ export const deposit = async (
   publicClient: any,
   prizeVaultAddress: Address,
   prizeVaultAssetAddress?: Address,
-  options?: {
-    onSend?: () => void
-    onSuccess?: (depositEvent: ReturnType<typeof decodeDepositEvent>, txHash: Address) => void
-    onSettled?: () => void
-    onError?: () => void
-  }
+  options?: DepositTxOptions
 ) => {
   // re-write all this and put it in some useSendWorlDepositTransaction hook so we don't have to do this janky stuff:
   if (!prizeVaultAssetAddress) {

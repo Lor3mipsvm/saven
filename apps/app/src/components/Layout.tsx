@@ -14,6 +14,7 @@ import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'
 import { useWalletId } from '@hooks/useWalletId'
+// import Confetti from './Confetti'
 import { Footer } from './Footer'
 import { CheckPrizesModal } from './Modals/CheckPrizesModal'
 // import { DelegateModal } from './Modals/DelegateModal'
@@ -98,6 +99,9 @@ export const Layout = (props: LayoutProps) => {
       </Head>
 
       <Navbar />
+
+      {/* <!-- import and call the `playConfetti` function anywhere in the app to play the confetti animation --> */}
+      {/* <Confetti /> */}
 
       <SettingsModal
         locales={['en', 'de', 'ru', 'ko', 'uk', 'hi', 'es']}

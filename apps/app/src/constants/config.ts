@@ -34,13 +34,6 @@ export const RPC_URLS = {
 } as const
 
 /**
- * EIP 5792 Paymaster URLs
- */
-export const PAYMASTER_URLS: { [chainId: number]: string | undefined } = {
-  [NETWORK.world]: process.env.NEXT_PUBLIC_WORLD_PAYMASTER_URL
-}
-
-/**
  * Default vault lists
  */
 export const DEFAULT_VAULT_LISTS = {

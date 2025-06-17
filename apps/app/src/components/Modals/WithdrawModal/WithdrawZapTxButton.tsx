@@ -1,6 +1,5 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
-  useSend5792WithdrawZapTransaction,
   useSendGenericApproveTransaction,
   useSendWithdrawZapTransaction,
   useToken,
@@ -16,13 +15,12 @@ import {
 import { useAccount } from '@shared/generic-react-hooks'
 import { ApprovalTooltip, TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
-import { supportsEip5792, supportsEip7677, ZAP_SETTINGS } from '@shared/utilities'
+import { ZAP_SETTINGS } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { addRecentTransaction, signInWithWallet } from 'src/utils'
 import { isAddress, parseUnits } from 'viem'
-import { PAYMASTER_URLS } from '@constants/config'
 import { WithdrawModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { withdrawFormShareAmountAtom, withdrawFormTokenAddressAtom } from './WithdrawForm'

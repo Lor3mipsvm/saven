@@ -4,18 +4,19 @@ import {
   useUserVaultDelegationBalance,
   useUserVaultTokenBalance,
   useVaultBalance,
-  useVaultTokenData
+  useVaultTokenAddress,
+  useVaultTokenData,
+  useWorldPublicClient
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
-import { decodeDepositEvent } from 'src/minikit_txs'
+import { useState } from 'react'
+import { decodeDepositEvent, deposit, type DepositTxOptions } from 'src/minikit_txs'
 import { addRecentTransaction, signInWithWallet } from 'src/utils'
-import { Address, Hash, parseUnits, type TransactionReceipt } from 'viem'
-import { useSendDepositTransaction } from '@hooks/useSendDepositTransaction'
+import { Address, Hash, parseUnits } from 'viem'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { depositFormTokenAmountAtom } from './DepositForm'
@@ -80,11 +81,12 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     ? parseUnits(formTokenAmount, decimals as number)
     : 0n
 
-  const options = {
+  const options: DepositTxOptions = {
     onSend: () => {
       console.log('onSend')
-      setModalView('waiting')
       setIsConfirming(true)
+      // setModalView('confirming')
+      setModalView('waiting')
 
       // isDepositing = true
       // toast.loading(`Depositing ...`, {
@@ -111,6 +113,8 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       setDepositTxHash(txHash)
       setDepositShares(decodedEventLogs?.args?.shares)
 
+      // playConfetti()
+
       ///
       ///
 
@@ -128,16 +132,12 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       //   duration: 8000,
       //   style: 'border: 2px solid var(--pt-teal-dark); '
       // })
-      // playConfetti()
 
       // onSuccess(depositEvent?.args?.assets)
     },
     onSettled: () => {
       console.log('onSettled')
-      setModalView('confirming')
       setIsWaiting(true)
-      // updateUserTransferEvents($userAddress, $userTransferEvents ?? [])
-      // updateUserTokenBalances($userAddress)
       // isDepositing = false
     },
     onError: () => {
@@ -152,22 +152,13 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       // })
     }
   }
-  const dataDepositTx = useSendDepositTransaction(depositAmount, vault, options)
-
-  // const sendDepositTransaction = dataDepositTx.sendDepositTransaction
-
-  // const sendDepositTransaction = () =>
-  //   deposit(depositAmount, publicClient, vault.address, tokenData?.address, options)
-
-  const sendDepositTransaction = dataDepositTx.sendDepositTransaction
-  // const depositShares = dataDepositTx.shares as string
-
-  // useEffect(() => {
-  //   if (!!depositTxHash && isConfirmingDeposit && !isWaitingDeposit && !isSuccessfulDeposit) {
-  //   }
-  // }, [depositTxHash, depositShares, isConfirmingDeposit])
+  const { data: tokenAddress, isFetched: isFetchedTokenAddress } = useVaultTokenAddress(vault)
+  const publicClient = useWorldPublicClient()
+  const sendDepositTransaction = () =>
+    deposit(depositAmount, publicClient, vault.address, tokenAddress, options)
 
   const isDataFetched =
+    isFetchedTokenAddress &&
     !isDisconnected &&
     !!userAddress &&
     !!tokenData &&
