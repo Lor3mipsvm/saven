@@ -57,11 +57,12 @@ async function waitForWorldMinikitTransactionHash(transactionId: string): Promis
   while (true) {
     try {
       if (attemptCount > 0) {
-        console.log(`     Retrying:`)
+        console.log(`Retrying:`)
       }
-      console.log(`     Attempt #${attemptCount + 1} ...`)
+      console.log(`Attempt #${attemptCount + 1} ...`)
       const url = `${MINIKIT_TX_API_BASE_URL}/${transactionId}?app_id=${APP_ID}&type=transaction`
-      console.log(url)
+      console.log(`Request URL:`, url)
+
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -69,18 +70,21 @@ async function waitForWorldMinikitTransactionHash(transactionId: string): Promis
         }
       })
 
-      const transaction: WorldMinikitTransaction = await response.json()
-      const { transactionHash } = transaction
+      const transactionResponse: WorldMinikitTransaction = await response.json()
+      const { transactionHash } = transactionResponse
 
       if (transactionHash) {
         return transactionHash
       } else {
+        // @ts-ignore
+        console.error(transactionResponse?.attribute)
+
         console.log('Could not get txHash - retrying...')
         throw new Error('Could not get txHash - retrying...')
       }
     } catch (error) {
-      console.log('     error:')
-      console.error(`     ${error}`)
+      console.log('Error:')
+      console.error(`${error}`)
       if (++attemptCount >= DEFAULT_RETRY_ATTEMPTS) throw error
     }
 
