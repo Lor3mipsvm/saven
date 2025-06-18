@@ -42,7 +42,7 @@ export const PrizesHeader = () => {
         >
           {t_prizes.rich('keepYourDeposit')}
           <br />
-          {t_prizes.rich('winUpTo', { amount: () => <TotalPrizeValue className='ml-0' /> })}
+          {t_prizes.rich('winUpTo', { amount: () => <TotalPrizeValue /> })}
         </span>
         <Link href={`/vaults`} passHref={true}>
           <Button>{t_common('depositToWin')}</Button>
