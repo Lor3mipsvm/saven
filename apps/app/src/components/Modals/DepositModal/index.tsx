@@ -86,13 +86,19 @@ export const DepositModal = (props: DepositModalProps) => {
     }
   }
 
+  const txInFlight = !depositTxHash && view === 'confirming'
+
   const handleClose = () => {
+    if (txInFlight) {
+      return
+    }
     createToast()
     setIsModalOpen(false)
     setView('main')
     setFormTokenAddress(undefined)
     setFormTokenAmount('')
     setFormShareAmount('')
+    setDepositTxHash('')
   }
 
   if (isModalOpen && !!vault) {
@@ -143,6 +149,7 @@ export const DepositModal = (props: DepositModalProps) => {
         bodyContent={modalViews[view]}
         footerContent={modalFooterContent}
         onClose={handleClose}
+        preventClose={txInFlight}
         label='deposit-flow'
         mobileStyle='tab'
         className='isolate'

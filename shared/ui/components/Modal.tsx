@@ -25,12 +25,13 @@ export interface ModalProps {
   footerClassName?: string
   onClose: () => void
   label: string
+  preventClose?: boolean
   hideHeader?: boolean
   mobileStyle?: MobileStyle
 }
 
 export const Modal = (props: ModalProps) => {
-  const { className, onClose, label, mobileStyle, ...rest } = props
+  const { className, onClose, label, mobileStyle, preventClose, ...rest } = props
 
   const [el] = useState<HTMLDivElement>(document.createElement('div'))
 
@@ -127,7 +128,14 @@ export const Modal = (props: ModalProps) => {
       : animations.tab
 
     return ReactDOM.createPortal(
-      <ModalBackdrop label={label} onClose={() => setIsModalShown(false)}>
+      <ModalBackdrop
+        label={label}
+        onClose={() => {
+          if (!preventClose) {
+            setIsModalShown(false)
+          }
+        }}
+      >
         <AnimatePresence onExitComplete={onClose}>
           {isModalShown && (
             <motion.div
