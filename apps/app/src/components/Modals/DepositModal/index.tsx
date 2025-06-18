@@ -5,7 +5,6 @@ import {
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
-import { createDepositTxToast } from '@shared/react-components'
 import { Modal } from '@shared/ui'
 import { LINKS, lower } from '@shared/utilities'
 import classNames from 'classnames'
@@ -48,8 +47,6 @@ export const DepositModal = (props: DepositModalProps) => {
     onSuccessfulDepositWithZap
   } = props
 
-  const t_toasts = useTranslations('Toasts.transactions')
-
   const { vault } = useSelectedVault()
 
   const { isModalOpen, setIsModalOpen } = useIsModalOpen(MODAL_KEYS.deposit, { onClose })
@@ -74,25 +71,12 @@ export const DepositModal = (props: DepositModalProps) => {
     }
   }, [prizePools, vault])
 
-  const createToast = () => {
-    if (!!vault && !!depositTxHash && view === 'confirming') {
-      createDepositTxToast({
-        vault: vault,
-        txHash: depositTxHash,
-        addRecentTransaction,
-        refetchUserBalances,
-        intl: t_toasts
-      })
-    }
-  }
-
   const txInFlight = !depositTxHash && view === 'confirming'
 
   const handleClose = () => {
     if (txInFlight) {
       return
     }
-    createToast()
     setIsModalOpen(false)
     setView('main')
     setFormTokenAddress(undefined)

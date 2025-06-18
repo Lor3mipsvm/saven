@@ -1,4 +1,7 @@
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useSelectedLanguage } from '@shared/generic-react-hooks'
+import { ErrorPooly } from '@shared/react-components'
+import { toast } from '@shared/ui'
 import { Flowbite, Toaster } from '@shared/ui'
 import { MiniKit } from '@worldcoin/minikit-js'
 import { NextIntlClientProvider } from 'next-intl'
@@ -17,13 +20,19 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   const [isReady, setIsReady] = useState<boolean>(false)
 
   useEffect(() => {
-    const appId = process.env.NEXT_PUBLIC_VITE_APP_ID
+    const appId = process.env.NEXT_PUBLIC_MINIKIT_APP_ID
 
     if (isReady) {
       if (!MiniKit.isInstalled()) {
         MiniKit.install(appId)
       }
       if (!MiniKit.isInstalled()) {
+        toast(
+          <ToastLayout id='minikit-not-installed'>
+            <ErrorView />
+          </ToastLayout>,
+          { id: 'minikit-not-installed' }
+        )
         console.error('MiniKit is not installed')
       }
     }
@@ -93,6 +102,38 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
           {isReady && <Component {...pageProps} />}
         </NextIntlClientProvider>
       </Flowbite>
+    </>
+  )
+}
+
+interface ToastLayoutProps {
+  id: string
+  children: ReactNode
+}
+
+const ToastLayout = (props: ToastLayoutProps) => {
+  const { children, id } = props
+
+  return (
+    <div className='relative w-full flex flex-col gap-2 items-center text-center smSonner:w-80'>
+      {children}
+      <XMarkIcon
+        className='absolute top-0 right-0 h-3 w-3 text-pt-purple-100 cursor-pointer'
+        onClick={() => toast.dismiss(id)}
+      />
+    </div>
+  )
+}
+
+const ErrorView = () => {
+  return (
+    <>
+      <ErrorPooly className='w-16 h-auto' />
+      <div className=' flex flex-col items-center text-center'>Minikit failed to install!</div>
+      <span className='text-xs text-pt-purple-100'>
+        This app needs to be run inside the World App. Sign in and transactions will not work in
+        this environment!
+      </span>
     </>
   )
 }

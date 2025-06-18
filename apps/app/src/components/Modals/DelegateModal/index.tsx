@@ -3,11 +3,8 @@ import {
   useVaultTwabController
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
-import { createDelegateTxToast } from '@shared/react-components'
 import { Modal } from '@shared/ui'
-import { useTranslations } from 'next-intl'
 import { useState } from 'react'
-import { addRecentTransaction } from 'src/utils'
 import { DelegateModalBody } from './DelegateModalBody'
 import { DelegateTxButton } from './DelegateTxButton'
 
@@ -21,8 +18,6 @@ export interface DelegateModalProps {
 export const DelegateModal = (props: DelegateModalProps) => {
   const { onClose, onSuccessfulDelegation } = props
 
-  const t_toasts = useTranslations('Toasts.transactions')
-
   const { vault } = useSelectedVault()
 
   const { isModalOpen, setIsModalOpen } = useIsModalOpen(MODAL_KEYS.delegate, { onClose })
@@ -33,19 +28,12 @@ export const DelegateModal = (props: DelegateModalProps) => {
 
   const { data: twabController } = useVaultTwabController(vault!)
 
-  const createToast = () => {
-    if (!!vault && !!delegateTxHash && view === 'confirming') {
-      createDelegateTxToast({
-        vault: vault,
-        txHash: delegateTxHash,
-        addRecentTransaction,
-        intl: t_toasts
-      })
-    }
-  }
+  const txInFlight = !delegateTxHash && view === 'confirming'
 
   const handleClose = () => {
-    createToast()
+    if (txInFlight) {
+      return
+    }
     setIsModalOpen(false)
     setView('main')
   }
@@ -70,6 +58,7 @@ export const DelegateModal = (props: DelegateModalProps) => {
         bodyContent={modalBodyContent}
         footerContent={modalFooterContent}
         onClose={handleClose}
+        preventClose={txInFlight}
         label='delegate-flow'
         hideHeader={true}
         mobileStyle='tab'

@@ -107,13 +107,11 @@ export const Layout = (props: LayoutProps) => {
       />
       <DepositModal
         refetchUserBalances={refetchUserBalances}
-        onSuccessfulApproval={() => {}}
         onSuccessfulDeposit={() => {}}
         onSuccessfulDepositWithZap={() => {}}
       />
       <WithdrawModal
         refetchUserBalances={refetchUserBalances}
-        onSuccessfulApproval={() => {}}
         onSuccessfulWithdrawal={() => {}}
         onSuccessfulWithdrawalWithZap={() => {}}
       />

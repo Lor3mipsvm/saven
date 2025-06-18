@@ -11,7 +11,7 @@ export interface MinikitTxReceiptApiParams {
 }
 
 const MINIKIT_TX_API_BASE_URL = `https://developer.worldcoin.org/api/v2/minikit/transaction`
-const APP_ID = process.env.MINIKIT_APP_ID
+const APP_ID = process.env.NEXT_PUBLIC_MINIKIT_APP_ID
 
 // TODO: Could use exponential backoff
 const DEFAULT_RETRY_ATTEMPTS = 8

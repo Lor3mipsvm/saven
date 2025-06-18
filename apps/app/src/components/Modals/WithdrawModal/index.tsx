@@ -4,7 +4,6 @@ import {
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
-import { createWithdrawTxToast } from '@shared/react-components'
 import { Modal } from '@shared/ui'
 import { lower } from '@shared/utilities'
 import classNames from 'classnames'
@@ -45,8 +44,6 @@ export const WithdrawModal = (props: WithdrawModalProps) => {
     onSuccessfulWithdrawalWithZap
   } = props
 
-  const t_toasts = useTranslations('Toasts.transactions')
-
   const { vault } = useSelectedVault()
 
   const { isModalOpen, setIsModalOpen } = useIsModalOpen(MODAL_KEYS.withdraw, { onClose })
@@ -62,20 +59,12 @@ export const WithdrawModal = (props: WithdrawModalProps) => {
 
   const { data: vaultExchangeRate } = useVaultExchangeRate(vault!)
 
-  const createToast = () => {
-    if (!!vault && !!withdrawTxHash && view === 'confirming') {
-      createWithdrawTxToast({
-        vault: vault,
-        txHash: withdrawTxHash,
-        addRecentTransaction,
-        refetchUserBalances,
-        intl: t_toasts
-      })
-    }
-  }
+  const txInFlight = !withdrawTxHash && view === 'confirming'
 
   const handleClose = () => {
-    createToast()
+    if (txInFlight) {
+      return
+    }
     setIsModalOpen(false)
     setView('main')
     setFormShareAmount('')
@@ -131,6 +120,7 @@ export const WithdrawModal = (props: WithdrawModalProps) => {
         bodyContent={modalViews[view]}
         footerContent={modalFooterContent}
         onClose={handleClose}
+        preventClose={txInFlight}
         label='withdraw-flow'
         mobileStyle='tab'
         className='isolate'

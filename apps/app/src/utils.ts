@@ -1,3 +1,4 @@
+import { toast } from '@shared/ui'
 import { formatNumberForDisplay, NETWORK } from '@shared/utilities'
 import { MiniKit } from '@worldcoin/minikit-js'
 import deepmerge from 'deepmerge'
@@ -118,18 +119,7 @@ export const addRecentTransaction = (args: AddRecentTransactionArgs) => {
 
 export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
   if (!MiniKit.isInstalled()) {
-    // toast.dismiss()
-    // toast.error(
-    //   `Failed !MiniKit.isInstalled(), make sure you're running this miniapp inside of the World Mobile App`,
-    //   {
-    //     duration: 8000,
-    //     style: 'border: 2px solid var(--pt-warning-med); '
-    //   }
-    // )
-    // console.log('failed !MiniKit.isInstalled()')
-    // return
-
-    console.log('failed !MiniKit.isInstalled()')
+    console.error('Failed: MiniKit is not installed!')
     return
   }
 
