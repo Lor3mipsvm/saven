@@ -1,6 +1,7 @@
 import { useDrawsToCheckForPrizes } from '@generationsoftware/hyperstructure-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
+import { Card } from '@shared/ui'
 import { Button, Spinner } from '@shared/ui'
 import { getSimpleDate } from '@shared/utilities'
 import classNames from 'classnames'
@@ -34,39 +35,42 @@ export const CheckPrizesBanner = (props: CheckPrizesBannerProps) => {
   }
 
   return (
-    <div
-      className={classNames(
-        'relative w-full flex flex-col gap-4 items-center justify-between px-8 py-6 text-pt-purple-300 bg-pt-purple-700 font-medium rounded-md isolate',
-        'md:flex-row',
-        className
-      )}
-    >
-      <div className='flex flex-col text-center text-sm md:text-start lg:text-base'>
-        {isFetchedDrawsToCheck ? (
-          !!drawsToCheck?.totalCount ? (
-            <>
-              <span>{t('eligibleDraws', { number: drawsToCheck.totalCount })}</span>
-              <DateRange timestamps={drawsToCheck.timestamps} className='text-pt-purple-100' />
-            </>
+    <div className='relative w-screen flex justify-center gap-8 overflow-hidden mt-2 mb-4'>
+      <Card className='w-[calc(100vw-2rem)] shrink-0 lg:w-[38rem] gap-2 text-pt-purple-200'>
+        <div className='flex flex-col text-center md:text-start lg:text-base'>
+          {isFetchedDrawsToCheck ? (
+            !!drawsToCheck?.totalCount ? (
+              <>
+                <span className='text-lg'>
+                  {t('eligibleDraws', { number: drawsToCheck.totalCount })}
+                </span>
+                <span className='text-sm'>
+                  <DateRange timestamps={drawsToCheck.timestamps} className='text-pt-purple-100' />
+                </span>
+              </>
+            ) : (
+              <>
+                <span>{t('caughtUp')}</span>
+                <span className='text-pt-purple-100'>{t('noNewDraws')}</span>
+              </>
+            )
           ) : (
             <>
-              <span>{t('caughtUp')}</span>
-              <span className='text-pt-purple-100'>{t('noNewDraws')}</span>
+              <span>{t('checkingEligibleDraws')}</span>
+              <Spinner className='mx-auto mt-1 md:ml-0' />
             </>
-          )
-        ) : (
-          <>
-            <span>{t('checkingEligibleDraws')}</span>
-            <Spinner className='mx-auto mt-1 md:ml-0' />
-          </>
+          )}
+        </div>
+        {isFetchedDrawsToCheck && !!drawsToCheck?.totalCount && (
+          <Button
+            onClick={() => setIsModalOpen(true)}
+            disabled={!isFetchedDrawsToCheck || !drawsToCheck?.totalCount}
+            className='w-100 mx-auto'
+          >
+            {t('checkPrizes')}
+          </Button>
         )}
-      </div>
-      <Button
-        onClick={() => setIsModalOpen(true)}
-        disabled={!isFetchedDrawsToCheck || !drawsToCheck?.totalCount}
-      >
-        <span className='text-xs lg:text-sm'>{t('checkPrizes')}</span>
-      </Button>
+      </Card>
     </div>
   )
 }

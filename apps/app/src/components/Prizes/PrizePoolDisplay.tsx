@@ -20,12 +20,12 @@ export const PrizePoolDisplay = (props: PrizePoolDisplayProps) => {
 
   return (
     <div className={classNames('flex flex-col items-center text-center', className)}>
-      <span className='text-2xl font-averta text-pt-teal-dark font-medium md:text-4xl'>
+      <span className='text-2xl font-averta text-pt-purple-200 font-medium md:text-4xl'>
         {t('currentPrizes')}
       </span>
-      <PrizePoolCarousel onNetworkChange={onNetworkChange} className='mt-8 mb-4' />
+      <PrizePoolCarousel onNetworkChange={onNetworkChange} className='mt-2 mb-4' />
       <span>
-        *
+        *&nbsp;
         {t.rich('learnMore', {
           link: (chunks) => (
             <ExternalLink
@@ -89,7 +89,6 @@ const PrizePoolCarousel = (props: PrizePoolCarouselProps) => {
     !!chainId && handleNetworkChange(chainId)
   }, [prizePoolIndex])
 
-
   return (
     <div
       className={classNames(
@@ -99,7 +98,7 @@ const PrizePoolCarousel = (props: PrizePoolCarouselProps) => {
     >
       <PrizePoolPrizesCard
         prizePool={prizePoolsArray[prizePoolIndex]}
-        className='w-[calc(100vw-4rem)] shrink-0 lg:w-[38rem]'
+        className='w-[calc(100vw-2rem)] shrink-0 lg:w-[38rem]'
       />
     </div>
   )

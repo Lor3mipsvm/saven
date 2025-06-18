@@ -27,6 +27,12 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
         MiniKit.install(appId)
       }
       if (!MiniKit.isInstalled()) {
+        // Dev check
+        // @ts-ignore
+        if (window?.location.href.match(/localhost/)?.length > 0) {
+          return
+        }
+
         toast(
           <ToastLayout id='minikit-not-installed'>
             <ErrorView />

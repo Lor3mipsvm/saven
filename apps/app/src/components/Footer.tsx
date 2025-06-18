@@ -114,7 +114,7 @@ export const Footer = () => {
               <FlowbiteFooter.Title
                 theme={{ base: 'mb-6' }}
                 title={item.title}
-                className={classNames('text-pt-teal-dark', item.titleClassName)}
+                className={classNames('text-pt-purple-300 font-bold', item.titleClassName)}
               />
               <FlowbiteFooter.LinkGroup theme={{ base: 'flex flex-col gap-6 text-pt-purple-100' }}>
                 {item.content.map((content, i) => {

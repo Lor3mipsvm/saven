@@ -53,7 +53,8 @@
     "withdrawAnyTime": "You can withdraw your full deposit at any time"
   },
   "Prizes": {
-    "winUpTo": "Keep your deposit. Win up to <amount></amount>",
+    "keepYourDeposit": "Keep your deposit.",
+    "winUpTo": "Win up to <amount></amount>",
     "currentPrizes": "Current Prizes",
     "networkPrizes": "{network} Prizes",
     "learnMore": "Prizes and frequencies are estimations. <link>Learn how PoolTogether works</link>",
