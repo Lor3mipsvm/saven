@@ -112,9 +112,8 @@ interface AddRecentTransactionArgs {
   description: string
 }
 export const addRecentTransaction = (args: AddRecentTransactionArgs) => {
-  console.log('args')
   console.log(args)
-  // alert('implement me!')
+  console.warn('addRecentTransaction() implement me!?')
 }
 
 export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {

@@ -80,7 +80,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
 
   const options: DepositTxOptions = {
     onSend: () => {
-      console.log('onSend')
       setIsConfirming(true)
       setModalView('confirming')
     },

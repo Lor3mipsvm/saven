@@ -114,8 +114,6 @@ export const sendDepositTx = async (
       options?.onSend?.()
 
       const txReceipt = await getTxReceipt(publicClient, finalPayload)
-      console.log('txReceipt')
-      console.log(txReceipt)
 
       if (txReceipt) {
         options?.onSuccess?.(txReceipt, txReceipt.transactionHash)

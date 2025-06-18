@@ -16,20 +16,18 @@ import {
   lower
 } from '@shared/utilities'
 import { useTranslations } from 'next-intl'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import ConfettiExplosion from 'react-confetti-explosion'
 import { Address, decodeEventLog, TransactionReceipt } from 'viem'
 import { useTransactionReceipt } from 'wagmi'
 
 interface SuccessViewProps {
   vault: Vault
-  isExploding: (isExploding: boolean) => void
-  setIsExploding: (isExploding: boolean) => void
   txHash?: string
 }
 
 export const SuccessView = (props: SuccessViewProps) => {
-  const { vault, setIsExploding, txHash } = props
+  const { vault, txHash } = props
 
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
@@ -43,25 +41,11 @@ export const SuccessView = (props: SuccessViewProps) => {
     hash: txHash as `0x${string}`
   })
 
-  console.log(!!userAddress)
-  console.log(!!share)
-  console.log(!!txReceipt)
-
   const sharesReceived = useMemo(() => {
     if (!!userAddress && !!share && !!txReceipt) {
       return getSharesReceived(userAddress, share, txReceipt)
     }
   }, [userAddress, share, txReceipt])
-
-  useEffect(() => {
-    setIsExploding(true)
-
-    const timer = setTimeout(() => {
-      setIsExploding(false)
-    }, 4000)
-
-    return () => clearTimeout(timer) // Cleanup function
-  }, [])
 
   const formattedSharesReceived =
     !!share && !!sharesReceived
@@ -70,13 +54,39 @@ export const SuccessView = (props: SuccessViewProps) => {
   const tokens = `${formattedSharesReceived} ${share?.symbol}`
   const name = getBlockExplorerName(vault.chainId)
 
+  const [isExploding, setIsExploding] = useState<boolean>(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('isExplode true')
+      setIsExploding(true)
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  })
+
   return (
     <div className='flex flex-col gap-6 items-center'>
-      <div className='flex flex-col gap-3 items-center'>
+      <div className='text-center mx-auto'>
+        {isExploding && (
+          <>
+            <ConfettiExplosion
+              force={0.8}
+              duration={6000}
+              particleCount={300}
+              zIndex={1000}
+              width={1200}
+              colors={['#FFB636', '#35F0D0', '#FA48E8', '#5D3A97']}
+            />
+          </>
+        )}
+      </div>
+      <div className='flex flex-col gap-3 items-center -mt-4'>
         <div className='flex flex-col items-center text-lg font-medium text-center'>
           <span className='text-pt-teal'>{t_modals('success')}</span>
           <span>{!!sharesReceived ? t_modals('gotTokens', { tokens }) : <Spinner />}</span>
         </div>
+
         <PrizePoolBadge
           chainId={vault.chainId}
           hideBorder={true}
@@ -84,15 +94,6 @@ export const SuccessView = (props: SuccessViewProps) => {
           className='!py-1'
         />
         <SuccessPooly className='w-40 h-auto mt-3' />
-        {isExploding && (
-          <ConfettiExplosion
-            // portal={false}
-            force={0.8}
-            duration={3000}
-            particleCount={250}
-            width={1600}
-          />
-        )}
       </div>
       <span className='text-sm text-center md:text-base'>{t_modals('nowEligible')}</span>
       {!!txHash && (

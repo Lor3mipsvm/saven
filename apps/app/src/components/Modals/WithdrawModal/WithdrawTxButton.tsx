@@ -93,7 +93,6 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
 
   const options: WithdrawTxOptions = {
     onSend: () => {
-      console.log('onSend')
       setIsConfirming(true)
       setModalView('confirming')
     },

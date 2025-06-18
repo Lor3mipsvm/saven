@@ -58,8 +58,6 @@ export const DepositModal = (props: DepositModalProps) => {
 
   const [depositTxHash, setDepositTxHash] = useState<string>()
 
-  const [isExploding, setIsExploding] = useState(false)
-
   const [formTokenAddress, setFormTokenAddress] = useAtom(depositFormTokenAddressAtom)
   const setFormTokenAmount = useSetAtom(depositFormTokenAmountAtom)
   const setFormShareAmount = useSetAtom(depositFormShareAmountAtom)
@@ -88,18 +86,6 @@ export const DepositModal = (props: DepositModalProps) => {
     }
   }
 
-  // useEffect(() => {
-  //   if (depositTxHash) {
-  //     setIsExploding(true)
-
-  //     const timer = setTimeout(() => {
-  //       setIsExploding(false)
-  //     }, 4000)
-
-  //     return () => clearTimeout(timer) // Cleanup function
-  //   }
-  // }, [depositTxHash])
-
   const handleClose = () => {
     createToast()
     setIsModalOpen(false)
@@ -115,7 +101,7 @@ export const DepositModal = (props: DepositModalProps) => {
       review: <ReviewView vault={vault} prizePool={prizePool!} />,
       waiting: <WaitingView vault={vault} closeModal={handleClose} />,
       confirming: <ConfirmingView vault={vault} txHash={depositTxHash} closeModal={handleClose} />,
-      success: <SuccessView setIsExploding={setIsExploding} vault={vault} txHash={depositTxHash} />,
+      success: <SuccessView vault={vault} txHash={depositTxHash} />,
       error: <ErrorView setModalView={setView} />
     }
 
