@@ -138,6 +138,13 @@ export const NATIVE_ASSETS: Record<number, Token> = {
     symbol: 'ETH',
     name: 'Ether',
     decimals: 18
+  },
+  [NETWORK.mainnet]: {
+    chainId: NETWORK.mainnet,
+    address: DOLPHIN_ADDRESS,
+    symbol: 'ETH',
+    name: 'Ether',
+    decimals: 18
   }
 }
 

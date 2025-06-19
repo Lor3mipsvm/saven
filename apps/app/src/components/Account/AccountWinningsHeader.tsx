@@ -31,7 +31,7 @@ export const AccountWinningsHeader = (props: AccountWinningsHeaderProps) => {
   // const { data: ensName } = useEnsName({ chainId: NETWORK.mainnet, address: userAddress })
 
   return (
-    <div className={classNames('flex flex-col items-center gap-1 md:gap-2', className)}>
+    <div className={classNames('flex flex-col items-center  md:gap-2', className)}>
       <span className='text-sm text-pt-purple-100 md:text-base'>
         {isExternalUser
           ? t('externalAccountWinnings', {

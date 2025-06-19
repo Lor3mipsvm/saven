@@ -130,6 +130,9 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
   const { token, className } = props
 
+  // Override for World Chain pricing only
+  token.chainId = 480
+
   const t = useTranslations('Account.prizeChecking')
 
   const { selectedCurrency } = useSelectedCurrency()

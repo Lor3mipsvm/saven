@@ -1,3 +1,4 @@
+import { NATIVE_ASSETS, NETWORK } from '@shared/utilities'
 import { NextResponse } from 'next/server'
 
 const ALCHEMY_TOKEN_PRICE_API_URL =
@@ -15,6 +16,7 @@ const getDate = () => {
 }
 
 const TOKEN_ADDRESSES = {
+  ETH: NATIVE_ASSETS[NETWORK.mainnet].address,
   WLD: '0x2cFc85d8E48F8EAB294be644d9E25C3030863003'.toLowerCase(),
   POOL: '0x7077C71B4AF70737a08287E279B717Dcf64fdC57'.toLowerCase()
 }
@@ -37,9 +39,14 @@ export async function GET(): Promise<NextResponse> {
           date: getDate(),
           price: Number(result.prices[TOKEN_ADDRESSES.POOL])
         }
+      ],
+      [TOKEN_ADDRESSES.ETH]: [
+        {
+          date: getDate(),
+          price: 1
+        }
       ]
     }
-
     return NextResponse.json(tokenPriceApiOutput, { status: 200 })
   } catch {
     return NextResponse.json({ message: 'Could not fetch token price data' }, { status: 500 })

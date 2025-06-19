@@ -104,19 +104,19 @@ export const Footer = () => {
       }}
       className='bg-pt-purple-600'
     >
-      <div className='w-full max-w-6xl flex justify-between gap-16 text-sm flex-wrap md:text-base'>
+      <div className='w-full max-w-6xl flex justify-between gap-10 text-sm flex-col md:flex-row md:flex-wrap md:text-base'>
         {footerItems.map((item) => {
           return (
             <div
               key={`ft-${item.title.toLowerCase().replaceAll(' ', '-')}`}
-              className={classNames('w-24 grow', item.className)}
+              className={classNames('w-full md:w-24 grow', item.className)}
             >
               <FlowbiteFooter.Title
-                theme={{ base: 'mb-6' }}
+                theme={{ base: 'mb-2' }}
                 title={item.title}
                 className={classNames('text-pt-purple-300 font-bold', item.titleClassName)}
               />
-              <FlowbiteFooter.LinkGroup theme={{ base: 'flex flex-col gap-6 text-pt-purple-100' }}>
+              <FlowbiteFooter.LinkGroup theme={{ base: 'flex flex-col gap-3 text-pt-purple-100' }}>
                 {item.content.map((content, i) => {
                   return (
                     <FooterItemContent

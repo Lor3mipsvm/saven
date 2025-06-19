@@ -89,9 +89,9 @@ export const Navbar = () => {
       svg: (
         <svg
           className='md:hidden'
-          viewBox='0 0 22 22'
-          height='24'
-          width='24'
+          viewBox='0 0 20 24'
+          height='22'
+          width='20'
           xmlns='http://www.w3.org/2000/svg'
         >
           <path
