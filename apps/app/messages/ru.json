@@ -9,6 +9,7 @@
     "manage": "Управление",
     "deposit": "Депозит",
     "withdraw": "Вывести",
+    "delegate": "Delegate",
     "learnMore": "Подробнее",
     "back": "Назад",
     "signIn": "Sign In",
@@ -17,7 +18,20 @@
     "close": "Закрыть",
     "learnAboutRisks": "Узнайте о рисках",
     "readDocs": "Читайте документы",
-    "termsOfService": "Условия предоставления услуг"
+    "termsOfService": "Условия предоставления услуг",
+    "bonusRewards": "Bonus Rewards",
+    "claim": "Claim",
+    "apr": "APR",
+    "warning": "Warning",
+    "cabanaPoweredBy": "Powered by",
+    "new": "New",
+    "before": "Before",
+    "after": "After",
+    "distribution": "Distribution",
+    "nextClaim": "Next Claim",
+    "date": "Date",
+    "allTime": "All Time",
+    "draws": "Draws"
   },
   "Navigation": {
     "home": "Главная",
@@ -27,9 +41,26 @@
     "account": "Счет"
   },
   "Home": {
+    "winUpTo": "Deposit <token></token> to win up to <amount></amount>",
     "withdrawAnyTime": "Вы можете снять весь депозит в любое время"
   },
   "Prizes": {
+    "keepYourDeposit": "Keep your deposit.",
+    "winUpTo": "Win up to <amount></amount>",
+    "currentPrizes": "Current Prizes",
+    "networkPrizes": "{network} Prizes",
+    "learnMore": "Prizes and frequencies are estimations. <link>Learn how PoolTogether works</link>",
+    "prize": "Prize",
+    "frequency": "Frequency",
+    "recentWinners": "Recent Winners",
+    "drawWinners": {
+      "beforeValue": "{numPeople, plural, one {# person} other {# people}} won",
+      "afterValue": {
+        "today": "today",
+        "yesterday": "yesterday",
+        "onXDate": "on {date}"
+      }
+    },
     "drawModal": {
       "drawTotal": {
         "beforeValue": "В этом розыгрыше на {numWallets} уникальных кошельков было выиграно в общей сложности",
@@ -42,17 +73,13 @@
     }
   },
   "Vaults": {
-    "filter": "Фильтр",
-    "filters": {
-      "showAll": "Показать все",
-      "inWallet": "В вашем кошельке",
-      "stablecoins": "Стабильные монеты",
-      "allVaultLists": "Все списки хранилищ"
-    },
-    "manageVaultLists": "Управление списками хранилищ",
-    "clearFilters": "Очистить фильтры",
-    "disclaimer": "Призовые хранилища PoolTogether могут быть развернуты любым человеком. <link>Знайте, во что вы вкладываете деньги</link>",
+    "depositAndWin": "Deposit tokens, <highlight>win prizes</highlight>. Withdraw anytime, <highlight>no loss</highlight>",
     "headers": {
+      "prizeVault": "Prize Vault",
+      "prizeYield": "Prize Yield",
+      "bonusRewards": "Bonus Rewards",
+      "prizes": "Prizes",
+      "winChance": "Win Chance",
       "totalDeposits": "Итого депозиты",
       "yourBalance": "Ваш баланс"
     }
@@ -63,32 +90,55 @@
       "yourWinChance": "Ваш шанс на победу",
       "balance": "Баланс",
       "winChance": "Шанс на победу",
+      "prizeYield": "Prize Yield",
+      "bonusRewards": "Bonus Rewards",
       "tvl": "TVL",
+      "sponsoredTvl": "Sponsored TVL",
+      "sponsoredTvlMultiplier": "Effective Sponsored Multiplier",
+      "totalDeposited": "Total Deposited",
+      "contributions": "Prize Pool Contributions",
       "depositToken": "Токен депозита",
       "prizeToken": "Призовой жетон",
       "delegatedToYou": "Делегирование полномочий",
       "delegatedAmount": "Делегированная сумма",
       "vaultFee": "Плата за хранилище",
       "feeRecipient": "Получатель вознаграждения",
-      "yieldSource": "Источник урожайности"
+      "yieldSource": "Источник урожайности",
+      "lpSource": "Liquidity Pair Source",
+      "vaultOwner": "Vault Owner"
     },
     "returnToVaults": "Вернуться в хранилища",
     "learnAboutVault": "Узнайте о {vaultName}",
+    "smartContractRisk": "PoolTogether is a permissionless protocol that anyone can use to deploy prize vaults. <docsLink>Read our documentation</docsLink> to learn more. This prize vault exposes you to smart contract risk related to the <vaultLink>vault contract</vaultLink> and its underlying <yieldLink>yield contract</yieldLink>.",
     "vaultContract": "Договор хранения",
     "yieldSourceContract": "Контракт с источником дохода",
-    "inVaultLists": "Данное хранилище призов находится в следующих выбранных Вами списках хранилищ:",
-    "notInVaultLists": "Данного призового хранилища нет ни в одном из выбранных вами списков хранилищ.",
-    "shortWarningNotInVaultLists": "Внимание! Данного хранилища нет ни в одном из ваших активных списков."
+    "noWinnersYet": "No winners yet",
+    "noContributionsYet": "No contributions yet",
+    "rewardsInTokens": {
+      "oneToken": "in <token></token>",
+      "twoTokens": "in <firstToken></firstToken> and <secondToken></secondToken>",
+      "manyTokens": "in <token></token> & {number} others"
+    },
+    "poolStaking": {
+      "reserveRate": "POOL Reserve Rate",
+      "wherePrizesComeFrom": "Where <highlight>Prize POOL</highlight> prizes come from",
+      "reserveDescription": "The {token} in the <highlight>POOL reserve</highlight> goes to this vault and is distributed as prizes!",
+      "percentageOfYield": "{number}% of yield",
+      "nDayNetworkYield": "{number}D Network Yield",
+      "nDayPoolReserve": "{number}D POOL Reserve",
+      "lastNDays": "last {number} days",
+      "lastNDraws": "last {number} draws"
+    }
   },
   "Account": {
     "connectWallet": "Подключите свой кошелек для просмотра состояния счета",
-    "noVaultLists": "У вас не выбрано ни одного списка хранилищ.",
     "noPrizeTokens": "У вас нет призовых жетонов.",
     "depositNow": "Депозит сейчас.",
     "yourDeposits": "Ваши депозиты",
     "yourDelegations": "Делегирование полномочий",
     "yourWinnings": "Ваши выигрыши",
     "delegatedTo": "Делегировано <link>{account}</link>",
+    "sponsoring": "Sponsoring",
     "externalAccountDeposits": "Депозиты {account}",
     "externalAccountDelegations": "Делегирование полномочий на {account}",
     "externalAccountWinnings": "Выигрыши {account}",
@@ -97,13 +147,29 @@
     "oneInXChance": "1 в {number}",
     "noPrizesRecently": "В последнее время Вы не выигрывали никаких призов.",
     "learnHowItWorks": "Узнайте, как работает PoolTogether",
+    "claimRewardsTx": "{symbol} Rewards Claim",
+    "claimAllRewardsTx": "{network} Multi-Rewards Claim",
+    "claimAllOnNetwork": "Claim all on {network}",
+    "claimSoon": "Claim soon!",
     "winHeaders": {
       "date": "Дата",
+      "prizeVault": "Prize Vault",
       "winnings": "Выигрыши",
       "moreInfo": "Дополнительная информация"
     },
+    "bonusRewardHeaders": {
+      "prizeVault": "Prize Vault",
+      "rewardToken": "Reward Token",
+      "rewardsEarned": "Rewards Earned",
+      "rewardsClaimed": "Claimed Rewards",
+      "rewardsClaimable": "Unclaimed Rewards",
+      "claims": "Claims"
+    },
     "prizeChecking": {
+      "checkingEligibleDraws": "Checking for eligible draws...",
       "eligibleDraws": "Вы имели право на {number, plural, one {# draw} other {# draws}}",
+      "caughtUp": "All caught up!",
+      "noNewDraws": "No new eligible draws to check.",
       "totalPrizes": {
         "beforeValue": "Итоговый",
         "afterValue": "в разделе Премии"
@@ -121,41 +187,55 @@
     "depositToShort": "Депозит на имя {name}",
     "withdrawFrom": "Выйти из{name} в {network}",
     "withdrawFromShort": "Выйти из{name}",
-    "fees": {
-      "title": "Расчетные сетевые тарифы",
-      "approval": "Утверждение",
-      "deposit": "Депозит",
-      "withdrawal": "Вывод средств"
-    },
+    "delegateFrom": "Delegate your {name} on {network}",
+    "delegateFromShort": "Delegate your {name}",
+    "delegateSelfDescription": "You are delegating to yourself. Any prize your {tokens} deposit wins will go to your wallet.",
+    "delegateDescription": "The delegated address receives any prizes your {tokens} deposit wins.",
+    "delegatedAddress": "Delegated Address",
+    "changeDelegateAddress": "Change delegate address",
+    "changeDelegateAddressShort": "Edit Delegate",
+    "updateDelegatedAddress": "Update delegated address",
     "dailyChances": "Ежедневные шансы на выигрыш",
     "weeklyChances": "Еженедельные шансы на выигрыш",
+    "monthlyChances": "Monthly Chance of Winning",
     "oneInXChance": "1 в{number}",
     "max": "Макс",
     "balance": "Баланс:",
     "enterAnAmount": "Введите сумму",
     "approvalButton": "Утвердить{symbol}",
+    "approvalTx": "{symbol} Approval",
+    "reviewDelegation": "Review Delegation",
     "reviewDeposit": "Обзорный депозит",
     "reviewWithdrawal": "Отзыв отзыва",
     "confirmDeposit": "Подтвердить депозит",
     "confirmWithdrawal": "Подтвердить снятие с учета",
     "depositTx": "{symbol} Депозит",
     "withdrawTx": "{symbol} Вывод средств",
-    "switchNetwork": "Переключиться на {network}",
-    "switchingNetwork": "Переход на{network}...",
+    "delegateTx": "{symbol} Delegation",
     "confirmNotice": "Подтверждение транзакции в кошельке",
     "submissionNotice": "Представленная сделка",
     "depositing": "Внесение {tokens}...",
+    "depositingInto": "Depositing into {vault}",
     "withdrawing": "Вывод {tokens}...",
+    "withdrawingFrom": "Withdrawing from {vault}",
+    "delegating": "Delegating {tokens}...",
     "success": "Успехов!",
     "deposited": "Вы депонировали{tokens}",
+    "gotTokens": "You got {tokens}",
     "withdrew": "Вы отказались от участия{tokens}",
+    "delegated": "You delegated {tokens}",
     "nowEligible": "Теперь вы имеете право участвовать во всех последующих розыгрышах этого пула.",
+    "shareOn": "Share on",
     "viewAccount": "Просмотр счета",
+    "waiting": "Waiting for Transaction",
     "uhOh": "Ой!",
     "failedTx": "Что-то пошло не так....",
     "tryAgain": "Попробуйте еще раз",
-    "risksDisclaimer": "PoolTogether - это протокол без права доступа. Призовые хранилища могут быть развернуты кем угодно. Убедитесь в том, что вы знаете, во что вкладываете деньги. <vaultLink>Узнайте больше об этом призовом хранилище.</vaultLink>",
-    "depositDisclaimer": "Нажимая кнопку \"Подтвердить депозит\", вы соглашаетесь с <tosLink>Условиями обслуживания</tosLink> компании Cabana. Щелкните <vaultLink>здесь</vaultLink>, чтобы узнать больше о хранилище, в которое вы вносите депозит."
+    "depositDisclaimer": "Нажимая кнопку \"Подтвердить депозит\", вы соглашаетесь с <tosLink>Условиями обслуживания</tosLink> компании Cabana. Щелкните <vaultLink>здесь</vaultLink>, чтобы узнать больше о хранилище, в которое вы вносите депозит.",
+    "findingZapRoute": "Finding zap route...",
+    "noZapRouteFound": "No zap route available",
+    "priceImpact": "Price Impact",
+    "minimumReceived": "Minimum Received"
   },
   "Footer": {
     "titles": {
@@ -170,8 +250,8 @@
     "extensions": "Расширения",
     "governance": "Управление",
     "security": "Безопасность",
-    "enableTestnets": "Включить тестовые сети",
-    "disableTestnets": "Отключить Testnets"
+    "termsAndConditions": "Terms and Conditions",
+    "privacyPolicy": "Privacy Policy"
   },
   "Settings": {
     "customizeExperience": "Настройте свой опыт",
@@ -180,15 +260,8 @@
     "changeCurrency": "Изменение валюты",
     "changeLanguage": "Изменить язык",
     "viewEcosystem": "Просмотр экосистемы",
-    "manageVaultLists": "Управление списками хранилищ",
     "getHelp": "Получить помощь",
     "getHelpWithCabana": "Получить помощь в использовании Cabana",
-    "vaultListsDescription": "Списки хранилищ определяют, какие хранилища призов отображаются в приложении. Будьте осторожны при работе с импортированными списками.",
-    "learnMoreVaultLists": "Подробнее о списках хранилищ",
-    "urlInput": "https:// или ipfs:// или имя ENS",
-    "addVaultList": "Добавить список хранилищ",
-    "clearImportedVaultLists": "Очистить все импортированные списки хранилищ",
-    "imported": "Импорт"
   },
   "Abbreviations": {
     "days": "дней",
@@ -198,6 +271,9 @@
   },
   "Frequency": {
     "daily": "Ежедневно",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
     "everyXdays": "Каждые {number} дней",
     "everyXweeks": "Каждые {number} недель",
     "everyXmonths": "Каждые {number} месяцев",
@@ -205,32 +281,47 @@
     "xPrizesDaily": "{number, plural, one {# приз} other {# призы}} ежедневно",
     "xPrizesWeekly": "{number, plural, one {# приз} other {# призы}} еженедельник",
     "xPrizesMonthly": "{number, plural, one {# приз} other {# призы}} ежемесячно",
-    "xPrizesYearly": "{number, plural, one {# приз} other {# призы}} ежегодно"
+    "xPrizesYearly": "{number, plural, one {# приз} other {# призы}} ежегодно",
+    "lessThanAnHour": "In less than an hour",
+    "inXhours": "In {number, plural, one {# hour} other {# hours}}",
+    "inXdays": "In {number, plural, one {# day} other {# days}}",
+    "inXweeks": "In {number, plural, one {# week} other {# weeks}}",
+    "inXmonths": "In {number, plural, one {# month} other {# months}}"
   },
   "Tooltips": {
+    "prizes": "Prizes you can win while deposited in a vault",
+    "relativeWinChance": "A vault's relative win chance compared to other vaults",
     "prizeYield": "Недавнее среднее значение взносов хранилища в призовой фонд",
+    "bonusRewards": "An estimate of current extra incentives for depositors",
     "winChance": "Ваш шанс выиграть приз в любом розыгрыше",
     "approval": "Вы даете согласие на внесение определенной суммы {symbol}",
     "vaultFee": "Процент доходности, который не идет на выплату призов и определяется развертывателем хранилища",
-    "importedVault": "Данное хранилище относится к следующему импортируемому списку (s):"
+    "importedVault": "Данное хранилище относится к следующему импортируемому списку (s):",
+    "vaultContribution": "The amount of {symbol} contributed to the prize pool, enabling wins in this vault",
+    "vaultContributionWithDays": "The amount of {symbol} contributed to the prize pool over the last {days} days, enabling wins in this vault",
+    "deprecatedVault": "This vault has been deprecated. It may still be eligible to win prizes, but we encourage users to migrate to other vaults.",
+    "wrongPrizePoolVault": "This vault is connected to a prize pool not supported by this interface.",
+    "badPrecisionPerDollar": "This vault is likely to have rounding errors which may lead to lossy withdrawals.",
+    "delegateDescription": "By default the prize token holder is the delegated address. That can be overridden with delegation.",
+    "winChanceChart": {
+      "none": "No win chance",
+      "lowest": "Lowest win chance",
+      "low": "Low win chance",
+      "average": "Average win chance",
+      "high": "High win chance",
+      "highest": "Highest win chance"
+    }
   },
   "Error": {
     "oops": "Упс!",
-    "noVaultListsEnabled": "Похоже, что у вас не включены действительные списки хранилищ.",
-    "noVaultsMatchingFilters": "Хранилища, соответствующие вашим фильтрам, отсутствуют.",
-    "vaultInvalidNetwork": "Сеть этого хранилища не поддерживается.",
-    "vaultEnableTestnets": "Если вы хотите просмотреть хранилище testnet, убедитесь, что в приведенных ниже настройках включена опция \"Enable Testnets\".",
-    "vaultDisableTestnets": "Если вы хотите просмотреть хранилище основной сети, убедитесь, что в настройках ниже стоит \"Отключить тестовые сети\".",
-    "vaultInvalidInterface": "Это не похоже на действительный адрес хранилища.",
-    "vaultQueryError": "При запросе информации об этом хранилище что-то пошло не так.",
     "hmmm": "Хммм...",
     "pageNotFound": "Мы не смогли найти страницу, которую Вы ищете.",
     "return": "Возвращение в бассейн",
     "formErrors": {
-      "invalidSrc": "Не является действительным URL или доменом ENS",
-      "invalidVaultList": "Действительный список хранилищ не найден",
       "notEnoughTokens": "Недостаточно {symbol} в кошельке",
       "invalidNumber": "Введите действительный номер",
+      "invalidAddress": "Enter a valid EVM address",
+      "sameAsDelegate": "Entered address is same as current delegate",
       "negativeNumber": "Введите положительное число",
       "tooManyDecimals": "Слишком много десятичных дробей"
     }
