@@ -153,7 +153,7 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
         disabled={!withdrawEnabled}
         addRecentTransaction={addRecentTransaction}
         signInWithWallet={signInWithWallet}
-        intl={{ base: t_modals, common: t_common }}
+        intl={{ common: t_common }}
       >
         {t_modals('confirmWithdrawal')}
       </TransactionButton>

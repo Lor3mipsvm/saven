@@ -15,7 +15,7 @@ export interface TransactionButtonProps extends Omit<ButtonProps, 'onClick'> {
   txHash?: string
   txDescription?: string
   addRecentTransaction?: (tx: { hash: string; description: string; confirmations?: number }) => void
-  intl?: { base?: Intl<'switchNetwork' | 'switchingNetwork'>; common?: Intl<'signIn'> }
+  intl?: { common?: Intl<'signIn'> }
   innerClassName?: string
 }
 

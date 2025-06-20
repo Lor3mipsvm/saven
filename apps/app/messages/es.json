@@ -9,6 +9,7 @@
     "manage": "Gestionar",
     "deposit": "Depositar",
     "withdraw": "Retirar",
+    "delegate": "Delegate",
     "learnMore": "Más información",
     "back": "Atrás",
     "signIn": "Sign In",
@@ -21,7 +22,16 @@
     "bonusRewards": "Recompensas Extras",
     "claim": "Reclamar",
     "apr": "APR",
-    "warning": "Advertencia"
+    "warning": "Advertencia",
+    "cabanaPoweredBy": "Powered by",
+    "new": "New",
+    "before": "Before",
+    "after": "After",
+    "distribution": "Distribution",
+    "nextClaim": "Next Claim",
+    "date": "Date",
+    "allTime": "All Time",
+    "draws": "Draws"
   },
   "Navigation": {
     "home": "Inicio",
@@ -31,9 +41,26 @@
     "account": "Cuenta"
   },
   "Home": {
+    "winUpTo": "Deposit <token></token> to win up to <amount></amount>",
     "withdrawAnyTime": "Puedes retirar tu depósito completo en cualquier momento"
   },
   "Prizes": {
+    "keepYourDeposit": "Keep your deposit.",
+    "winUpTo": "Win up to <amount></amount>",
+    "currentPrizes": "Current Prizes",
+    "networkPrizes": "{network} Prizes",
+    "learnMore": "Prizes and frequencies are estimations. <link>Learn how PoolTogether works</link>",
+    "prize": "Prize",
+    "frequency": "Frequency",
+    "recentWinners": "Recent Winners",
+    "drawWinners": {
+      "beforeValue": "{numPeople, plural, one {# person} other {# people}} won",
+      "afterValue": {
+        "today": "today",
+        "yesterday": "yesterday",
+        "onXDate": "on {date}"
+      }
+    },
     "drawModal": {
       "drawTotal": {
         "beforeValue": "Este sorteo tenía monederos únicos {numWallets} ganando un total de",
@@ -46,19 +73,13 @@
     }
   },
   "Vaults": {
-    "filter": "Filtro",
-    "filters": {
-      "showAll": "Mostrar todo",
-      "inWallet": "En tu billetera",
-      "stablecoins": "Stablecoins",
-      "allVaultLists": "Todas las listas de bóveda"
-    },
     "manageVaultLists": "Administrar listas de bóveda",
-    "clearFilters": "Borrar filtros",
-    "disclaimer": "Las bóvedas del premio PoolTogether pueden ser desplegadas por cualquiera. <link>Sepa lo que deposita en</link>",
     "headers": {
+      "prizeVault": "Prize Vault",
       "prizeYield": "Rendimiento de premios",
       "bonusRewards": "Recompensas Extras",
+      "prizes": "Prizes",
+      "winChance": "Win Chance",
       "totalDeposits": "Total de depósitos",
       "yourBalance": "Tu saldo"
     }
@@ -72,31 +93,52 @@
       "prizeYield": "Rendimiento de premios",
       "bonusRewards": "Recompensas Extras",
       "tvl": "TVL",
+      "sponsoredTvl": "Sponsored TVL",
+      "sponsoredTvlMultiplier": "Effective Sponsored Multiplier",
+      "totalDeposited": "Total Deposited",
+      "contributions": "Prize Pool Contributions",
       "depositToken": "Deposita Token",
       "prizeToken": "Token de Premio",
       "delegatedToYou": "Delegado a ti",
       "delegatedAmount": "Cantidad Delegada",
       "vaultFee": "Tarifa de bóveda",
       "feeRecipient": "Cuota de destinatario",
-      "yieldSource": "Fuente de Rendimientos"
+      "yieldSource": "Fuente de Rendimientos",
+      "lpSource": "Liquidity Pair Source",
+      "vaultOwner": "Vault Owner"
     },
     "returnToVaults": "Volver a los Cofres",
     "learnAboutVault": "Aprender acerca de {vaultName}",
+    "smartContractRisk": "PoolTogether is a permissionless protocol that anyone can use to deploy prize vaults. <docsLink>Read our documentation</docsLink> to learn more. This prize vault exposes you to smart contract risk related to the <vaultLink>vault contract</vaultLink> and its underlying <yieldLink>yield contract</yieldLink>.",
     "vaultContract": "Contrato de bóveda",
     "yieldSourceContract": "Contrato de origen del rendimiento",
-    "inVaultLists": "Esta bóveda de premios está en las siguientes listas de bóveda que has seleccionado:",
-    "notInVaultLists": "Esta bóveda de premios está en las siguientes listas de bóveda que has seleccionado.",
-    "shortWarningNotInVaultLists": "¡Advertencia! Esta bóveda no está en ninguna de tus listas activas."
+    "noWinnersYet": "No winners yet",
+    "noContributionsYet": "No contributions yet",
+    "rewardsInTokens": {
+      "oneToken": "in <token></token>",
+      "twoTokens": "in <firstToken></firstToken> and <secondToken></secondToken>",
+      "manyTokens": "in <token></token> & {number} others"
+    },
+    "poolStaking": {
+      "reserveRate": "POOL Reserve Rate",
+      "wherePrizesComeFrom": "Where <highlight>Prize POOL</highlight> prizes come from",
+      "reserveDescription": "The {token} in the <highlight>POOL reserve</highlight> goes to this vault and is distributed as prizes!",
+      "percentageOfYield": "{number}% of yield",
+      "nDayNetworkYield": "{number}D Network Yield",
+      "nDayPoolReserve": "{number}D POOL Reserve",
+      "lastNDays": "last {number} days",
+      "lastNDraws": "last {number} draws"
+    }
   },
   "Account": {
     "connectWallet": "Conecta tu cartera para ver el estado de la cuenta",
-    "noVaultLists": "No tienes ninguna lista de bóveda seleccionada.",
     "noPrizeTokens": "No tienes ninguna ficha de premios.",
-    "depositNow": "Deposita ahora.",
+    "depositNow": "Deposit now.",
     "yourDeposits": "Total de depósitos",
     "yourDelegations": "Delegado a ti",
     "yourWinnings": "Tus Ganancias",
     "delegatedTo": "Delegado a <link>{account}</link>",
+    "sponsoring": "Sponsoring",
     "externalAccountDeposits": "Depósitos de {account}",
     "externalAccountDelegations": "Delegado a {account}",
     "externalAccountWinnings": "Ganancias de {account}",
@@ -106,18 +148,28 @@
     "noPrizesRecently": "No has ganado ningún premio recientemente.",
     "learnHowItWorks": "Aprende cómo funciona PoolTogether",
     "claimRewardsTx": "Reclamación de recompensas {symbol}",
+    "claimAllRewardsTx": "{network} Multi-Rewards Claim",
+    "claimAllOnNetwork": "Claim all on {network}",
+    "claimSoon": "Claim soon!",
     "winHeaders": {
       "date": "Fecha",
+      "prizeVault": "Prize Vault",
       "winnings": "Ganancias",
       "moreInfo": "Más información"
     },
     "bonusRewardHeaders": {
+      "prizeVault": "Prize Vault",
       "rewardToken": "Token de recompensa",
       "rewardsEarned": "Recompensas ganadas",
+      "rewardsClaimed": "Claimed Rewards",
+      "rewardsClaimable": "Unclaimed Rewards",
       "claims": "Reclamar"
     },
     "prizeChecking": {
+      "checkingEligibleDraws": "Checking for eligible draws...",
       "eligibleDraws": "Has sido elegible para {number, plural, one {# dibuja} other {# dibujos}}",
+      "caughtUp": "All caught up!",
+      "noNewDraws": "No new eligible draws to check.",
       "totalPrizes": {
         "beforeValue": "Totalmente",
         "afterValue": "en premios"
@@ -135,41 +187,55 @@
     "depositToShort": "Depositar a {name} en",
     "withdrawFrom": "Retirar de {name} en {network}",
     "withdrawFromShort": "Retirar de {name} en",
-    "fees": {
-      "title": "Tarifas de red estimadas",
-      "approval": "Aprobación",
-      "deposit": "Depositar",
-      "withdrawal": "Retirar"
-    },
+    "delegateFrom": "Delegate your {name} on {network}",
+    "delegateFromShort": "Delegate your {name}",
+    "delegateSelfDescription": "You are delegating to yourself. Any prize your {tokens} deposit wins will go to your wallet.",
+    "delegateDescription": "The delegated address receives any prizes your {tokens} deposit wins.",
+    "delegatedAddress": "Delegated Address",
+    "changeDelegateAddress": "Change delegate address",
+    "changeDelegateAddressShort": "Edit Delegate",
+    "updateDelegatedAddress": "Update delegated address",
     "dailyChances": "Oportunidad Diaria de Ganar",
     "weeklyChances": "Oportunidad Semanal de Ganar",
+    "monthlyChances": "Monthly Chance of Winning",
     "oneInXChance": "1 en {number}",
     "max": "Máx",
     "balance": "Balance:",
     "enterAnAmount": "Introduzca un monto",
     "approvalButton": "Aprobar {symbol}",
+    "approvalTx": "{symbol} Approval",
+    "reviewDelegation": "Review Delegation",
     "reviewDeposit": "Revisar Depósito",
     "reviewWithdrawal": "Revisión del Retiro",
     "confirmDeposit": "Confirmar depósito",
     "confirmWithdrawal": "Confirmar retiro",
     "depositTx": "Depósitos de {symbol}",
     "withdrawTx": "Retiro {symbol}",
-    "switchNetwork": "Cambiar a {network}",
-    "switchingNetwork": "Cambiando a {network}...",
+    "delegateTx": "{symbol} Delegation",
     "confirmNotice": "Confirmar transacción en cartera",
     "submissionNotice": "Transacción Enviada",
     "depositing": "Depositando {tokens}...",
+    "depositingInto": "Depositing into {vault}",
     "withdrawing": "Retirando {tokens}...",
+    "withdrawingFrom": "Withdrawing from {vault}",
+    "delegating": "Delegating {tokens}...",
     "success": "¡Listo!",
     "deposited": "Has depositado {tokens} en",
+    "gotTokens": "You got {tokens}",
     "withdrew": "Has retirado {tokens}",
+    "delegated": "You delegated {tokens}",
     "nowEligible": "Ahora eres elegible para todos los sorteos futuros en esta piscina.",
+    "shareOn": "Share on",
     "viewAccount": "Ver tu cuenta",
+    "waiting": "Waiting for Transaction",
     "uhOh": "Uh oh!",
     "failedTx": "Algo salió mal....",
     "tryAgain": "Vuelve a intentarlo",
-    "risksDisclaimer": "PoolTogether es un protocolo sin permisos. Las bóvedas de premios pueden ser desplegadas por cualquiera. Asegúrate de saber en qué vas a depositar. <vaultLink>Aprende más sobre esta bóveda de premios.</vaultLink>",
-    "depositDisclaimer": "Al hacer clic en \"Confirmar el Deposito\", aceptas las <tosLink>Condiciones de Servicio</tosLink> de Cabana. Haz clic <vaultLink>aquí</vaultLink> para saber más sobre la bóveda en la que estás depositando."
+    "depositDisclaimer": "By clicking \"Confirm Deposit\", you agree to Cabana's <tosLink>Terms of Service</tosLink>.",
+    "findingZapRoute": "Finding zap route...",
+    "noZapRouteFound": "No zap route available",
+    "priceImpact": "Price Impact",
+    "minimumReceived": "Minimum Received"
   },
   "Footer": {
     "titles": {
@@ -194,15 +260,8 @@
     "changeCurrency": "Cambiar moneda",
     "changeLanguage": "Cambiar idioma",
     "viewEcosystem": "Ver Ecosistema",
-    "manageVaultLists": "Administrar listas de bóveda",
     "getHelp": "Obtener ayuda",
-    "getHelpWithCabana": "Obtén ayuda con el uso de Cabana",
-    "vaultListsDescription": "Las listas de bóvedas determinan qué bóvedas de premios se muestran en toda la aplicación. Tenga cuidado al interactuar con las listas importadas.",
-    "learnMoreVaultLists": "Más información sobre las listas de bóveda",
-    "urlInput": "https:// o ipfs:// o nombre ENS",
-    "addVaultList": "Todas las listas de bóveda",
-    "clearImportedVaultLists": "Borrar todas las listas de bóveda importadas",
-    "imported": "Importado"
+    "getHelpWithCabana": "Obtén ayuda con el uso de Cabana"
   },
   "Abbreviations": {
     "days": "días",
@@ -212,6 +271,9 @@
   },
   "Frequency": {
     "daily": "Diario",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
     "everyXdays": "Cada {number} días",
     "everyXweeks": "Cada {number} semanas",
     "everyXmonths": "Cada {number} meses",
@@ -219,60 +281,47 @@
     "xPrizesDaily": "{number, plural, one {# Premio} other {# Premios}} diariamente",
     "xPrizesWeekly": "{number, plural, one {# Premio} other {# Premios}} semanalmente",
     "xPrizesMonthly": "{number, plural, one {# Premio} other {# Premios}} mensualmente",
-    "xPrizesYearly": "{number, plural, one {# Premio} other {# Premios}} anualmente"
+    "xPrizesYearly": "{number, plural, one {# Premio} other {# Premios}} anualmente",
+    "lessThanAnHour": "In less than an hour",
+    "inXhours": "In {number, plural, one {# hour} other {# hours}}",
+    "inXdays": "In {number, plural, one {# day} other {# days}}",
+    "inXweeks": "In {number, plural, one {# week} other {# weeks}}",
+    "inXmonths": "In {number, plural, one {# month} other {# months}}"
   },
   "Tooltips": {
+    "prizes": "Prizes you can win while deposited in a vault",
+    "relativeWinChance": "A vault's relative win chance compared to other vaults",
     "prizeYield": "Un promedio reciente de contribuciones de una bóveda al bote de premios",
     "bonusRewards": "Una estimación de los incentivos adicionales actuales para los depósitos",
     "winChance": "Tu oportunidad de ganar un premio en cualquier sorteo dado",
     "approval": "Darás tu aprobación para depositar una cantidad específica de {symbol}",
     "vaultFee": "Un porcentaje de rendimiento que no va hacia los premios, y está determinado por el desplegador de la bóveda",
     "importedVault": "Esta bóveda es de las siguientes lista(s) importadas:",
-    "deprecatedVault": "Esta bóveda ha sido obsoleta. Todavía puede ser elegible para ganar premios, pero animamos a los usuarios a migrar a otras bóvedas."
-  },
-  "Toasts": {
-    "transactions": {
-      "deposit": "Depositar",
-      "withdrawal": "Retirar",
-      "depositing": "Depositando {tokens}...",
-      "withdrawing": "Retirando {tokens}...",
-      "viewOn": "Ver en la {name}",
-      "success": "¡Listo!",
-      "deposited": "Has depositado {tokens} en {network}",
-      "withdrew": "Has depositado {tokens} en {network}",
-      "uhOh": "Uh oh!",
-      "failedTx": "Algo salió mal....",
-      "tryAgain": "Vuelve a intentarlo"
-    },
-    "vaultListImports": {
-      "importingFrom": "Importando lista de bóveda desde {src}...",
-      "successfulImport": "Se ha importado correctamente una lista de bóvedas.",
-      "selectedVaultList": "Se ha añadido \"{name}\" a tus listas de bóvedas seleccionadas actualmente.",
-      "failedImport": "Algo salió mal al importar una lista de bóvedas desde {src}."
+    "vaultContribution": "The amount of {symbol} contributed to the prize pool, enabling wins in this vault",
+    "vaultContributionWithDays": "The amount of {symbol} contributed to the prize pool over the last {days} days, enabling wins in this vault",
+    "deprecatedVault": "Esta bóveda ha sido obsoleta. Todavía puede ser elegible para ganar premios, pero animamos a los usuarios a migrar a otras bóvedas.",
+    "wrongPrizePoolVault": "This vault is connected to a prize pool not supported by this interface.",
+    "badPrecisionPerDollar": "This vault is likely to have rounding errors which may lead to lossy withdrawals.",
+    "delegateDescription": "By default the prize token holder is the delegated address. That can be overridden with delegation.",
+    "winChanceChart": {
+      "none": "No win chance",
+      "lowest": "Lowest win chance",
+      "low": "Low win chance",
+      "average": "Average win chance",
+      "high": "High win chance",
+      "highest": "Highest win chance"
     }
   },
   "Error": {
     "oops": "¡Ups!",
-    "noVaultListsEnabled": "Parece que no tienes ninguna lista válida de bóveda activada.",
-    "noVaultsMatchingFilters": "No hay bóvedas que coincidan con sus filtros.",
-    "vaultInvalidNetwork": "La red de esta bóveda no es compatible.",
-    "vaultEnableTestnets": "Si está buscando ver una bóveda de testnet, asegúrese de \"Habilitar redes de pruebas\" en la configuración de abajo.",
-    "vaultDisableTestnets": "Si está buscando ver una bóveda mainnet, asegúrese de \"Deshabilitar Testnets\" en la configuración de abajo.",
-    "vaultInvalidInterface": "Esto no parece una dirección válida para la bóveda.",
-    "vaultQueryError": "Algo salió mal mientras se consultaba la información de esta bóveda.",
     "hmmm": "Mmm...",
     "pageNotFound": "No pudimos encontrar la página que estás buscando.",
     "return": "Regresa a la Pool",
-    "aaveCollateralizationError": {
-      "issue": "Esta bóveda está experimentando problemas debido al uso de un alto porcentaje de la oferta de Aave. <link>Aprenda más</link>",
-      "recommendation": "No se recomienda retirar en este momento",
-      "moreInfo": "Es posible que puedas intercambiar a través de <uniLink>Uniswap</uniLink>o esperar a que la bóveda se normalice. Para más actualizaciones, visita PoolTogether's <discordLink>Discord</discordLink>"
-    },
     "formErrors": {
-      "invalidSrc": "No es una URL válida o dominio ENS",
-      "invalidVaultList": "No se encontró una lista de bóveda válida",
       "notEnoughTokens": "No hay suficiente {symbol} en la cartera",
       "invalidNumber": "Ingrese un número válido",
+      "invalidAddress": "Enter a valid EVM address",
+      "sameAsDelegate": "Entered address is same as current delegate",
       "negativeNumber": "Ingrese un número positivo",
       "tooManyDecimals": "Demasiados decimales"
     }

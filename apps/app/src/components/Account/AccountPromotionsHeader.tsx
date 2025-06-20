@@ -77,7 +77,6 @@ const ClaimAllRewardsButton = (props: ClaimAllRewardsButtonProps) => {
 
   const t_common = useTranslations('Common')
   const t_account = useTranslations('Account')
-  const t_txs = useTranslations('TxModals')
 
   // const { openConnectModal } = useConnectModal()
   // const { openChainModal } = useChainModal()
@@ -192,7 +191,7 @@ const ClaimAllRewardsButton = (props: ClaimAllRewardsButtonProps) => {
         txDescription={t_account('claimAllRewardsTx', { network })}
         addRecentTransaction={addRecentTransaction}
         signInWithWallet={signInWithWallet}
-        intl={{ base: t_txs, common: t_common }}
+        intl={{ common: t_common }}
         className={classNames('min-w-[6rem]', className)}
       >
         {t_account('claimAllOnNetwork', { network })}

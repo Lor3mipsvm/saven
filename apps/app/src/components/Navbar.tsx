@@ -29,7 +29,13 @@ export const Navbar = () => {
       href: '/',
       name: t_nav('home'),
       svg: (
-        <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 495 495'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='24'
+          height='24'
+          viewBox='0 0 495 495'
+          className='md:hidden'
+        >
           <g>
             <g>
               <g>
@@ -139,7 +145,6 @@ export const Navbar = () => {
         </div>
       </FlowbiteNavbar>
       <MobileNavbar className='z-50'>
-        {/* <NavbarLinks links={[{ href: '/', name: t_nav('home') }, ...navLinks]} /> */}
         <NavbarLinks links={navLinks} />
       </MobileNavbar>
     </>

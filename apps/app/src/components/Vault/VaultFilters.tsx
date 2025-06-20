@@ -119,22 +119,12 @@ export const VaultFilters = (props: VaultFiltersProps) => {
     () => [
       {
         id: 'all',
-        content: t('filters.showAll'),
+        content: 'showall',
         onClick: () => {
           setFilterId('all')
           handleQueryParamChanges({})
         },
         filter: filterAll,
-        className: 'whitespace-nowrap'
-      },
-      {
-        id: 'stablecoin',
-        content: t('filters.stablecoins'),
-        onClick: () => {
-          setFilterId('stablecoin')
-          handleQueryParamChanges({})
-        },
-        filter: filterStablecoins,
         className: 'whitespace-nowrap'
       },
       ...networks.map((network) => {

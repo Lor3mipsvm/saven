@@ -53,12 +53,6 @@ export * from './components/PrizePool/PrizePoolDropdown'
  * Toasts
  */
 export * from './components/Toasts/DelegateTxToast'
-export * from './components/Toasts/DeployLiquidationPairTxToast'
-export * from './components/Toasts/DeployVaultTxToast'
-export * from './components/Toasts/DepositTxToast'
-export * from './components/Toasts/SetClaimerTxToast'
-export * from './components/Toasts/SetLiquidationPairTxToast'
-export * from './components/Toasts/WithdrawTxToast'
 
 /**
  * Tooltips

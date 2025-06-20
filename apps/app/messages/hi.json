@@ -228,27 +228,6 @@
     "vaultFee": "उपज का एक प्रतिशत जो पुरस्कारों में नहीं जाता है, और वॉल्ट डिप्लॉयर द्वारा निर्धारित किया जाता है",
     "importedVault": "यह वॉल्ट निम्नलिखित आयातित सूची(सूचियों) में से है:"
   },
-  "Toasts": {
-    "transactions": {
-      "deposit": "जमा",
-      "withdrawal": "निकासी",
-      "depositing": "{tokens} जमा किया जा रहा है...",
-      "withdrawing": "{tokens} वापस लिया जा रहा है...",
-      "viewOn": "{name} पर देखें",
-      "success": "सफलता!",
-      "deposited": "आपने {network} पर {tokens} जमा किए",
-      "withdrew": "आपने {network} पर {tokens} वापस ले लिए",
-      "uhOh": "उह ओह!",
-      "failedTx": "कुछ गलत हो गया....",
-      "tryAgain": "पुनः प्रयास करें"
-    },
-    "vaultListImports": {
-      "importingFrom": "{src} से वॉल्ट सूची आयात की जा रही है...",
-      "successfulImport": "वॉल्ट सूची सफलतापूर्वक आयात की गई |",
-      "selectedVaultList": "\"{name}\" को आपकी वर्तमान में चयनित वॉल्ट सूची में जोड़ दिया गया है।",
-      "failedImport": "{src} से वॉल्ट सूची आयात करते समय कुछ गलत हो गया।"
-    }
-  },
   "Error": {
     "oops": "उफ़!",
     "noVaultListsEnabled": "ऐसा लगता है कि आपके पास कोई वैध वॉल्ट सूची सक्षम नहीं है।",

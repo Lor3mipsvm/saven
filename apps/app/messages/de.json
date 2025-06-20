@@ -23,14 +23,7 @@
     "claim": "Beanspruchen",
     "apr": "Jahreszins",
     "warning": "Warnung",
-    "getTokenAt": "Erhalte {token} bei",
-    "greatMigration": {
-      "joinTitle": "Trete der großen <highlight>Pooly</highlight> Migration bei",
-      "joinButton": "Nimm an der Migration teil",
-      "migrateTo": "Migriere zum neuen PoolTogether",
-      "earnUpTo": "und verdiene bis zu <highlight>{apr}% APR</highlight> in OP Bonus Belohnungen",
-      "skipForNow": "Vorerst überspringen"
-    }
+    "getTokenAt": "Erhalte {token} bei"
   },
   "Navigation": {
     "home": "Startseite",
@@ -280,30 +273,6 @@
     "wrongPrizePoolVault": "Dieser Vault ist mit einem Preispool verbunden, der nicht von diesem Interface unterstützt wird.",
     "badPrecisionPerDollar": "Dieser Vault hat wahrscheinlich Rundungsfehler, die zu verlustreichen Auszahlungen führen können.",
     "delegateDescription": "Standardmäßig ist der Inhaber des Preistokens die delegierte Adresse. Dies kann mit der Delegation überschrieben werden."
-  },
-  "Toasts": {
-    "transactions": {
-      "deposit": "Einzahlung",
-      "withdrawal": "Abhebung",
-      "delegate": "Delegieren",
-      "depositing": "{tokens} einzahlen...",
-      "withdrawing": "{tokens} abheben...",
-      "delegating": "Delegieren {tokens}...",
-      "viewOn": "Auf {name} ansehen",
-      "success": "Erfolgreich!",
-      "deposited": "Du hast {tokens} auf {network} eingezahlt",
-      "withdrew": "Du hast {tokens} auf {network} abgehoben",
-      "delegated": "Du hast {tokens} auf {network} eingezahlt",
-      "uhOh": "Oh, oh!",
-      "failedTx": "Etwas ist schiefgelaufen....",
-      "tryAgain": "Versuche es erneut"
-    },
-    "vaultListImports": {
-      "importingFrom": "Importiere Vault Liste von {src}...",
-      "successfulImport": "Vault Liste erfolgreich importiert.",
-      "selectedVaultList": "\"{name}\" wurde zu Deinen derzeit ausgewählten Vault Listen hinzugefügt.",
-      "failedImport": "Beim Importieren einer Vault Liste von {src} ist etwas schiefgelaufen."
-    }
   },
   "Error": {
     "oops": "Hoppla!",

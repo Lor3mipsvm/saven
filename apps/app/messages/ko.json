@@ -9,6 +9,7 @@
     "manage": "관리하기",
     "deposit": "입금",
     "withdraw": "출금",
+    "delegate": "Delegate",
     "learnMore": "더 알아보기",
     "back": "뒤로",
     "signIn": "Sign In",
@@ -17,7 +18,20 @@
     "close": "닫기",
     "learnAboutRisks": "위험에 대해 알아보기",
     "readDocs": "문서 읽기",
-    "termsOfService": "서비스 약관"
+    "termsOfService": "서비스 약관",
+    "bonusRewards": "Bonus Rewards",
+    "claim": "Claim",
+    "apr": "APR",
+    "warning": "Warning",
+    "cabanaPoweredBy": "Powered by",
+    "new": "New",
+    "before": "Before",
+    "after": "After",
+    "distribution": "Distribution",
+    "nextClaim": "Next Claim",
+    "date": "Date",
+    "allTime": "All Time",
+    "draws": "Draws"
   },
   "Navigation": {
     "home": "홈",
@@ -27,9 +41,26 @@
     "account": "계정"
   },
   "Home": {
+    "winUpTo": "Deposit <token></token> to win up to <amount></amount>",
     "withdrawAnyTime": "언제든지 전액을 출금할 수 있습니다"
   },
   "Prizes": {
+    "keepYourDeposit": "Keep your deposit.",
+    "winUpTo": "Win up to <amount></amount>",
+    "currentPrizes": "Current Prizes",
+    "networkPrizes": "{network} Prizes",
+    "learnMore": "Prizes and frequencies are estimations. <link>Learn how PoolTogether works</link>",
+    "prize": "Prize",
+    "frequency": "Frequency",
+    "recentWinners": "Recent Winners",
+    "drawWinners": {
+      "beforeValue": "{numPeople, plural, one {# person} other {# people}} won",
+      "afterValue": {
+        "today": "today",
+        "yesterday": "yesterday",
+        "onXDate": "on {date}"
+      }
+    },
     "drawModal": {
       "drawTotal": {
         "beforeValue": "이 추첨에서 {numWallets} 개의 독특한 지갑들이 총",
@@ -42,18 +73,13 @@
     }
   },
   "Vaults": {
-    "filter": "필터",
-    "filters": {
-      "showAll": "모두 보기",
-      "inWallet": "지갑 안에 있는",
-      "stablecoins": "스테이블코인",
-      "allVaultLists": "모든 금고 목록"
-    },
-    "manageVaultLists": "금고 목록 관리",
-    "clearFilters": "필터 지우기",
-    "disclaimer": "PoolTogether 상금 금고는 누구나 배포할 수 있습니다. <link>당신이 입금하는 것이 무엇인지 알아보세요</link>",
+    "depositAndWin": "Deposit tokens, <highlight>win prizes</highlight>. Withdraw anytime, <highlight>no loss</highlight>",
     "headers": {
+      "prizeVault": "Prize Vault",
       "prizeYield": "상금 수익",
+      "bonusRewards": "Bonus Rewards",
+      "prizes": "Prizes",
+      "winChance": "Win Chance",
       "totalDeposits": "총 입금",
       "yourBalance": "당신의 잔액"
     }
@@ -65,32 +91,54 @@
       "balance": "잔액",
       "winChance": "당첨 확률",
       "prizeYield": "상금 수익",
+      "bonusRewards": "Bonus Rewards",
       "tvl": "TVL",
+      "sponsoredTvl": "Sponsored TVL",
+      "sponsoredTvlMultiplier": "Effective Sponsored Multiplier",
+      "totalDeposited": "Total Deposited",
+      "contributions": "Prize Pool Contributions",
       "depositToken": "입금 토큰",
       "prizeToken": "상금 토큰",
       "delegatedToYou": "당신에게 위임된",
       "delegatedAmount": "위임된 금액",
       "vaultFee": "금고 수수료",
       "feeRecipient": "수수료 수령인",
-      "yieldSource": "수익 소스"
+      "yieldSource": "수익 소스",
+      "lpSource": "Liquidity Pair Source",
+      "vaultOwner": "Vault Owner"
     },
     "returnToVaults": "금고로 돌아가기",
     "learnAboutVault": "{vaultName} 에 대해 알아보기",
+    "smartContractRisk": "PoolTogether is a permissionless protocol that anyone can use to deploy prize vaults. <docsLink>Read our documentation</docsLink> to learn more. This prize vault exposes you to smart contract risk related to the <vaultLink>vault contract</vaultLink> and its underlying <yieldLink>yield contract</yieldLink>.",
     "vaultContract": "금고 계약",
     "yieldSourceContract": "수익 소스 계약",
-    "inVaultLists": "이 상금 금고는 당신이 선택한 다음 금고 목록에 있습니다:",
-    "notInVaultLists": "이 상금 금고는 당신이 선택한 어떤 금고 목록에도 없습니다.",
-    "shortWarningNotInVaultLists": "경고! 이 금고는 당신의 활성 목록에 없습니다."
+    "noWinnersYet": "No winners yet",
+    "noContributionsYet": "No contributions yet",
+    "rewardsInTokens": {
+      "oneToken": "in <token></token>",
+      "twoTokens": "in <firstToken></firstToken> and <secondToken></secondToken>",
+      "manyTokens": "in <token></token> & {number} others"
+    },
+    "poolStaking": {
+      "reserveRate": "POOL Reserve Rate",
+      "wherePrizesComeFrom": "Where <highlight>Prize POOL</highlight> prizes come from",
+      "reserveDescription": "The {token} in the <highlight>POOL reserve</highlight> goes to this vault and is distributed as prizes!",
+      "percentageOfYield": "{number}% of yield",
+      "nDayNetworkYield": "{number}D Network Yield",
+      "nDayPoolReserve": "{number}D POOL Reserve",
+      "lastNDays": "last {number} days",
+      "lastNDraws": "last {number} draws"
+    }
   },
   "Account": {
     "connectWallet": "계정 상태를 보려면 지갑을 연결하세요",
-    "noVaultLists": "당신은 선택한 금고 목록이 없습니다.",
     "noPrizeTokens": "당신은 상금 토큰이 없습니다.",
     "depositNow": "지금 입금하세요.",
     "yourDeposits": "당신의 입금",
     "yourDelegations": "당신에게 위임된",
     "yourWinnings": "당신의 당첨금",
     "delegatedTo": "<link>{account}</link>에 위임된",
+    "sponsoring": "Sponsoring",
     "externalAccountDeposits": "{account} 의 입금",
     "externalAccountDelegations": "{account} 에 대한 위임",
     "externalAccountWinnings": "{account} 의 당첨금",
@@ -99,13 +147,29 @@
     "oneInXChance": "{number} 중 1의 확률",
     "noPrizesRecently": "최근에 당첨된 상품이 없습니다.",
     "learnHowItWorks": "PoolTogether 가 어떻게 작동하는지 알아보기",
+    "claimRewardsTx": "{symbol} Rewards Claim",
+    "claimAllRewardsTx": "{network} Multi-Rewards Claim",
+    "claimAllOnNetwork": "Claim all on {network}",
+    "claimSoon": "Claim soon!",
     "winHeaders": {
       "date": "날짜",
+      "prizeVault": "Prize Vault",
       "winnings": "당첨금",
       "moreInfo": "더 많은 정보"
     },
+    "bonusRewardHeaders": {
+      "prizeVault": "Prize Vault",
+      "rewardToken": "Reward Token",
+      "rewardsEarned": "Rewards Earned",
+      "rewardsClaimed": "Claimed Rewards",
+      "rewardsClaimable": "Unclaimed Rewards",
+      "claims": "Claims"
+    },
     "prizeChecking": {
+      "checkingEligibleDraws": "Checking for eligible draws...",
       "eligibleDraws": "{number, plural, one {# 추첨} other {# 추첨들}} 에 참여할 자격이 있었습니다",
+      "caughtUp": "All caught up!",
+      "noNewDraws": "No new eligible draws to check.",
       "totalPrizes": {
         "beforeValue": "총",
         "afterValue": "의 상금"
@@ -123,41 +187,55 @@
     "depositToShort": "{name} 에 입금하기",
     "withdrawFrom": "{name} 에서 {network} 로 출금하기",
     "withdrawFromShort": "{name} 에서 출금",
-    "fees": {
-      "title": "예상 네트워크 수수료",
-      "approval": "승인",
-      "deposit": "입금",
-      "withdrawal": "출금"
-    },
+    "delegateFrom": "Delegate your {name} on {network}",
+    "delegateFromShort": "Delegate your {name}",
+    "delegateSelfDescription": "You are delegating to yourself. Any prize your {tokens} deposit wins will go to your wallet.",
+    "delegateDescription": "The delegated address receives any prizes your {tokens} deposit wins.",
+    "delegatedAddress": "Delegated Address",
+    "changeDelegateAddress": "Change delegate address",
+    "changeDelegateAddressShort": "Edit Delegate",
+    "updateDelegatedAddress": "Update delegated address",
     "dailyChances": "일일 당첨 확률",
     "weeklyChances": "주간 당첨 확률",
+    "monthlyChances": "Monthly Chance of Winning",
     "oneInXChance": "{number} 중 1",
     "max": "최대",
     "balance": "잔액:",
     "enterAnAmount": "금액 입력",
     "approvalButton": "{symbol} 승인",
+    "approvalTx": "{symbol} Approval",
+    "reviewDelegation": "Review Delegation",
     "reviewDeposit": "입금 검토",
     "reviewWithdrawal": "출금 검토",
     "confirmDeposit": "입금 확인",
     "confirmWithdrawal": "출금 확인",
     "depositTx": "{symbol} 입금",
     "withdrawTx": "{symbol} 출금",
-    "switchNetwork": "{network} 로 전환",
-    "switchingNetwork": "{network} 로 전환 중...",
+    "delegateTx": "{symbol} Delegation",
     "confirmNotice": "지갑에서 거래 확인",
     "submissionNotice": "거래 제출됨",
     "depositing": "{tokens} 입금 중...",
+    "depositingInto": "Depositing into {vault}",
     "withdrawing": "{tokens} 출금 중...",
+    "withdrawingFrom": "Withdrawing from {vault}",
+    "delegating": "Delegating {tokens}...",
     "success": "성공!",
     "deposited": "{tokens} 를 입금했습니다",
+    "gotTokens": "You got {tokens}",
     "withdrew": "{tokens} 를 출금했습니다",
+    "delegated": "You delegated {tokens}",
     "nowEligible": "이제 이 풀의 모든 미래 추첨에 참여할 수 있습니다.",
+    "shareOn": "Share on",
     "viewAccount": "계정 보기",
+    "waiting": "Waiting for Transaction",
     "uhOh": "이런!",
     "failedTx": "문제가 발생했습니다....",
     "tryAgain": "다시 시도",
-    "risksDisclaimer": "PoolTogether 는 허가 없는 프로토콜입니다. 상금 금고는 누구나 배포할 수 있습니다. 입금하는 것이 무엇인지 확인하세요. <vaultLink>이 상금 금고에 대해 자세히 알아보기.</vaultLink>",
-    "depositDisclaimer": "\"입금 확인\"을 클릭함으로써 Cabana의 <tosLink>이용 약관</tosLink>에 동의합니다. 입금하는 금고에 대해 <vaultLink>여기</vaultLink>에서 자세히 알아보세요."
+    "depositDisclaimer": "\"입금 확인\"을 클릭함으로써 Cabana의 <tosLink>이용 약관</tosLink>에 동의합니다. 입금하는 금고에 대해 <vaultLink>여기</vaultLink>에서 자세히 알아보세요.",
+    "findingZapRoute": "Finding zap route...",
+    "noZapRouteFound": "No zap route available",
+    "priceImpact": "Price Impact",
+    "minimumReceived": "Minimum Received"
   },
   "Footer": {
     "titles": {
@@ -172,8 +250,8 @@
     "extensions": "확장 기능",
     "governance": "거버넌스",
     "security": "보안",
-    "enableTestnets": "테스트넷 활성화",
-    "disableTestnets": "테스트넷 비활성화"
+    "termsAndConditions": "Terms and Conditions",
+    "privacyPolicy": "Privacy Policy"
   },
   "Settings": {
     "customizeExperience": "경험 사용자 정의",
@@ -182,15 +260,8 @@
     "changeCurrency": "화폐 변경",
     "changeLanguage": "언어 변경",
     "viewEcosystem": "생태계 보기",
-    "manageVaultLists": "금고 목록 관리",
     "getHelp": "도움 받기",
-    "getHelpWithCabana": "Cabana 사용 도움 받기",
-    "vaultListsDescription": "금고 목록은 앱 전체에 표시되는 상금 금고를 결정합니다. 가져온 목록과 상호 작용할 때 주의하세요.",
-    "learnMoreVaultLists": "금고 목록에 대해 더 알아보기",
-    "urlInput": "https:// 또는 ipfs:// 또는 ENS 이름",
-    "addVaultList": "금고 목록 추가",
-    "clearImportedVaultLists": "가져온 모든 금고 목록 지우기",
-    "imported": "가져온 것"
+    "getHelpWithCabana": "Cabana 사용 도움 받기"
   },
   "Abbreviations": {
     "days": "일",
@@ -200,6 +271,9 @@
   },
   "Frequency": {
     "daily": "매일",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
     "everyXdays": "{number} 일마다",
     "everyXweeks": "{number} 주마다",
     "everyXmonths": "{number} 개월마다",
@@ -207,53 +281,47 @@
     "xPrizesDaily": "매일 {number, plural, one {# 상} other {# 상}}",
     "xPrizesWeekly": "매주 {number, plural, one {# 상} other {# 상}}",
     "xPrizesMonthly": "매월 {number, plural, one {# 상} other {# 상}}",
-    "xPrizesYearly": "매년 {number, plural, one {# 상} other {# 상}}"
+    "xPrizesYearly": "매년 {number, plural, one {# 상} other {# 상}}",
+    "lessThanAnHour": "In less than an hour",
+    "inXhours": "In {number, plural, one {# hour} other {# hours}}",
+    "inXdays": "In {number, plural, one {# day} other {# days}}",
+    "inXweeks": "In {number, plural, one {# week} other {# weeks}}",
+    "inXmonths": "In {number, plural, one {# month} other {# months}}"
   },
   "Tooltips": {
+    "prizes": "Prizes you can win while deposited in a vault",
+    "relativeWinChance": "A vault's relative win chance compared to other vaults",
+    "bonusRewards": "An estimate of current extra incentives for depositors",
     "prizeYield": "금고가 상금 풀에 기여한 최근 평균",
     "winChance": "어떤 추첨에서 상을 받을 확률",
     "approval": "{symbol} 의 특정 금액 입금에 대한 승인을 줄 것입니다",
     "vaultFee": "상금으로 가지 않는 수익의 비율로, 금고 배포자가 결정합니다",
-    "importedVault": "이 금고는 다음과 같은 가져온 목록에서 왔습니다:"
-  },
-  "Toasts": {
-    "transactions": {
-      "deposit": "입금",
-      "withdrawal": "출금",
-      "depositing": "{tokens} 입금 중...",
-      "withdrawing": "{tokens} 출금 중...",
-      "viewOn": "{name} 에서 보기",
-      "success": "성공!",
-      "deposited": "{tokens} 를 {network} 에 입금했습니다",
-      "withdrew": "{tokens} 를 {network} 에서 출금했습니다",
-      "uhOh": "이런!",
-      "failedTx": "문제가 발생했습니다....",
-      "tryAgain": "다시 시도하기"
-    },
-    "vaultListImports": {
-      "importingFrom": "{src} 에서 금고 목록 가져오는 중...",
-      "successfulImport": "금고 목록을 성공적으로 가져왔습니다.",
-      "selectedVaultList": "\"{name}\" 이(가) 현재 선택된 금고 목록에 추가되었습니다.",
-      "failedImport": "{src} 에서 금고 목록을 가져오는 동안 문제가 발생했습니다."
+    "importedVault": "이 금고는 다음과 같은 가져온 목록에서 왔습니다:",
+    "vaultContribution": "The amount of {symbol} contributed to the prize pool, enabling wins in this vault",
+    "vaultContributionWithDays": "The amount of {symbol} contributed to the prize pool over the last {days} days, enabling wins in this vault",
+    "deprecatedVault": "This vault has been deprecated. It may still be eligible to win prizes, but we encourage users to migrate to other vaults.",
+    "wrongPrizePoolVault": "This vault is connected to a prize pool not supported by this interface.",
+    "badPrecisionPerDollar": "This vault is likely to have rounding errors which may lead to lossy withdrawals.",
+    "delegateDescription": "By default the prize token holder is the delegated address. That can be overridden with delegation.",
+    "winChanceChart": {
+      "none": "No win chance",
+      "lowest": "Lowest win chance",
+      "low": "Low win chance",
+      "average": "Average win chance",
+      "high": "High win chance",
+      "highest": "Highest win chance"
     }
   },
   "Error": {
     "oops": "이런!",
-    "noVaultListsEnabled": "유효한 금고 목록이 활성화되어 있지 않은 것 같습니다.",
-    "noVaultsMatchingFilters": "필터와 일치하는 금고가 없습니다.",
-    "vaultInvalidNetwork": "이 금고의 네트워크는 지원되지 않습니다.",
-    "vaultEnableTestnets": "테스트넷 금고를 보려면 아래 설정에서 \"테스트넷 활성화\"를 확인하세요.",
-    "vaultDisableTestnets": "메인넷 금고를 보려면 아래 설정에서 \"테스트넷 비활성화\"를 확인하세요.",
-    "vaultInvalidInterface": "유효한 금고 주소 같지 않습니다.",
-    "vaultQueryError": "이 금고의 정보를 조회하는 동안 문제가 발생했습니다.",
     "hmmm": "음...",
     "pageNotFound": "찾고 있는 페이지를 찾을 수 없습니다.",
     "return": "풀로 돌아가기",
     "formErrors": {
-      "invalidSrc": "유효한 URL 또는 ENS 도메인이 아닙니다",
-      "invalidVaultList": "유효한 금고 목록을 찾을 수 없습니다",
       "notEnoughTokens": "지갑에 충분한 {symbol} 이 없습니다",
       "invalidNumber": "유효한 숫자를 입력하세요",
+      "invalidAddress": "Enter a valid EVM address",
+      "sameAsDelegate": "Entered address is same as current delegate",
       "negativeNumber": "양수를 입력하세요",
       "tooManyDecimals": "소수점이 너무 많습니다"
     }

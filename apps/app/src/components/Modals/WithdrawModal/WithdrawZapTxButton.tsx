@@ -212,7 +212,7 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
         addRecentTransaction={addRecentTransaction}
         signInWithWallet={signInWithWallet}
         innerClassName='flex gap-2 items-center'
-        intl={{ base: t_modals, common: t_common }}
+        intl={{ common: t_common }}
       >
         {t_modals('approvalButton', { symbol: share.symbol ?? '?' })}
         <ApprovalTooltip
@@ -264,7 +264,7 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
       disabled={!withdrawEnabled}
       addRecentTransaction={addRecentTransaction}
       signInWithWallet={signInWithWallet}
-      intl={{ base: t_modals, common: t_common }}
+      intl={{ common: t_common }}
     >
       {t_modals('confirmWithdrawal')}
     </TransactionButton>

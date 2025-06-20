@@ -23,16 +23,8 @@
     "claim": "Claim",
     "apr": "APR",
     "warning": "Warning",
-    "getTokenAt": "Get {token} at",
     "cabanaPoweredBy": "Powered by",
     "new": "New",
-    "greatMigration": {
-      "joinTitle": "Join the Great <highlight>Pooly</highlight> Migration",
-      "joinButton": "Join the Migration",
-      "migrateTo": "Migrate to the new PoolTogether",
-      "earnUpTo": "and earn up to <highlight>{apr}% APR</highlight> in OP Bonus Rewards",
-      "skipForNow": "Skip for now"
-    },
     "before": "Before",
     "after": "After",
     "distribution": "Distribution",
@@ -82,16 +74,6 @@
   },
   "Vaults": {
     "depositAndWin": "Deposit tokens, <highlight>win prizes</highlight>. Withdraw anytime, <highlight>no loss</highlight>",
-    "filter": "Filter",
-    "filters": {
-      "showAll": "Show All",
-      "inWallet": "In Your Wallet",
-      "stablecoins": "Stablecoins",
-      "allVaultLists": "All Vault Lists"
-    },
-    "manageVaultLists": "Manage Vault Lists",
-    "clearFilters": "Clear Filters",
-    "disclaimer": "PoolTogether prize vaults can be deployed by anyone. <link>Know what you are depositing into</link>",
     "headers": {
       "prizeVault": "Prize Vault",
       "prizeYield": "Prize Yield",
@@ -130,9 +112,6 @@
     "smartContractRisk": "PoolTogether is a permissionless protocol that anyone can use to deploy prize vaults. <docsLink>Read our documentation</docsLink> to learn more. This prize vault exposes you to smart contract risk related to the <vaultLink>vault contract</vaultLink> and its underlying <yieldLink>yield contract</yieldLink>.",
     "vaultContract": "Vault Contract",
     "yieldSourceContract": "Yield Source Contract",
-    "inVaultLists": "This prize vault is in the following vault lists you have selected:",
-    "notInVaultLists": "This prize vault is not in any of the vault lists you have selected.",
-    "shortWarningNotInVaultLists": "Warning! This vault is not in any of your active lists.",
     "noWinnersYet": "No winners yet",
     "noContributionsYet": "No contributions yet",
     "rewardsInTokens": {
@@ -149,12 +128,10 @@
       "nDayPoolReserve": "{number}D POOL Reserve",
       "lastNDays": "last {number} days",
       "lastNDraws": "last {number} draws"
-    },
-    "addToPersonalVaultList": "Add to Personal Vault List"
+    }
   },
   "Account": {
     "connectWallet": "Sign in to view account status",
-    "noVaultLists": "You don't have any vault lists selected.",
     "noPrizeTokens": "You don't have any prize tokens.",
     "depositNow": "Deposit now.",
     "yourDeposits": "Your Deposits",
@@ -218,13 +195,6 @@
     "changeDelegateAddress": "Change delegate address",
     "changeDelegateAddressShort": "Edit Delegate",
     "updateDelegatedAddress": "Update delegated address",
-    "fees": {
-      "title": "Estimated Network Fees",
-      "approval": "Approval",
-      "deposit": "Deposit",
-      "withdrawal": "Withdrawal",
-      "delegation": "Delegation"
-    },
     "dailyChances": "Daily Chance of Winning",
     "weeklyChances": "Weekly Chance of Winning",
     "monthlyChances": "Monthly Chance of Winning",
@@ -242,8 +212,6 @@
     "depositTx": "{symbol} Deposit",
     "withdrawTx": "{symbol} Withdrawal",
     "delegateTx": "{symbol} Delegation",
-    "switchNetwork": "Switch to {network}",
-    "switchingNetwork": "Switching to {network}...",
     "confirmNotice": "Confirm Transaction in Wallet",
     "submissionNotice": "Transaction Submitted",
     "depositing": "Depositing {tokens}...",
@@ -349,11 +317,6 @@
     "hmmm": "Hmmm...",
     "pageNotFound": "We couldn't find the page you're looking for.",
     "return": "Return to the Pool",
-    "aaveCollateralizationError": {
-      "issue": "This vault is experiencing issues due to using a high percentage of Aave's supply. <link>Learn more</link>",
-      "recommendation": "It is not recommended to withdraw at this time",
-      "moreInfo": "You may be able to swap out via <uniLink>Uniswap</uniLink>, or wait for the vault to normalize. For further updates, visit PoolTogether's <discordLink>Discord</discordLink>"
-    },
     "formErrors": {
       "notEnoughTokens": "Not enough {symbol} in wallet",
       "invalidNumber": "Enter a valid number",

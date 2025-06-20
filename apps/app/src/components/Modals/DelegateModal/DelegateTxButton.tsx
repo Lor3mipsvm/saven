@@ -101,7 +101,7 @@ export const DelegateTxButton = (props: DelegateTxButtonProps) => {
       color={!delegateEnabled && chain?.id === vault.chainId ? 'transparent' : 'teal'}
       addRecentTransaction={addRecentTransaction}
       signInWithWallet={signInWithWallet}
-      intl={{ base: t_txModals, common: t_common }}
+      intl={{ common: t_common }}
     >
       {t_txModals('updateDelegatedAddress')}
     </TransactionButton>

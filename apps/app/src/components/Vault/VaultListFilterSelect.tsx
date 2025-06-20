@@ -2,7 +2,6 @@ import { useSelectedVaultLists } from '@generationsoftware/hyperstructure-react-
 import classNames from 'classnames'
 import { Select } from 'flowbite-react'
 import { useAtom } from 'jotai'
-import { useTranslations } from 'next-intl'
 import { vaultListFilterIdAtom } from './VaultFilters'
 
 interface VaultListFilterSelectProps {
@@ -11,8 +10,6 @@ interface VaultListFilterSelectProps {
 
 export const VaultListFilterSelect = (props: VaultListFilterSelectProps) => {
   const { className } = props
-
-  const t = useTranslations('Vaults.filters')
 
   const { localVaultLists, importedVaultLists } = useSelectedVaultLists()
 
@@ -44,7 +41,7 @@ export const VaultListFilterSelect = (props: VaultListFilterSelectProps) => {
       className={classNames('max-w-[12.5rem]', className)}
     >
       <option value='all' className='bg-pt-purple-600 bg-opacity-30 '>
-        {t('allVaultLists')}
+        All vault lists
       </option>
       {Object.entries({ ...localVaultLists, ...importedVaultLists }).map(([id, list]) => (
         <option key={id} value={id} className='bg-pt-purple-600 bg-opacity-30 '>

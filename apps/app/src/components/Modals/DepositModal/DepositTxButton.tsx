@@ -146,7 +146,7 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       disabled={!depositEnabled}
       addRecentTransaction={addRecentTransaction}
       signInWithWallet={signInWithWallet}
-      intl={{ base: t_modals, common: t_common }}
+      intl={{ common: t_common }}
     >
       {t_modals('confirmDeposit')}
     </TransactionButton>

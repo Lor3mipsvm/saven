@@ -216,27 +216,6 @@
     "vaultFee": "Відсоток прибутковості, який йде не на призи, та визначається особою що розгорнула сховище",
     "importedVault": "Це сховище походить з наступних імпортованих списків:"
   },
-  "Toasts": {
-    "transactions": {
-      "deposit": "Депозит",
-      "withdrawal": "Зняття",
-      "depositing": "Зарахування {tokens}...",
-      "withdrawing": "Зняття {tokens}...",
-      "viewOn": "Переглянути {name}",
-      "success": "Готово!",
-      "deposited": "Ви внесли {tokens} на {network}",
-      "withdrew": "Ви зняли {tokens} на {network}",
-      "uhOh": "Ой!",
-      "failedTx": "Щось пішло не так....",
-      "tryAgain": "Спробуйте ще"
-    },
-    "vaultListImports": {
-      "importingFrom": "Імпорт списку сховищ із {src}...",
-      "successfulImport": "Успішно імпортовано список сховищ.",
-      "selectedVaultList": "\"{name}\" було додано до обраного вами списку сховищ.",
-      "failedImport": "Щось пішло не так під час імпорту списку сховищ з {src}."
-    }
-  },
   "Error": {
     "oops": "Йой!",
     "noVaultListsEnabled": "Схоже, у вас не ввімкнено жодного дійсного списку сховищ.",

@@ -214,27 +214,6 @@
     "vaultFee": "Процент доходности, который не идет на выплату призов и определяется развертывателем хранилища",
     "importedVault": "Данное хранилище относится к следующему импортируемому списку (s):"
   },
-  "Toasts": {
-    "transactions": {
-      "deposit": "Депозит",
-      "withdrawal": "Вывод средств",
-      "depositing": "Внесение {tokens}...",
-      "withdrawing": "Вывод {tokens}...",
-      "viewOn": "Посмотреть{name}",
-      "success": "Успехов!",
-      "deposited": "Вы внесли {tokens} в {network}",
-      "withdrew": "Вы вывели {tokens} в {network}",
-      "uhOh": "Ой!",
-      "failedTx": "Что-то пошло не так....",
-      "tryAgain": "Попробуйте еще раз"
-    },
-    "vaultListImports": {
-      "importingFrom": "Импорт списка хранилищ из {src}...",
-      "successfulImport": "Успешно импортирован список хранилищ.",
-      "selectedVaultList": "\"{name}\" было добавлено в выбранные вами списки хранилищ.",
-      "failedImport": "При импорте списка хранилищ из {src} что-то пошло не так."
-    }
-  },
   "Error": {
     "oops": "Упс!",
     "noVaultListsEnabled": "Похоже, что у вас не включены действительные списки хранилищ.",
