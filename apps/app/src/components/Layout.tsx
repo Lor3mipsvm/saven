@@ -99,7 +99,7 @@ export const Layout = (props: LayoutProps) => {
       <Navbar />
 
       <SettingsModal
-        locales={['en', 'de', 'ru', 'ko', 'uk', 'hi', 'es']}
+        locales={['en', 'es', 'de', 'ja', 'ko', 'pt', 'uk', 'hi', 'ru']}
         onCurrencyChange={() => {}}
         onLanguageChange={() => {}}
         onVaultListImport={() => {}}

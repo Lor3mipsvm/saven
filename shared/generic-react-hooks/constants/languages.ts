@@ -8,6 +8,7 @@ export type LANGUAGE_ID =
   | 'fr'
   | 'hi'
   | 'it'
+  | 'ja'
   | 'ko'
   | 'pt'
   | 'ru'
@@ -35,6 +36,10 @@ export const SUPPORTED_LANGUAGES: Record<LANGUAGE_ID, { name: string; nativeName
   fr: {
     name: 'French',
     nativeName: 'Français'
+  },
+  ja: {
+    name: 'Japanese',
+    nativeName: '日本語'
   },
   hi: {
     name: 'Hindi',
