@@ -82,7 +82,8 @@
       "prizes": "상품",
       "winChance": "승리 확률"
     },
-    "depositAndWin": "토큰을 입금하고 <highlight>상품을 받으세요</highlight>. 언제든지 출금, <highlight>손실 없음</highlight>"
+    "depositAndWin": "토큰을 입금하고 <highlight>상품을 받으세요</highlight>. 언제든지 출금, <highlight>손실 없음</highlight>",
+    "upTo": "최대"
   },
   "Vault": {
     "headers": {
@@ -164,7 +165,7 @@
       "youWonX": "당신은",
       "xWon": "당첨되었습니다!",
       "checkingEligibleDraws": "적격 추첨 확인...",
-      "eligibleDraws": "번호, 복수, 1 {# 추첨} 기타 {# 추첨}}을 받을 자격이 있습니다.",
+      "eligibleDraws": "당신은 {number}번의 추첨에 참여했습니다",
       "caughtUp": "모두 따라잡았습니다!",
       "noNewDraws": "확인해야 할 새로운 적격 추첨이 없습니다."
     },

@@ -92,7 +92,8 @@
       "winChance": "Vincere l'occasione",
       "totalDeposits": "Totale depositi",
       "yourBalance": "Il vostro equilibrio"
-    }
+    },
+    "upTo": "fino a"
   },
   "Vault": {
     "headers": {

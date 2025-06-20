@@ -93,7 +93,8 @@
       "prizes": "Preise",
       "winChance": "Chance gewinnen"
     },
-    "depositAndWin": "Token einzahlen, <highlight>Preise gewinnen</highlight>. Jederzeit auszahlen lassen, <highlight>kein Verlust</highlight>"
+    "depositAndWin": "Token einzahlen, <highlight>Preise gewinnen</highlight>. Jederzeit auszahlen lassen, <highlight>kein Verlust</highlight>",
+    "upTo": "bis zu"
   },
   "Vault": {
     "headers": {

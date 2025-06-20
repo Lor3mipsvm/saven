@@ -82,7 +82,8 @@
       "winChance": "Ganhar uma oportunidade",
       "totalDeposits": "Total de depósitos",
       "yourBalance": "O seu equilíbrio"
-    }
+    },
+    "upTo": "até"
   },
   "Vault": {
     "headers": {
@@ -167,7 +168,7 @@
     },
     "prizeChecking": {
       "checkingEligibleDraws": "Verificação dos sorteios elegíveis...",
-      "eligibleDraws": "Podia concorrer a {número, plural, um {# sorteio} outros {# sorteios}}",
+      "eligibleDraws": "Podia concorrer a {number, plural, one {# sorteio} other {# sorteios}}",
       "caughtUp": "Tudo em dia!",
       "noNewDraws": "Não há novos sorteios elegíveis a verificar.",
       "totalPrizes": {

@@ -82,7 +82,8 @@
       "prizes": "상품",
       "winChance": "승리 확률"
     },
-    "depositAndWin": "토큰을 입금하고 <highlight>상품을 받으세요</highlight>. 언제든지 출금, <highlight>손실 없음</highlight>"
+    "depositAndWin": "토큰을 입금하고 <highlight>상품을 받으세요</highlight>. 언제든지 출금, <highlight>손실 없음</highlight>",
+    "upTo": "최대"
   },
   "Vault": {
     "headers": {

@@ -82,7 +82,8 @@
       "winChance": "ウィン・チャンス",
       "totalDeposits": "預金総額",
       "yourBalance": "あなたのバランス"
-    }
+    },
+    "upTo": "まで"
   },
   "Vault": {
     "headers": {
@@ -167,7 +168,7 @@
     },
     "prizeChecking": {
       "checkingEligibleDraws": "対象ドローのチェック...",
-      "eligibleDraws": "あなたは{番号、複数形、1つの{#抽選}}他の{#抽選}}に参加する資格がありました。",
+      "eligibleDraws": "{number}回の抽選に参加できました",
       "caughtUp": "すべて追いついた！",
       "noNewDraws": "新たにチェックすべき対象ドローはない。",
       "totalPrizes": {

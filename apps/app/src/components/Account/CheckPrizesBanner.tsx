@@ -14,8 +14,6 @@ interface CheckPrizesBannerProps {
 }
 
 export const CheckPrizesBanner = (props: CheckPrizesBannerProps) => {
-  const { className } = props
-
   const { address: userAddress } = useAccount()
 
   const { setIsModalOpen } = useIsModalOpen(MODAL_KEYS.checkPrizes)

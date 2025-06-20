@@ -82,7 +82,8 @@
       "prizes": "Призы",
       "winChance": "Выиграть шанс"
     },
-    "depositAndWin": "Вносите жетоны, <highlight>выигрывайте призы</highlight>. Выводите средства в любое время, <highlight>без потерь</highlight>"
+    "depositAndWin": "Вносите жетоны, <highlight>выигрывайте призы</highlight>. Выводите средства в любое время, <highlight>без потерь</highlight>",
+    "upTo": "до"
   },
   "Vault": {
     "headers": {

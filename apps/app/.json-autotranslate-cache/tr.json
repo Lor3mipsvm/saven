@@ -82,7 +82,8 @@
       "winChance": "Kazanma Şansı",
       "totalDeposits": "Toplam Mevduat",
       "yourBalance": "Sizin Dengeniz"
-    }
+    },
+    "upTo": "kadar"
   },
   "Vault": {
     "headers": {

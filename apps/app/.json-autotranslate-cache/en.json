@@ -73,6 +73,7 @@
     }
   },
   "Vaults": {
+    "upTo": "up to",
     "depositAndWin": "Deposit tokens, <highlight>win prizes</highlight>. Withdraw anytime, <highlight>no loss</highlight>",
     "headers": {
       "prizeVault": "Prize Vault",

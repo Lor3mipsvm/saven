@@ -82,7 +82,8 @@
       "winChance": "赢得机会",
       "totalDeposits": "存款总额",
       "yourBalance": "您的平衡"
-    }
+    },
+    "upTo": "到"
   },
   "Vault": {
     "headers": {

@@ -3,6 +3,7 @@ import { useAllPrizeValue } from '@generationsoftware/hyperstructure-react-hooks
 import { CurrencyValue } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import classNames from 'classnames'
+import { useTranslations } from 'next-intl'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 
 interface VaultPrizesProps {
@@ -13,6 +14,8 @@ interface VaultPrizesProps {
 
 export const VaultPrizes = (props: VaultPrizesProps) => {
   const { vault, className, amountClassName } = props
+
+  const t_vault = useTranslations('Vaults')
 
   const prizePools = useSupportedPrizePools()
   const prizePool = Object.values(prizePools).find((pool) => pool.chainId === vault.chainId)
@@ -26,7 +29,7 @@ export const VaultPrizes = (props: VaultPrizesProps) => {
 
   return (
     <div className={classNames('text-sm text-pt-purple-100', className)}>
-      up to{' '}
+      {t_vault('upTo')}{' '}
       <span className={classNames('text-lg font-semibold', amountClassName)}>
         <CurrencyValue baseValue={prizeValue} hideZeroes={true} />
       </span>

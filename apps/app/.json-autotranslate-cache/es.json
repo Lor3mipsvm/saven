@@ -83,7 +83,8 @@
       "prizes": "Premios",
       "winChance": "Ganar una oportunidad"
     },
-    "depositAndWin": "Deposite fichas, <highlight>gane premios</highlight>. Retira cuando quieras, <highlight>sin pérdidas</highlight>"
+    "depositAndWin": "Deposite fichas, <highlight>gane premios</highlight>. Retira cuando quieras, <highlight>sin pérdidas</highlight>",
+    "upTo": "hasta"
   },
   "Vault": {
     "headers": {

@@ -88,7 +88,8 @@
       "winChance": "Kans winnen",
       "totalDeposits": "Totaal deposito's",
       "yourBalance": "Jouw balans"
-    }
+    },
+    "upTo": "tot"
   },
   "Vault": {
     "headers": {
