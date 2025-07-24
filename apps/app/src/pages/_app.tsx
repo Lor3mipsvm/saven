@@ -1,19 +1,14 @@
 import { MiniKitProvider } from '@coinbase/onchainkit/minikit'
 import '@coinbase/onchainkit/styles.css'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IncomingMessage } from 'http'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
 import { type ReactNode, useState } from 'react'
 import { base } from 'viem/chains'
 import { WagmiProvider } from 'wagmi'
-// import { type State, WagmiProvider } from 'wagmi'
-// import { base } from 'wagmi/chains'
 import { AppContainer } from '@components/AppContainer'
 import '../styles/globals.css'
 import { wagmiConfig } from '../utils'
-
-// const queryClient = new QueryClient()
 
 export interface CustomAppProps {
   serverProps: {
@@ -22,7 +17,6 @@ export interface CustomAppProps {
 }
 
 export default function MyApp(props: AppProps & CustomAppProps) {
-  // const [queryClient] = useState(() => new QueryClient())
   return (
     <WagmiProvider config={wagmiConfig}>
       <MiniKitProvider
@@ -32,9 +26,7 @@ export default function MyApp(props: AppProps & CustomAppProps) {
         chain={base}
         rpcUrl={process.env.NEXT_PUBLIC_BASE_RPC_URL}
       >
-        {/* <QueryClientProvider client={queryClient}> */}
         <AppContainer {...props} />
-        {/* </QueryClientProvider> */}
       </MiniKitProvider>
     </WagmiProvider>
   )

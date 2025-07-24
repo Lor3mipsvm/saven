@@ -49,6 +49,8 @@ export const SuccessView = (props: SuccessViewProps) => {
   })
 
   const tokensReceived = useMemo(() => {
+    console.log(userAddress, token, txReceipt)
+
     if (!!userAddress && !!token && !!txReceipt) {
       return getTokensReceived(userAddress, token, txReceipt)
     }

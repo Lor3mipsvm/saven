@@ -1,4 +1,5 @@
 import { useSelectedVault, useSelectedVaults } from '@generationsoftware/hyperstructure-react-hooks'
+import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline'
 import { ExternalLink } from '@shared/ui'
 import { LINKS, NETWORK } from '@shared/utilities'
 import classNames from 'classnames'
@@ -20,11 +21,11 @@ export const PrizePoolDisplay = (props: PrizePoolDisplayProps) => {
 
   return (
     <div className={classNames('flex flex-col items-center text-center', className)}>
-      <span className='text-2xl font-averta text-pt-purple-200 font-medium md:text-4xl'>
+      <span className='text-xl font-averta text-pt-purple-200 md:text-2xl'>
         {t('currentPrizes')}
       </span>
       <PrizePoolCarousel onNetworkChange={onNetworkChange} className='mt-2 mb-4' />
-      <span className='px-4'>
+      <span className='px-0'>
         *&nbsp;
         {t.rich('learnMore', {
           link: (chunks) => (
@@ -89,6 +90,12 @@ const PrizePoolCarousel = (props: PrizePoolCarouselProps) => {
     !!chainId && handleNetworkChange(chainId)
   }, [prizePoolIndex])
 
+  // const prevPrizePoolIndex = prizePoolIndex === 0 ? prizePoolsArray.length - 1 : prizePoolIndex - 1
+  // const nextPrizePoolIndex = prizePoolIndex === prizePoolsArray.length - 1 ? 0 : prizePoolIndex + 1
+
+  // TODO: ideally this isn't hardcoded, and matches the number of relevant prize tiers of the largest prize pool
+  const minPrizeRows = 6
+
   return (
     <div
       className={classNames(
@@ -96,10 +103,37 @@ const PrizePoolCarousel = (props: PrizePoolCarouselProps) => {
         className
       )}
     >
+      {/* <PrizePoolPrizesCard
+        prizePool={prizePoolsArray[prevPrizePoolIndex]}
+        minPrizeRows={minPrizeRows}
+        className='hidden w-[calc(100vw-4rem)] shrink-0 lg:w-[38rem] lg:flex'
+      /> */}
       <PrizePoolPrizesCard
         prizePool={prizePoolsArray[prizePoolIndex]}
+        minPrizeRows={minPrizeRows}
         className='w-[calc(100vw-2rem)] shrink-0 lg:w-[38rem]'
       />
+      {/* <PrizePoolPrizesCard
+        prizePool={prizePoolsArray[nextPrizePoolIndex]}
+        minPrizeRows={minPrizeRows}
+        className='hidden w-[calc(100vw-4rem)] shrink-0 lg:w-[38rem] lg:flex'
+      /> */}
+      {/* <div className='absolute w-full h-full pointer-events-none lg:bg-[linear-gradient(90deg,#21064E_15%,transparent_35%,transparent_65%,#21064E_85%)]'>
+        <div className='relative w-full h-full max-w-screen-xl mx-auto'>
+          <button
+            onClick={() => setPrizePoolIndex(prevPrizePoolIndex)}
+            className='absolute top-[calc(50%-0.75rem)] left-4 p-1 bg-pt-purple-600 rounded-full pointer-events-auto lg:top-[calc(50%-1rem)] lg:bg-pt-transparent'
+          >
+            <ArrowLongLeftIcon className='w-6 text-pt-purple-200 stroke-2 lg:w-8' />
+          </button>
+          <button
+            onClick={() => setPrizePoolIndex(nextPrizePoolIndex)}
+            className='absolute top-[calc(50%-0.75rem)] right-4 p-1 bg-pt-purple-600 rounded-full pointer-events-auto lg:top-[calc(50%-1rem)] lg:bg-pt-transparent'
+          >
+            <ArrowLongRightIcon className='w-6 text-pt-purple-200 stroke-2 lg:w-8' />
+          </button>
+        </div>
+      </div> */}
     </div>
   )
 }

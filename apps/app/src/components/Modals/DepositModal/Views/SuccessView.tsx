@@ -42,6 +42,8 @@ export const SuccessView = (props: SuccessViewProps) => {
   })
 
   const sharesReceived = useMemo(() => {
+    console.log(userAddress, share, txReceipt)
+
     if (!!userAddress && !!share && !!txReceipt) {
       return getSharesReceived(userAddress, share, txReceipt)
     }

@@ -33,11 +33,11 @@ export const PrizesHeader = () => {
   return (
     <>
       <div className='flex flex-col items-center gap-3'>
-        {/* <img src='/partyPopperEmoji.svg' alt='Cabana Party Popper Emoji' width={88} height={88} /> */}
+        <img src='/partyPopperEmoji.svg' alt='Cabana Party Popper Emoji' width={88} height={88} />
         <span
           className={classNames(
-            'px-4 flex flex-wrap justify-center text-center text-[1.75rem] leading-tight font-averta font-bold',
-            'md:w-full md:text-4xl lg:text-5xl flex flex-col'
+            'px-4 flex flex-wrap justify-center text-center text-[1.75rem] font-averta',
+            'md:w-full text-4xl flex flex-col'
           )}
         >
           {t_prizes.rich('keepYourDeposit')}
