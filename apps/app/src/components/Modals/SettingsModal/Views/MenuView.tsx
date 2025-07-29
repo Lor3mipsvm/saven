@@ -39,7 +39,7 @@ export const MenuView = (props: MenuViewProps) => {
         title={t('customizeExperience')}
         items={[
           {
-            iconContent: selectedLanguage.toUpperCase(),
+            iconContent: selectedLanguage?.toUpperCase(),
             iconClassName: '!text-base font-semibold',
             title: t('changeLanguage'),
             onClick: () => setSettingsModalView('language'),
