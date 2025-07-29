@@ -55,6 +55,8 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
   const { data: userVaultShareBalance, isFetched: isFetchedUserVaultShareBalance } =
     useUserVaultShareBalance(withdrawVault, userAddress as Address)
   const amount = userVaultShareBalance?.amount as bigint
+  console.log('userVaultShareBalance')
+  console.log(userVaultShareBalance)
 
   const { refetch: refetchUserVaultTokenBalance } = useUserVaultTokenBalance(
     withdrawVault,
@@ -88,7 +90,7 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
       refetchVaultBalance()
       refetchUserBalances?.()
 
-      setDepositTxHash(txHash)
+      setMigrateTxHash(txHash)
     },
     onSettled: () => {
       setIsConfirming(false)
@@ -109,6 +111,7 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
     withdrawAndDeposit(
       amount,
       publicClient,
+      userAddress as Address,
       withdrawVault.address,
       depositVault.address,
       tokenAddress as Address,
