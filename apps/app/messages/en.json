@@ -31,7 +31,8 @@
     "nextClaim": "Next Claim",
     "date": "Date",
     "allTime": "All Time",
-    "draws": "Draws"
+    "draws": "Draws",
+    "migrateNow": "Migrate now"
   },
   "Navigation": {
     "home": "Home",
@@ -210,6 +211,7 @@
     "reviewWithdrawal": "Review Withdrawal",
     "confirmDeposit": "Confirm Deposit",
     "confirmWithdrawal": "Confirm Withdrawal",
+    "migrateTx": "{symbol} Migrate",
     "depositTx": "{symbol} Deposit",
     "withdrawTx": "{symbol} Withdrawal",
     "delegateTx": "{symbol} Delegation",

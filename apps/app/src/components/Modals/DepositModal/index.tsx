@@ -11,7 +11,6 @@ import classNames from 'classnames'
 import { useAtom, useSetAtom } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { ReactNode, useMemo, useState } from 'react'
-import { addRecentTransaction } from 'src/utils'
 import { Hash } from 'viem'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 import {

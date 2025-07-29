@@ -20,6 +20,13 @@ export type WithdrawTxOptions = {
   onError?: () => void
 }
 
+export type WithdrawAndDepositTxOptions = {
+  onSend?: () => void
+  onSuccess?: (withdrawTxHash: Address, depositTxHash: Address) => void
+  onSettled?: () => void
+  onError?: () => void
+}
+
 export const decodeDepositEvent = (
   prizeVaultAddress: Address,
   depositTxReceipt: TransactionReceipt
@@ -191,6 +198,92 @@ export const redeem = async (
       onSuccess: (txHash: Address) => options?.onSuccess?.(txHash)
     }
   )
+}
+
+export const withdrawAndDeposit = async (
+  amount: bigint,
+  publicClient: any,
+  userAddress: Address,
+  withdrawPrizeVaultAddress: Address,
+  depositPrizeVaultAddress: Address,
+  prizeVaultAssetAddress?: Address,
+  options?: WithdrawAndDepositTxOptions
+) => {
+  if (!prizeVaultAssetAddress) {
+    return
+  }
+
+  if (!MiniKit.isInstalled()) {
+    return
+  }
+
+  const nonce = Date.now().toString()
+  const deadline = Math.floor((Date.now() + 30 * 60 * 1000) / 1000).toString()
+
+  // Create withdraw transaction
+  const withdrawTx = {
+    address: withdrawPrizeVaultAddress,
+    abi: redeemABI,
+    functionName: 'redeem',
+    args: [amount.toString(), userAddress, userAddress]
+  }
+
+  // Create deposit transaction
+  const depositTx = {
+    address: PERMIT_2_VAULT_DEPOSIT_ADDRESS,
+    abi: permitDepositABI,
+    functionName: 'permitDeposit',
+    args: [
+      depositPrizeVaultAddress,
+      amount.toString(),
+      nonce,
+      deadline,
+      'PERMIT2_SIGNATURE_PLACEHOLDER_0'
+    ]
+  }
+
+  // Create permit2 data for deposit
+  const permit2 = {
+    permitted: {
+      token: prizeVaultAssetAddress,
+      amount: amount.toString()
+    },
+    nonce,
+    deadline,
+    spender: PERMIT_2_VAULT_DEPOSIT_ADDRESS
+  }
+
+  try {
+    const { commandPayload, finalPayload } = await MiniKit.commandsAsync.sendTransaction({
+      transaction: [withdrawTx, depositTx],
+      permit2: [permit2]
+    })
+
+    if (finalPayload.status === 'error') {
+      console.error('debugUrl')
+      console.error(finalPayload?.details?.debugUrl)
+      console.error('simulationError')
+      console.error(finalPayload?.details?.simulationError)
+      options?.onError?.()
+    } else {
+      options?.onSend?.()
+
+      const txReceipt = await getTxReceipt(publicClient, finalPayload)
+
+      if (txReceipt) {
+        // Both transactions are included in the same receipt
+        options?.onSuccess?.(txReceipt.transactionHash, txReceipt.transactionHash)
+      } else {
+        // throw new Error('Unable to get txReceipt')
+      }
+    }
+  } catch (e) {
+    console.error(e)
+    options?.onError?.()
+    throw e
+  } finally {
+    options?.onSettled?.()
+  }
 }
 
 export const sendTx = async (
