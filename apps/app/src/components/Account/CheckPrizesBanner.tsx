@@ -4,7 +4,6 @@ import { useAccount } from '@shared/generic-react-hooks'
 import { Card } from '@shared/ui'
 import { Button, Spinner } from '@shared/ui'
 import { getSimpleDate } from '@shared/utilities'
-import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
@@ -13,7 +12,8 @@ interface CheckPrizesBannerProps {
   className?: string
 }
 
-export const CheckPrizesBanner = (props: CheckPrizesBannerProps) => {
+// export const CheckPrizesBanner = (props: CheckPrizesBannerProps) => {
+export const CheckPrizesBanner = () => {
   const { address: userAddress } = useAccount()
 
   const { setIsModalOpen } = useIsModalOpen(MODAL_KEYS.checkPrizes)
