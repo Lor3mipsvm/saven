@@ -272,7 +272,7 @@ export const withdrawAndDeposit = async (
 
       if (txReceipt) {
         // Both transactions are included in the same receipt
-        options?.onSuccess?.(txReceipt.transactionHash, txReceipt.transactionHash)
+        options?.onSuccess?.(txReceipt.transactionHash)
       } else {
         // throw new Error('Unable to get txReceipt')
       }

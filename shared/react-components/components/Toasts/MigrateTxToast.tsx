@@ -52,9 +52,7 @@ export const MigrateTxToast = (props: MigrateTxToastProps) => {
     if (isSuccess && !!txHash) {
       if (!!addRecentTransaction) {
         const networkName = getNiceNetworkNameByChainId(vault.chainId)
-        const txDescription = `${tokenData?.symbol} ${
-          intl?.('migrated', { tokens, network }) ?? 'You migrated {tokens} on {network}'
-        }`
+        const txDescription = `${tokenData?.symbol} ${intl?.('migrated', { tokens, network })}`
 
         addRecentTransaction({
           hash: txHash,
@@ -124,14 +122,14 @@ const ConfirmingView = (props: ConfirmingViewProps) => {
 
   return (
     <>
-      <span className='flex items-center gap-2 text-pt-purple-50'>
+      <span className='flex items-center gap-2 text-pt-purple-50 text-sm'>
         <Spinner className='after:border-y-pt-teal' />
         {intl?.('migrating', { tokens }) ?? `Migrating ${tokens}...`}
       </span>
       <a
         href={getBlockExplorerUrl(vault.chainId, txHash, 'tx')}
         target='_blank'
-        className='text-xs text-pt-teal'
+        className='text-sm text-pt-purple-300 underline'
       >
         {intl?.('viewOn', { name }) ?? `View on ${name}`}
       </a>
@@ -161,14 +159,12 @@ const SuccessView = (props: SuccessViewProps) => {
         <span className='text-xl font-semibold text-pt-teal'>
           {intl?.('success') ?? 'Success!'}
         </span>
-        <span className='text-pt-purple-50'>
-          {intl?.('migrated', { tokens, network }) ?? `You migrated ${tokens}`}
-        </span>
+        <span className='text-pt-purple-50 text-sm'>{intl?.('migrated', { tokens, network })}</span>
       </div>
       <a
         href={getBlockExplorerUrl(vault.chainId, txHash, 'tx')}
         target='_blank'
-        className='text-xs text-pt-teal'
+        className='text-sm text-pt-purple-300 underline'
       >
         {intl?.('viewOn', { name }) ?? `View on ${name}`}
       </a>
@@ -200,7 +196,7 @@ const ErrorView = (props: ErrorViewProps) => {
         <span className='text-xl font-semibold text-[#EA8686]'>{intl?.('uhOh') ?? 'Uh oh!'}</span>
         <span className='text-pt-purple-50'>{intl?.('failedTx') ?? 'Something went wrong...'}</span>
       </div>
-      <span className='text-xs text-pt-purple-100'>
+      <span className='text-sm text-pt-purple-100'>
         <span onClick={handleRetry} className='text-pt-teal cursor-pointer'>
           {intl?.('tryAgain') ?? 'Try Again'}
         </span>{' '}
@@ -208,7 +204,7 @@ const ErrorView = (props: ErrorViewProps) => {
         <a
           href={getBlockExplorerUrl(vault.chainId, txHash, 'tx')}
           target='_blank'
-          className='text-pt-teal'
+          className='text-pt-purple-300 underline'
         >
           {intl?.('viewOn', { name }) ?? `View on ${name}`}
         </a>

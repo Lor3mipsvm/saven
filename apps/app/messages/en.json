@@ -32,7 +32,7 @@
     "date": "Date",
     "allTime": "All Time",
     "draws": "Draws",
-    "migrateNow": "Migrate now"
+    "migrateNow": "Migrate Now"
   },
   "Toasts": {
     "transactions": {
@@ -40,7 +40,7 @@
       "migrating": "Migrating {tokens}...",
       "viewOn": "View on {name}",
       "success": "Success!",
-      "migrated": "You migrated {tokens} on {network}",
+      "migrated": "You migrated your {tokens} deposit",
       "uhOh": "Uh oh!",
       "failedTx": "Something went wrong....",
       "tryAgain": "Try Again"
@@ -240,7 +240,7 @@
     "gotTokens": "You got {tokens}",
     "withdrew": "You withdrew {tokens}",
     "delegated": "You delegated {tokens}",
-    "migrated": "You migrated {tokens}",
+    "migrated": "You migrated your {tokens} deposit",
     "nowEligible": "You are now eligible for all future draws in this pool.",
     "shareOn": "Share on",
     "viewAccount": "View Account",

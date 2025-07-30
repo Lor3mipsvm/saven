@@ -26,8 +26,7 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
   const { refetchUserBalances } = props
 
   const oldWldVaultAddress = '0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e'
-  // TODO: Update this to the actual new one after it's deployed!
-  const newWldVaultAddress = '0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e'
+  const newWldVaultAddress = '0x4c7e1f64a4b121d2f10d6fbca0db143787bf64bb'
 
   const withdrawVault = useVault({ chainId: NETWORK.world, address: oldWldVaultAddress })
   const depositVault = useVault({ chainId: NETWORK.world, address: newWldVaultAddress })
@@ -47,7 +46,8 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
 
   const { data: userVaultShareBalance, isFetched: isFetchedUserVaultShareBalance } =
     useUserVaultShareBalance(withdrawVault, userAddress as Address)
-  const amount = userVaultShareBalance?.amount as bigint
+  // const amount = userVaultShareBalance?.amount as bigint
+  const amount = 1000000000000000n as bigint
 
   const { refetch: refetchUserVaultTokenBalance } = useUserVaultTokenBalance(
     withdrawVault,
@@ -113,23 +113,15 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
       options
     )
 
-  // TODO: Switch to if conditional below before going live !
   const migrateEnabled =
     !isDisconnected &&
     !!userAddress &&
     !!tokenData &&
     isFetchedUserVaultShareBalance &&
+    !!userVaultShareBalance &&
+    !!amount &&
+    userVaultShareBalance.amount >= amount &&
     !!sendMigrateTransaction
-
-  // const migrateEnabled =
-  //   !isDisconnected &&
-  //   !!userAddress &&
-  //   !!tokenData &&
-  //   isFetchedUserVaultShareBalance &&
-  //   !!userVaultShareBalance &&
-  //   !!amount &&
-  //   userVaultShareBalance.amount >= amount &&
-  //   !!sendMigrateTransaction
 
   return (
     <TransactionButton

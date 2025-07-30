@@ -48,15 +48,11 @@ export const MigrateBanner = () => {
     </div>
   )
 
-  // TODO: Switch to if conditional below before going live !
-  if (isFetchedUserVaultShareBalance) {
+  if (
+    isFetchedUserVaultShareBalance &&
+    userVaultShareBalance?.amount &&
+    userVaultShareBalance?.amount > 0n
+  ) {
     return banner
   }
-  // if (
-  //   isFetchedUserVaultShareBalance &&
-  //   userVaultShareBalance?.amount &&
-  //   userVaultShareBalance?.amount > 0n
-  // ) {
-  //   return banner
-  // }
 }

@@ -39,7 +39,7 @@ export const Toaster = (props: ToasterProps) => {
         descriptionClassName: toastOptions?.descriptionClassName,
         style: {
           padding: '1.5rem',
-          backgroundColor: '#4C249F',
+          backgroundColor: '#3C148F',
           borderRadius: '0.5rem',
           ...toastOptions?.style
         }
