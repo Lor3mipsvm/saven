@@ -46,8 +46,7 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
 
   const { data: userVaultShareBalance, isFetched: isFetchedUserVaultShareBalance } =
     useUserVaultShareBalance(withdrawVault, userAddress as Address)
-  // const amount = userVaultShareBalance?.amount as bigint
-  const amount = 1000000000000000n as bigint
+  const amount = userVaultShareBalance?.amount as bigint
 
   const { refetch: refetchUserVaultTokenBalance } = useUserVaultTokenBalance(
     withdrawVault,
