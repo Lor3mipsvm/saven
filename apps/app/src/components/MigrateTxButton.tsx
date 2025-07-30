@@ -36,8 +36,6 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
 
   const withdrawVault = useVault({ chainId: NETWORK.world, address: oldWldVaultAddress })
   const depositVault = useVault({ chainId: NETWORK.world, address: newWldVaultAddress })
-  console.log(withdrawVault)
-  console.log(depositVault)
 
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
@@ -50,13 +48,10 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
   const { data: tokenData } = useVaultTokenData(withdrawVault)
-  const decimals = withdrawVault.decimals ?? tokenData?.decimals
 
   const { data: userVaultShareBalance, isFetched: isFetchedUserVaultShareBalance } =
     useUserVaultShareBalance(withdrawVault, userAddress as Address)
   const amount = userVaultShareBalance?.amount as bigint
-  console.log('userVaultShareBalance')
-  console.log(userVaultShareBalance)
 
   const { refetch: refetchUserVaultTokenBalance } = useUserVaultTokenBalance(
     withdrawVault,
@@ -103,10 +98,8 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
   const { data: tokenAddress, isFetched: isFetchedTokenAddress } =
     useVaultTokenAddress(depositVault)
 
-  console.log('tokenAddress')
-  console.log('tokenAddress WLD?')
-  console.log(tokenAddress)
   const publicClient = useWorldPublicClient()
+
   const sendMigrateTransaction = () =>
     withdrawAndDeposit(
       amount,
@@ -118,15 +111,23 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
       options
     )
 
+  // TODO: Switch to if conditional below before going live !
   const migrateEnabled =
     !isDisconnected &&
     !!userAddress &&
     !!tokenData &&
     isFetchedUserVaultShareBalance &&
-    !!userVaultShareBalance &&
-    !!amount &&
-    userVaultShareBalance.amount >= amount &&
     !!sendMigrateTransaction
+
+  // const migrateEnabled =
+  //   !isDisconnected &&
+  //   !!userAddress &&
+  //   !!tokenData &&
+  //   isFetchedUserVaultShareBalance &&
+  //   !!userVaultShareBalance &&
+  //   !!amount &&
+  //   userVaultShareBalance.amount >= amount &&
+  //   !!sendMigrateTransaction
 
   return (
     <TransactionButton

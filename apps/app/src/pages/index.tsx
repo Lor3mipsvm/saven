@@ -28,8 +28,8 @@ export default function HomePage() {
 
   return (
     <Layout className='gap-8'>
-      <HomeHeader />
       <MigrateBanner />
+      <HomeHeader />
 
       <Link href='/vaults' passHref={true}>
         <Button>{t('depositToWin')}</Button>

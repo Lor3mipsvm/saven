@@ -8,6 +8,7 @@ import { AccountOdds } from '@components/Account/AccountOdds'
 import { AccountWinnings } from '@components/Account/AccountWinnings'
 import { CheckPrizesBanner } from '@components/Account/CheckPrizesBanner'
 import { Layout } from '@components/Layout'
+import { MigrateBanner } from '@components/MigrateBanner'
 
 interface AccountPageProps {
   messages: IntlMessages
@@ -25,6 +26,7 @@ export const getStaticProps: GetStaticProps<AccountPageProps> = async ({ locale 
 export default function AccountPage() {
   return (
     <Layout className='gap-6 lg:gap-8'>
+      <MigrateBanner />
       <CheckPrizesBanner />
       <AccountDeposits />
       <AccountDelegations />
