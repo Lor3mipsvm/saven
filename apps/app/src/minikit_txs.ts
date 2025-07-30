@@ -22,7 +22,7 @@ export type WithdrawTxOptions = {
 
 export type WithdrawAndDepositTxOptions = {
   onSend?: () => void
-  onSuccess?: (withdrawTxHash: Address, depositTxHash: Address) => void
+  onSuccess?: (txHash: Address) => void
   onSettled?: () => void
   onError?: () => void
 }

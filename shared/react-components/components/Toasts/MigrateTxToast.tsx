@@ -5,7 +5,6 @@ import {
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { Intl } from '@shared/types'
 import { Spinner, toast } from '@shared/ui'
@@ -20,23 +19,21 @@ import { useWaitForTransactionReceipt } from 'wagmi'
 import { ErrorPooly } from '../Graphics/ErrorPooly'
 import { SuccessPooly } from '../Graphics/SuccessPooly'
 
-export interface DelegateTxToastProps {
+export interface MigrateTxToastProps {
   vault: Vault
   txHash: string
   addRecentTransaction?: (tx: { hash: string; description: string; confirmations?: number }) => void
-  intl?: Intl<'delegated' | 'delegating' | 'viewOn' | 'success' | 'uhOh' | 'failedTx' | 'tryAgain'>
+  intl?: Intl<'migrated' | 'migrating' | 'viewOn' | 'success' | 'uhOh' | 'failedTx' | 'tryAgain'>
 }
 
 /**
- * Function to create original delegation TX toast while confirming transaction
- *
- * This toast will then update itself on TX success or fail
+ * Function to create migrate TX toast success
  */
-export const createDelegateTxToast = (data: DelegateTxToastProps) => {
-  toast(<DelegateTxToast {...data} />, { id: data.txHash })
+export const createMigrateTxToast = (data: MigrateTxToastProps) => {
+  toast(<MigrateTxToast {...data} />, { id: data.txHash })
 }
 
-export const DelegateTxToast = (props: DelegateTxToastProps) => {
+export const MigrateTxToast = (props: MigrateTxToastProps) => {
   const { vault, txHash, addRecentTransaction, intl } = props
 
   const { data: tokenData } = useVaultTokenData(vault)
@@ -48,12 +45,6 @@ export const DelegateTxToast = (props: DelegateTxToastProps) => {
 
   const { address: userAddress } = useAccount()
 
-  const { refetch: refetchUserVaultDelegate } = useUserVaultDelegate(
-    vault,
-    userAddress as Address,
-    { refetchOnWindowFocus: true }
-  )
-
   const tokens = `${tokenData?.symbol}`
   const network = getNiceNetworkNameByChainId(vault.chainId)
 
@@ -62,7 +53,7 @@ export const DelegateTxToast = (props: DelegateTxToastProps) => {
       if (!!addRecentTransaction) {
         const networkName = getNiceNetworkNameByChainId(vault.chainId)
         const txDescription = `${tokenData?.symbol} ${
-          intl?.('delegated', { tokens, network }) ?? 'You delegated {tokens} on {network}'
+          intl?.('migrated', { tokens, network }) ?? 'You migrated {tokens} on {network}'
         }`
 
         addRecentTransaction({
@@ -70,8 +61,6 @@ export const DelegateTxToast = (props: DelegateTxToastProps) => {
           description: `${networkName}: ${txDescription}`
         })
       }
-
-      refetchUserVaultDelegate()
     }
   }, [isSuccess, txHash])
 
@@ -122,7 +111,7 @@ const ToastLayout = (props: ToastLayoutProps) => {
 interface ConfirmingViewProps {
   vault: Vault
   txHash: string
-  intl?: Intl<'delegating' | 'viewOn'>
+  intl?: Intl<'migrating' | 'viewOn'>
 }
 
 const ConfirmingView = (props: ConfirmingViewProps) => {
@@ -137,7 +126,7 @@ const ConfirmingView = (props: ConfirmingViewProps) => {
     <>
       <span className='flex items-center gap-2 text-pt-purple-50'>
         <Spinner className='after:border-y-pt-teal' />
-        {intl?.('delegating', { tokens }) ?? `Delegating ${tokens}...`}
+        {intl?.('migrating', { tokens }) ?? `Migrating ${tokens}...`}
       </span>
       <a
         href={getBlockExplorerUrl(vault.chainId, txHash, 'tx')}
@@ -153,7 +142,7 @@ const ConfirmingView = (props: ConfirmingViewProps) => {
 interface SuccessViewProps {
   vault: Vault
   txHash: string
-  intl?: Intl<'success' | 'delegated' | 'viewOn'>
+  intl?: Intl<'success' | 'migrated' | 'viewOn'>
 }
 
 const SuccessView = (props: SuccessViewProps) => {
@@ -173,7 +162,7 @@ const SuccessView = (props: SuccessViewProps) => {
           {intl?.('success') ?? 'Success!'}
         </span>
         <span className='text-pt-purple-50'>
-          {intl?.('delegated', { tokens, network }) ?? `You delegated ${tokens}`}
+          {intl?.('migrated', { tokens, network }) ?? `You migrated ${tokens}`}
         </span>
       </div>
       <a
@@ -198,11 +187,8 @@ const ErrorView = (props: ErrorViewProps) => {
 
   const { setSelectedVaultById } = useSelectedVault()
 
-  const { setIsModalOpen } = useIsModalOpen(MODAL_KEYS.delegate)
-
   const handleRetry = () => {
     setSelectedVaultById(vault.id)
-    setIsModalOpen(true)
   }
 
   const name = getBlockExplorerName(vault.chainId)

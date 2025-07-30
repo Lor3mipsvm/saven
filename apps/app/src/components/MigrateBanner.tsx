@@ -1,5 +1,6 @@
 import { useUserVaultShareBalance, useVault } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
+import { createDepositTxToast } from '@shared/react-components'
 import { Card } from '@shared/ui'
 import { NETWORK } from '@shared/utilities'
 import { formatUnits } from 'viem'

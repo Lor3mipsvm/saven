@@ -10,25 +10,20 @@ import {
   useWorldPublicClient
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
-import { TransactionButton } from '@shared/react-components'
+import { createMigrateTxToast, TransactionButton } from '@shared/react-components'
 import { NETWORK } from '@shared/utilities'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
-import {
-  decodeDepositEvent,
-  withdrawAndDeposit,
-  type WithdrawAndDepositTxOptions
-} from 'src/minikit_txs'
+import { withdrawAndDeposit, type WithdrawAndDepositTxOptions } from 'src/minikit_txs'
 import { addRecentTransaction, signInWithWallet } from 'src/utils'
-import { Address, Hash } from 'viem'
+import { Address } from 'viem'
 
 interface MigrateTxButtonProps {
   refetchUserBalances?: () => void
-  onSuccessfulDeposit?: (chainId: number, txHash: Hash, shares: bigint) => void
 }
 
 export const MigrateTxButton = (props: MigrateTxButtonProps) => {
-  const { refetchUserBalances, onSuccessfulDeposit } = props
+  const { refetchUserBalances } = props
 
   const oldWldVaultAddress = '0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e'
   // TODO: Update this to the actual new one after it's deployed!
@@ -39,13 +34,14 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
 
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
+  const t_toasts = useTranslations('Toasts.transactions')
 
   const [isConfirming, setIsConfirming] = useState<boolean>(false)
   const [isSuccessful, setIsSuccessful] = useState<boolean>(false)
 
   const [migrateTxHash, setMigrateTxHash] = useState<string>()
 
-  const { address: userAddress, chain, isDisconnected } = useAccount()
+  const { address: userAddress, isDisconnected } = useAccount()
 
   const { data: tokenData } = useVaultTokenData(withdrawVault)
 
@@ -75,9 +71,15 @@ export const MigrateTxButton = (props: MigrateTxButtonProps) => {
     onSend: () => {
       setIsConfirming(true)
     },
-    onSuccess: (decodedEventLogs: ReturnType<typeof decodeDepositEvent>, txHash: Address) => {
+    onSuccess: (txHash: Address) => {
       setIsSuccessful(true)
-      onSuccessfulDeposit?.(depositVault.chainId, txHash, decodedEventLogs?.args?.shares)
+
+      createMigrateTxToast({
+        vault: depositVault,
+        txHash: txHash,
+        addRecentTransaction,
+        intl: t_toasts
+      })
 
       refetchUserTokenBalance()
       refetchUserVaultTokenBalance()

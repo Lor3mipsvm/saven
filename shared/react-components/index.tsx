@@ -52,7 +52,7 @@ export * from './components/PrizePool/PrizePoolDropdown'
 /**
  * Toasts
  */
-export * from './components/Toasts/DelegateTxToast'
+export * from './components/Toasts/MigrateTxToast'
 
 /**
  * Tooltips
