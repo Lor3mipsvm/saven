@@ -28,21 +28,23 @@ export const MigrateBanner = () => {
         <h4 className='text-center text-xl text-white'>
           <span className='font-bold text-teal-200'>Notice:</span> Migration Required
         </h4>
-        <p className='flex flex-col text-center'>
-          Previous Vault Balance:{' '}
-          <span className='font-bold'>
-            {userVaultShareBalance?.amount &&
-              formatUnits(
-                userVaultShareBalance?.amount as bigint,
-                userVaultShareBalance?.decimals as number
-              )}{' '}
-            WLD
-          </span>
+        <p className='text-sm text-center'>
+          <span className='text-pt-purple-100 text-opacity-100'>Previous Vault Balance:</span>{' '}
+          {/* <span className='font-bold'> */}
+          {userVaultShareBalance?.amount &&
+            formatUnits(
+              userVaultShareBalance?.amount as bigint,
+              userVaultShareBalance?.decimals as number
+            )}{' '}
+          WLD
+          {/* </span> */}
         </p>
         <p className='flex flex-col text-center font-semibold text-yellow-200'>
-          To continue winning prizes, you need to migrate your deposit to the new vault:
+          To continue winning prizes you need to migrate your deposit to the new vault:
         </p>
-        <MigrateTxButton />
+        <span className='my-1'>
+          <MigrateTxButton />
+        </span>
       </Card>
     </div>
   )
