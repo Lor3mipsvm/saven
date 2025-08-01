@@ -36,7 +36,8 @@
     "migrationRequired": "マイグレーションが必要",
     "notice": "お知らせ",
     "oldVaultBalance": "旧ボールト残高",
-    "toContinueWinning": "賞金を獲得し続けるには、新しい金庫に預金を移行する必要があります。"
+    "toContinueWinning": "賞金を獲得し続けるには、新しい金庫に預金を移行する必要があります。",
+    "rewardsBackdated": "WLD新金庫室への入金で獲得できるリワードがスタートしました！報酬は数日後に表示されます。"
   },
   "Navigation": {
     "home": "ホーム",

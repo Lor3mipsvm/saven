@@ -36,7 +36,8 @@
     "migrationRequired": "Migración necesaria",
     "notice": "Aviso",
     "oldVaultBalance": "Saldo de la bóveda antigua",
-    "toContinueWinning": "Para seguir ganando premios debe migrar su depósito a la nueva cámara acorazada"
+    "toContinueWinning": "Para seguir ganando premios debe migrar su depósito a la nueva cámara acorazada",
+    "rewardsBackdated": " ¡Las recompensas obtenidas por depósitos en la nueva cámara acorazada de WLD han comenzado! Tus recompensas serán visibles en unos días"
   },
   "Navigation": {
     "home": "Inicio",

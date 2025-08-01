@@ -37,7 +37,8 @@
     "migrationRequired": "Migration erforderlich",
     "notice": "Hinweis",
     "oldVaultBalance": "Alter Tresor Saldo",
-    "toContinueWinning": "Um weiterhin Preise zu gewinnen, müssen Sie Ihr Guthaben in den neuen Tresorraum transferieren"
+    "toContinueWinning": "Um weiterhin Preise zu gewinnen, müssen Sie Ihr Guthaben in den neuen Tresorraum transferieren",
+    "rewardsBackdated": " Die Belohnungen für Einzahlungen in den neuen WLD-Tresor haben begonnen! Ihre Belohnungen werden in ein paar Tagen sichtbar sein"
   },
   "Navigation": {
     "home": "Startseite",

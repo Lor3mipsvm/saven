@@ -36,7 +36,8 @@
     "migrationRequired": "Göç Gerekli",
     "notice": "Uyarı",
     "oldVaultBalance": "Eski Kasa Bakiyesi",
-    "toContinueWinning": "Ödül kazanmaya devam etmek için depozitonuzu yeni kasaya taşımanız gerekir"
+    "toContinueWinning": "Ödül kazanmaya devam etmek için depozitonuzu yeni kasaya taşımanız gerekir",
+    "rewardsBackdated": " Yeni WLD kasasındaki mevduatlar için kazanılan ödüller başladı! Ödülleriniz birkaç gün içinde görünür olacak"
   },
   "Navigation": {
     "home": "Ev",

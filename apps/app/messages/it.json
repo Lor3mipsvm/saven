@@ -36,7 +36,8 @@
     "migrationRequired": "Migrazione richiesta",
     "notice": "Avviso",
     "oldVaultBalance": "Saldo del vecchio caveau",
-    "toContinueWinning": "Per continuare a vincere i premi è necessario migrare il proprio deposito nel nuovo caveau."
+    "toContinueWinning": "Per continuare a vincere i premi è necessario migrare il proprio deposito nel nuovo caveau.",
+    "rewardsBackdated": " I premi guadagnati per i depositi nel nuovo caveau WLD sono iniziati! Le vostre ricompense saranno visibili tra qualche giorno"
   },
   "Navigation": {
     "home": "Home",

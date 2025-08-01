@@ -36,7 +36,8 @@
     "migrationRequired": "需要迁移",
     "notice": "通知",
     "oldVaultBalance": "旧金库余额",
-    "toContinueWinning": "要继续赢奖，您需要将存款转移到新保险库"
+    "toContinueWinning": "要继续赢奖，您需要将存款转移到新保险库",
+    "rewardsBackdated": "在新 WLD 金库存款获得的奖励已经开始！您的奖励将在几天后生效"
   },
   "Navigation": {
     "home": "首页",

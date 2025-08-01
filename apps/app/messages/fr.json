@@ -36,7 +36,8 @@
     "migrationRequired": "Migration requise",
     "notice": "Avis",
     "oldVaultBalance": "Ancienne balance de la chambre forte",
-    "toContinueWinning": "Pour continuer à gagner des prix, vous devez migrer votre dépôt vers le nouveau coffre-fort."
+    "toContinueWinning": "Pour continuer à gagner des prix, vous devez migrer votre dépôt vers le nouveau coffre-fort.",
+    "rewardsBackdated": " Les récompenses obtenues pour les dépôts dans le nouveau coffre-fort WLD ont commencé ! Vos récompenses seront visibles dans quelques jours."
   },
   "Navigation": {
     "home": "Accueil",

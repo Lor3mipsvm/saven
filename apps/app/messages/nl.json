@@ -36,7 +36,8 @@
     "migrationRequired": "Migratie vereist",
     "notice": "Kennisgeving",
     "oldVaultBalance": "Balans oude kluis",
-    "toContinueWinning": "Om prijzen te kunnen blijven winnen, moet je je storting migreren naar de nieuwe kluis"
+    "toContinueWinning": "Om prijzen te kunnen blijven winnen, moet je je storting migreren naar de nieuwe kluis",
+    "rewardsBackdated": " Beloningen voor stortingen in de nieuwe WLD-kluis zijn begonnen! Je beloningen zullen over een paar dagen zichtbaar zijn"
   },
   "Navigation": {
     "home": "Startpagina",

@@ -36,7 +36,8 @@
     "migrationRequired": "Migração necessária",
     "notice": "Aviso",
     "oldVaultBalance": "Saldo do cofre antigo",
-    "toContinueWinning": "Para continuar a ganhar prémios, tem de migrar o seu depósito para a nova caixa-forte"
+    "toContinueWinning": "Para continuar a ganhar prémios, tem de migrar o seu depósito para a nova caixa-forte",
+    "rewardsBackdated": " As recompensas obtidas pelos depósitos no novo cofre do WLD já começaram! As suas recompensas estarão visíveis dentro de alguns dias"
   },
   "Navigation": {
     "home": "Início",

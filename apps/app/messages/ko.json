@@ -36,7 +36,8 @@
     "migrationRequired": "마이그레이션 필요",
     "notice": "공지사항",
     "oldVaultBalance": "오래된 금고 잔고",
-    "toContinueWinning": "상품을 계속 받으려면 예치금을 새 금고로 이전해야 합니다."
+    "toContinueWinning": "상품을 계속 받으려면 예치금을 새 금고로 이전해야 합니다.",
+    "rewardsBackdated": " 새로운 WLD 금고에 예치한 보상이 시작되었습니다! 보상은 며칠 후에 확인할 수 있습니다."
   },
   "Navigation": {
     "home": "홈",
