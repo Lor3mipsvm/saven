@@ -47,22 +47,13 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   useEffect(() => {
     const initEruda = async () => {
       if (typeof window !== 'undefined') {
-        // Dev check
-        // @ts-ignore
-        if (window?.location.href.match(/localhost/)?.length > 0) {
-          return
-        }
-
         // Staging check
-        /*
-          // @ts-ignore
+        // @ts-ignore
         if (window?.location.href.match(/staging/)?.length > 0) {
-        return
-        }*/
+          const eruda = (await import('eruda')).default
+          eruda.init()
+        }
       }
-
-      const eruda = (await import('eruda')).default
-      eruda.init()
     }
     initEruda()
   })
