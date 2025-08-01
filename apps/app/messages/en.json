@@ -36,7 +36,8 @@
     "migrationRequired": "Migration Required",
     "notice": "Notice",
     "oldVaultBalance": "Old Vault Balance",
-    "toContinueWinning": "To continue winning prizes you need to migrate your deposit to the new vault"
+    "toContinueWinning": "To continue winning prizes you need to migrate your deposit to the new vault",
+    "rewardsBackdated": " Rewards earned for deposits in the new WLD vault have started! Your rewards will be visible in a few days"
   },
   "Toasts": {
     "transactions": {
