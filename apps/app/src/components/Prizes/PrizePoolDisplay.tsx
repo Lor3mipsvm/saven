@@ -24,7 +24,7 @@ export const PrizePoolDisplay = (props: PrizePoolDisplayProps) => {
         {t('currentPrizes')}
       </span>
       <PrizePoolCarousel onNetworkChange={onNetworkChange} className='mt-2 mb-4' />
-      <span>
+      <span className='px-4'>
         *&nbsp;
         {t.rich('learnMore', {
           link: (chunks) => (

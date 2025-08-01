@@ -39,10 +39,6 @@ export const SUPPORTED_LANGUAGES: Record<LANGUAGE_ID, { name: string; nativeName
     name: 'Japanese',
     nativeName: '日本語'
   },
-  hi: {
-    name: 'Hindi',
-    nativeName: 'Hindī'
-  },
   it: {
     name: 'Italian',
     nativeName: 'Italiana'
