@@ -31,7 +31,12 @@
     "nextClaim": "Siguiente reclamación",
     "date": "Fecha",
     "allTime": "Todos los tiempos",
-    "draws": "Dibuja"
+    "draws": "Dibuja",
+    "migrateNow": "Migrar ahora",
+    "migrationRequired": "Migración necesaria",
+    "notice": "Aviso",
+    "oldVaultBalance": "Saldo de la bóveda antigua",
+    "toContinueWinning": "Para seguir ganando premios debe migrar su depósito a la nueva cámara acorazada"
   },
   "Navigation": {
     "home": "Inicio",
@@ -237,7 +242,10 @@
     "findingZapRoute": "Encontrar ruta zap...",
     "noZapRouteFound": "No hay ruta zap disponible",
     "priceImpact": "Impacto del precio",
-    "minimumReceived": "Mínimo recibido"
+    "minimumReceived": "Mínimo recibido",
+    "migrateTx": "{símbolo} Migrar",
+    "migrating": "Migrando {tokens}...",
+    "migrated": "Has migrado tu depósito de {tokens}"
   },
   "Footer": {
     "titles": {
@@ -328,6 +336,18 @@
       "tooManyDecimals": "Demasiados decimales",
       "invalidAddress": "Introduzca una dirección válida de EVM",
       "sameAsDelegate": "La dirección introducida es la misma que la del delegado actual"
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "Migrar",
+      "migrating": "Migrando {tokens}...",
+      "viewOn": "Ver en {nombre}",
+      "success": "¡Éxito!",
+      "migrated": "Has migrado tu depósito de {tokens}",
+      "uhOh": "¡Uh oh!",
+      "failedTx": "Algo salió mal....",
+      "tryAgain": "Inténtelo de nuevo"
     }
   }
 }

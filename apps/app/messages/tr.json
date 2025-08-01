@@ -31,7 +31,12 @@
     "nextClaim": "Sonraki Talep",
     "date": "Tarih",
     "allTime": "Tüm Zamanlar",
-    "draws": "Çekilişler"
+    "draws": "Çekilişler",
+    "migrateNow": "Şimdi Göç Edin",
+    "migrationRequired": "Göç Gerekli",
+    "notice": "Uyarı",
+    "oldVaultBalance": "Eski Kasa Bakiyesi",
+    "toContinueWinning": "Ödül kazanmaya devam etmek için depozitonuzu yeni kasaya taşımanız gerekir"
   },
   "Navigation": {
     "home": "Ev",
@@ -236,7 +241,10 @@
     "findingZapRoute": "Zap rotasını buluyorum.",
     "noZapRouteFound": "Zap rotası mevcut değil",
     "priceImpact": "Fiyat Etkisi",
-    "minimumReceived": "Alınan Minimum"
+    "minimumReceived": "Alınan Minimum",
+    "migrateTx": "{sembol} Göç",
+    "migrating": "{tokenler} taşınıyor...",
+    "migrated": "{tokenler} depozitonuzu taşıdınız"
   },
   "Footer": {
     "titles": {
@@ -325,6 +333,18 @@
       "sameAsDelegate": "Girilen adres mevcut delege ile aynı",
       "negativeNumber": "Pozitif bir sayı girin",
       "tooManyDecimals": "Çok fazla ondalık sayı"
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "Göç",
+      "migrating": "{tokenler} taşınıyor...",
+      "viewOn": "View on {name}",
+      "success": "Başarılı!",
+      "migrated": "{tokenler} depozitonuzu taşıdınız",
+      "uhOh": "Uh oh!",
+      "failedTx": "Bir şeyler ters gitti....",
+      "tryAgain": "Tekrar Deneyin"
     }
   }
 }

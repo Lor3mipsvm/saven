@@ -31,7 +31,12 @@
     "nextClaim": "下一个索赔",
     "date": "日期",
     "allTime": "所有时间",
-    "draws": "抽奖"
+    "draws": "抽奖",
+    "migrateNow": "立即迁移",
+    "migrationRequired": "需要迁移",
+    "notice": "通知",
+    "oldVaultBalance": "旧金库余额",
+    "toContinueWinning": "要继续赢奖，您需要将存款转移到新保险库"
   },
   "Navigation": {
     "home": "首页",
@@ -236,7 +241,10 @@
     "findingZapRoute": "寻找 ZAP 路线...",
     "noZapRouteFound": "没有可用的斩波路线",
     "priceImpact": "价格影响",
-    "minimumReceived": "最低接收量"
+    "minimumReceived": "最低接收量",
+    "migrateTx": "{符号｝迁移",
+    "migrating": "迁移{标记}...",
+    "migrated": "你迁移了你的{图元}存款"
   },
   "Footer": {
     "titles": {
@@ -325,6 +333,18 @@
       "sameAsDelegate": "输入的地址与当前代表相同",
       "negativeNumber": "输入正数",
       "tooManyDecimals": "小数太多"
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "迁移",
+      "migrating": "迁移{标记}...",
+      "viewOn": "在 {name} 上查看",
+      "success": "成功！",
+      "migrated": "你迁移了你的{图元}存款",
+      "uhOh": "啊哦",
+      "failedTx": "出问题了....",
+      "tryAgain": "再试一次"
     }
   }
 }

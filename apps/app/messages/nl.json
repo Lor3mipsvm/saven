@@ -31,7 +31,12 @@
     "nextClaim": "Volgende claim",
     "date": "Datum",
     "allTime": "Alle tijden",
-    "draws": "Trekt"
+    "draws": "Trekt",
+    "migrateNow": "Nu migreren",
+    "migrationRequired": "Migratie vereist",
+    "notice": "Kennisgeving",
+    "oldVaultBalance": "Balans oude kluis",
+    "toContinueWinning": "Om prijzen te kunnen blijven winnen, moet je je storting migreren naar de nieuwe kluis"
   },
   "Navigation": {
     "home": "Startpagina",
@@ -242,7 +247,10 @@
     "findingZapRoute": "Zap-route vinden...",
     "noZapRouteFound": "Geen zap-route beschikbaar",
     "priceImpact": "Invloed op de prijs",
-    "minimumReceived": "Minimum ontvangen"
+    "minimumReceived": "Minimum ontvangen",
+    "migrateTx": "{Symbool} Migreren",
+    "migrating": "{tokens} migreren...",
+    "migrated": "Je hebt je {tokens} depot gemigreerd"
   },
   "Footer": {
     "titles": {
@@ -331,6 +339,18 @@
       "sameAsDelegate": "Ingevoerd adres is hetzelfde als huidige afgevaardigde",
       "negativeNumber": "Voer een positief getal in",
       "tooManyDecimals": "Te veel decimalen"
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "Migreren",
+      "migrating": "{tokens} migreren...",
+      "viewOn": "Bekijk op {naam}",
+      "success": "Succes!",
+      "migrated": "Je hebt je {tokens} depot gemigreerd",
+      "uhOh": "Uh oh!",
+      "failedTx": "Er ging iets mis....",
+      "tryAgain": "Probeer het opnieuw"
     }
   }
 }

@@ -6,7 +6,6 @@ export type LANGUAGE_ID =
   | 'es'
   | 'de'
   | 'fr'
-  | 'hi'
   | 'it'
   | 'ja'
   | 'ko'
@@ -14,7 +13,6 @@ export type LANGUAGE_ID =
   | 'ru'
   | 'tr'
   | 'zh'
-  | 'fil'
   | 'uk'
 
 /**
@@ -68,10 +66,6 @@ export const SUPPORTED_LANGUAGES: Record<LANGUAGE_ID, { name: string; nativeName
   zh: {
     name: 'Zhōngwén',
     nativeName: '中文'
-  },
-  fil: {
-    name: 'Filipino',
-    nativeName: 'Filipino'
   },
   uk: {
     name: 'Ukrainian',

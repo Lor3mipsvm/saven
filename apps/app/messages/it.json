@@ -31,7 +31,12 @@
     "nextClaim": "Prossimo reclamo",
     "date": "Data",
     "allTime": "Per tutto il tempo",
-    "draws": "Estrazioni"
+    "draws": "Estrazioni",
+    "migrateNow": "Migrare ora",
+    "migrationRequired": "Migrazione richiesta",
+    "notice": "Avviso",
+    "oldVaultBalance": "Saldo del vecchio caveau",
+    "toContinueWinning": "Per continuare a vincere i premi è necessario migrare il proprio deposito nel nuovo caveau."
   },
   "Navigation": {
     "home": "Home",
@@ -246,7 +251,10 @@
     "findingZapRoute": "Trovare il percorso zap...",
     "noZapRouteFound": "Non è disponibile un percorso zap",
     "priceImpact": "Impatto del prezzo",
-    "minimumReceived": "Minimo ricevuto"
+    "minimumReceived": "Minimo ricevuto",
+    "migrateTx": "{simbolo} Migrare",
+    "migrating": "Migrazione di {tokens}...",
+    "migrated": "Hai migrato il tuo deposito di {token}"
   },
   "Footer": {
     "titles": {
@@ -335,6 +343,18 @@
       "sameAsDelegate": "L'indirizzo inserito è lo stesso del delegato corrente",
       "negativeNumber": "Inserire un numero positivo",
       "tooManyDecimals": "Troppi decimali"
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "Migrare",
+      "migrating": "Migrazione di {tokens}...",
+      "viewOn": "Vista su {nome}",
+      "success": "Successo!",
+      "migrated": "Hai migrato il tuo deposito di {token}",
+      "uhOh": "Oh, oh!",
+      "failedTx": "Qualcosa è andato storto....",
+      "tryAgain": "Riprova"
     }
   }
 }

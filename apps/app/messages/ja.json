@@ -31,7 +31,12 @@
     "nextClaim": "次の主張",
     "date": "日付",
     "allTime": "オールタイム",
-    "draws": "ドロー"
+    "draws": "ドロー",
+    "migrateNow": "今すぐ移行する",
+    "migrationRequired": "マイグレーションが必要",
+    "notice": "お知らせ",
+    "oldVaultBalance": "旧ボールト残高",
+    "toContinueWinning": "賞金を獲得し続けるには、新しい金庫に預金を移行する必要があります。"
   },
   "Navigation": {
     "home": "ホーム",
@@ -236,7 +241,10 @@
     "findingZapRoute": "ザックルートを探す...",
     "noZapRouteFound": "ザップルートなし",
     "priceImpact": "価格への影響",
-    "minimumReceived": "最低受取額"
+    "minimumReceived": "最低受取額",
+    "migrateTx": "{シンボル｝移行",
+    "migrating": "トークン}の移行...",
+    "migrated": "トークン預金を移行した"
   },
   "Footer": {
     "titles": {
@@ -325,6 +333,18 @@
       "sameAsDelegate": "入力されたアドレスが現在の代表と同じ",
       "negativeNumber": "正の数を入力",
       "tooManyDecimals": "小数点が多すぎる"
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "マイグレート",
+      "migrating": "トークン}の移行...",
+      "viewOn": "名前}で見る",
+      "success": "成功だ！",
+      "migrated": "トークン預金を移行した",
+      "uhOh": "ああ、ああ！",
+      "failedTx": "何かが間違っていた......。",
+      "tryAgain": "再挑戦"
     }
   }
 }

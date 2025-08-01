@@ -31,7 +31,12 @@
     "nextClaim": "다음 클레임",
     "date": "날짜",
     "allTime": "모든 시간",
-    "draws": "그리기"
+    "draws": "그리기",
+    "migrateNow": "지금 마이그레이션",
+    "migrationRequired": "마이그레이션 필요",
+    "notice": "공지사항",
+    "oldVaultBalance": "오래된 금고 잔고",
+    "toContinueWinning": "상품을 계속 받으려면 예치금을 새 금고로 이전해야 합니다."
   },
   "Navigation": {
     "home": "홈",
@@ -236,7 +241,10 @@
     "findingZapRoute": "잽 경로 찾기...",
     "noZapRouteFound": "사용 가능한 잽 경로 없음",
     "priceImpact": "가격 영향",
-    "minimumReceived": "최소 수신"
+    "minimumReceived": "최소 수신",
+    "migrateTx": "{기호} 마이그레이션",
+    "migrating": "토큰} 마이그레이션...",
+    "migrated": "토큰} 예치금을 마이그레이션했습니다."
   },
   "Footer": {
     "titles": {
@@ -325,6 +333,18 @@
       "tooManyDecimals": "소수점이 너무 많습니다",
       "invalidAddress": "유효한 EVM 주소를 입력합니다.",
       "sameAsDelegate": "입력한 주소가 현재 델리게이트와 동일합니다."
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "마이그레이션",
+      "migrating": "토큰} 마이그레이션...",
+      "viewOn": "이름}에서 보기",
+      "success": "성공!",
+      "migrated": "토큰} 예치금을 마이그레이션했습니다.",
+      "uhOh": "어머!",
+      "failedTx": "문제가 발생했습니다....",
+      "tryAgain": "다시 시도"
     }
   }
 }

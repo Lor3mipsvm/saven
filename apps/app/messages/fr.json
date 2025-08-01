@@ -31,7 +31,12 @@
     "nextClaim": "Réclamation suivante",
     "date": "Date",
     "allTime": "Tout le temps",
-    "draws": "Tirages au sort"
+    "draws": "Tirages au sort",
+    "migrateNow": "Migrer maintenant",
+    "migrationRequired": "Migration requise",
+    "notice": "Avis",
+    "oldVaultBalance": "Ancienne balance de la chambre forte",
+    "toContinueWinning": "Pour continuer à gagner des prix, vous devez migrer votre dépôt vers le nouveau coffre-fort."
   },
   "Navigation": {
     "home": "Accueil",
@@ -236,7 +241,10 @@
     "findingZapRoute": "Trouver la route du zap...",
     "noZapRouteFound": "Pas de route zap disponible",
     "priceImpact": "Impact sur les prix",
-    "minimumReceived": "Minimum reçu"
+    "minimumReceived": "Minimum reçu",
+    "migrateTx": "{symbole} Migrer",
+    "migrating": "Migration des {tokens}...",
+    "migrated": "Vous avez migré votre dépôt de {tokens}"
   },
   "Footer": {
     "titles": {
@@ -325,6 +333,18 @@
       "sameAsDelegate": "L'adresse saisie est la même que celle du délégué actuel",
       "negativeNumber": "Saisir un nombre positif",
       "tooManyDecimals": "Trop de décimales"
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "Migrer",
+      "migrating": "Migration des {tokens}...",
+      "viewOn": "Voir sur {nom}",
+      "success": "Succès !",
+      "migrated": "Vous avez migré votre dépôt de {tokens}",
+      "uhOh": "Oh oh !",
+      "failedTx": "Quelque chose n'a pas fonctionné....",
+      "tryAgain": "Réessayer"
     }
   }
 }

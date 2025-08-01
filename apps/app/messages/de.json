@@ -32,7 +32,12 @@
     "nextClaim": "Nächster Anspruch",
     "date": "Datum",
     "allTime": "Alle Zeiten",
-    "draws": "Auslosungen"
+    "draws": "Auslosungen",
+    "migrateNow": "Jetzt migrieren",
+    "migrationRequired": "Migration erforderlich",
+    "notice": "Hinweis",
+    "oldVaultBalance": "Alter Tresor Saldo",
+    "toContinueWinning": "Um weiterhin Preise zu gewinnen, müssen Sie Ihr Guthaben in den neuen Tresorraum transferieren"
   },
   "Navigation": {
     "home": "Startseite",
@@ -261,7 +266,10 @@
     "findingZapRoute": "Suche nach zap route...",
     "noZapRouteFound": "Keine Zapproute verfügbar",
     "priceImpact": "Auswirkungen auf den Preis",
-    "minimumReceived": "Erhaltenes Minimum"
+    "minimumReceived": "Erhaltenes Minimum",
+    "migrateTx": "{Symbol} Migrieren",
+    "migrating": "Migration von {Tokens}...",
+    "migrated": "Sie haben Ihr {Tokens} Depot migriert"
   },
   "Footer": {
     "titles": {
@@ -384,6 +392,18 @@
       "tooManyDecimals": "Zu viele Dezimalstellen",
       "invalidRpcNetwork": "Dieses RPC scheint nicht für das {network} Netzwerk zu sein",
       "invalidRpcUrl": "Keine gültige RPC URL"
+    }
+  },
+  "Toasts": {
+    "transactions": {
+      "migrate": "Migrieren Sie",
+      "migrating": "Migration von {Tokens}...",
+      "viewOn": "Ansicht auf {Name}",
+      "success": "Erfolgreich!",
+      "migrated": "Sie haben Ihr {Tokens} Depot migriert",
+      "uhOh": "Oje!",
+      "failedTx": "Etwas ist schief gelaufen....",
+      "tryAgain": "Erneut versuchen"
     }
   }
 }
