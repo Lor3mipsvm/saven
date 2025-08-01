@@ -2,12 +2,15 @@ import { useUserVaultShareBalance, useVault } from '@generationsoftware/hyperstr
 import { useAccount } from '@shared/generic-react-hooks'
 import { Card } from '@shared/ui'
 import { NETWORK } from '@shared/utilities'
+import { useTranslations } from 'next-intl'
 import { formatUnits } from 'viem'
 import { Address } from 'viem'
 import { MigrateTxButton } from './MigrateTxButton'
 
 export const MigrateBanner = () => {
   const { address: userAddress } = useAccount()
+
+  const t_common = useTranslations('Common')
 
   const oldWldVaultAddress = '0x8ad5959c9245b64173d4c0c3cd3ff66dac3cab0e'
   const vault = useVault({ chainId: NETWORK.world, address: oldWldVaultAddress })
@@ -26,10 +29,13 @@ export const MigrateBanner = () => {
         className='w-[calc(100vw-2rem)] shrink-0 lg:w-[38rem] gap-2 text-pt-purple-200'
       >
         <h4 className='text-center text-xl text-white'>
-          <span className='font-bold text-teal-200'>Notice:</span> Migration Required
+          <span className='font-bold text-teal-200'>{t_common('notice')}:</span>{' '}
+          {t_common('migrationRequired')}
         </h4>
         <p className='text-sm text-center'>
-          <span className='text-pt-purple-100 text-opacity-100'>Previous Vault Balance:</span>{' '}
+          <span className='text-pt-purple-100 text-opacity-100'>
+            {t_common('oldVaultBalance')}:
+          </span>{' '}
           {/* <span className='font-bold'> */}
           {userVaultShareBalance?.amount &&
             formatUnits(
@@ -40,7 +46,7 @@ export const MigrateBanner = () => {
           {/* </span> */}
         </p>
         <p className='flex flex-col text-center font-semibold text-yellow-200'>
-          To continue winning prizes you need to migrate your deposit to the new vault:
+          {t_common('toContinueWinning')}:
         </p>
         <span className='my-1'>
           <MigrateTxButton />
