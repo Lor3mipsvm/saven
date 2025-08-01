@@ -41,7 +41,7 @@ export const AccountDeposits = (props: AccountDepositsProps) => {
     return !!address && address.toLowerCase() !== _userAddress?.toLowerCase()
   }, [address, _userAddress])
 
-  if (typeof window !== 'undefined' && userAddress === undefined) {
+  if (typeof window !== 'undefined' && !userAddress) {
     return (
       <div className='w-full flex flex-col items-center gap-8'>
         <NoWalletCard />
