@@ -95,7 +95,7 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
       {pageFrame ?? <DefaultFrame />}
       <Flowbite>
         <Toaster expand={false} />
-        <NextIntlClientProvider locale={locale} messages={pageProps.messages}>
+        <NextIntlClientProvider locale={locale} timeZone={'Etc/UCT'} messages={pageProps.messages}>
           <div id='modal-root' />
           <RewardsBackdatedBanner />
           {isReady && <Component {...pageProps} />}
