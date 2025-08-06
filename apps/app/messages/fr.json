@@ -31,13 +31,7 @@
     "nextClaim": "Réclamation suivante",
     "date": "Date",
     "allTime": "Tout le temps",
-    "draws": "Tirages au sort",
-    "migrateNow": "Migrer maintenant",
-    "migrationRequired": "Migration requise",
-    "notice": "Avis",
-    "oldVaultBalance": "Ancienne balance de la chambre forte",
-    "toContinueWinning": "Pour continuer à gagner des prix, vous devez migrer votre dépôt vers le nouveau coffre-fort.",
-    "rewardsBackdated": "Les récompenses pour les dépôts WLD ont commencé ! Vos récompenses gagnées apparaîtront dans quelques jours."
+    "draws": "Tirages au sort"
   },
   "Navigation": {
     "home": "Accueil",

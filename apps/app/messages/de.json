@@ -32,13 +32,7 @@
     "nextClaim": "Nächster Anspruch",
     "date": "Datum",
     "allTime": "Alle Zeiten",
-    "draws": "Auslosungen",
-    "migrateNow": "Jetzt migrieren",
-    "migrationRequired": "Migration erforderlich",
-    "notice": "Hinweis",
-    "oldVaultBalance": "Alter Tresor Saldo",
-    "toContinueWinning": "Um weiterhin Preise zu gewinnen, müssen Sie Ihr Guthaben in den neuen Tresorraum transferieren",
-    "rewardsBackdated": "Die Belohnungen für WLD-Einzahlungen haben begonnen! Ihre verdienten Prämien werden in ein paar Tagen angezeigt"
+    "draws": "Auslosungen"
   },
   "Navigation": {
     "home": "Startseite",

@@ -31,13 +31,7 @@
     "nextClaim": "Próximo pedido",
     "date": "Data",
     "allTime": "Todo o tempo",
-    "draws": "Sorteios",
-    "migrateNow": "Migrar agora",
-    "migrationRequired": "Migração necessária",
-    "notice": "Aviso",
-    "oldVaultBalance": "Saldo do cofre antigo",
-    "toContinueWinning": "Para continuar a ganhar prémios, tem de migrar o seu depósito para a nova caixa-forte",
-    "rewardsBackdated": "Os prémios para os depósitos WLD já começaram! As suas recompensas serão exibidas dentro de alguns dias"
+    "draws": "Sorteios"
   },
   "Navigation": {
     "home": "Início",

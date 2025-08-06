@@ -31,13 +31,7 @@
     "nextClaim": "Next Claim",
     "date": "Date",
     "allTime": "All Time",
-    "draws": "Draws",
-    "migrateNow": "Migrate Now",
-    "migrationRequired": "Migration Required",
-    "notice": "Notice",
-    "oldVaultBalance": "Old Vault Balance",
-    "toContinueWinning": "To continue winning prizes you need to migrate your deposit to the new vault",
-    "rewardsBackdated": "Rewards for WLD deposits have started! Your rewards earned will show in a few days"
+    "draws": "Draws"
   },
   "Toasts": {
     "transactions": {

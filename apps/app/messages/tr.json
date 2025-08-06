@@ -31,13 +31,7 @@
     "nextClaim": "Sonraki Talep",
     "date": "Tarih",
     "allTime": "Tüm Zamanlar",
-    "draws": "Çekilişler",
-    "migrateNow": "Şimdi Göç Edin",
-    "migrationRequired": "Göç Gerekli",
-    "notice": "Uyarı",
-    "oldVaultBalance": "Eski Kasa Bakiyesi",
-    "toContinueWinning": "Ödül kazanmaya devam etmek için depozitonuzu yeni kasaya taşımanız gerekir",
-    "rewardsBackdated": "WLD para yatırma işlemleri için ödüller başladı! Kazandığınız ödüller birkaç gün içinde gösterilecek"
+    "draws": "Çekilişler"
   },
   "Navigation": {
     "home": "Ev",

@@ -31,13 +31,7 @@
     "nextClaim": "Siguiente reclamación",
     "date": "Fecha",
     "allTime": "Todos los tiempos",
-    "draws": "Dibuja",
-    "migrateNow": "Migrar ahora",
-    "migrationRequired": "Migración necesaria",
-    "notice": "Aviso",
-    "oldVaultBalance": "Saldo de la bóveda antigua",
-    "toContinueWinning": "Para seguir ganando premios debe migrar su depósito a la nueva cámara acorazada",
-    "rewardsBackdated": "¡Las recompensas por los depósitos en WLD han comenzado! Las recompensas obtenidas se mostrarán en unos días."
+    "draws": "Dibuja"
   },
   "Navigation": {
     "home": "Inicio",

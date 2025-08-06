@@ -31,13 +31,7 @@
     "nextClaim": "Prossimo reclamo",
     "date": "Data",
     "allTime": "Per tutto il tempo",
-    "draws": "Estrazioni",
-    "migrateNow": "Migrare ora",
-    "migrationRequired": "Migrazione richiesta",
-    "notice": "Avviso",
-    "oldVaultBalance": "Saldo del vecchio caveau",
-    "toContinueWinning": "Per continuare a vincere i premi è necessario migrare il proprio deposito nel nuovo caveau.",
-    "rewardsBackdated": "I premi per i depositi WLD sono iniziati! Le ricompense ottenute saranno visibili tra qualche giorno."
+    "draws": "Estrazioni"
   },
   "Navigation": {
     "home": "Home",

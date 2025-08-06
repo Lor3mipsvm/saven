@@ -31,13 +31,7 @@
     "nextClaim": "Volgende claim",
     "date": "Datum",
     "allTime": "Alle tijden",
-    "draws": "Trekt",
-    "migrateNow": "Nu migreren",
-    "migrationRequired": "Migratie vereist",
-    "notice": "Kennisgeving",
-    "oldVaultBalance": "Balans oude kluis",
-    "toContinueWinning": "Om prijzen te kunnen blijven winnen, moet je je storting migreren naar de nieuwe kluis",
-    "rewardsBackdated": "Beloningen voor WLD-stortingen zijn begonnen! Je verdiende beloningen zullen binnen een paar dagen zichtbaar zijn"
+    "draws": "Trekt"
   },
   "Navigation": {
     "home": "Startpagina",

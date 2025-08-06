@@ -31,13 +31,7 @@
     "nextClaim": "下一个索赔",
     "date": "日期",
     "allTime": "所有时间",
-    "draws": "抽奖",
-    "migrateNow": "立即迁移",
-    "migrationRequired": "需要迁移",
-    "notice": "通知",
-    "oldVaultBalance": "旧金库余额",
-    "toContinueWinning": "要继续赢奖，您需要将存款转移到新保险库",
-    "rewardsBackdated": "WLD 存款奖励已经开始！您获得的奖励将在几天后显示"
+    "draws": "抽奖"
   },
   "Navigation": {
     "home": "首页",

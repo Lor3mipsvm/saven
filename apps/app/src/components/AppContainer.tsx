@@ -12,7 +12,6 @@ import { CustomAppProps } from '@pages/_app'
 import { AccountFrame } from './Frames/AccountFrame'
 import { DefaultFrame } from './Frames/DefaultFrame'
 import { VaultFrame } from './Frames/VaultFrame'
-import { RewardsBackdatedBanner } from './RewardsBackdatedBanner'
 
 export const AppContainer = (props: AppProps & CustomAppProps) => {
   const { Component, pageProps, serverProps, router } = props
@@ -97,7 +96,6 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
         <Toaster expand={false} />
         <NextIntlClientProvider locale={locale} timeZone={'Etc/UCT'} messages={pageProps.messages}>
           <div id='modal-root' />
-          <RewardsBackdatedBanner />
           {isReady && <Component {...pageProps} />}
         </NextIntlClientProvider>
       </Flowbite>
