@@ -1,12 +1,13 @@
 import { VaultList } from '@shared/types'
 import { atom, useAtom } from 'jotai'
-import { useEffect } from 'react'
-import { LOCAL_STORAGE_KEYS } from '../constants'
+// import { useEffect } from 'react'
+// import { LOCAL_STORAGE_KEYS } from '../constants'
 
 const getInitialCachedVaultLists = (): { [id: string]: VaultList } => {
   if (typeof window === 'undefined') return {}
-  const cachedVaultLists = localStorage.getItem(LOCAL_STORAGE_KEYS.cachedVaultLists)
-  return JSON.parse(cachedVaultLists ?? '{}')
+  // const cachedVaultLists = localStorage.getItem(LOCAL_STORAGE_KEYS.cachedVaultLists)
+  // return JSON.parse(cachedVaultLists ?? '{}')
+  return JSON.parse('{}')
 }
 
 const cachedVaultListsAtom = atom<{ [id: string]: VaultList | undefined }>(
