@@ -10,6 +10,8 @@
   "dependencies": {
     "@download/blockies": "^1.0.3",
     "@farcaster/frame-wagmi-connector": "^1.0.0",
+    "@farcaster/miniapp-sdk": "^0.1.8",
+    "@farcaster/miniapp-wagmi-connector": "^1.0.0",
     "@generationsoftware/hyperstructure-client-js": "workspace:*",
     "@generationsoftware/hyperstructure-react-hooks": "workspace:*",
     "@heroicons/react": "^2.0.16",

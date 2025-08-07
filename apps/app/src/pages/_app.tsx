@@ -3,22 +3,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IncomingMessage } from 'http'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
-import { type Config, createConfig, http, WagmiProvider } from 'wagmi'
+import { createConfig, http, WagmiProvider } from 'wagmi'
 import { base } from 'wagmi/chains'
 import { AppContainer } from '@components/AppContainer'
-import { SUPPORTED_NETWORKS } from '@constants/config'
 import '../styles/globals.css'
 
-// React Query Client:
 const queryClient = new QueryClient()
 
-const networks = [...SUPPORTED_NETWORKS.mainnets, ...SUPPORTED_NETWORKS.testnets]
-// const wagmiConfig = createCustomWagmiConfig(networks)
-
-export const config: Config = createConfig({
+const config = createConfig({
   chains: [base],
   transports: {
-    [base.id]: http()
+    [base.id]: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)
   },
   connectors: [farcasterFrame()]
 })
