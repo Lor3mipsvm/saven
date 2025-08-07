@@ -1,12 +1,12 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
+  useBasePublicClient,
   useTokenBalance,
   useUserVaultDelegationBalance,
   useUserVaultTokenBalance,
   useVaultBalance,
   useVaultTokenAddress,
-  useVaultTokenData,
-  useWorldPublicClient
+  useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
@@ -106,7 +106,7 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     }
   }
   const { data: tokenAddress, isFetched: isFetchedTokenAddress } = useVaultTokenAddress(vault)
-  const publicClient = useWorldPublicClient()
+  const publicClient = useBasePublicClient()
   const sendDepositTransaction = () =>
     deposit(depositAmount, publicClient, vault.address, tokenAddress, options)
 

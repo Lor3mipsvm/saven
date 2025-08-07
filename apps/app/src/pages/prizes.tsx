@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { getMessages } from 'src/utils'
 import { CheckPrizesBanner } from '@components/Account/CheckPrizesBanner'
 import { Layout } from '@components/Layout'
-import { MigrateBanner } from '@components/MigrateBanner'
 import { PrizePoolDisplay } from '@components/Prizes/PrizePoolDisplay'
 import { PrizesHeader } from '@components/Prizes/PrizesHeader'
 
@@ -26,7 +25,6 @@ export default function PrizesPage() {
 
   return (
     <Layout className='gap-8'>
-      <MigrateBanner />
       <CheckPrizesBanner />
       <PrizesHeader />
       <PrizePoolDisplay onNetworkChange={setNetwork} className='mt-4' />

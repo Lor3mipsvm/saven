@@ -236,10 +236,7 @@
     "findingZapRoute": "잽 경로 찾기...",
     "noZapRouteFound": "사용 가능한 잽 경로 없음",
     "priceImpact": "가격 영향",
-    "minimumReceived": "최소 수신",
-    "migrateTx": "{기호} 마이그레이션",
-    "migrating": "토큰} 마이그레이션...",
-    "migrated": "토큰} 예치금을 마이그레이션했습니다."
+    "minimumReceived": "최소 수신"
   },
   "Footer": {
     "titles": {
@@ -332,11 +329,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "마이그레이션",
-      "migrating": "토큰} 마이그레이션...",
       "viewOn": "이름}에서 보기",
       "success": "성공!",
-      "migrated": "토큰} 예치금을 마이그레이션했습니다.",
       "uhOh": "어머!",
       "failedTx": "문제가 발생했습니다....",
       "tryAgain": "다시 시도"

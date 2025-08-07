@@ -35,11 +35,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "Migrate",
-      "migrating": "Migrating {tokens}...",
       "viewOn": "View on {name}",
       "success": "Success!",
-      "migrated": "You migrated your {tokens} deposit",
       "uhOh": "Uh oh!",
       "failedTx": "Something went wrong....",
       "tryAgain": "Try Again"
@@ -222,7 +219,6 @@
     "reviewWithdrawal": "Review Withdrawal",
     "confirmDeposit": "Confirm Deposit",
     "confirmWithdrawal": "Confirm Withdrawal",
-    "migrateTx": "{symbol} Migrate",
     "depositTx": "{symbol} Deposit",
     "withdrawTx": "{symbol} Withdrawal",
     "delegateTx": "{symbol} Delegation",
@@ -233,13 +229,11 @@
     "withdrawing": "Withdrawing {tokens}...",
     "withdrawingFrom": "Withdrawing from {vault}",
     "delegating": "Delegating {tokens}...",
-    "migrating": "Migrating {tokens}...",
     "success": "Success!",
     "deposited": "You deposited {tokens}",
     "gotTokens": "You got {tokens}",
     "withdrew": "You withdrew {tokens}",
     "delegated": "You delegated {tokens}",
-    "migrated": "You migrated your {tokens} deposit",
     "nowEligible": "You are now eligible for all future draws in this pool.",
     "shareOn": "Share on",
     "viewAccount": "View Account",

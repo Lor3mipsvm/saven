@@ -236,10 +236,7 @@
     "findingZapRoute": "Trouver la route du zap...",
     "noZapRouteFound": "Pas de route zap disponible",
     "priceImpact": "Impact sur les prix",
-    "minimumReceived": "Minimum reçu",
-    "migrateTx": "{symbole} Migrer",
-    "migrating": "Migration des {tokens}...",
-    "migrated": "Vous avez migré votre dépôt de {tokens}"
+    "minimumReceived": "Minimum reçu"
   },
   "Footer": {
     "titles": {
@@ -332,11 +329,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "Migrer",
-      "migrating": "Migration des {tokens}...",
       "viewOn": "Voir sur {nom}",
       "success": "Succès !",
-      "migrated": "Vous avez migré votre dépôt de {tokens}",
       "uhOh": "Oh oh !",
       "failedTx": "Quelque chose n'a pas fonctionné....",
       "tryAgain": "Réessayer"

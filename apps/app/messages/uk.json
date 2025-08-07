@@ -259,10 +259,7 @@
     "findingZapRoute": "Пошук маршруту zap...",
     "noZapRouteFound": "Маршрут zap недоступний",
     "priceImpact": "Вплив на ціну",
-    "minimumReceived": "Мінімально отримано",
-    "migrateTx": "{symbol} Мігрувати.",
-    "migrating": "Переміщення {жетонів}...",
-    "migrated": "Ви перенесли свій депозит {токени}"
+    "minimumReceived": "Мінімально отримано"
   },
   "Footer": {
     "titles": {
@@ -373,11 +370,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "Мігрувати",
-      "migrating": "Переміщення {жетонів}...",
       "viewOn": "Переглянути на {ім'я}",
       "success": "Успіху!",
-      "migrated": "Ви перенесли свій депозит {токени}",
       "uhOh": "Ох, ох!",
       "failedTx": "Щось пішло не так....",
       "tryAgain": "Спробуйте ще раз"

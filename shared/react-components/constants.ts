@@ -79,12 +79,24 @@ export const TOKEN_LOGO_OVERRIDES: Record<number, { [address: Lowercase<string>]
     '0x6b629bb304017d3d985d140599d8e6fc9942b9a7': tokenLogoUrls.weth,
     '0x3e9c64afc24c551cc8e11f52fedecdacf7362559': tokenLogoUrls.wbtc
   },
-  [NETWORK.world]: {
+  [NETWORK.base]: {
     [DOLPHIN_ADDRESS]: tokenLogoUrls.eth,
-    [POOL_TOKEN_ADDRESSES[NETWORK.world].toLowerCase()]: tokenLogoUrls.pool,
+    [POOL_TOKEN_ADDRESSES[NETWORK.base].toLowerCase()]: tokenLogoUrls.pool,
+    '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913': tokenLogoUrls.usdc,
+    '0x50c5725949a6f0c72e6c4a641f24049a917db0cb': tokenLogoUrls.dai,
     '0x4200000000000000000000000000000000000006': tokenLogoUrls.weth,
-    '0x79a02482a880bce3f13e09da970dc34db4cd24d1': tokenLogoUrls.usdc,
-    '0x2cfc85d8e48f8eab294be644d9e25c3030863003': tokenLogoUrls.wld
+    '0x368181499736d0c0cc614dbb145e2ec1ac86b8c6': tokenLogoUrls.lusd,
+    '0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452': tokenLogoUrls.steth,
+    '0x0000206329b97db379d5e1bf586bbdb969c63274': tokenLogoUrls.usda,
+    '0xa61beb4a3d02decb01039e378237032b351125b4': tokenLogoUrls.eura,
+    '0x621e87af48115122cd96209f820fe0445c2ea90e': tokenLogoUrls.crash,
+    '0x4ed4e862860bed51a9570b96d89af5e1b0efefed': tokenLogoUrls.degen,
+    '0xcb2861a1ec1d0392afb9e342d5aa539e4f75b633': tokenLogoUrls.dude,
+    '0x0578d8a44db98b23bf096a382e016e29a5ce0ffe': tokenLogoUrls.higher,
+    '0xa88594d404727625a9437c3f886c7643872296ae': tokenLogoUrls.well,
+    '0x940181a94a35a4569e4529a3cdfb74e38fd98631': tokenLogoUrls.aero,
+    '0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22': tokenLogoUrls.cbeth,
+    '0xdbfefd2e8460a6ee4955a68582f85708baea60a3': tokenLogoUrls.superOETH
   }
 }
 

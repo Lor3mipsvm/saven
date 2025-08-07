@@ -8,7 +8,7 @@
 
 # 💻 &nbsp; PoolTogether Cabana World Monorepo
 
-This monorepo includes the deploy of PoolTogether's Cabana Worldchain app.
+This monorepo includes the deploy of PoolTogether's Cabana Base miniapp.
 
 ## 💾 &nbsp; Installation
 
@@ -26,11 +26,11 @@ Make sure you have [pnpm](https://pnpm.io/) installed, as it is the package mana
 
 ### Apps
 
-- `app`: Cabana App w/ core PoolTogether functionality on Worldchain.
+- `app`: Cabana App w/ core PoolTogether functionality on Base.
 
 Cabana is a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) support, written in [TypeScript](https://www.typescriptlang.org/).
 
-**Repo Links:** [App](https://github.com/GenerationSoftware/pooltogether-client-monorepo/tree/main/apps/app) 
+**Repo Links:** [App](https://github.com/GenerationSoftware/pooltogether-client-monorepo/tree/main/apps/app)
 
 ---
 

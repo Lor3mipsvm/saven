@@ -36,7 +36,7 @@ export type NETWORK_NAME = keyof typeof NETWORK
  */
 export const POOL_TOKEN_ADDRESSES = {
   [NETWORK.mainnet]: '0x0cEC1A9154Ff802e7934Fc916Ed7Ca50bDE6844e',
-  [NETWORK.world]: '0x7077C71B4AF70737a08287E279B717Dcf64fdC57',
+  [NETWORK.base]: '0x7077C71B4AF70737a08287E279B717Dcf64fdC57',
   [NETWORK.gnosis_chiado]: '0xa83a315bed18b36308a518c7f77a2464e9f7286c'
 } as const satisfies { [chainId: number]: Address }
 
@@ -44,7 +44,7 @@ export const POOL_TOKEN_ADDRESSES = {
  * USDC token addresses
  */
 export const USDC_TOKEN_ADDRESSES: { [chainId: number]: Lowercase<Address> } = {
-  [NETWORK.world]: '0x79a02482a880bce3f13e09da970dc34db4cd24d1',
+  [NETWORK.base]: '0x79a02482a880bce3f13e09da970dc34db4cd24d1',
   [NETWORK.gnosis_chiado]: '0xfc535b2407bb2c8b4f4a4faabbb9981ff031b7ca'
 }
 
@@ -65,12 +65,12 @@ export const PRIZE_POOLS: {
   }
 }[] = [
   {
-    chainId: NETWORK.world,
-    address: '0x99ffb0A6c0CD543861c8dE84dd40E059FD867dcF',
+    chainId: NETWORK.base,
+    address: '0x45b2010d8A4f08b53c9fa7544C51dFd9733732cb',
     options: {
-      prizeTokenAddress: '0x2cFc85d8E48F8EAB294be644d9E25C3030863003',
-      drawManagerAddress: '0x62800f9bd164eA909224e19B7fDFA33a0f3f6373',
-      twabControllerAddress: '0xA13d89cF3e7f59bA1a2B5B5c260bDfc64DD1044C',
+      prizeTokenAddress: '0x4200000000000000000000000000000000000006',
+      drawManagerAddress: '0x8A2782bedC79982EBFa3b68B315a2eE40DAF6aB0',
+      twabControllerAddress: '0x7e63601F7e28C758Feccf8CDF02F6598694f44C6',
       drawPeriodInSeconds: 86_400,
       drawAuctionDurationInSeconds: 10_800,
       tierShares: 100,
@@ -101,8 +101,11 @@ export const STABLECOINS: Record<number, { [address: Lowercase<Address>]: string
     '0xbe9a62939f82e12f4a48912078a4420f1a5fc2e0': 'usd', // GUSD
     '0xb2d0d7ad1d4b2915390dc7053b9421f735a723e7': 'usd' // WXDAI
   },
-  [NETWORK.world]: {
-    '0x79a02482a880bce3f13e09da970dc34db4cd24d1': 'usd' // USDC
+  [NETWORK.base]: {
+    '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913': 'usd', // USDC
+    '0x50c5725949a6f0c72e6c4a641f24049a917db0cb': 'usd', // DAI
+    '0x368181499736d0c0cc614dbb145e2ec1ac86b8c6': 'usd', // LUSD
+    '0x0000206329b97db379d5e1bf586bbdb969c63274': 'usd' // USDA
   }
 }
 
@@ -132,8 +135,8 @@ export const NATIVE_ASSETS: Record<number, Token> = {
     name: 'XDAI',
     decimals: 18
   },
-  [NETWORK.world]: {
-    chainId: NETWORK.world,
+  [NETWORK.base]: {
+    chainId: NETWORK.base,
     address: DOLPHIN_ADDRESS,
     symbol: 'ETH',
     name: 'Ether',
@@ -317,7 +320,7 @@ export const TOKEN_PRICES_API_URL = `/api/tokenPrice`
 /**
  * Networks supported by the price caching API
  */
-export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = [NETWORK.world]
+export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = [NETWORK.base]
 // export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = []
 
 /**
@@ -397,7 +400,7 @@ export const VELODROME_ADDRESSES: {
  * Domains
  */
 export const DOMAINS = {
-  app: 'https://cabana-world-app.vercel.app',
+  app: 'https://app.cabana.fi',
   app_v4: 'https://app.pooltogether.com',
   landingPage: 'https://cabana.fi',
   protocolLandingPage: 'https://pooltogether.com',
@@ -470,7 +473,7 @@ export const LINKS = {
  */
 export const BLOCK_EXPLORERS: Record<number, { name: string; url: string }> = {
   [NETWORK.gnosis_chiado]: { name: 'Gnosisscan', url: 'https://gnosis-chiado.blockscout.com/' },
-  [NETWORK.world]: { name: 'Worldscan', url: 'https://worldscan.org/' }
+  [NETWORK.base]: { name: 'Worldscan', url: 'https://worldscan.org/' }
 }
 
 /**
@@ -483,7 +486,7 @@ export const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3'
  */
 export const COINGECKO_PLATFORMS = {
   [NETWORK.gnosis_chiado]: 'xdai',
-  [NETWORK.world]: 'world-chain'
+  [NETWORK.base]: 'world-chain'
 } as const
 export type COINGECKO_PLATFORM = keyof typeof COINGECKO_PLATFORMS
 
@@ -492,7 +495,7 @@ export type COINGECKO_PLATFORM = keyof typeof COINGECKO_PLATFORMS
  */
 export const COINGECKO_NATIVE_TOKEN_IDS: Record<number, string> = {
   [NETWORK.gnosis_chiado]: 'xdai',
-  [NETWORK.world]: 'world-chain'
+  [NETWORK.base]: 'world-chain'
 }
 
 /**

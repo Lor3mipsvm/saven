@@ -236,10 +236,7 @@
     "findingZapRoute": "ザックルートを探す...",
     "noZapRouteFound": "ザップルートなし",
     "priceImpact": "価格への影響",
-    "minimumReceived": "最低受取額",
-    "migrateTx": "{シンボル｝移行",
-    "migrating": "トークン}の移行...",
-    "migrated": "トークン預金を移行した"
+    "minimumReceived": "最低受取額"
   },
   "Footer": {
     "titles": {
@@ -332,11 +329,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "マイグレート",
-      "migrating": "トークン}の移行...",
       "viewOn": "名前}で見る",
       "success": "成功だ！",
-      "migrated": "トークン預金を移行した",
       "uhOh": "ああ、ああ！",
       "failedTx": "何かが間違っていた......。",
       "tryAgain": "再挑戦"

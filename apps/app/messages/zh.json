@@ -236,10 +236,7 @@
     "findingZapRoute": "寻找 ZAP 路线...",
     "noZapRouteFound": "没有可用的斩波路线",
     "priceImpact": "价格影响",
-    "minimumReceived": "最低接收量",
-    "migrateTx": "{符号｝迁移",
-    "migrating": "迁移{标记}...",
-    "migrated": "你迁移了你的{图元}存款"
+    "minimumReceived": "最低接收量"
   },
   "Footer": {
     "titles": {
@@ -332,11 +329,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "迁移",
-      "migrating": "迁移{标记}...",
       "viewOn": "在 {name} 上查看",
       "success": "成功！",
-      "migrated": "你迁移了你的{图元}存款",
       "uhOh": "啊哦",
       "failedTx": "出问题了....",
       "tryAgain": "再试一次"

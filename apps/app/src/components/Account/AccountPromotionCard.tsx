@@ -1,5 +1,5 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
-import { useWorldPublicClient } from '@generationsoftware/hyperstructure-react-hooks'
+import { useBasePublicClient } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { VaultBadge } from '@shared/react-components'
 import { lower } from '@shared/utilities'
@@ -29,7 +29,7 @@ export const AccountPromotionCard = (props: AccountPromotionCardProps) => {
 
   const t = useTranslations('Account.bonusRewardHeaders')
 
-  const publicClient = useWorldPublicClient()
+  const publicClient = useBasePublicClient()
 
   const { address: _userAddress } = useAccount()
 

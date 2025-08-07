@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { getMessages } from 'src/utils'
 import { HomeHeader } from '@components/HomeHeader'
 import { Layout } from '@components/Layout'
-import { MigrateBanner } from '@components/MigrateBanner'
 import { PrizePoolCards } from '@components/Prizes/PrizePoolCards'
 
 interface HomePageProps {
@@ -28,7 +27,6 @@ export default function HomePage() {
 
   return (
     <Layout className='gap-8'>
-      <MigrateBanner />
       <HomeHeader />
 
       <Link href='/vaults' passHref={true}>

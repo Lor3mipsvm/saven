@@ -236,10 +236,7 @@
     "findingZapRoute": "Поиск маршрута...",
     "noZapRouteFound": "Маршрут не доступен",
     "priceImpact": "Влияние на цену",
-    "minimumReceived": "Минимальный полученный",
-    "migrateTx": "{символ} Мигрировать",
-    "migrating": "Миграция {токенов}...",
-    "migrated": "Вы перенесли свой депозит {токенов}."
+    "minimumReceived": "Минимальный полученный"
   },
   "Footer": {
     "titles": {
@@ -332,11 +329,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "Миграция",
-      "migrating": "Миграция {токенов}...",
       "viewOn": "Посмотреть на {name}",
       "success": "Успех!",
-      "migrated": "Вы перенесли свой депозит {токенов}.",
       "uhOh": "Ой!",
       "failedTx": "Что-то пошло не так....",
       "tryAgain": "Попробуйте еще раз"

@@ -4,7 +4,7 @@ import { TokenWithLogo } from '@shared/types'
 import { erc20ABI, getSimpleMulticallResults, lower } from '@shared/utilities'
 import { useQuery } from '@tanstack/react-query'
 import { Address } from 'viem'
-import { useVaultTokenAddress, useVaultYieldSource, useWorldPublicClient } from '..'
+import { useBasePublicClient, useVaultTokenAddress, useVaultYieldSource } from '..'
 
 /**
  * Returns basic data of a vault's underlying beefy mooToken (if any)
@@ -13,7 +13,7 @@ import { useVaultTokenAddress, useVaultYieldSource, useWorldPublicClient } from 
  * @returns
  */
 export const useBeefyVault = (vault: Vault, options?: { enabled?: boolean }) => {
-  const publicClient = useWorldPublicClient()
+  const publicClient = useBasePublicClient()
 
   const { data: yieldVault } = useVaultYieldSource(vault)
   const { data: vaultTokenAddress } = useVaultTokenAddress(vault)

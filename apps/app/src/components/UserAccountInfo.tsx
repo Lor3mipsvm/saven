@@ -3,14 +3,17 @@ import { Spinner } from '@shared/ui'
 import BlockiesSvg from 'blockies-react-svg'
 import { signInDisconnect } from 'src/utils'
 import { Address } from 'viem'
-import { useWorldUsernameResult } from '@hooks/useWorldUsernameResult'
 import './user-info-styles.css'
 
 export const UserAccountInfo = () => {
   const { setUserAddress, address: userAddress } = useAccount()
-  const { data: usernameResult, isLoading: usernameResultIsLoading } = useWorldUsernameResult(
-    userAddress as Address
-  )
+
+  const usernameResult = {
+    username: 'usssernammme',
+    profile_picture_url: 'https://framerusercontent.com/images/A1hs7ZPjVbb3O6sC17sdztouPE.png'
+  }
+  const usernameResultIsLoading = false
+
   const displayName = !usernameResult?.username
     ? `${userAddress?.slice(0, 6)}...${userAddress?.slice(-4)}`
     : usernameResult?.username

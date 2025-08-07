@@ -261,10 +261,7 @@
     "findingZapRoute": "Suche nach zap route...",
     "noZapRouteFound": "Keine Zapproute verfügbar",
     "priceImpact": "Auswirkungen auf den Preis",
-    "minimumReceived": "Erhaltenes Minimum",
-    "migrateTx": "{Symbol} Migrieren",
-    "migrating": "Migration von {Tokens}...",
-    "migrated": "Sie haben Ihr {Tokens} Depot migriert"
+    "minimumReceived": "Erhaltenes Minimum"
   },
   "Footer": {
     "titles": {
@@ -391,11 +388,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "Migrieren Sie",
-      "migrating": "Migration von {Tokens}...",
       "viewOn": "Ansicht auf {Name}",
       "success": "Erfolgreich!",
-      "migrated": "Sie haben Ihr {Tokens} Depot migriert",
       "uhOh": "Oje!",
       "failedTx": "Etwas ist schief gelaufen....",
       "tryAgain": "Erneut versuchen"

@@ -242,10 +242,7 @@
     "findingZapRoute": "Zap-route vinden...",
     "noZapRouteFound": "Geen zap-route beschikbaar",
     "priceImpact": "Invloed op de prijs",
-    "minimumReceived": "Minimum ontvangen",
-    "migrateTx": "{Symbool} Migreren",
-    "migrating": "{tokens} migreren...",
-    "migrated": "Je hebt je {tokens} depot gemigreerd"
+    "minimumReceived": "Minimum ontvangen"
   },
   "Footer": {
     "titles": {
@@ -338,11 +335,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "Migreren",
-      "migrating": "{tokens} migreren...",
       "viewOn": "Bekijk op {naam}",
       "success": "Succes!",
-      "migrated": "Je hebt je {tokens} depot gemigreerd",
       "uhOh": "Uh oh!",
       "failedTx": "Er ging iets mis....",
       "tryAgain": "Probeer het opnieuw"

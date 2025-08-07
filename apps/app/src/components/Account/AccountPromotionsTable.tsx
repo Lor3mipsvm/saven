@@ -1,5 +1,5 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
-import { useWorldPublicClient } from '@generationsoftware/hyperstructure-react-hooks'
+import { useBasePublicClient } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { VaultBadge } from '@shared/react-components'
 import { Table, TableProps } from '@shared/ui'
@@ -31,7 +31,7 @@ export const AccountPromotionsTable = (props: AccountPromotionsTableProps) => {
   const baseNumTableRows = 10
   const [numTableRows, setNumTableRows] = useState<number>(baseNumTableRows)
 
-  const publicClient = useWorldPublicClient()
+  const publicClient = useBasePublicClient()
 
   const { address: _userAddress } = useAccount()
 

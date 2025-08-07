@@ -1,11 +1,11 @@
 import { NETWORK } from '@shared/utilities'
 import { createPublicClient, http, type PublicClient } from 'viem'
-import { worldchain } from 'viem/chains'
+import { base } from 'viem/chains'
 
-export const useWorldPublicClient = (): PublicClient => {
+export const useBasePublicClient = (): PublicClient => {
   return createPublicClient({
-    chain: worldchain,
-    transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)
+    chain: base,
+    transport: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)
   }) as PublicClient
 }
 
@@ -16,8 +16,8 @@ export const useWorldPublicClient = (): PublicClient => {
 export const usePublicClients = (): any[] => {
   return [
     createPublicClient({
-      chain: worldchain,
-      transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)
+      chain: base,
+      transport: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)
     })
   ]
 }
@@ -28,9 +28,9 @@ export const usePublicClients = (): any[] => {
  */
 export const usePublicClientsByChain = (): Record<number, any> => {
   return {
-    [NETWORK.world]: createPublicClient({
-      chain: worldchain,
-      transport: http(process.env.NEXT_PUBLIC_WORLD_RPC_URL)
+    [NETWORK.base]: createPublicClient({
+      chain: base,
+      transport: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)
     })
   }
 }

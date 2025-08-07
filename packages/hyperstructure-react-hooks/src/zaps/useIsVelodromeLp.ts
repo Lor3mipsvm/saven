@@ -2,7 +2,7 @@ import { NO_REFETCH } from '@shared/generic-react-hooks'
 import { lower, VELODROME_ADDRESSES } from '@shared/utilities'
 import { useQuery } from '@tanstack/react-query'
 import { Address } from 'viem'
-import { useWorldPublicClient } from '../blockchain/useClients'
+import { useBasePublicClient } from '../blockchain/useClients'
 
 /**
  * Returns `true` or `false` depending on whether a token is a recognized velodrome-like LP token
@@ -10,7 +10,7 @@ import { useWorldPublicClient } from '../blockchain/useClients'
  * @returns
  */
 export const useIsVelodromeLp = (token: { chainId: number; address: Address }) => {
-  const publicClient = useWorldPublicClient()
+  const publicClient = useBasePublicClient()
 
   return useQuery({
     queryKey: ['isVelodromeLp', token?.chainId, token?.address],

@@ -1,13 +1,13 @@
 import { getAssetsFromShares, Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
+  useBasePublicClient,
   useTokenBalance,
   useUserVaultDelegationBalance,
   useUserVaultShareBalance,
   useUserVaultTokenBalance,
   useVaultBalance,
   useVaultExchangeRate,
-  useVaultTokenData,
-  useWorldPublicClient
+  useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
@@ -119,7 +119,7 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
       setIsSuccessful(false)
     }
   }
-  const publicClient = useWorldPublicClient()
+  const publicClient = useBasePublicClient()
   const sendTx = () =>
     redeem(withdrawAmount, publicClient, userAddress as Address, vault.address, options)
 

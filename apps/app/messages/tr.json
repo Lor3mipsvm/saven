@@ -236,10 +236,7 @@
     "findingZapRoute": "Zap rotasını buluyorum.",
     "noZapRouteFound": "Zap rotası mevcut değil",
     "priceImpact": "Fiyat Etkisi",
-    "minimumReceived": "Alınan Minimum",
-    "migrateTx": "{sembol} Göç",
-    "migrating": "{tokenler} taşınıyor...",
-    "migrated": "{tokenler} depozitonuzu taşıdınız"
+    "minimumReceived": "Alınan Minimum"
   },
   "Footer": {
     "titles": {
@@ -332,11 +329,8 @@
   },
   "Toasts": {
     "transactions": {
-      "migrate": "Göç",
-      "migrating": "{tokenler} taşınıyor...",
       "viewOn": "View on {name}",
       "success": "Başarılı!",
-      "migrated": "{tokenler} depozitonuzu taşıdınız",
       "uhOh": "Uh oh!",
       "failedTx": "Bir şeyler ters gitti....",
       "tryAgain": "Tekrar Deneyin"
