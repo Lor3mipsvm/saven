@@ -20,28 +20,28 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   const [isReady, setIsReady] = useState<boolean>(false)
 
   useEffect(() => {
-    const appId = process.env.NEXT_PUBLIC_MINIKIT_APP_ID
+    // const appId = process.env.NEXT_PUBLIC_MINIKIT_APP_ID
 
     if (isReady) {
-      if (!MiniKit.isInstalled()) {
-        MiniKit.install(appId)
-      }
-      if (!MiniKit.isInstalled()) {
-        // Dev check
-        // @ts-ignore
-        if (window?.location.href.match(/localhost/)?.length > 0) {
-          return
-        }
-
-        toast(
-          <ToastLayout id='minikit-not-installed'>
-            <ErrorView />
-          </ToastLayout>,
-          { id: 'minikit-not-installed' }
-        )
-        console.error('MiniKit is not installed')
-      }
+      //   if (!MiniKit.isInstalled()) {
+      //     MiniKit.install(appId)
+      //   }
+      //   if (!MiniKit.isInstalled()) {
+      //     // Dev check
+      //     // @ts-ignore
+      //     if (window?.location.href.match(/localhost/)?.length > 0) {
+      //       return
+      //     }
+      //     toast(
+      //       <ToastLayout id='minikit-not-installed'>
+      //         <ErrorView />
+      //       </ToastLayout>,
+      //       { id: 'minikit-not-installed' }
+      //     )
+      //     console.error('MiniKit is not installed')
+      //   }
     }
+    console.log('hi')
   }, [isReady])
 
   useEffect(() => {
@@ -49,10 +49,10 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
       if (typeof window !== 'undefined') {
         // Staging check
         // @ts-ignore
-        if (window?.location.href.match(/staging/)?.length > 0) {
-          const eruda = (await import('eruda')).default
-          eruda.init()
-        }
+        // if (window?.location.href.match(/staging/)?.length > 0) {
+        const eruda = (await import('eruda')).default
+        eruda.init()
+        // }
       }
     }
     initEruda()

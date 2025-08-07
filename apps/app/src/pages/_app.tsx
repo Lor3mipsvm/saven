@@ -1,22 +1,13 @@
-import { farcasterFrame } from '@farcaster/frame-wagmi-connector'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IncomingMessage } from 'http'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
-import { createConfig, http, WagmiProvider } from 'wagmi'
-import { base } from 'wagmi/chains'
+import { WagmiProvider } from 'wagmi'
 import { AppContainer } from '@components/AppContainer'
 import '../styles/globals.css'
+import { wagmiConfig } from '../utils'
 
 const queryClient = new QueryClient()
-
-const config = createConfig({
-  chains: [base],
-  transports: {
-    [base.id]: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)
-  },
-  connectors: [farcasterFrame()]
-})
 
 export interface CustomAppProps {
   serverProps: {
@@ -26,7 +17,7 @@ export interface CustomAppProps {
 
 export default function MyApp(props: AppProps & CustomAppProps) {
   return (
-    <WagmiProvider config={config} reconnectOnMount={true}>
+    <WagmiProvider config={wagmiConfig} reconnectOnMount={true}>
       <QueryClientProvider client={queryClient}>
         <AppContainer {...props} />
       </QueryClientProvider>
