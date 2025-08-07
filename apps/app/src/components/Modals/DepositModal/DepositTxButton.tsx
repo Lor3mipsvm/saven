@@ -1,55 +1,72 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
-  useBasePublicClient,
+  useSend5792DepositTransaction,
+  useSendApproveTransaction,
+  useSendDepositTransaction,
+  useTokenAllowance,
   useTokenBalance,
   useUserVaultDelegationBalance,
   useUserVaultTokenBalance,
   useVaultBalance,
-  useVaultTokenAddress,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
-import { TransactionButton } from '@shared/react-components'
+// import { useAddRecentTransaction, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit'
+import { ApprovalTooltip, TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
-import { useState } from 'react'
-import { decodeDepositEvent, deposit, type DepositTxOptions } from 'src/minikit_txs'
-import { addRecentTransaction, signInWithWallet } from 'src/utils'
+import { useEffect } from 'react'
 import { Address, Hash, parseUnits } from 'viem'
+import { useAccount } from 'wagmi'
+import { PAYMASTER_URLS } from '@constants/config'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { depositFormTokenAmountAtom } from './DepositForm'
 
 interface DepositTxButtonProps {
   vault: Vault
+  modalView: string
   setModalView: (view: DepositModalView) => void
   setDepositTxHash: (txHash: string) => void
-  depositTxHash?: string
   refetchUserBalances?: () => void
-  onSuccessfulDeposit?: (chainId: number, txHash: Hash, shares: bigint) => void
+  onSuccessfulApproval?: () => void
+  onSuccessfulDeposit?: (chainId: number, txHash: Hash) => void
 }
 
 export const DepositTxButton = (props: DepositTxButtonProps) => {
   const {
     vault,
+    modalView,
     setModalView,
     setDepositTxHash,
-    depositTxHash,
     refetchUserBalances,
+    onSuccessfulApproval,
     onSuccessfulDeposit
   } = props
 
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
+  const t_tooltips = useTranslations('Tooltips')
 
-  const [isConfirming, setIsConfirming] = useState<boolean>(false)
-  const [isSuccessful, setIsSuccessful] = useState<boolean>(false)
+  const { openConnectModal } = useConnectModal()
+  const { openChainModal } = useChainModal()
+  const addRecentTransaction = useAddRecentTransaction()
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
   const { data: tokenData } = useVaultTokenData(vault)
   const decimals = vault.decimals ?? tokenData?.decimals
+
+  const {
+    data: allowance,
+    isFetched: isFetchedAllowance,
+    refetch: refetchTokenAllowance
+  } = useTokenAllowance(
+    vault.chainId,
+    userAddress as Address,
+    vault.address,
+    tokenData?.address as Address
+  )
 
   const {
     data: userTokenBalance,
@@ -78,51 +95,101 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     ? parseUnits(formTokenAmount, decimals as number)
     : 0n
 
-  const options: DepositTxOptions = {
-    onSend: () => {
-      setIsConfirming(true)
-      setModalView('confirming')
-    },
-    onSuccess: (decodedEventLogs: ReturnType<typeof decodeDepositEvent>, txHash: Address) => {
-      setIsSuccessful(true)
-      setModalView('success')
-      onSuccessfulDeposit?.(vault.chainId, txHash, decodedEventLogs?.args?.shares)
+  const {
+    isWaiting: isWaitingApproval,
+    isConfirming: isConfirmingApproval,
+    isSuccess: isSuccessfulApproval,
+    txHash: approvalTxHash,
+    sendApproveTransaction: sendApproveTransaction
+  } = useSendApproveTransaction(depositAmount, vault, {
+    onSuccess: () => {
+      refetchTokenAllowance()
+      onSuccessfulApproval?.()
+    }
+  })
 
+  const dataDepositTx = useSendDepositTransaction(depositAmount, vault, {
+    onSend: () => {
+      setModalView('waiting')
+    },
+    onSuccess: (txReceipt) => {
       refetchUserTokenBalance()
       refetchUserVaultTokenBalance()
       refetchUserVaultDelegationBalance()
       refetchVaultBalance()
+      refetchTokenAllowance()
       refetchUserBalances?.()
-
-      setDepositTxHash(txHash)
-    },
-    onSettled: () => {
-      setIsConfirming(false)
+      onSuccessfulDeposit?.(vault.chainId, txReceipt.transactionHash)
+      setModalView('success')
     },
     onError: () => {
       setModalView('error')
-      setIsConfirming(false)
-      setIsSuccessful(false)
     }
-  }
-  const { data: tokenAddress, isFetched: isFetchedTokenAddress } = useVaultTokenAddress(vault)
-  const publicClient = useBasePublicClient()
-  const sendDepositTransaction = () =>
-    deposit(depositAmount, publicClient, vault.address, tokenAddress, options)
+  })
+
+  const isUsingEip5792 = true
+
+  const paymasterUrl = PAYMASTER_URLS[vault.chainId]
+  const isUsingEip7677 = !!paymasterUrl
+
+  const data5792DepositTx = useSend5792DepositTransaction(depositAmount, vault, {
+    paymasterService: isUsingEip7677 ? { url: paymasterUrl, optional: true } : undefined,
+    onSend: () => {
+      setModalView('waiting')
+    },
+    onSuccess: (callReceipts) => {
+      refetchUserTokenBalance()
+      refetchUserVaultTokenBalance()
+      refetchUserVaultDelegationBalance()
+      refetchVaultBalance()
+      refetchTokenAllowance()
+      refetchUserBalances?.()
+      onSuccessfulDeposit?.(vault.chainId, callReceipts.at(-1)?.transactionHash!)
+      setModalView('success')
+    },
+    onError: () => {
+      setModalView('error')
+    },
+    enabled: isUsingEip5792
+  })
+
+  const isWaitingDeposit = isUsingEip5792 ? data5792DepositTx.isWaiting : dataDepositTx.isWaiting
+  const isConfirmingDeposit = isUsingEip5792
+    ? data5792DepositTx.isConfirming
+    : dataDepositTx.isConfirming
+  const isSuccessfulDeposit = isUsingEip5792 ? data5792DepositTx.isSuccess : dataDepositTx.isSuccess
+  const depositTxHash = isUsingEip5792 ? data5792DepositTx.txHashes?.at(-1) : dataDepositTx.txHash
+  const sendDepositTransaction = isUsingEip5792
+    ? data5792DepositTx.send5792DepositTransaction
+    : dataDepositTx.sendDepositTransaction
+
+  useEffect(() => {
+    if (!!depositTxHash && isConfirmingDeposit && !isWaitingDeposit && !isSuccessfulDeposit) {
+      setDepositTxHash(depositTxHash)
+      setModalView('confirming')
+    }
+  }, [depositTxHash, isConfirmingDeposit])
 
   const isDataFetched =
-    isFetchedTokenAddress &&
     !isDisconnected &&
     !!userAddress &&
     !!tokenData &&
     isFetchedUserTokenBalance &&
     !!userTokenBalance &&
+    isFetchedAllowance &&
+    allowance !== undefined &&
     !!depositAmount &&
     decimals !== undefined &&
     chain?.id === vault.chainId
 
-  const depositEnabled =
+  const approvalEnabled =
     isDataFetched && userTokenBalance.amount >= depositAmount && isValidFormTokenAmount
+
+  const depositEnabled =
+    isDataFetched &&
+    userTokenBalance.amount >= depositAmount &&
+    (isUsingEip5792 || allowance >= depositAmount) &&
+    isValidFormTokenAmount
 
   // No deposit amount set
   if (depositAmount === 0n) {
@@ -133,20 +200,58 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     )
   }
 
+  // Needs approval
+  if (isDataFetched && !isUsingEip5792 && allowance < depositAmount) {
+    return (
+      <TransactionButton
+        chainId={vault.chainId}
+        isTxLoading={isWaitingApproval || isConfirmingApproval}
+        isTxSuccess={isSuccessfulApproval}
+        write={sendApproveTransaction}
+        txHash={approvalTxHash}
+        txDescription={t_modals('approvalTx', { symbol: tokenData?.symbol ?? '?' })}
+        fullSized={true}
+        disabled={!approvalEnabled}
+        openConnectModal={openConnectModal}
+        openChainModal={openChainModal}
+        addRecentTransaction={addRecentTransaction}
+        innerClassName='flex gap-2 items-center'
+        intl={{ base: t_modals, common: t_common }}
+      >
+        {t_modals('approvalButton', { symbol: tokenData?.symbol ?? '?' })}
+        <ApprovalTooltip
+          tokenSymbol={tokenData.symbol}
+          intl={t_tooltips}
+          className='whitespace-normal'
+        />
+      </TransactionButton>
+    )
+  }
+
+  // Prompt to review deposit
+  if (isDataFetched && modalView === 'main') {
+    return (
+      <Button onClick={() => setModalView('review')} fullSized={true} disabled={!depositEnabled}>
+        {t_modals('reviewDeposit')}
+      </Button>
+    )
+  }
+
   // Deposit button
   return (
     <TransactionButton
       chainId={vault.chainId}
-      isTxLoading={isConfirming}
-      isTxSuccess={isSuccessful}
+      isTxLoading={isWaitingDeposit || isConfirmingDeposit}
+      isTxSuccess={isSuccessfulDeposit}
       write={sendDepositTransaction}
       txHash={depositTxHash}
       txDescription={t_modals('depositTx', { symbol: tokenData?.symbol ?? '?' })}
       fullSized={true}
       disabled={!depositEnabled}
+      openConnectModal={openConnectModal}
+      openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
-      signInWithWallet={signInWithWallet}
-      intl={{ common: t_common }}
+      intl={{ base: t_modals, common: t_common }}
     >
       {t_modals('confirmDeposit')}
     </TransactionButton>

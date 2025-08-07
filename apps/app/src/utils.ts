@@ -1,48 +1,7 @@
-import { toast } from '@shared/ui'
-import { formatNumberForDisplay, NETWORK } from '@shared/utilities'
-import { MiniKit } from '@worldcoin/minikit-js'
+import { formatNumberForDisplay } from '@shared/utilities'
 import deepmerge from 'deepmerge'
-import { Address, Chain, formatUnits, http, Transport } from 'viem'
-import { createConfig, fallback } from 'wagmi'
-import { RPC_URLS, WAGMI_CHAINS } from '@constants/config'
-
-/**
- * Returns a Wagmi config with the given networks and RPCs
- * @param networks the networks to support throughout the app
- * @param options optional settings
- * @returns
- */
-export const createCustomWagmiConfig = (networks: NETWORK[]) => {
-  const supportedNetworks = Object.values(WAGMI_CHAINS).filter(
-    (chain) => networks.includes(chain.id) && !!RPC_URLS[chain.id]
-  ) as any as [Chain, ...Chain[]]
-
-  return createConfig({
-    chains: supportedNetworks,
-    // connectors: options?.connectors ?? getWalletConnectors(),
-    transports: getNetworkTransports(supportedNetworks.map((network) => network.id)),
-    batch: { multicall: { batchSize: 1_024 * 1_024 } },
-    ssr: true
-  })
-}
-
-/**
- * Returns network transports for Wagmi
- * @param networks the networks to get transports for
- * @param options optional settings
- * @returns
- */
-const getNetworkTransports = (networks: (keyof typeof RPC_URLS)[]) => {
-  const transports: { [chainId: number]: Transport } = {}
-
-  networks.forEach((network) => {
-    const defaultRpcUrl = RPC_URLS[network] as string
-
-    transports[network] = fallback([http(defaultRpcUrl), http()])
-  })
-
-  return transports
-}
+import { formatUnits } from 'viem'
+import { WALLET_STATS_API_URL } from '@constants/config'
 
 /**
  * Returns messages for localization through next-intl
@@ -61,12 +20,21 @@ export const getMessages = async (locale?: string) => {
 }
 
 /**
- * Returns whether or not the current wallet connector supports ERC-2612 permits
- * @param connectorId the current wallet connector ID
- * @returns
+ * Tracks deposit and its respective wallet ID on the wallet stats API
+ * @param chainId the chain ID the deposit was made in
+ * @param txHash the transaction hash of the deposit
+ * @param walletId the ID of the wallet used to perform the deposit
  */
-export const walletSupportsPermit = (connectorId?: string) => {
-  return !connectorId?.toLowerCase().includes('coinbase')
+export const trackDeposit = async (chainId: number, txHash: `0x${string}`, walletId: string) => {
+  try {
+    await fetch(`${WALLET_STATS_API_URL}/addDeposit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chainId, txHash, walletId })
+    })
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 /**
@@ -104,43 +72,20 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
   return formatNumberForDisplay(roundedAmount, { maximumFractionDigits })
 }
 
-export const signInDisconnect = async (setUserAddress: (address: Address | undefined) => void) => {
-  setUserAddress(undefined)
-}
+// /**
+//  * Connects to a Farcaster wallet if available
+//  */
+// export const connectFarcasterWallet = async (connect: ConnectMutate<Config, unknown>) => {
+//   const frameSdk = (await import('@farcaster/frame-sdk')).default
 
-interface AddRecentTransactionArgs {
-  hash: string
-  description: string
-}
-export const addRecentTransaction = (args: AddRecentTransactionArgs) => {
-  console.log(args)
-  console.warn('addRecentTransaction() implement me!?')
-}
+//   const farcasterContext = await frameSdk.context
 
-export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
-  if (!MiniKit.isInstalled()) {
-    console.error('Failed: MiniKit is not installed!')
-    return
-  }
+//   if (!!farcasterContext?.client?.clientFid) {
+//     const frameConnector = (
+//       await import('@farcaster/frame-wagmi-connector')
+//     ).default() as CreateConnectorFn
 
-  const nonce = crypto.randomUUID().replace(/-/g, '')
-
-  const { commandPayload: generateMessageResult, finalPayload } =
-    await MiniKit.commandsAsync.walletAuth({
-      nonce,
-      expirationTime: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
-      notBefore: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
-      statement:
-        'PoolTogether requires your address to check your WLD balance and permit deposits into the Prize Pool'
-    })
-
-  if (finalPayload.status === 'error') {
-    console.log('error')
-    console.log('User rejected sign in window?')
-
-    return
-  } else {
-    const walletAddress = finalPayload.address as Address
-    setUserAddress(walletAddress)
-  }
-}
+//     connect({ connector: frameConnector })
+//     frameSdk.actions.ready()
+//   }
+// }

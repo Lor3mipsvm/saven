@@ -34,6 +34,13 @@ export const RPC_URLS = {
 } as const
 
 /**
+ * EIP 5792 Paymaster URLs
+ */
+export const PAYMASTER_URLS: { [chainId: number]: string | undefined } = {
+  [NETWORK.base]: process.env.NEXT_PUBLIC_BASE_PAYMASTER_URL
+}
+
+/**
  * Default vault lists
  */
 export const DEFAULT_VAULT_LISTS = {
@@ -122,3 +129,8 @@ export const ZAP_TOKEN_OPTIONS: { [chainId: number]: Address[] } = {
 export const NATIVE_ASSET_IGNORE_AMOUNT: { [chainId: number]: bigint } = {
   [NETWORK.base]: parseEther('0.002')
 }
+
+/**
+ * Wallet stats API
+ */
+export const WALLET_STATS_API_URL = 'https://wallet-stats.api.cabana.fi'

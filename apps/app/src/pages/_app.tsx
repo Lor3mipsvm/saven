@@ -1,18 +1,27 @@
+import { farcasterFrame } from '@farcaster/frame-wagmi-connector'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IncomingMessage } from 'http'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
-import { WagmiProvider } from 'wagmi'
+import { type Config, createConfig, http, WagmiProvider } from 'wagmi'
+import { base } from 'wagmi/chains'
 import { AppContainer } from '@components/AppContainer'
 import { SUPPORTED_NETWORKS } from '@constants/config'
 import '../styles/globals.css'
-import { createCustomWagmiConfig } from '../utils'
 
 // React Query Client:
 const queryClient = new QueryClient()
 
 const networks = [...SUPPORTED_NETWORKS.mainnets, ...SUPPORTED_NETWORKS.testnets]
-const wagmiConfig = createCustomWagmiConfig(networks)
+// const wagmiConfig = createCustomWagmiConfig(networks)
+
+export const config: Config = createConfig({
+  chains: [base],
+  transports: {
+    [base.id]: http()
+  },
+  connectors: [farcasterFrame()]
+})
 
 export interface CustomAppProps {
   serverProps: {
@@ -22,7 +31,7 @@ export interface CustomAppProps {
 
 export default function MyApp(props: AppProps & CustomAppProps) {
   return (
-    <WagmiProvider config={wagmiConfig} reconnectOnMount={true}>
+    <WagmiProvider config={config} reconnectOnMount={true}>
       <QueryClientProvider client={queryClient}>
         <AppContainer {...props} />
       </QueryClientProvider>
