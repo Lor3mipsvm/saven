@@ -3,7 +3,6 @@ import { useSelectedLanguage } from '@shared/generic-react-hooks'
 import { ErrorPooly } from '@shared/react-components'
 import { toast } from '@shared/ui'
 import { Flowbite, Toaster } from '@shared/ui'
-import { MiniKit } from '@worldcoin/minikit-js'
 import { NextIntlClientProvider } from 'next-intl'
 import { AppProps } from 'next/app'
 import { ReactNode, useEffect, useState } from 'react'
@@ -18,31 +17,6 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   const { pathname, query, asPath, locale } = router
 
   const [isReady, setIsReady] = useState<boolean>(false)
-
-  useEffect(() => {
-    // const appId = process.env.NEXT_PUBLIC_MINIKIT_APP_ID
-
-    if (isReady) {
-      //   if (!MiniKit.isInstalled()) {
-      //     MiniKit.install(appId)
-      //   }
-      //   if (!MiniKit.isInstalled()) {
-      //     // Dev check
-      //     // @ts-ignore
-      //     if (window?.location.href.match(/localhost/)?.length > 0) {
-      //       return
-      //     }
-      //     toast(
-      //       <ToastLayout id='minikit-not-installed'>
-      //         <ErrorView />
-      //       </ToastLayout>,
-      //       { id: 'minikit-not-installed' }
-      //     )
-      //     console.error('MiniKit is not installed')
-      //   }
-    }
-    console.log('hi')
-  }, [isReady])
 
   useEffect(() => {
     const initEruda = async () => {
@@ -92,6 +66,7 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   return (
     <>
       {pageFrame ?? <DefaultFrame />}
+
       <Flowbite>
         <Toaster expand={false} />
         <NextIntlClientProvider locale={locale} timeZone={'Etc/UCT'} messages={pageProps.messages}>

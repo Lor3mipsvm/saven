@@ -1,7 +1,7 @@
 // import { WORLD_API_KEY } from '$env/static/private'
 // import type { RequestHandler } from '@sveltejs/kit'
 // import { json } from '@sveltejs/kit'
-import { type MiniAppSendTransactionSuccessPayload } from '@worldcoin/minikit-js'
+// import { type MiniAppSendTransactionSuccessPayload } from '@worldcoin/minikit-js'
 import { NextRequest, NextResponse } from 'next/server'
 
 // import { getChainIdFromParams, getPublicClient } from './utils'

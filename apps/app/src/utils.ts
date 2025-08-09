@@ -2,7 +2,7 @@ import { farcasterFrame } from '@farcaster/frame-wagmi-connector'
 import { formatNumberForDisplay } from '@shared/utilities'
 import deepmerge from 'deepmerge'
 import { formatUnits } from 'viem'
-import { createConfig, http } from 'wagmi'
+import { type Config, createConfig, http } from 'wagmi'
 import { base } from 'wagmi/chains'
 import { WALLET_STATS_API_URL } from '@constants/config'
 
@@ -93,15 +93,15 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
 //   }
 // }
 
-export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
-  setUserAddress(walletAddress)
-}
+// export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
+//   setUserAddress(walletAddress)
+// }
 
-export const signInDisconnect = async (setUserAddress: (address: Address | undefined) => void) => {
-  setUserAddress(undefined)
-}
+// export const signInDisconnect = async (setUserAddress: (address: Address | undefined) => void) => {
+//   setUserAddress(undefined)
+// }
 
-export const wagmiConfig = createConfig({
+export const wagmiConfig: Config = createConfig({
   chains: [base],
   transports: {
     [base.id]: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)

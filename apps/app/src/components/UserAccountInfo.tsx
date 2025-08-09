@@ -1,12 +1,12 @@
 import { useAccount } from '@shared/generic-react-hooks'
 import { Spinner } from '@shared/ui'
 import BlockiesSvg from 'blockies-react-svg'
-import { signInDisconnect } from 'src/utils'
+// import { signInDisconnect } from 'src/utils'
 import { Address } from 'viem'
 import './user-info-styles.css'
 
 export const UserAccountInfo = () => {
-  const { setUserAddress, address: userAddress } = useAccount()
+  const { setUserAddress, address } = useAccount()
 
   const usernameResult = {
     username: 'usssernammme',
@@ -15,29 +15,30 @@ export const UserAccountInfo = () => {
   const usernameResultIsLoading = false
 
   const displayName = !usernameResult?.username
-    ? `${userAddress?.slice(0, 6)}...${userAddress?.slice(-4)}`
+    ? `${address?.slice(0, 6)}...${address?.slice(-4)}`
     : usernameResult?.username
 
-  const disconnect = () => {
-    signInDisconnect(setUserAddress)
-  }
+  // const disconnect = () => {
+  //   signInDisconnect(setUserAddress)
+  // }
 
   return (
     <>
-      <button onClick={disconnect}>
+      {address}
+      {/* <button onClick={disconnect}>
         {!usernameResultIsLoading ? (
           <span className='user-info'>
             {!!usernameResult?.profile_picture_url ? (
               <img src={usernameResult.profile_picture_url} alt='Avatar' />
             ) : (
-              <Blockies address={userAddress as Address} />
+              <Blockies address={address as Address} />
             )}
             <span>{displayName}</span>
           </span>
         ) : (
           <Spinner />
         )}
-      </button>
+      </button> */}
     </>
   )
 }
