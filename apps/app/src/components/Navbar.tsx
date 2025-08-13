@@ -144,7 +144,7 @@ export const Navbar = () => {
           />
         </div>
       </FlowbiteNavbar>
-      <MobileNavbar className='z-50'>
+      <MobileNavbar className='z-10'>
         <NavbarLinks links={navLinks} />
       </MobileNavbar>
     </>

@@ -4,6 +4,7 @@ import deepmerge from 'deepmerge'
 import { formatUnits } from 'viem'
 import { type Config, createConfig, http } from 'wagmi'
 import { base } from 'wagmi/chains'
+import { coinbaseWallet } from 'wagmi/connectors'
 import { WALLET_STATS_API_URL } from '@constants/config'
 
 /**
@@ -106,5 +107,11 @@ export const wagmiConfig: Config = createConfig({
   transports: {
     [base.id]: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)
   },
-  connectors: [farcasterFrame()]
+  ssr: true,
+  connectors: [
+    coinbaseWallet({
+      appName: 'PT'
+    }),
+    farcasterFrame()
+  ]
 })

@@ -1,4 +1,5 @@
 import { MiniKitProvider } from '@coinbase/onchainkit/minikit'
+import '@coinbase/onchainkit/styles.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IncomingMessage } from 'http'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
