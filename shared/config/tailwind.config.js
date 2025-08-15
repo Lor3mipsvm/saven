@@ -13,7 +13,6 @@ module.exports = {
   theme: {
     fontFamily: {
       grotesk: 'Grotesk',
-      inter: 'Inter',
       averta: 'Averta'
     },
     extend: {
@@ -79,14 +78,16 @@ module.exports = {
     }
   },
   plugins: [
-    plugin(({ addUtilities }) => addUtilities({
-      '.no-scrollbar::-webkit-scrollbar': {
-        'display': 'none'
-      },
-      '.no-scrollbar': {
-        '-ms-overflow-style': 'none',
-        'scrollbar-width': 'none'
-      }
-    }))
+    plugin(({ addUtilities }) =>
+      addUtilities({
+        '.no-scrollbar::-webkit-scrollbar': {
+          display: 'none'
+        },
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none'
+        }
+      })
+    )
   ]
 }

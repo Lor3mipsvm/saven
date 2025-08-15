@@ -15,7 +15,7 @@ export interface TransactionButtonProps extends Omit<ButtonProps, 'onClick'> {
   txHash?: string
   txDescription?: string
   addRecentTransaction?: (tx: { hash: string; description: string; confirmations?: number }) => void
-  intl?: { common?: Intl<'signIn'> }
+  intl?: { common?: Intl<'connectWallet'> }
   innerClassName?: string
 }
 
@@ -58,7 +58,7 @@ export const TransactionButton = (props: TransactionButtonProps) => {
         {...rest}
       >
         <span className={classNames('whitespace-nowrap', innerClassName)}>
-          {intl?.common?.('signIn') ?? 'Sign In'}
+          {intl?.common?.('connectWallet') ?? 'Sign In'}
         </span>
       </Button>
     )

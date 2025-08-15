@@ -4,14 +4,16 @@ import {
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
+// import { useAccount } from '@shared/generic-react-hooks'
 import { Button } from '@shared/ui'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { useMemo } from 'react'
-import { signInWithWallet } from 'src/utils'
+// import { signInWithWallet } from 'src/utils'
 import { Address } from 'viem'
+import { useAccount, useConnect } from 'wagmi'
 import { PrizePoolCards } from '@components/Prizes/PrizePoolCards'
 import { useSettingsModalView } from '@hooks/useSettingsModalView'
 import { AccountDepositsCards } from './AccountDepositsCards'
@@ -73,22 +75,39 @@ const NoWalletCard = (props: { className?: string }) => {
   const t_common = useTranslations('Common')
   const t_account = useTranslations('Account')
 
-  const { setUserAddress } = useAccount()
+  // const { setUserAddress } = useAccount()
 
   // const { openConnectModal } = useConnectModal()
 
+  const { address: accountAddress, status, connector: accountConnector } = useAccount()
+  const { connectors, connect, status: connectStatus } = useConnect()
+
+  // Wallet connect status
+  const connector = accountConnector || connectors[0]
+  const isLoading = connectStatus === 'pending' || status === 'connecting'
+
   return (
     <div className={classNames('flex flex-col max-w-md gap-6 items-center', className)}>
-      <span className='text-center text-3xl font-averta font-medium md:text-5xl'>
-        {t_account('connectWallet')}
-      </span>
+      <span className='text-center text-3xl md:text-5xl'>{t_account('connectWallet')}</span>
+
       <Button
         onClick={() => {
-          signInWithWallet(setUserAddress)
+          connect(
+            { connector },
+            {
+              onSuccess: () => {
+                // onConnect?.()
+                // handleAnalyticsSuccess(accountAddress)
+              },
+              onError: (error) => {
+                // handleAnalyticsError(error.message, 'ConnectWallet')
+              }
+            }
+          )
         }}
       >
-        <div className='inline-flex gap-3 font-medium'>
-          <span>{t_common('signIn')}</span>
+        <div className='inline-flex gap-3 font-averta font-normal font-medium'>
+          <span>{t_common('connectWallet')}</span>
           <ArrowRightIcon className='h-5 w-5' />
         </div>
       </Button>
