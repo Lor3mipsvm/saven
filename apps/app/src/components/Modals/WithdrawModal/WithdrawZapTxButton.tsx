@@ -19,6 +19,7 @@ import { ZAP_SETTINGS } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
+import { addRecentTransaction } from 'src/utils'
 import { isAddress, parseUnits } from 'viem'
 import { WithdrawModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
@@ -209,7 +210,6 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
         fullSized={true}
         disabled={!approvalEnabled}
         addRecentTransaction={addRecentTransaction}
-        signInWithWallet={signInWithWallet}
         innerClassName='flex gap-2 items-center'
         intl={{ common: t_common }}
       >
@@ -262,7 +262,6 @@ export const WithdrawZapTxButton = (props: WithdrawZapTxButtonProps) => {
       fullSized={true}
       disabled={!withdrawEnabled}
       addRecentTransaction={addRecentTransaction}
-      signInWithWallet={signInWithWallet}
       intl={{ common: t_common }}
     >
       {t_modals('confirmWithdrawal')}

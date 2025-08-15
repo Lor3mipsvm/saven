@@ -22,7 +22,7 @@ export interface CustomAppProps {
 
 export default function MyApp(props: AppProps & CustomAppProps) {
   const [queryClient] = useState(() => new QueryClient())
-
+  console.log(process.env.NEXT_PUBLIC_BASE_RPC_URL)
   return (
     <MiniKitProvider
       projectId={process.env.NEXT_PUBLIC_CB_PROJECT_ID}

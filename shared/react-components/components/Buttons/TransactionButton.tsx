@@ -1,16 +1,15 @@
-import { useAccount } from '@shared/generic-react-hooks'
 import { Intl } from '@shared/types'
 import { Button, ButtonProps, Spinner } from '@shared/ui'
 import { getNiceNetworkNameByChainId } from '@shared/utilities'
 import classNames from 'classnames'
 import { useEffect } from 'react'
 import { Address } from 'viem'
+import { useAccount, useConnect } from 'wagmi'
 
 export interface TransactionButtonProps extends Omit<ButtonProps, 'onClick'> {
   chainId: number
   isTxLoading: boolean
   isTxSuccess: boolean
-  signInWithWallet: (setUserAddress: (address: Address | undefined) => void) => void
   write?: () => void
   txHash?: string
   txDescription?: string
@@ -32,11 +31,22 @@ export const TransactionButton = (props: TransactionButtonProps) => {
     innerClassName,
     disabled,
     children,
-    signInWithWallet,
     ...rest
   } = props
 
-  const { setUserAddress, isDisconnected } = useAccount()
+  // const { setUserAddress, isDisconnected } = useAccount()
+
+  const {
+    isDisconnected,
+    address: accountAddress,
+    status,
+    connector: accountConnector
+  } = useAccount()
+  const { connectors, connect, status: connectStatus } = useConnect()
+
+  // Wallet connect status
+  const connector = accountConnector || connectors[0]
+  const isLoading = connectStatus === 'pending' || status === 'connecting'
 
   const networkName = getNiceNetworkNameByChainId(chainId)
 
@@ -53,7 +63,18 @@ export const TransactionButton = (props: TransactionButtonProps) => {
     return (
       <Button
         onClick={() => {
-          signInWithWallet(setUserAddress)
+          connect(
+            { connector },
+            {
+              onSuccess: () => {
+                // onConnect?.()
+                // handleAnalyticsSuccess(accountAddress)
+              },
+              onError: (error) => {
+                // handleAnalyticsError(error.message, 'ConnectWallet')
+              }
+            }
+          )
         }}
         {...rest}
       >

@@ -9,7 +9,7 @@ import { TransactionButton } from '@shared/react-components'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
-import { addRecentTransaction, signInWithWallet } from 'src/utils'
+import { addRecentTransaction } from 'src/utils'
 import { Address, isAddress } from 'viem'
 import { DelegateModalView } from '.'
 import { delegateFormNewDelegateAddressAtom } from './DelegateForm'
@@ -100,7 +100,6 @@ export const DelegateTxButton = (props: DelegateTxButtonProps) => {
       disabled={!delegateEnabled}
       color={!delegateEnabled && chain?.id === vault.chainId ? 'transparent' : 'teal'}
       addRecentTransaction={addRecentTransaction}
-      signInWithWallet={signInWithWallet}
       intl={{ common: t_common }}
     >
       {t_txModals('updateDelegatedAddress')}

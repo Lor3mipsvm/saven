@@ -43,9 +43,9 @@ export const SignInButton = () => {
         </Wallet>
       </div>
 
-      <Button onClick={() => console.log(address)} className='text-xs' size='sm'>
+      {/* <Button onClick={() => console.log(address)} className='text-xs' size='sm'>
         test
-      </Button>
+      </Button> */}
     </>
   )
 }

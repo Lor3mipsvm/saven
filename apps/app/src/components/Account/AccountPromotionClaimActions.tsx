@@ -9,7 +9,7 @@ import { getSecondsSinceEpoch, lower } from '@shared/utilities'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { addRecentTransaction, signInWithWallet } from 'src/utils'
+import { addRecentTransaction } from 'src/utils'
 import { Address, formatUnits } from 'viem'
 // import { useCapabilities } from 'wagmi'
 import { useUserClaimablePoolWidePromotions } from '@hooks/useUserClaimablePoolWidePromotions'
@@ -150,7 +150,6 @@ const ClaimRewardsButton = (props: ClaimRewardsButtonProps) => {
             txHash={txHash}
             txDescription={t_account('claimRewardsTx', { symbol: token.symbol })}
             addRecentTransaction={addRecentTransaction}
-            signInWithWallet={signInWithWallet}
             intl={{ common: t_common }}
             fullSized={fullSized}
             className={classNames('min-w-[6rem]', className)}

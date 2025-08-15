@@ -17,7 +17,7 @@ import { DOLPHIN_ADDRESS, lower, ZAP_SETTINGS } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
-import { addRecentTransaction, signInWithWallet } from 'src/utils'
+import { addRecentTransaction } from 'src/utils'
 import { Hash, isAddress, parseUnits } from 'viem'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
@@ -210,7 +210,6 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
       fullSized={true}
       disabled={!depositEnabled}
       addRecentTransaction={addRecentTransaction}
-      signInWithWallet={signInWithWallet}
       intl={{ common: t_common }}
     >
       {t_modals('confirmDeposit')}

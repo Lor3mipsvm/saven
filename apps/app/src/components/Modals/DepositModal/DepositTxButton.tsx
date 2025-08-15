@@ -2,7 +2,6 @@ import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
   useSend5792DepositTransaction,
   useSendApproveTransaction,
-  useSendDepositTransaction,
   useTokenAllowance,
   useTokenBalance,
   useUserVaultDelegationBalance,
@@ -16,6 +15,7 @@ import { Button } from '@shared/ui'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
+import { addRecentTransaction } from 'src/utils'
 import { Address, Hash, parseUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
@@ -48,9 +48,9 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   const t_modals = useTranslations('TxModals')
   const t_tooltips = useTranslations('Tooltips')
 
-  const { openConnectModal } = useConnectModal()
-  const { openChainModal } = useChainModal()
-  const addRecentTransaction = useAddRecentTransaction()
+  // const { openConnectModal } = useConnectModal()
+  // const { openChainModal } = useChainModal()
+  // const addRecentTransaction = useAddRecentTransaction()
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
@@ -108,24 +108,24 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     }
   })
 
-  const dataDepositTx = useSendDepositTransaction(depositAmount, vault, {
-    onSend: () => {
-      setModalView('waiting')
-    },
-    onSuccess: (txReceipt) => {
-      refetchUserTokenBalance()
-      refetchUserVaultTokenBalance()
-      refetchUserVaultDelegationBalance()
-      refetchVaultBalance()
-      refetchTokenAllowance()
-      refetchUserBalances?.()
-      onSuccessfulDeposit?.(vault.chainId, txReceipt.transactionHash)
-      setModalView('success')
-    },
-    onError: () => {
-      setModalView('error')
-    }
-  })
+  // const dataDepositTx = useSendDepositTransaction(depositAmount, vault, {
+  //   onSend: () => {
+  //     setModalView('waiting')
+  //   },
+  //   onSuccess: (txReceipt) => {
+  //     refetchUserTokenBalance()
+  //     refetchUserVaultTokenBalance()
+  //     refetchUserVaultDelegationBalance()
+  //     refetchVaultBalance()
+  //     refetchTokenAllowance()
+  //     refetchUserBalances?.()
+  //     onSuccessfulDeposit?.(vault.chainId, txReceipt.transactionHash)
+  //     setModalView('success')
+  //   },
+  //   onError: () => {
+  //     setModalView('error')
+  //   }
+  // })
 
   const isUsingEip5792 = true
 
@@ -153,15 +153,11 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     enabled: isUsingEip5792
   })
 
-  const isWaitingDeposit = isUsingEip5792 ? data5792DepositTx.isWaiting : dataDepositTx.isWaiting
-  const isConfirmingDeposit = isUsingEip5792
-    ? data5792DepositTx.isConfirming
-    : dataDepositTx.isConfirming
-  const isSuccessfulDeposit = isUsingEip5792 ? data5792DepositTx.isSuccess : dataDepositTx.isSuccess
-  const depositTxHash = isUsingEip5792 ? data5792DepositTx.txHashes?.at(-1) : dataDepositTx.txHash
-  const sendDepositTransaction = isUsingEip5792
-    ? data5792DepositTx.send5792DepositTransaction
-    : dataDepositTx.sendDepositTransaction
+  const isWaitingDeposit = data5792DepositTx.isWaiting
+  const isConfirmingDeposit = data5792DepositTx.isConfirming
+  const isSuccessfulDeposit = data5792DepositTx.isSuccess
+  const depositTxHash = data5792DepositTx.txHashes?.at(-1)
+  const sendDepositTransaction = data5792DepositTx.send5792DepositTransaction
 
   useEffect(() => {
     if (!!depositTxHash && isConfirmingDeposit && !isWaitingDeposit && !isSuccessfulDeposit) {
@@ -212,8 +208,8 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
         txDescription={t_modals('approvalTx', { symbol: tokenData?.symbol ?? '?' })}
         fullSized={true}
         disabled={!approvalEnabled}
-        openConnectModal={openConnectModal}
-        openChainModal={openChainModal}
+        // openConnectModal={openConnectModal}
+        // openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
         innerClassName='flex gap-2 items-center'
         intl={{ base: t_modals, common: t_common }}
@@ -248,8 +244,8 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       txDescription={t_modals('depositTx', { symbol: tokenData?.symbol ?? '?' })}
       fullSized={true}
       disabled={!depositEnabled}
-      openConnectModal={openConnectModal}
-      openChainModal={openChainModal}
+      // openConnectModal={openConnectModal}
+      // openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
       intl={{ base: t_modals, common: t_common }}
     >

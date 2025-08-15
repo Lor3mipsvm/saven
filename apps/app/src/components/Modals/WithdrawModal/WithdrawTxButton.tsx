@@ -1,7 +1,6 @@
 import { getAssetsFromShares, Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
-  useSend5792RedeemTransaction,
-  useSendRedeemTransaction,
+  useSend5792RedeemTransaction, // useSendRedeemTransaction,
   useTokenBalance,
   useUserVaultDelegationBalance,
   useUserVaultShareBalance,
@@ -11,15 +10,14 @@ import {
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 // import { useAddRecentTransaction, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit'
-import { useMiscSettings } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
-import { supportsEip5792, supportsEip7677 } from '@shared/utilities'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
+import { addRecentTransaction } from 'src/utils'
 import { Address, parseUnits } from 'viem'
-import { useAccount, useCapabilities } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { PAYMASTER_URLS } from '@constants/config'
 import { WithdrawModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
@@ -47,9 +45,9 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
 
-  const { openConnectModal } = useConnectModal()
-  const { openChainModal } = useChainModal()
-  const addRecentTransaction = useAddRecentTransaction()
+  // const { openConnectModal } = useConnectModal()
+  // const { openChainModal } = useChainModal()
+  // const addRecentTransaction = useAddRecentTransaction()
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
@@ -94,35 +92,29 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
       ? getAssetsFromShares(withdrawAmount, vaultExchangeRate, decimals as number)
       : 0n
 
-  const dataTx = useSendRedeemTransaction(withdrawAmount, vault, {
-    minAssets: expectedAssetAmount,
-    onSend: () => {
-      setModalView('waiting')
-    },
-    onSuccess: () => {
-      refetchUserTokenBalance()
-      refetchUserVaultTokenBalance()
-      refetchUserVaultDelegationBalance()
-      refetchVaultBalance()
-      refetchUserBalances?.()
-      onSuccessfulWithdrawal?.()
-      setModalView('success')
-    },
-    onError: () => {
-      setModalView('error')
-    }
-  })
+  // const dataTx = useSendRedeemTransaction(withdrawAmount, vault, {
+  //   minAssets: expectedAssetAmount,
+  //   onSend: () => {
+  //     setModalView('waiting')
+  //   },
+  //   onSuccess: () => {
+  //     refetchUserTokenBalance()
+  //     refetchUserVaultTokenBalance()
+  //     refetchUserVaultDelegationBalance()
+  //     refetchVaultBalance()
+  //     refetchUserBalances?.()
+  //     onSuccessfulWithdrawal?.()
+  //     setModalView('success')
+  //   },
+  //   onError: () => {
+  //     setModalView('error')
+  //   }
+  // })
 
-  const { data: walletCapabilities } = useCapabilities()
-  const chainWalletCapabilities = walletCapabilities?.[vault.chainId] ?? {}
+  const isUsingEip5792 = true
 
-  const { isActive: isEip5792Disabled } = useMiscSettings('eip5792Disabled')
-  const isUsingEip5792 = supportsEip5792(chainWalletCapabilities) && !isEip5792Disabled
-
-  const { isActive: isEip7677Disabled } = useMiscSettings('eip7677Disabled')
   const paymasterUrl = PAYMASTER_URLS[vault.chainId]
-  const isUsingEip7677 =
-    !!paymasterUrl && supportsEip7677(chainWalletCapabilities) && !isEip7677Disabled
+  const isUsingEip7677 = !!paymasterUrl
 
   const data5792Tx = useSend5792RedeemTransaction(withdrawAmount, vault, {
     minAssets: expectedAssetAmount,
@@ -145,13 +137,14 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
     enabled: isUsingEip5792
   })
 
-  const sendTx = isUsingEip5792
-    ? data5792Tx.send5792RedeemTransaction
-    : dataTx.sendRedeemTransaction
-  const isWaitingWithdrawal = isUsingEip5792 ? data5792Tx.isWaiting : dataTx.isWaiting
-  const isConfirmingWithdrawal = isUsingEip5792 ? data5792Tx.isConfirming : dataTx.isConfirming
-  const isSuccessfulWithdrawal = isUsingEip5792 ? data5792Tx.isSuccess : dataTx.isSuccess
-  const withdrawTxHash = isUsingEip5792 ? data5792Tx.txHashes?.at(-1) : dataTx.txHash
+  const sendTx = data5792Tx.send5792RedeemTransaction
+  // const sendTx = isUsingEip5792
+  //   ? data5792Tx.send5792RedeemTransaction
+  //   : dataTx.sendRedeemTransaction
+  const isWaitingWithdrawal = data5792Tx.isWaiting
+  const isConfirmingWithdrawal = data5792Tx.isConfirming
+  const isSuccessfulWithdrawal = data5792Tx.isSuccess
+  const withdrawTxHash = data5792Tx.txHashes?.at(-1)
 
   useEffect(() => {
     if (
@@ -199,8 +192,8 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
         txDescription={t_modals('withdrawTx', { symbol: tokenData?.symbol ?? '?' })}
         fullSized={true}
         disabled={!withdrawEnabled}
-        openConnectModal={openConnectModal}
-        openChainModal={openChainModal}
+        // openConnectModal={openConnectModal}
+        // openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
         intl={{ base: t_modals, common: t_common }}
       >
