@@ -9,18 +9,18 @@ import {
 } from '@coinbase/onchainkit/wallet'
 import { Button } from '@shared/ui'
 import { useTranslations } from 'next-intl'
-// import { wagmiConfig } from 'src/utils'
-import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { useAccount } from 'wagmi'
 
 export const SignInButton = () => {
   const t_common = useTranslations('Common')
+  const { address } = useAccount()
 
   return (
     <>
       <div className='ock-wallet'>
         <Wallet className='z-10'>
           <ConnectWallet
-            text='asd'
+            text={t_common('connectWallet')}
             className='bg-pt-teal hover:bg-teal-400 py-2 px-0 text-sm transition'
           >
             <Name className='text-inherit' />
@@ -37,9 +37,9 @@ export const SignInButton = () => {
         </Wallet>
       </div>
 
-      {/* <Button onClick={() => console.log(address)} className='text-xs' size='sm'>
+      <Button onClick={() => console.log(address)} className='text-xs' size='sm'>
         test
-      </Button> */}
+      </Button>
     </>
   )
 }

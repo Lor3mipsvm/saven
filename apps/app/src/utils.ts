@@ -1,10 +1,6 @@
-import { farcasterFrame } from '@farcaster/frame-wagmi-connector'
 import { formatNumberForDisplay } from '@shared/utilities'
 import deepmerge from 'deepmerge'
 import { formatUnits } from 'viem'
-import { type Config, createConfig, http } from 'wagmi'
-import { base } from 'wagmi/chains'
-import { coinbaseWallet } from 'wagmi/connectors'
 import { WALLET_STATS_API_URL } from '@constants/config'
 
 /**
@@ -76,24 +72,6 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
   return formatNumberForDisplay(roundedAmount, { maximumFractionDigits })
 }
 
-// /**
-//  * Connects to a Farcaster wallet if available
-//  */
-// export const connectFarcasterWallet = async (connect: ConnectMutate<Config, unknown>) => {
-//   const frameSdk = (await import('@farcaster/frame-sdk')).default
-
-//   const farcasterContext = await frameSdk.context
-
-//   if (!!farcasterContext?.client?.clientFid) {
-//     const frameConnector = (
-//       await import('@farcaster/frame-wagmi-connector')
-//     ).default() as CreateConnectorFn
-
-//     connect({ connector: frameConnector })
-//     frameSdk.actions.ready()
-//   }
-// }
-
 // export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
 //   setUserAddress(walletAddress)
 // }
@@ -102,16 +80,12 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
 //   setUserAddress(undefined)
 // }
 
-export const wagmiConfig: Config = createConfig({
-  chains: [base],
-  transports: {
-    [base.id]: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)
-  },
-  ssr: true,
-  connectors: [
-    coinbaseWallet({
-      appName: 'PT'
-    }),
-    farcasterFrame()
-  ]
-})
+interface AddRecentTransactionArgs {
+  hash: string
+  description: string
+}
+
+export const addRecentTransaction = (args: AddRecentTransactionArgs) => {
+  console.log(args)
+  console.warn('addRecentTransaction() implement me!?')
+}

@@ -4,8 +4,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { IncomingMessage } from 'http'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
-import { WagmiProvider } from 'wagmi'
-import { base } from 'wagmi/chains'
+import { type ReactNode, useState } from 'react'
+import { base } from 'viem/chains'
+import { type State, WagmiProvider } from 'wagmi'
+// import { base } from 'wagmi/chains'
 import { AppContainer } from '@components/AppContainer'
 import '../styles/globals.css'
 import { wagmiConfig } from '../utils'
@@ -19,17 +21,19 @@ export interface CustomAppProps {
 }
 
 export default function MyApp(props: AppProps & CustomAppProps) {
+  const [queryClient] = useState(() => new QueryClient())
+
   return (
     <MiniKitProvider
       projectId={process.env.NEXT_PUBLIC_CB_PROJECT_ID}
       apiKey={process.env.NEXT_PUBLIC_CB_PUBLIC_API_KEY}
+      notificationProxyUrl='/api/notification'
       chain={base}
+      rpcUrl={process.env.NEXT_PUBLIC_BASE_RPC_URL}
     >
-      <WagmiProvider config={wagmiConfig} reconnectOnMount={true}>
-        <QueryClientProvider client={queryClient}>
-          <AppContainer {...props} />
-        </QueryClientProvider>
-      </WagmiProvider>
+      <QueryClientProvider client={queryClient}>
+        <AppContainer {...props} />
+      </QueryClientProvider>
     </MiniKitProvider>
   )
 }

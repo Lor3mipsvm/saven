@@ -54,7 +54,12 @@ export const useSend5792Calls = (
             account: userAddress,
             calls,
             capabilities: !!options?.paymasterService
-              ? { paymasterService: { [chainId]: options.paymasterService } }
+              ? {
+                  paymasterService: {
+                    [chainId]: options.paymasterService,
+                    url: options.paymasterService.url
+                  }
+                }
               : undefined
           })
       : undefined
