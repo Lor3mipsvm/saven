@@ -31,9 +31,6 @@ export const useUserTotalBalance = (userAddress: Address) => {
     !!vaults.underlyingTokenAddresses &&
     Object.values(allVaultShareTokens).some((token) => token.price !== undefined)
 
-  console.log('!!vaults.underlyingTokenAddresses')
-  console.log(!!vaults.underlyingTokenAddresses)
-
   const data = useMemo(() => {
     if (isFetched) {
       let totalBalance: number = 0

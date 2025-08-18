@@ -315,13 +315,21 @@ export const SUBGRAPH_API_URLS = {
 /**
  * Token Prices API URL
  */
-export const TOKEN_PRICES_API_URL = `/api/tokenPrice`
+export const TOKEN_PRICES_API_URL = 'https://token-prices.api.cabana.fi'
 
 /**
  * Networks supported by the price caching API
  */
-export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = [NETWORK.base]
-// export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = []
+export const TOKEN_PRICE_API_SUPPORTED_NETWORKS: NETWORK[] = [
+  NETWORK.mainnet,
+  NETWORK.optimism,
+  NETWORK.polygon,
+  NETWORK.arbitrum,
+  NETWORK.base,
+  NETWORK.scroll,
+  NETWORK.gnosis,
+  NETWORK.world
+]
 
 /**
  * Redirects for tokens without pricing data on the caching API
@@ -331,6 +339,131 @@ export const TOKEN_PRICE_REDIRECTS: {
     [address: Lowercase<Address>]: { chainId: number; address: Lowercase<Address> }
   }
 } = {
+  [NETWORK.mainnet]: {},
+  [NETWORK.optimism]: {},
+  [NETWORK.arbitrum]: {},
+  [NETWORK.base]: {},
+  [NETWORK.polygon]: {},
+  [NETWORK.scroll]: {},
+  [NETWORK.gnosis]: {},
+  [NETWORK.optimism_sepolia]: {
+    /* ETH */
+    [DOLPHIN_ADDRESS]: {
+      chainId: NETWORK.mainnet,
+      address: DOLPHIN_ADDRESS
+    },
+    /* DAI */
+    '0xfcb9742207f3f5aecda6c19277844bd6d477d494': {
+      chainId: NETWORK.mainnet,
+      address: '0x6b175474e89094c44da98b954eedeac495271d0f'
+    },
+    /* USDC */
+    [USDC_TOKEN_ADDRESSES[NETWORK.optimism_sepolia]]: {
+      chainId: NETWORK.mainnet,
+      address: USDC_TOKEN_ADDRESSES[NETWORK.mainnet]
+    },
+    /* GUSD */
+    '0x449b806ebc00466dd1b4b62dc7d975c02514374c': {
+      chainId: NETWORK.mainnet,
+      address: '0x056fd409e1d7a124bd7017459dfea2f387b6d5cd'
+    },
+    /* WBTC */
+    '0x4595dc675b99d17bd8ac0284d2a4e8456310267c': {
+      chainId: NETWORK.mainnet,
+      address: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599'
+    },
+    /* WETH */
+    '0x9b5a493d7aeb87583b392b599fb62e4e9e3aa7a9': {
+      chainId: NETWORK.mainnet,
+      address: WRAPPED_NATIVE_ASSETS[NETWORK.mainnet]!
+    },
+    /* Test Reward Token */
+    '0xce5de3de8f65464fd84ac06a38a157232a873531': {
+      chainId: NETWORK.mainnet,
+      address: lower(POOL_TOKEN_ADDRESSES[NETWORK.mainnet])
+    }
+  },
+  [NETWORK.arbitrum_sepolia]: {
+    /* ETH */
+    [DOLPHIN_ADDRESS]: {
+      chainId: NETWORK.mainnet,
+      address: DOLPHIN_ADDRESS
+    },
+    /* DAI */
+    '0xfe045beefda06606fc5f441ccca2fe8c903e9725': {
+      chainId: NETWORK.mainnet,
+      address: '0x6b175474e89094c44da98b954eedeac495271d0f'
+    },
+    /* USDC */
+    [USDC_TOKEN_ADDRESSES[NETWORK.arbitrum_sepolia]]: {
+      chainId: NETWORK.mainnet,
+      address: USDC_TOKEN_ADDRESSES[NETWORK.mainnet]
+    },
+    /* WETH */
+    '0x060fad1bca90e5b1efca0d93febec96e638fd8a6': {
+      chainId: NETWORK.mainnet,
+      address: WRAPPED_NATIVE_ASSETS[NETWORK.mainnet]!
+    }
+  },
+  [NETWORK.base_sepolia]: {
+    /* ETH */
+    [DOLPHIN_ADDRESS]: {
+      chainId: NETWORK.mainnet,
+      address: DOLPHIN_ADDRESS
+    },
+    /* DAI */
+    '0xe4b4a71923aecb4b8924bda8c31941a8ab50ff86': {
+      chainId: NETWORK.mainnet,
+      address: '0x6b175474e89094c44da98b954eedeac495271d0f'
+    },
+    /* USDC */
+    [USDC_TOKEN_ADDRESSES[NETWORK.base_sepolia]]: {
+      chainId: NETWORK.mainnet,
+      address: USDC_TOKEN_ADDRESSES[NETWORK.mainnet]
+    },
+    /* WETH */
+    '0x019aa44d02715e4042b1ba3b4d2fa9bcef33c002': {
+      chainId: NETWORK.mainnet,
+      address: WRAPPED_NATIVE_ASSETS[NETWORK.mainnet]!
+    }
+  },
+  [NETWORK.scroll_sepolia]: {
+    /* ETH */
+    [DOLPHIN_ADDRESS]: {
+      chainId: NETWORK.mainnet,
+      address: DOLPHIN_ADDRESS
+    },
+    /* WETH */
+    '0x6b0877bcb4720f094bc13187f5e16bdbf730693a': {
+      chainId: NETWORK.mainnet,
+      address: WRAPPED_NATIVE_ASSETS[NETWORK.mainnet]!
+    },
+    /* POOL */
+    '0x7026b77376547ba7961c16a4a05edae070abec47': {
+      chainId: NETWORK.mainnet,
+      address: lower(POOL_TOKEN_ADDRESSES[NETWORK.mainnet])
+    },
+    /* USDC */
+    '0x6f720053319f89c9670234989a5bd807a37d1792': {
+      chainId: NETWORK.mainnet,
+      address: USDC_TOKEN_ADDRESSES[NETWORK.mainnet]
+    },
+    /* DAI */
+    '0xc024e95cf6bb2efc424c9035db4647a12d8dcac9': {
+      chainId: NETWORK.mainnet,
+      address: '0x6b175474e89094c44da98b954eedeac495271d0f'
+    },
+    /* GUSD */
+    '0x23dbacc4e588fadc2d3eed3d1eddb8daa57714ba': {
+      chainId: NETWORK.mainnet,
+      address: '0x056fd409e1d7a124bd7017459dfea2f387b6d5cd'
+    },
+    /* WBTC */
+    '0xa15316214d52d907712d751987d4593972cf3b8b': {
+      chainId: NETWORK.mainnet,
+      address: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599'
+    }
+  },
   [NETWORK.gnosis_chiado]: {
     /* XDAI */
     [DOLPHIN_ADDRESS]: {

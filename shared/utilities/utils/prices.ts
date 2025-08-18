@@ -1,6 +1,5 @@
 import { Address, isAddress } from 'viem'
 import {
-  DOMAINS,
   TOKEN_PRICE_API_SUPPORTED_NETWORKS,
   TOKEN_PRICE_REDIRECTS,
   TOKEN_PRICES_API_URL
@@ -18,10 +17,16 @@ export const getTokenPrices = async (
   tokenAddresses?: string[],
   options?: { requestHeaders?: Record<string, string> }
 ): Promise<{ [address: Address]: number }> => {
+  console.log('chainId')
+  console.log(chainId)
   try {
     if (TOKEN_PRICE_API_SUPPORTED_NETWORKS.includes(chainId)) {
-      const url = `${TOKEN_PRICES_API_URL}/${chainId}`
+      const url = new URL(`${TOKEN_PRICES_API_URL}/${chainId}`)
       const tokenPrices: { [address: Address]: number } = {}
+
+      if (!!tokenAddresses && tokenAddresses.length > 0) {
+        url.searchParams.set('tokens', tokenAddresses.join(','))
+      }
 
       const response = await fetch(
         url.toString(),
@@ -72,7 +77,13 @@ export const getHistoricalTokenPrices = async (
   tokenAddress: string,
   options?: { requestHeaders?: Record<string, string> }
 ): Promise<{ [address: Address]: { date: string; price: number }[] }> => {
+  console.log('hi')
+  console.log('hi')
+
   if (!isAddress(tokenAddress)) return {}
+
+  console.log('chainId')
+  console.log(chainId)
 
   try {
     if (TOKEN_PRICE_API_SUPPORTED_NETWORKS.includes(chainId)) {
