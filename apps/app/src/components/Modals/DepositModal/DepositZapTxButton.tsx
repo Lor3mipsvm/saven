@@ -10,7 +10,6 @@ import {
   useVaultBalance,
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
 import { DOLPHIN_ADDRESS, lower, ZAP_SETTINGS } from '@shared/utilities'
@@ -19,6 +18,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { addRecentTransaction } from 'src/utils'
 import { Hash, isAddress, parseUnits } from 'viem'
+import { useAccount } from 'wagmi'
 import { DepositModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { depositFormTokenAddressAtom, depositFormTokenAmountAtom } from './DepositForm'

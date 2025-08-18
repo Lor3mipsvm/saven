@@ -3,7 +3,6 @@ import {
   useSendClaimRewardsTransaction,
   useSendPoolWideClaimRewardsTransaction
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { CurrencyValue, TransactionButton } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import { getNiceNetworkNameByChainId } from '@shared/utilities'
@@ -12,6 +11,7 @@ import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { addRecentTransaction } from 'src/utils'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 import { useNetworks } from '@hooks/useNetworks'
 import { useUserClaimablePoolWidePromotions } from '@hooks/useUserClaimablePoolWidePromotions'
 import { useUserClaimablePromotions } from '@hooks/useUserClaimablePromotions'

@@ -11,7 +11,6 @@ import {
   useVaultTokenData,
   useVaultTotalDelegateSupply
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import {
   BonusRewardsTooltip,
   NetworkIcon,
@@ -29,6 +28,7 @@ import Link from 'next/link'
 import { ReactNode, useMemo } from 'react'
 import { getCleanURI } from 'src/utils'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 import { AccountVaultBalance } from '@components/Account/AccountVaultBalance'
 import { AccountVaultDelegationAmount } from '@components/Account/AccountVaultDelegationAmount'
 import { AccountVaultOdds } from '@components/Account/AccountVaultOdds'

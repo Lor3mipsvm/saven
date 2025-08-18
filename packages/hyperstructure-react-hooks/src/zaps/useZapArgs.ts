@@ -1,4 +1,3 @@
-import { useAccount } from '@shared/generic-react-hooks'
 import { Mutable } from '@shared/types'
 import {
   calculatePercentageOfBigInt,
@@ -22,6 +21,7 @@ import {
 } from '@shared/utilities'
 import { useMemo } from 'react'
 import { Address, ContractFunctionArgs, zeroAddress } from 'viem'
+import { useAccount } from 'wagmi'
 import { useCurveAddLiquidityOutput, useSwapTx, useZapTokenInfo } from '..'
 
 type ZapConfig = ContractFunctionArgs<typeof zapRouterABI, 'payable', 'executeOrder'>[0]

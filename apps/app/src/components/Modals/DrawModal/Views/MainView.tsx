@@ -5,7 +5,6 @@ import {
   useLastAwardedDrawTimestamps,
   usePrizeTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { PrizePoolBadge, TokenValue } from '@shared/react-components'
 import { SubgraphDraw } from '@shared/types'
 import { Spinner } from '@shared/ui'
@@ -14,6 +13,7 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useMemo } from 'react'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 import { WALLET_NAMES } from '@constants/config'
 
 interface MainViewProps {

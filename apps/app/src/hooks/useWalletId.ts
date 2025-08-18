@@ -1,4 +1,4 @@
-// import { useAccount } from '@shared/generic-react-hooks'
+// import { useAccount } from 'wagmi'
 import { atom, useAtom } from 'jotai'
 
 export const walletIdOverwriteAtom = atom<string>('')

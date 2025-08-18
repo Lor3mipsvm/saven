@@ -4,11 +4,11 @@ import {
   useLastCheckedPrizesTimestamps
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { MODAL_KEYS, useIsModalOpen, useScreenSize } from '@shared/generic-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { Modal } from '@shared/ui'
 import { getSecondsSinceEpoch, sToMs } from '@shared/utilities'
 import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useRef, useState } from 'react'
+import { useAccount } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 import { CheckingView } from './Views/CheckingView'
 import { NoWinView } from './Views/NoWinView'

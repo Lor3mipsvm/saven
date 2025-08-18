@@ -1,8 +1,8 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
-import { useAccount } from '@shared/generic-react-hooks'
 import { EIP2612_PERMIT_TYPES, getSecondsSinceEpoch, OLD_DAI_PERMIT_TYPES } from '@shared/utilities'
 import { useMemo, useState } from 'react'
 import { Address, verifyTypedData, zeroAddress } from 'viem'
+import { useAccount } from 'wagmi'
 import { useSignTypedData } from 'wagmi'
 import { useTokenDomain, useTokenNonces, useTokenPermitSupport, useVaultTokenData } from '..'
 

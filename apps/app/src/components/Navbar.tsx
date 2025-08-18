@@ -1,5 +1,4 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { useAccount } from '@shared/generic-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import classNames from 'classnames'
 import { Navbar as FlowbiteNavbar } from 'flowbite-react'
@@ -7,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
+import { useAccount } from 'wagmi'
 import './navbar.css'
 import { SignInButton } from './SignInButton'
 import { UserAccountInfo } from './UserAccountInfo'
@@ -136,7 +136,8 @@ export const Navbar = () => {
 
         {/* Right Side Content */}
         <div className='flex gap-2 items-center z-20'>
-          {!!userAddress ? <UserAccountInfo /> : <SignInButton />}
+          {/* {!!userAddress ? <UserAccountInfo /> : <SignInButton />} */}
+          <SignInButton />
 
           <Bars3Icon
             className='h-6 w-6 text-pt-purple-50 hover:text-pt-purple-200 cursor-pointer'
@@ -144,7 +145,7 @@ export const Navbar = () => {
           />
         </div>
       </FlowbiteNavbar>
-      <MobileNavbar className='z-10'>
+      <MobileNavbar className='z-50'>
         <NavbarLinks links={navLinks} />
       </MobileNavbar>
     </>

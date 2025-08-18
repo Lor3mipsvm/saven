@@ -1,8 +1,8 @@
-import { useAccount } from '@shared/generic-react-hooks'
 import { Spinner } from '@shared/ui'
 import BlockiesSvg from 'blockies-react-svg'
 // import { signInDisconnect } from 'src/utils'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 import './user-info-styles.css'
 
 export const UserAccountInfo = () => {

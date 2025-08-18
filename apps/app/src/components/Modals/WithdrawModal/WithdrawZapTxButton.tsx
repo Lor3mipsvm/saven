@@ -12,7 +12,6 @@ import {
   useVaultShareData,
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { ApprovalTooltip, TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
 import { ZAP_SETTINGS } from '@shared/utilities'
@@ -21,6 +20,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { addRecentTransaction } from 'src/utils'
 import { isAddress, parseUnits } from 'viem'
+import { useAccount } from 'wagmi'
 import { WithdrawModalView } from '.'
 import { isValidFormInput } from '../TxFormInput'
 import { withdrawFormShareAmountAtom, withdrawFormTokenAddressAtom } from './WithdrawForm'

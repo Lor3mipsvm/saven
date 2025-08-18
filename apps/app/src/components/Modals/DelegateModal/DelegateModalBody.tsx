@@ -4,12 +4,12 @@ import {
   useVaultShareData,
   useVaultTokenAddress
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { NetworkIcon, TokenIcon } from '@shared/react-components'
 import { TokenWithLogo } from '@shared/types'
 import { Spinner } from '@shared/ui'
 import { getNiceNetworkNameByChainId } from '@shared/utilities'
 import { useTranslations } from 'next-intl'
+import { useAccount } from 'wagmi'
 import { DelegateForm } from './DelegateForm'
 import { DelegateModalView } from './index'
 

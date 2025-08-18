@@ -1,7 +1,7 @@
-import { useAccount } from '@shared/generic-react-hooks'
 import { TWAB_REWARDS_ADDRESSES, twabRewardsABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, isAddress, TransactionReceipt } from 'viem'
+import { useAccount } from 'wagmi'
 import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 /**

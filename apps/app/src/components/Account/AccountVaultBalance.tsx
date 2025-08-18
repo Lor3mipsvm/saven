@@ -3,11 +3,11 @@ import {
   useUserVaultShareBalance,
   useUserVaultTokenBalance
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { TokenAmount, TokenValueAndAmount } from '@shared/react-components'
 import { Spinner } from '@shared/ui'
 import classNames from 'classnames'
 import { Address, formatUnits } from 'viem'
+import { useAccount } from 'wagmi'
 
 interface AccountVaultBalanceProps {
   vault: Vault

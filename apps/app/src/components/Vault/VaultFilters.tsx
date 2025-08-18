@@ -5,7 +5,6 @@ import {
   useSelectedVaults,
   useSortedVaults
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { NetworkIcon } from '@shared/react-components'
 import { VaultList } from '@shared/types'
 import { TokenWithAmount } from '@shared/types'
@@ -17,6 +16,7 @@ import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
+import { useAccount } from 'wagmi'
 import { useNetworks } from '@hooks/useNetworks'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 

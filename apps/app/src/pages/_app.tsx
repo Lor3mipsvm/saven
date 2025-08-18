@@ -6,13 +6,14 @@ import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
 import { type ReactNode, useState } from 'react'
 import { base } from 'viem/chains'
-import { type State, WagmiProvider } from 'wagmi'
+import { WagmiProvider } from 'wagmi'
+// import { type State, WagmiProvider } from 'wagmi'
 // import { base } from 'wagmi/chains'
 import { AppContainer } from '@components/AppContainer'
 import '../styles/globals.css'
 import { wagmiConfig } from '../utils'
 
-const queryClient = new QueryClient()
+// const queryClient = new QueryClient()
 
 export interface CustomAppProps {
   serverProps: {
@@ -21,20 +22,21 @@ export interface CustomAppProps {
 }
 
 export default function MyApp(props: AppProps & CustomAppProps) {
-  const [queryClient] = useState(() => new QueryClient())
-  console.log(process.env.NEXT_PUBLIC_BASE_RPC_URL)
+  // const [queryClient] = useState(() => new QueryClient())
   return (
-    <MiniKitProvider
-      projectId={process.env.NEXT_PUBLIC_CB_PROJECT_ID}
-      apiKey={process.env.NEXT_PUBLIC_CB_PUBLIC_API_KEY}
-      notificationProxyUrl='/api/notification'
-      chain={base}
-      rpcUrl={process.env.NEXT_PUBLIC_BASE_RPC_URL}
-    >
-      <QueryClientProvider client={queryClient}>
+    <WagmiProvider config={wagmiConfig}>
+      <MiniKitProvider
+        projectId={process.env.NEXT_PUBLIC_CB_PROJECT_ID}
+        apiKey={process.env.NEXT_PUBLIC_CB_PUBLIC_API_KEY}
+        notificationProxyUrl='/api/notification'
+        chain={base}
+        rpcUrl={process.env.NEXT_PUBLIC_BASE_RPC_URL}
+      >
+        {/* <QueryClientProvider client={queryClient}> */}
         <AppContainer {...props} />
-      </QueryClientProvider>
-    </MiniKitProvider>
+        {/* </QueryClientProvider> */}
+      </MiniKitProvider>
+    </WagmiProvider>
   )
 }
 

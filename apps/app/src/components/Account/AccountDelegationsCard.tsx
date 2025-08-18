@@ -1,10 +1,10 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
-import { useAccount } from '@shared/generic-react-hooks'
 import { VaultBadge, WinChanceTooltip } from '@shared/react-components'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useMemo } from 'react'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 import { AccountVaultDelegationAmount } from './AccountVaultDelegationAmount'
 import { AccountVaultDelegationOdds } from './AccountVaultDelegationOdds'
 

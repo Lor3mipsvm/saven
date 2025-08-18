@@ -3,9 +3,9 @@ import {
   useSelectedVaults,
   useSortedVaults
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import classNames from 'classnames'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 import { AccountDepositsCard } from './AccountDepositsCard'
 

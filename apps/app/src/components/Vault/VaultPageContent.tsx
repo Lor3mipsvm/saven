@@ -7,7 +7,6 @@ import {
   useVaultTokenAddress,
   useVaultYieldSource
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { AlertIcon, ErrorPooly } from '@shared/react-components'
 import { Button, Spinner } from '@shared/ui'
 import { getBlockExplorerUrl, getVaultId, LINKS, lower, NETWORK } from '@shared/utilities'
@@ -17,6 +16,7 @@ import Link from 'next/link'
 import { ParsedUrlQuery } from 'querystring'
 import { AnchorHTMLAttributes, DetailedHTMLProps, useEffect, useMemo } from 'react'
 import { Address, isAddress } from 'viem'
+import { useAccount } from 'wagmi'
 import { POOL_STAKING_VAULTS, SUPPORTED_NETWORKS, TWAB_REWARDS_SETTINGS } from '@constants/config'
 import { useNetworks } from '@hooks/useNetworks'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'

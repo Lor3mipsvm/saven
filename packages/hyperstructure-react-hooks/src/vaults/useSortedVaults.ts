@@ -1,10 +1,10 @@
 import { PrizePool, Vault } from '@generationsoftware/hyperstructure-client-js'
 import { Vaults } from '@generationsoftware/hyperstructure-client-js'
-import { useAccount } from '@shared/generic-react-hooks'
 import { TokenWithAmount, TokenWithPrice, TokenWithSupply } from '@shared/types'
 import { atom, useAtom } from 'jotai'
 import { useEffect, useMemo } from 'react'
 import { formatUnits } from 'viem'
+import { useAccount } from 'wagmi'
 import {
   useAllPrizeValue,
   useAllUserVaultBalances,

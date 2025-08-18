@@ -2,7 +2,6 @@ import {
   useAllUserPrizePoolWins,
   useLastCheckedPrizesTimestamps
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { Win } from '@shared/types'
 import { ExternalLink } from '@shared/ui'
 import { LINKS } from '@shared/utilities'
@@ -10,6 +9,7 @@ import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 import { AccountWinCards } from './AccountWinCards'
 import { AccountWinningsHeader } from './AccountWinningsHeader'

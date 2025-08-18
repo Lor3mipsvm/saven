@@ -11,7 +11,6 @@ import {
   useVaultSharePrice,
   useVaultTokenPrice
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { TokenIcon } from '@shared/react-components'
 import {
   Token,
@@ -37,6 +36,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { getRoundedDownFormattedTokenAmount } from 'src/utils'
 import { Address, formatUnits, parseUnits } from 'viem'
+import { useAccount } from 'wagmi'
 import { ZAP_PRIORITIES } from '@constants/config'
 import { useZapTokenOptions } from '@hooks/useZapTokenOptions'
 import { isValidFormInput, TxFormInput, TxFormValues } from '../TxFormInput'

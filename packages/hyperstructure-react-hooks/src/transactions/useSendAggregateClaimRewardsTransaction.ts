@@ -1,4 +1,3 @@
-import { useAccount } from '@shared/generic-react-hooks'
 import {
   POOL_WIDE_TWAB_REWARDS_ADDRESSES,
   poolWideTwabRewardsABI,
@@ -6,6 +5,7 @@ import {
 } from '@shared/utilities'
 import { useEffect, useMemo } from 'react'
 import { Address, encodeFunctionData, isAddress, TransactionReceipt } from 'viem'
+import { useAccount } from 'wagmi'
 import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 /**

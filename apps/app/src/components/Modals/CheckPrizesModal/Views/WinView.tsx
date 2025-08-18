@@ -4,7 +4,6 @@ import {
   useLastCheckedPrizesTimestamps
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { useSelectedCurrency } from '@shared/generic-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { NetworkIcon, TokenAmount, TokenValue } from '@shared/react-components'
 import { DrawWithTimestamps, SubgraphPrize, TokenWithAmount } from '@shared/types'
 import { Button } from '@shared/ui'
@@ -14,6 +13,7 @@ import Lottie from 'lottie-react'
 import { useTranslations } from 'next-intl'
 import { useMemo, useState } from 'react'
 import { Address, formatUnits, parseEther } from 'viem'
+import { useAccount } from 'wagmi'
 import { winAnimation } from '../animations'
 
 interface WinViewProps {

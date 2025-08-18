@@ -51,3 +51,7 @@
     font-feature-settings: 'calt' off;
   }
 }
+
+[data-testid='ockBottomSheet'] {
+  z-index: 60;
+}

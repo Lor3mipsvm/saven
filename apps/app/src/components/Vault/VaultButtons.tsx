@@ -1,11 +1,11 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import { useUserVaultShareBalance } from '@generationsoftware/hyperstructure-react-hooks'
 import { GiftIcon } from '@heroicons/react/24/solid'
-import { useAccount } from '@shared/generic-react-hooks'
 import { DelegateButton, DepositButton, WithdrawButton } from '@shared/react-components'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 
 interface VaultButtonsProps {
   vault: Vault

@@ -4,7 +4,7 @@ import {
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
-// import { useAccount } from '@shared/generic-react-hooks'
+// import { useAccount } from 'wagmi'
 import { Button } from '@shared/ui'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'

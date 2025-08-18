@@ -1,8 +1,8 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
-import { useAccount } from '@shared/generic-react-hooks'
 import { erc20ABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, TransactionReceipt } from 'viem'
+import { useAccount } from 'wagmi'
 import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { useVaultTokenAddress } from '..'
 

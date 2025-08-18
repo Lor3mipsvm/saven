@@ -1,8 +1,8 @@
-import { useAccount } from '@shared/generic-react-hooks'
 import { PairCreateInfo } from '@shared/types'
 import { LIQUIDATION_PAIR_FACTORY_ADDRESSES, liquidationPairFactoryABI } from '@shared/utilities'
 import { useEffect } from 'react'
 import { Address, parseEther, TransactionReceipt } from 'viem'
+import { useAccount } from 'wagmi'
 import { useSimulateContract, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 /**

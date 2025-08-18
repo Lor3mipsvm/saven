@@ -5,7 +5,6 @@ import {
   useSelectedVaults,
   useSortedVaults
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { ImportedVaultTooltip, VaultBadge, WinChanceTooltip } from '@shared/react-components'
 import { Table, TableProps } from '@shared/ui'
 import { getVaultId } from '@shared/utilities'
@@ -14,6 +13,7 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useMemo } from 'react'
 import { Address } from 'viem'
+import { useAccount } from 'wagmi'
 import { VaultButtons } from '@components/Vault/VaultButtons'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 import { AccountVaultBalance } from './AccountVaultBalance'

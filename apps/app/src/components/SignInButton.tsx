@@ -19,7 +19,7 @@ export const SignInButton = () => {
   return (
     <>
       <div className='ock-wallet'>
-        <Wallet className='z-10'>
+        <Wallet>
           <ConnectWallet
             text={t_common('connectWallet')}
             className={
@@ -31,7 +31,7 @@ export const SignInButton = () => {
             <Name className='text-inherit' />
             <ChevronDownIcon className='h-5 w-5' />
           </ConnectWallet>
-          <WalletDropdown>
+          <WalletDropdown className='z-60'>
             <Identity className='px-4 pt-3 pb-2'>
               <Avatar />
               <Name />

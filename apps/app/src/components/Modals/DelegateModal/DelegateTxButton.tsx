@@ -4,13 +4,13 @@ import {
   useUserVaultDelegate,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
-import { useAccount } from '@shared/generic-react-hooks'
 import { TransactionButton } from '@shared/react-components'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { addRecentTransaction } from 'src/utils'
 import { Address, isAddress } from 'viem'
+import { useAccount } from 'wagmi'
 import { DelegateModalView } from '.'
 import { delegateFormNewDelegateAddressAtom } from './DelegateForm'
 

@@ -1,6 +1,10 @@
+// import { farcasterMiniApp } from '@farcaster/miniapp-wagmi-connector'
 import { formatNumberForDisplay } from '@shared/utilities'
 import deepmerge from 'deepmerge'
 import { formatUnits } from 'viem'
+import { type Config, createConfig, http } from 'wagmi'
+import { base } from 'wagmi/chains'
+import { baseAccount } from 'wagmi/connectors'
 import { WALLET_STATS_API_URL } from '@constants/config'
 
 /**
@@ -89,3 +93,16 @@ export const addRecentTransaction = (args: AddRecentTransactionArgs) => {
   console.log(args)
   console.warn('addRecentTransaction() implement me!?')
 }
+
+export const wagmiConfig: Config = createConfig({
+  chains: [base],
+  connectors: [
+    // farcasterMiniApp(),
+    baseAccount({
+      appName: 'Base App'
+    })
+  ],
+  transports: {
+    [base.id]: http(process.env.NEXT_PUBLIC_BASE_RPC_URL)
+  }
+})
