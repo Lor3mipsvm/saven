@@ -33,7 +33,7 @@ export interface DepositModalProps {
   onClose?: () => void
   refetchUserBalances?: () => void
   onSuccessfulApproval?: () => void
-  onSuccessfulDeposit?: (chainId: number, txHash: Hash, shares: bigint) => void
+  onSuccessfulDeposit?: (chainId: number, txHash: Hash) => void
   onSuccessfulDepositWithZap?: (chainId: number, txHash: Hash) => void
 }
 
@@ -116,10 +116,11 @@ export const DepositModal = (props: DepositModalProps) => {
         ) : (
           <DepositTxButton
             vault={vault}
+            modalView={view}
             setModalView={setView}
             setDepositTxHash={setDepositTxHash}
-            depositTxHash={depositTxHash}
             refetchUserBalances={refetchUserBalances}
+            onSuccessfulApproval={onSuccessfulApproval}
             onSuccessfulDeposit={onSuccessfulDeposit}
           />
         )}

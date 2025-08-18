@@ -8,7 +8,7 @@ import {
   WalletDropdownDisconnect
 } from '@coinbase/onchainkit/wallet'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
-import { Button } from '@shared/ui'
+// import { Button } from '@shared/ui'
 import { useTranslations } from 'next-intl'
 import { useAccount } from 'wagmi'
 

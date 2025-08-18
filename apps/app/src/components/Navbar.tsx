@@ -9,7 +9,6 @@ import { ReactNode } from 'react'
 import { useAccount } from 'wagmi'
 import './navbar.css'
 import { SignInButton } from './SignInButton'
-import { UserAccountInfo } from './UserAccountInfo'
 
 interface NavbarLink {
   href: string
@@ -19,8 +18,6 @@ interface NavbarLink {
 
 export const Navbar = () => {
   const t_nav = useTranslations('Navigation')
-
-  const { address: userAddress } = useAccount()
 
   const { setIsModalOpen: setIsSettingsModalOpen } = useIsModalOpen(MODAL_KEYS.settings)
 
@@ -136,7 +133,6 @@ export const Navbar = () => {
 
         {/* Right Side Content */}
         <div className='flex gap-2 items-center z-20'>
-          {/* {!!userAddress ? <UserAccountInfo /> : <SignInButton />} */}
           <SignInButton />
 
           <Bars3Icon

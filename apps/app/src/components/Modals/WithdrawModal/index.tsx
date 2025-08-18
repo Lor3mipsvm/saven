@@ -107,7 +107,6 @@ export const WithdrawModal = (props: WithdrawModalProps) => {
             modalView={view}
             setModalView={setView}
             setWithdrawTxHash={setWithdrawTxHash}
-            withdrawTxHash={withdrawTxHash}
             refetchUserBalances={refetchUserBalances}
             onSuccessfulWithdrawal={onSuccessfulWithdrawal}
           />
