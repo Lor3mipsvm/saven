@@ -195,7 +195,7 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
         // openConnectModal={openConnectModal}
         // openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
-        intl={{ base: t_modals, common: t_common }}
+        intl={{ common: t_common }}
       >
         {t_modals('confirmWithdrawal')}
       </TransactionButton>

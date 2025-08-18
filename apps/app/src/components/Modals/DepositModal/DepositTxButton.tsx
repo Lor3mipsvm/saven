@@ -212,7 +212,7 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
         // openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
         innerClassName='flex gap-2 items-center'
-        intl={{ base: t_modals, common: t_common }}
+        intl={{ common: t_common }}
       >
         {t_modals('approvalButton', { symbol: tokenData?.symbol ?? '?' })}
         <ApprovalTooltip
@@ -247,7 +247,7 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       // openConnectModal={openConnectModal}
       // openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
-      intl={{ base: t_modals, common: t_common }}
+      intl={{ common: t_common }}
     >
       {t_modals('confirmDeposit')}
     </TransactionButton>

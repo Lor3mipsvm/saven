@@ -99,7 +99,7 @@ const NoWalletCard = (props: { className?: string }) => {
                 // onConnect?.()
                 // handleAnalyticsSuccess(accountAddress)
               },
-              onError: (error) => {
+              onError: (_error) => {
                 // handleAnalyticsError(error.message, 'ConnectWallet')
               }
             }

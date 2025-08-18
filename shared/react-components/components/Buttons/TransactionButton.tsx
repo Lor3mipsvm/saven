@@ -70,7 +70,7 @@ export const TransactionButton = (props: TransactionButtonProps) => {
                 // onConnect?.()
                 // handleAnalyticsSuccess(accountAddress)
               },
-              onError: (error) => {
+              onError: (_error) => {
                 // handleAnalyticsError(error.message, 'ConnectWallet')
               }
             }

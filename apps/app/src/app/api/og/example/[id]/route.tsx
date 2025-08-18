@@ -18,7 +18,7 @@ const size = {
  * @returns ImageResponse - A dynamically generated image for OpenGraph
  */
 export async function GET(
-  request: Request,
+  _request: Request,
   {
     params
   }: {
