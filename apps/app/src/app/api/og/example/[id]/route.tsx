@@ -1,6 +1,6 @@
-import { env } from '@/lib/env'
-import { loadGoogleFont, loadImage } from '@/lib/og-utils'
 import { ImageResponse } from 'next/og'
+import { env } from '@lib/env'
+import { loadGoogleFont, loadImage } from '@lib/og-utils'
 
 // Force dynamic rendering to ensure fresh image generation on each request
 export const dynamic = 'force-dynamic'
