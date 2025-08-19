@@ -136,8 +136,8 @@ const TokenFlipper = (props: { className?: string }) => {
             // 'absolute !w-8 !h-8 md:!w-10 md:!h-10 [transform:perspective(1000px)] [transform-style:preserve-3d]',
             {
               invisible: i !== tokenIndex
-              // 'animate-[flip_0.5s_linear]': isFlipping && i === tokenIndex,
-              // 'animate-[unflip_0.5s_linear]': isFlipping && isNextIndex(i)
+              // 'animate-[flip_0.5s_linear]': i === tokenIndex,
+              // 'animate-[unflip_0.5s_linear]': i === tokenIndex && isNextIndex(i)
             }
           )}
           showSpinner={i === tokenIndex}

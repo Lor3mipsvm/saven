@@ -60,12 +60,12 @@ module.exports = {
       },
       keyframes: {
         flip: {
-          '0%': { transform: 'rotateX(0deg)' },
-          '100%': { transform: 'rotateX(180deg)' }
+          '0%': { transform: 'rotateY(-180deg)' },
+          '100%': { transform: 'rotateY(0deg)' }
         },
         unflip: {
-          '0%': { transform: 'rotateX(180deg)' },
-          '100%': { transform: 'rotateX(360deg)' }
+          '0%': { transform: 'rotateY(-180deg)' },
+          '100%': { transform: 'rotateY(0deg)' }
         }
       }
     },
