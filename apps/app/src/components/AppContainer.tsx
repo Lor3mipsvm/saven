@@ -23,10 +23,10 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
       if (typeof window !== 'undefined') {
         // Staging check
         // @ts-ignore
-        // if (window?.location.href.match(/staging/)?.length > 0) {
-        // const eruda = (await import('eruda')).default
-        // eruda.init()
-        // }
+        if (window?.location.href.match(/staging/)?.length > 0) {
+          const eruda = (await import('eruda')).default
+          eruda.init()
+        }
       }
     }
     initEruda()
