@@ -101,8 +101,6 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
       setModalView('waiting')
     },
     onSuccess: () => {
-      console.log('in onSuccess ! ')
-
       setTimeout(() => {
         refetchUserTokenBalance()
         refetchUserVaultTokenBalance()
@@ -147,12 +145,6 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
     return (
       <Button color='transparent' fullSized={true} disabled={true}>
         {t_modals('enterAnAmount')}
-      </Button>
-    )
-  } else if (!isDisconnected && chain?.id === vault.chainId && modalView === 'main') {
-    return (
-      <Button onClick={() => setModalView('review')} fullSized={true} disabled={!withdrawEnabled}>
-        {t_modals('reviewWithdrawal')}
       </Button>
     )
   } else {

@@ -1,7 +1,6 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
   useSend5792DepositTransaction,
-  useSendApproveTransaction,
   useTokenAllowance,
   useTokenBalance,
   useUserVaultDelegationBalance,
@@ -9,8 +8,7 @@ import {
   useVaultBalance,
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
-// import { useAddRecentTransaction, useChainModal, useConnectModal } from '@rainbow-me/rainbowkit'
-import { ApprovalTooltip, TransactionButton } from '@shared/react-components'
+import { TransactionButton } from '@shared/react-components'
 import { Button } from '@shared/ui'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
@@ -40,17 +38,11 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     setModalView,
     setDepositTxHash,
     refetchUserBalances,
-    onSuccessfulApproval,
     onSuccessfulDeposit
   } = props
 
   const t_common = useTranslations('Common')
   const t_modals = useTranslations('TxModals')
-  const t_tooltips = useTranslations('Tooltips')
-
-  // const { openConnectModal } = useConnectModal()
-  // const { openChainModal } = useChainModal()
-  // const addRecentTransaction = useAddRecentTransaction()
 
   const { address: userAddress, chain, isDisconnected } = useAccount()
 
@@ -95,38 +87,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     ? parseUnits(formTokenAmount, decimals as number)
     : 0n
 
-  const {
-    isWaiting: isWaitingApproval,
-    isConfirming: isConfirmingApproval,
-    isSuccess: isSuccessfulApproval,
-    txHash: approvalTxHash,
-    sendApproveTransaction: sendApproveTransaction
-  } = useSendApproveTransaction(depositAmount, vault, {
-    onSuccess: () => {
-      refetchTokenAllowance()
-      onSuccessfulApproval?.()
-    }
-  })
-
-  // const dataDepositTx = useSendDepositTransaction(depositAmount, vault, {
-  //   onSend: () => {
-  //     setModalView('waiting')
-  //   },
-  //   onSuccess: (txReceipt) => {
-  //     refetchUserTokenBalance()
-  //     refetchUserVaultTokenBalance()
-  //     refetchUserVaultDelegationBalance()
-  //     refetchVaultBalance()
-  //     refetchTokenAllowance()
-  //     refetchUserBalances?.()
-  //     onSuccessfulDeposit?.(vault.chainId, txReceipt.transactionHash)
-  //     setModalView('success')
-  //   },
-  //   onError: () => {
-  //     setModalView('error')
-  //   }
-  // })
-
   const isUsingEip5792 = true
 
   const paymasterUrl = PAYMASTER_URLS[vault.chainId]
@@ -138,8 +98,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       setModalView('waiting')
     },
     onSuccess: (callReceipts) => {
-      console.log('in  2 onSuccess ! ')
-
       setTimeout(() => {
         refetchUserTokenBalance()
         refetchUserVaultTokenBalance()
@@ -225,15 +183,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   //     </TransactionButton>
   //   )
   // }
-
-  // Prompt to review deposit
-  if (isDataFetched && modalView === 'main') {
-    return (
-      <Button onClick={() => setModalView('review')} fullSized={true} disabled={!depositEnabled}>
-        {t_modals('reviewDeposit')}
-      </Button>
-    )
-  }
 
   // Deposit button
   return (

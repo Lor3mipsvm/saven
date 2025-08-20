@@ -24,24 +24,6 @@ export const getMessages = async (locale?: string) => {
 }
 
 /**
- * Tracks deposit and its respective wallet ID on the wallet stats API
- * @param chainId the chain ID the deposit was made in
- * @param txHash the transaction hash of the deposit
- * @param walletId the ID of the wallet used to perform the deposit
- */
-export const trackDeposit = async (chainId: number, txHash: `0x${string}`, walletId: string) => {
-  try {
-    await fetch(`${WALLET_STATS_API_URL}/addDeposit`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chainId, txHash, walletId })
-    })
-  } catch (e) {
-    console.error(e)
-  }
-}
-
-/**
  * Returns a clean, concise URI for display purposes
  * @param uri a URI to clean up
  * @returns
@@ -76,20 +58,12 @@ export const getRoundedDownFormattedTokenAmount = (amount: bigint, decimals: num
   return formatNumberForDisplay(roundedAmount, { maximumFractionDigits })
 }
 
-// export const signInWithWallet = async (setUserAddress: (address: Address | undefined) => void) => {
-//   setUserAddress(walletAddress)
-// }
-
-// export const signInDisconnect = async (setUserAddress: (address: Address | undefined) => void) => {
-//   setUserAddress(undefined)
-// }
-
 interface AddRecentTransactionArgs {
   hash: string
   description: string
 }
 
-export const addRecentTransaction = (args: AddRecentTransactionArgs) => {
+export const addRecentTransaction = (_args: AddRecentTransactionArgs) => {
   // console.log(args)
   console.warn('addRecentTransaction() implement me!?')
 }
