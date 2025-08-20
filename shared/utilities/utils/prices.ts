@@ -17,8 +17,6 @@ export const getTokenPrices = async (
   tokenAddresses?: string[],
   options?: { requestHeaders?: Record<string, string> }
 ): Promise<{ [address: Address]: number }> => {
-  console.log('chainId')
-  console.log(chainId)
   try {
     if (TOKEN_PRICE_API_SUPPORTED_NETWORKS.includes(chainId)) {
       const url = new URL(`${TOKEN_PRICES_API_URL}/${chainId}`)
@@ -77,13 +75,7 @@ export const getHistoricalTokenPrices = async (
   tokenAddress: string,
   options?: { requestHeaders?: Record<string, string> }
 ): Promise<{ [address: Address]: { date: string; price: number }[] }> => {
-  console.log('hi')
-  console.log('hi')
-
   if (!isAddress(tokenAddress)) return {}
-
-  console.log('chainId')
-  console.log(chainId)
 
   try {
     if (TOKEN_PRICE_API_SUPPORTED_NETWORKS.includes(chainId)) {

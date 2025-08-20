@@ -606,7 +606,7 @@ export const LINKS = {
  */
 export const BLOCK_EXPLORERS: Record<number, { name: string; url: string }> = {
   [NETWORK.gnosis_chiado]: { name: 'Gnosisscan', url: 'https://gnosis-chiado.blockscout.com/' },
-  [NETWORK.base]: { name: 'Worldscan', url: 'https://worldscan.org/' }
+  [NETWORK.base]: { name: 'Basescan', url: 'https://basescan.org/' }
 }
 
 /**
@@ -619,7 +619,7 @@ export const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3'
  */
 export const COINGECKO_PLATFORMS = {
   [NETWORK.gnosis_chiado]: 'xdai',
-  [NETWORK.base]: 'world-chain'
+  [NETWORK.base]: 'base'
 } as const
 export type COINGECKO_PLATFORM = keyof typeof COINGECKO_PLATFORMS
 

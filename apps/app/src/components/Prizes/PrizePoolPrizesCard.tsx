@@ -148,19 +148,19 @@ export const PrizePoolPrizesCard = (props: PrizePoolPrizesCardProps) => {
       {!!currentDrawId && (
         <div className={classNames('flex flex-col mt-auto text-sm md:text-lg', drawsClassName)}>
           {currentDrawId > 1 && (
-            <div className={classNames('text-pt-purple-100 mb-2', prevDrawClassName)}>
+            <div className={classNames('text-pt-purple-300 mb-1', prevDrawClassName)}>
               {t_prizes('drawBeingAwarded', { drawId: currentDrawId - 1 })}
             </div>
           )}
           {!!formattedCountdownToCurrentDrawClose && (
-            <div className={classNames('text-pt-purple-100/60', currentDrawClassName)}>
+            <div className={classNames('text-pt-purple-100/80', currentDrawClassName)}>
               {t_prizes.rich('drawWillCloseIn', {
                 drawId: currentDrawId,
                 countdown: () => null
               })}
 
               <br />
-              <div className='w-full font-bold font-mono text-center'>
+              <div className='w-full font-bold font-mono text-[16px] text-center'>
                 {formattedCountdownToCurrentDrawClose}
               </div>
             </div>

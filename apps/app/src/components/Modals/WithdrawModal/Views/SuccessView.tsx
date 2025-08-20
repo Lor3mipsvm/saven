@@ -49,8 +49,6 @@ export const SuccessView = (props: SuccessViewProps) => {
   })
 
   const tokensReceived = useMemo(() => {
-    console.log(userAddress, token, txReceipt)
-
     if (!!userAddress && !!token && !!txReceipt) {
       return getTokensReceived(userAddress, token, txReceipt)
     }
@@ -70,23 +68,27 @@ export const SuccessView = (props: SuccessViewProps) => {
           <span className='text-pt-teal'>{t_modals('success')}</span>
           <span>{!!tokensReceived ? t_modals('gotTokens', { tokens }) : <Spinner />}</span>
         </div>
+
         <PrizePoolBadge
           chainId={vault.chainId}
           hideBorder={true}
           intl={t_common}
           className='!py-1'
         />
+
         <SuccessPooly className='w-40 h-auto mt-3' />
+
+        {!!txHash && (
+          <ExternalLink
+            href={getBlockExplorerUrl(vault.chainId, txHash, 'tx')}
+            size='sm'
+            className='text-pt-teal'
+          >
+            {t_common('viewOn', { name })}
+          </ExternalLink>
+        )}
       </div>
-      {!!txHash && (
-        <ExternalLink
-          href={getBlockExplorerUrl(vault.chainId, txHash, 'tx')}
-          size='sm'
-          className='text-pt-teal'
-        >
-          {t_common('viewOn', { name })}
-        </ExternalLink>
-      )}
+
       <Button
         fullSized={true}
         color='transparent'

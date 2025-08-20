@@ -138,12 +138,17 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       setModalView('waiting')
     },
     onSuccess: (callReceipts) => {
-      refetchUserTokenBalance()
-      refetchUserVaultTokenBalance()
-      refetchUserVaultDelegationBalance()
-      refetchVaultBalance()
-      refetchTokenAllowance()
-      refetchUserBalances?.()
+      console.log('in  2 onSuccess ! ')
+
+      setTimeout(() => {
+        refetchUserTokenBalance()
+        refetchUserVaultTokenBalance()
+        refetchUserVaultDelegationBalance()
+        refetchVaultBalance()
+        refetchTokenAllowance()
+        refetchUserBalances?.()
+      }, 7000)
+
       onSuccessfulDeposit?.(vault.chainId, callReceipts.at(-1)?.transactionHash!)
       setModalView('success')
     },
@@ -160,9 +165,8 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   const sendDepositTransaction = data5792DepositTx.send5792DepositTransaction
 
   useEffect(() => {
-    if (!!depositTxHash && isConfirmingDeposit && !isWaitingDeposit && !isSuccessfulDeposit) {
+    if (!!depositTxHash && !isWaitingDeposit) {
       setDepositTxHash(depositTxHash)
-      setModalView('confirming')
     }
   }, [depositTxHash, isConfirmingDeposit])
 
@@ -197,32 +201,30 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
   }
 
   // Needs approval
-  if (isDataFetched && !isUsingEip5792 && allowance < depositAmount) {
-    return (
-      <TransactionButton
-        chainId={vault.chainId}
-        isTxLoading={isWaitingApproval || isConfirmingApproval}
-        isTxSuccess={isSuccessfulApproval}
-        write={sendApproveTransaction}
-        txHash={approvalTxHash}
-        txDescription={t_modals('approvalTx', { symbol: tokenData?.symbol ?? '?' })}
-        fullSized={true}
-        disabled={!approvalEnabled}
-        // openConnectModal={openConnectModal}
-        // openChainModal={openChainModal}
-        addRecentTransaction={addRecentTransaction}
-        innerClassName='flex gap-2 items-center'
-        intl={{ common: t_common }}
-      >
-        {t_modals('approvalButton', { symbol: tokenData?.symbol ?? '?' })}
-        <ApprovalTooltip
-          tokenSymbol={tokenData.symbol}
-          intl={t_tooltips}
-          className='whitespace-normal'
-        />
-      </TransactionButton>
-    )
-  }
+  // if (isDataFetched && !isUsingEip5792 && allowance < depositAmount) {
+  //   return (
+  //     <TransactionButton
+  //       chainId={vault.chainId}
+  //       isTxLoading={isWaitingApproval || isConfirmingApproval}
+  //       isTxSuccess={isSuccessfulApproval}
+  //       write={sendApproveTransaction}
+  //       txHash={approvalTxHash}
+  //       txDescription={t_modals('approvalTx', { symbol: tokenData?.symbol ?? '?' })}
+  //       fullSized={true}
+  //       disabled={!approvalEnabled}
+  //       addRecentTransaction={addRecentTransaction}
+  //       innerClassName='flex gap-2 items-center'
+  //       intl={{ common: t_common }}
+  //     >
+  //       {t_modals('approvalButton', { symbol: tokenData?.symbol ?? '?' })}
+  //       <ApprovalTooltip
+  //         tokenSymbol={tokenData.symbol}
+  //         intl={t_tooltips}
+  //         className='whitespace-normal'
+  //       />
+  //     </TransactionButton>
+  //   )
+  // }
 
   // Prompt to review deposit
   if (isDataFetched && modalView === 'main') {
@@ -244,8 +246,6 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
       txDescription={t_modals('depositTx', { symbol: tokenData?.symbol ?? '?' })}
       fullSized={true}
       disabled={!depositEnabled}
-      // openConnectModal={openConnectModal}
-      // openChainModal={openChainModal}
       addRecentTransaction={addRecentTransaction}
       intl={{ common: t_common }}
     >

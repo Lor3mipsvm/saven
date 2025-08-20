@@ -90,7 +90,7 @@ interface AddRecentTransactionArgs {
 }
 
 export const addRecentTransaction = (args: AddRecentTransactionArgs) => {
-  console.log(args)
+  // console.log(args)
   console.warn('addRecentTransaction() implement me!?')
 }
 

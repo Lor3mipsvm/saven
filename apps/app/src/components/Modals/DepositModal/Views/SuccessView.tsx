@@ -42,8 +42,6 @@ export const SuccessView = (props: SuccessViewProps) => {
   })
 
   const sharesReceived = useMemo(() => {
-    console.log(userAddress, share, txReceipt)
-
     if (!!userAddress && !!share && !!txReceipt) {
       return getSharesReceived(userAddress, share, txReceipt)
     }
@@ -60,7 +58,6 @@ export const SuccessView = (props: SuccessViewProps) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log('isExplode true')
       setIsExploding(true)
     }, 1000)
 
@@ -97,16 +94,20 @@ export const SuccessView = (props: SuccessViewProps) => {
         />
         <SuccessPooly className='w-40 h-auto mt-3' />
       </div>
-      <span className='text-sm text-center md:text-base'>{t_modals('nowEligible')}</span>
-      {!!txHash && (
-        <ExternalLink
-          href={getBlockExplorerUrl(vault.chainId, txHash, 'tx')}
-          size='sm'
-          className='text-pt-teal'
-        >
-          {t_common('viewOn', { name })}
-        </ExternalLink>
-      )}
+      <div className='flex flex-col items-center text-sm text-center md:text-base'>
+        {t_modals('nowEligible')}
+
+        {!!txHash && (
+          <ExternalLink
+            href={getBlockExplorerUrl(vault.chainId, txHash, 'tx')}
+            size='sm'
+            className='text-pt-purple-200/80 underline'
+          >
+            {t_common('viewOn', { name })}
+          </ExternalLink>
+        )}
+      </div>
+
       <ShareButtons vault={vault} />
     </div>
   )

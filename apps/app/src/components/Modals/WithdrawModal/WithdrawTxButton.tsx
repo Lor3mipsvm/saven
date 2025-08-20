@@ -92,30 +92,8 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
       ? getAssetsFromShares(withdrawAmount, vaultExchangeRate, decimals as number)
       : 0n
 
-  // const dataTx = useSendRedeemTransaction(withdrawAmount, vault, {
-  //   minAssets: expectedAssetAmount,
-  //   onSend: () => {
-  //     setModalView('waiting')
-  //   },
-  //   onSuccess: () => {
-  //     refetchUserTokenBalance()
-  //     refetchUserVaultTokenBalance()
-  //     refetchUserVaultDelegationBalance()
-  //     refetchVaultBalance()
-  //     refetchUserBalances?.()
-  //     onSuccessfulWithdrawal?.()
-  //     setModalView('success')
-  //   },
-  //   onError: () => {
-  //     setModalView('error')
-  //   }
-  // })
-
-  const isUsingEip5792 = true
-
   const paymasterUrl = PAYMASTER_URLS[vault.chainId]
   const isUsingEip7677 = !!paymasterUrl
-
   const data5792Tx = useSend5792RedeemTransaction(withdrawAmount, vault, {
     minAssets: expectedAssetAmount,
     paymasterService: isUsingEip7677 ? { url: paymasterUrl, optional: true } : undefined,
@@ -123,38 +101,34 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
       setModalView('waiting')
     },
     onSuccess: () => {
-      refetchUserTokenBalance()
-      refetchUserVaultTokenBalance()
-      refetchUserVaultDelegationBalance()
-      refetchVaultBalance()
-      refetchUserBalances?.()
+      console.log('in onSuccess ! ')
+
+      setTimeout(() => {
+        refetchUserTokenBalance()
+        refetchUserVaultTokenBalance()
+        refetchUserVaultDelegationBalance()
+        refetchVaultBalance()
+        refetchUserBalances?.()
+      }, 7000)
+
       onSuccessfulWithdrawal?.()
       setModalView('success')
     },
     onError: () => {
       setModalView('error')
     },
-    enabled: isUsingEip5792
+    enabled: true
   })
 
   const sendTx = data5792Tx.send5792RedeemTransaction
-  // const sendTx = isUsingEip5792
-  //   ? data5792Tx.send5792RedeemTransaction
-  //   : dataTx.sendRedeemTransaction
   const isWaitingWithdrawal = data5792Tx.isWaiting
   const isConfirmingWithdrawal = data5792Tx.isConfirming
   const isSuccessfulWithdrawal = data5792Tx.isSuccess
   const withdrawTxHash = data5792Tx.txHashes?.at(-1)
 
   useEffect(() => {
-    if (
-      !!withdrawTxHash &&
-      isConfirmingWithdrawal &&
-      !isWaitingWithdrawal &&
-      !isSuccessfulWithdrawal
-    ) {
+    if (!!withdrawTxHash && !isWaitingWithdrawal) {
       setWithdrawTxHash(withdrawTxHash)
-      setModalView('confirming')
     }
   }, [withdrawTxHash, isConfirmingWithdrawal])
 
@@ -192,8 +166,6 @@ export const WithdrawTxButton = (props: WithdrawTxButtonProps) => {
         txDescription={t_modals('withdrawTx', { symbol: tokenData?.symbol ?? '?' })}
         fullSized={true}
         disabled={!withdrawEnabled}
-        // openConnectModal={openConnectModal}
-        // openChainModal={openChainModal}
         addRecentTransaction={addRecentTransaction}
         intl={{ common: t_common }}
       >
