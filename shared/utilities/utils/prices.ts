@@ -17,6 +17,10 @@ export const getTokenPrices = async (
   tokenAddresses?: string[],
   options?: { requestHeaders?: Record<string, string> }
 ): Promise<{ [address: Address]: number }> => {
+  if (process.env.NEXT_PUBLIC_USE_MOCK_TOKEN_PRICES) {
+    return MOCK_PRICES
+  }
+
   try {
     if (TOKEN_PRICE_API_SUPPORTED_NETWORKS.includes(chainId)) {
       const url = new URL(`${TOKEN_PRICES_API_URL}/${chainId}`)
@@ -180,4 +184,24 @@ const getRedirectedHistoricalTokenPrices = async (chainId: number, tokenAddress:
   } else {
     return {}
   }
+}
+
+const MOCK_PRICES: { [address: Address]: number } = {
+  '0x0cec1a9154ff802e7934fc916ed7ca50bde6844e': 0.000067343812211289,
+  '0x4200000000000000000000000000000000000006': 1,
+  '0xd652c5425aea2afd5fb142e120fecf79e18fafc3': 0.000066157312895307,
+  '0x940181a94a35a4569e4529a3cdfb74e38fd98631': 0.000324938993480508,
+  '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913': 0.000229184163552197,
+  '0xdbfefd2e8460a6ee4955a68582f85708baea60a3': 0.9219067447599653,
+  '0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42': 0.000268568329774813,
+  '0x0b15b1d434f86ecaa83d14398c8db6d162f3921e': 0.0005795478738953258,
+  '0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22': 1.1013005179749593,
+  '0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452': 1.2076789706953455,
+  '0x89d0f320ac73dd7d9513ffc5bc58d1161452a657': 0.007703421981214934,
+  '0x0000206329b97db379d5e1bf586bbdb969c63274': 0.000396069865217225,
+  '0x50c5725949a6f0c72e6c4a641f24049a917db0cb': 0.000229079936161709,
+  '0xa88594d404727625a9437c3f886c7643872296ae': 0.000006569610628135,
+  '0x0578d8a44db98b23bf096a382e016e29a5ce0ffe': 0.000001055980103454,
+  '0x32e0f9d26d1e33625742a52620cc76c1130efde6': 1.502015711e-9,
+  '0x6b175474e89094c44da98b954eedeac495271d0f': 0.000230433368337844
 }
