@@ -12,7 +12,6 @@ module.exports = {
   darkMode: 'class',
   theme: {
     fontFamily: {
-      grotesk: 'Grotesk',
       averta: 'Averta',
       mono: ['monospace']
     },

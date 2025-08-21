@@ -1,0 +1,17 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjMxOTI5MiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDQxNDIxYjU5OTUzQ2EzNGMzMURmMDJCZUQ2ZDdhRUNlZkM4OTA5MGYifQ",
+    "payload": "eyJkb21haW4iOiJjYWJhbmEtYmFzZS1hcHAudmVyY2VsLmFwcCJ9",
+    "signature": "MHg3NTkyYTI4MTk4NDU1YWVmNDJiZGM5ZDFiNTk5MjQ5ZmQzZDBlOTE2NTkyMjA3YjE5YTk5NzJiNDU1M2IzNjU4NjAyNDg3MmM1MGZlODA3MTJhNDFjNTY0OWM5OWM5M2UwN2U5NDE3MTc4YzQ0NmIzNzYyOWU2ZTQ1N2M1NWY1NzFj"
+  },
+  "frame": {
+    "version": "1",
+    "name": "PoolTogether",
+    "iconUrl": "https://cabana-base-app.vercel.app/favicon.ico",
+    "homeUrl": "https://cabana-base-app.vercel.app/",
+    "imageUrl": "https://cabana-base-app.vercel.app//twitter-share-image-1200-675.png",
+    "buttonTitle": "Launch Cabana",
+    "splashImageUrl": "https://app.cabana.fi/favicon.png",
+    "splashBackgroundColor": "#21064e"
+  }
+}
