@@ -6,6 +6,8 @@ import { Flowbite, Toaster } from '@shared/ui'
 import { NextIntlClientProvider } from 'next-intl'
 import { AppProps } from 'next/app'
 import { ReactNode, useEffect, useState } from 'react'
+import { connectFarcasterWallet } from 'src/utils'
+import { useConnect } from 'wagmi'
 // import { useConnect } from 'wagmi'
 import { CustomAppProps } from '@pages/_app'
 import { AccountFrame } from './Frames/AccountFrame'
@@ -42,6 +44,14 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
       }, 100)
     }
   })
+
+  const { connect } = useConnect()
+
+  useEffect(() => {
+    if (isReady && !!connect) {
+      connectFarcasterWallet(connect)
+    }
+  }, [isReady])
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
