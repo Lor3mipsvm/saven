@@ -27,7 +27,6 @@
     "subtitle": "Save and win!",
     "tagline": "Save more, WIN more!",
     "primaryCategory": "finance",
-    "requiredChains": "eip155:8453",
     "tags": [
       "win",
       "prizes",
