@@ -3,10 +3,9 @@ import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
   render() {
-    const title = 'Cabana App'
-    const description = 'Browse, deposit into and withdraw from any number of PoolTogether vaults.'
-    const keywords =
-      'pooltogether prize savings win save protocol blockchain vault vaultlist 4626 ethereum'
+    const title = 'PoolTogether'
+    const description = 'Save and win up to $145,000 in prizes on Base with PoolTogether!'
+    const keywords = 'pooltogether prize savings win save 4626 ethereum'
     const ogImage = `${DOMAINS.app}/facebook-share-image-1200-630.png`
     const twitterImage = `${DOMAINS.app}/twitter-share-image-1200-675.png`
     const farcasterImage = `${DOMAINS.app}/twitter-share-image-1200-675.png`
