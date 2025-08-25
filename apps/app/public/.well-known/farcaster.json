@@ -4,11 +4,6 @@
     "payload": "eyJkb21haW4iOiJjYWJhbmEtYmFzZS1hcHAudmVyY2VsLmFwcCJ9",
     "signature": "MHhmMzdkZjRkYjVhZDA2MzhiZDliZTdkZTQ1ZDBmNTc1NDE0MDVhZjBmOWVkYjZkZjFhZWQ1MjY4NmQwNjM0YjA3MGIzNTVmMGI1ODI0YzAwMzcxNDcwZjI3NzBhNDE4ZmJjYjAzMjQ1MjliMjIyOWU0YWU1ODQ2YWRlZjFlYWY3MDFi"
   },
-  "baseBuilder": {
-    "allowedAddresses": [
-      "0x6453C178EA0b00fa33C35589262ff0d660fECb75"
-    ]
-  },
   "frame": {
     "version": "1",
     "name": "PoolTogether",
