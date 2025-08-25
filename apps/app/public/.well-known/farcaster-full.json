@@ -1,0 +1,39 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjMxOTI5MiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDc0QUEwRThBNjExREJmYWJFZEViZDkwNDg5MDcyZWQwZERmZjQ0NkQifQ",
+    "payload": "eyJkb21haW4iOiJjYWJhbmEtYmFzZS1hcHAudmVyY2VsLmFwcCJ9",
+    "signature": "MHhmMzdkZjRkYjVhZDA2MzhiZDliZTdkZTQ1ZDBmNTc1NDE0MDVhZjBmOWVkYjZkZjFhZWQ1MjY4NmQwNjM0YjA3MGIzNTVmMGI1ODI0YzAwMzcxNDcwZjI3NzBhNDE4ZmJjYjAzMjQ1MjliMjIyOWU0YWU1ODQ2YWRlZjFlYWY3MDFi"
+  },
+  "baseBuilder": {
+    "allowedAddresses": [
+      "0x6453C178EA0b00fa33C35589262ff0d660fECb75"
+    ]
+  },
+  "frame": {
+    "version": "1",
+    "name": "PoolTogether",
+    "homeUrl": "https://cabana-base-app.vercel.app",
+    "canonicalDomain": "cabana-base-app.vercel.app",
+    "iconUrl": "https://cabana-base-app.vercel.app/favicon.ico",
+    "splashImageUrl": "https://cabana-base-app.vercel.app/favicon-200x200.png",
+    "ogTitle": "PoolTogether",
+    "buttonTitle": "Launch PoolTogether",
+    "ogImageUrl": "https://cabana-base-app.vercel.app/facebook-share-image-1200-630.png",
+    "heroImageUrl": "https://cabana-base-app.vercel.app/facebook-share-image-1200-630.png",
+    "imageUrl": "https://cabana-base-app.vercel.app/twitter-share-image-1200-675.png",
+    "splashBackgroundColor": "#3D298F",
+    "description": "Save and win up to 145,000 USD in prizes on Base with PoolTogether!",
+    "ogDescription": "Save and win up to 145,000 USD in prizes on Base with PoolTogether!",
+    "subtitle": "Save and win!",
+    "tagline": "Save more, WIN more!",
+    "primaryCategory": "finance",
+    "requiredChains": "eip155:8453",
+    "tags": [
+      "win",
+      "prizes",
+      "save",
+      "game",
+      "saving"
+    ]
+  }
+}

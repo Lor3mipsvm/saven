@@ -1,39 +1,17 @@
 {
   "accountAssociation": {
-    "header": "eyJmaWQiOjMxOTI5MiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDc0QUEwRThBNjExREJmYWJFZEViZDkwNDg5MDcyZWQwZERmZjQ0NkQifQ",
+    "header": "eyJmaWQiOjMxOTI5MiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDQxNDIxYjU5OTUzQ2EzNGMzMURmMDJCZUQ2ZDdhRUNlZkM4OTA5MGYifQ",
     "payload": "eyJkb21haW4iOiJjYWJhbmEtYmFzZS1hcHAudmVyY2VsLmFwcCJ9",
-    "signature": "MHhmMzdkZjRkYjVhZDA2MzhiZDliZTdkZTQ1ZDBmNTc1NDE0MDVhZjBmOWVkYjZkZjFhZWQ1MjY4NmQwNjM0YjA3MGIzNTVmMGI1ODI0YzAwMzcxNDcwZjI3NzBhNDE4ZmJjYjAzMjQ1MjliMjIyOWU0YWU1ODQ2YWRlZjFlYWY3MDFi"
-  },
-  "baseBuilder": {
-    "allowedAddresses": [
-      "0x6453C178EA0b00fa33C35589262ff0d660fECb75"
-    ]
+    "signature": "MHg3NTkyYTI4MTk4NDU1YWVmNDJiZGM5ZDFiNTk5MjQ5ZmQzZDBlOTE2NTkyMjA3YjE5YTk5NzJiNDU1M2IzNjU4NjAyNDg3MmM1MGZlODA3MTJhNDFjNTY0OWM5OWM5M2UwN2U5NDE3MTc4YzQ0NmIzNzYyOWU2ZTQ1N2M1NWY1NzFj"
   },
   "frame": {
     "version": "1",
     "name": "PoolTogether",
-    "homeUrl": "https://cabana-base-app.vercel.app",
-    "canonicalDomain": "cabana-base-app.vercel.app",
     "iconUrl": "https://cabana-base-app.vercel.app/favicon.ico",
-    "splashImageUrl": "https://cabana-base-app.vercel.app/favicon-200x200.png",
-    "ogTitle": "PoolTogether",
+    "homeUrl": "https://cabana-base-app.vercel.app",
+    "imageUrl": "https://cabana-base-app.vercel.app/twitter-share-image-1200-675.png",
     "buttonTitle": "Launch PoolTogether",
-    "ogImageUrl": "https://cabana-base-app.vercel.app/facebook-share-image-1200-630.png",
-    "heroImageUrl": "https://cabana-base-app.vercel.app/facebook-share-image-1200-630.png",
-    "imageUrl": "https://cabana-base-app.vercel.app/facebook-share-image-1200-630.png",
-    "splashBackgroundColor": "#3D298F",
-    "description": "Save and win up to 145,000 USD in prizes on Base with PoolTogether!",
-    "ogDescription": "Save and win up to 145,000 USD in prizes on Base with PoolTogether!",
-    "subtitle": "Save and win!",
-    "tagline": "Save more, WIN more!",
-    "primaryCategory": "finance",
-    "requiredChains": "eip155:8453",
-    "tags": [
-      "win",
-      "prizes",
-      "save",
-      "game",
-      "saving"
-    ]
+    "splashImageUrl": "https://cabana-base-app.vercel.app/favicon.png",
+    "splashBackgroundColor": "#3D298F"
   }
 }
