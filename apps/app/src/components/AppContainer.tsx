@@ -1,3 +1,4 @@
+import { useMiniKit } from '@coinbase/onchainkit/minikit'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useSelectedLanguage } from '@shared/generic-react-hooks'
 import { ErrorPooly } from '@shared/react-components'
@@ -46,12 +47,18 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   })
 
   const { connect } = useConnect()
-
+  // useEffect(() => {
+  //   if (isReady && !!connect) {
+  //     connectFarcasterWallet(connect)
+  //   }
+  // }, [isReady])
+  const { setFrameReady, isFrameReady } = useMiniKit()
   useEffect(() => {
-    if (isReady && !!connect) {
+    if (!isFrameReady) {
+      setFrameReady()
       connectFarcasterWallet(connect)
     }
-  }, [isReady])
+  }, [isFrameReady, setFrameReady])
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {
