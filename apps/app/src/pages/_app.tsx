@@ -1,7 +1,6 @@
 import { MiniKitProvider } from '@coinbase/onchainkit/minikit'
 import '@coinbase/onchainkit/styles.css'
 import { IncomingMessage } from 'http'
-import type { Metadata } from 'next'
 import type { AppContext, AppInitialProps, AppProps } from 'next/app'
 import App from 'next/app'
 import { base } from 'viem/chains'
@@ -18,17 +17,17 @@ export interface CustomAppProps {
 
 export default function MyApp(props: AppProps & CustomAppProps) {
   return (
-    // <WagmiProvider config={wagmiConfig}>
-    <MiniKitProvider
-      projectId={process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_ID}
-      apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
-      notificationProxyUrl='/api/notification'
-      chain={base}
-      rpcUrl={process.env.NEXT_PUBLIC_BASE_RPC_URL}
-    >
-      <AppContainer {...props} />
-    </MiniKitProvider>
-    // </WagmiProvider>
+    <WagmiProvider config={wagmiConfig}>
+      <MiniKitProvider
+        projectId={process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_ID}
+        apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
+        notificationProxyUrl='/api/notification'
+        chain={base}
+        rpcUrl={process.env.NEXT_PUBLIC_BASE_RPC_URL}
+      >
+        <AppContainer {...props} />
+      </MiniKitProvider>
+    </WagmiProvider>
   )
 }
 

@@ -33,8 +33,8 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   })
 
   useSelectedLanguage({
-    onLanguageChange: (_newLanguage) => {
-      // router.push({ pathname, query }, asPath, { locale: newLanguage })
+    onLanguageChange: (newLanguage) => {
+      router.push({ pathname, query }, asPath, { locale: newLanguage })
 
       // Tiny delay to avoid flickering on differing language selection to locale default
       setTimeout(() => {
@@ -44,11 +44,6 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
   })
 
   const { connect } = useConnect()
-  // useEffect(() => {
-  //   if (isReady && !!connect) {
-  //     connectFarcasterWallet(connect)
-  //   }
-  // }, [isReady])
   const { setFrameReady, isFrameReady } = useMiniKit()
   useEffect(() => {
     if (!isFrameReady) {
