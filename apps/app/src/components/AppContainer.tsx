@@ -11,9 +11,6 @@ import { connectFarcasterWallet } from 'src/utils'
 import { useConnect } from 'wagmi'
 // import { useConnect } from 'wagmi'
 import { CustomAppProps } from '@pages/_app'
-import { AccountFrame } from './Frames/AccountFrame'
-import { DefaultFrame } from './Frames/DefaultFrame'
-import { VaultFrame } from './Frames/VaultFrame'
 
 export const AppContainer = (props: AppProps & CustomAppProps) => {
   const { Component, pageProps, serverProps, router } = props
@@ -68,22 +65,8 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
 
   // const { connect } = useConnect()
 
-  const pageFrames: { [href: string]: ReactNode } = {
-    account: <AccountFrame user={serverProps.params['user']} />,
-    vault: (
-      <VaultFrame
-        chainId={serverProps.params['chainId']}
-        vaultAddress={serverProps.params['vaultAddress']}
-      />
-    )
-  }
-
-  const pageFrame = pageFrames[pathname.split('/')[1]]
-
   return (
     <>
-      {pageFrame ?? <DefaultFrame />}
-
       <Flowbite>
         <Toaster expand={false} />
         <NextIntlClientProvider locale={locale} timeZone={'Etc/UCT'} messages={pageProps.messages}>
