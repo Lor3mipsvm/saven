@@ -18,17 +18,17 @@ export interface CustomAppProps {
 
 export default function MyApp(props: AppProps & CustomAppProps) {
   return (
-    <WagmiProvider config={wagmiConfig}>
-      <MiniKitProvider
-        projectId={process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_ID}
-        apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
-        notificationProxyUrl='/api/notification'
-        chain={base}
-        rpcUrl={process.env.NEXT_PUBLIC_BASE_RPC_URL}
-      >
-        <AppContainer {...props} />
-      </MiniKitProvider>
-    </WagmiProvider>
+    // <WagmiProvider config={wagmiConfig}>
+    <MiniKitProvider
+      projectId={process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_ID}
+      apiKey={process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
+      notificationProxyUrl='/api/notification'
+      chain={base}
+      rpcUrl={process.env.NEXT_PUBLIC_BASE_RPC_URL}
+    >
+      <AppContainer {...props} />
+    </MiniKitProvider>
+    // </WagmiProvider>
   )
 }
 
