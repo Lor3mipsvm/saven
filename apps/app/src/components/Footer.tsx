@@ -45,7 +45,6 @@ export const Footer = () => {
       title: t_footer('titles.ecosystem'),
       content: [
         { content: t_footer('extensions'), href: LINKS.ecosystem },
-        { content: t_footer('governance'), href: LINKS.governance },
         { content: t_footer('security'), href: LINKS.audits }
       ]
     },
@@ -68,9 +67,9 @@ export const Footer = () => {
           icon: <SocialIcon platform='github' className='w-6 h-auto shrink-0' />
         },
         {
-          content: 'Medium',
-          href: LINKS.medium,
-          icon: <SocialIcon platform='medium' className='w-6 h-auto shrink-0' />
+          content: 'Mirror',
+          href: LINKS.mirror,
+          icon: <SocialIcon platform='mirror' className='w-6 h-auto shrink-0' />
         }
       ]
     },

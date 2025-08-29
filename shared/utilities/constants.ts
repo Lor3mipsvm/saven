@@ -588,7 +588,6 @@ export const LINKS = {
   brandKit: `https://www.figma.com/community/file/1212805243917604494`,
   twitter: `https://twitter.com/PoolTogether_`,
   github: `https://github.com/orgs/GenerationSoftware/repositories?q=pooltogether+sort%3Astars`,
-  medium: `https://medium.com/pooltogether`,
   tally: `https://www.tally.xyz/gov/pooltogether`,
   treasury: `https://info.pooltogether.com/treasury`,
   dune_v4: `https://dune.com/sarfang/PoolTogetherV4`,
