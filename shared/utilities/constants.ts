@@ -593,6 +593,7 @@ export const LINKS = {
   dune_v4: `https://dune.com/sarfang/PoolTogetherV4`,
   grants: `https://poolgrants.org`,
   hey: `https://hey.xyz/u/pooltogether`,
+  farcaster: `https://farcaster.xyz/pooltogether`,
   mirror: `https://pooltogether.mirror.xyz/`,
   warpcast: `https://warpcast.com/~/channel/pool-together`,
   clientJs: `https://www.npmjs.com/package/@generationsoftware/hyperstructure-client-js`,

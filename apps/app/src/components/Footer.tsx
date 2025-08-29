@@ -57,6 +57,11 @@ export const Footer = () => {
           icon: <SocialIcon platform='twitter' className='w-6 h-auto shrink-0' />
         },
         {
+          content: 'Farcaster',
+          href: LINKS.farcaster,
+          icon: <SocialIcon platform='farcaster' className='w-6 h-auto shrink-0' />
+        },
+        {
           content: 'Discord',
           onClick: () => setIsCaptchaModalOpen(true),
           icon: <SocialIcon platform='discord' className='w-6 h-auto shrink-0' />

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 
 export interface SocialIconProps {
-  platform: 'discord' | 'github' | 'mirror' | 'twitter' | 'warpcast' | 'hey'
+  platform: 'discord' | 'github' | 'mirror' | 'twitter' | 'farcaster' | 'hey'
   className?: string
 }
 
@@ -13,7 +13,7 @@ export const SocialIcon = (props: SocialIconProps) => {
     github: { svgIcon: GithubIcon },
     mirror: { svgIcon: MirrorIcon },
     twitter: { svgIcon: TwitterIcon },
-    warpcast: { svgIcon: WarpcastIcon },
+    farcaster: { svgIcon: FarcasterIcon },
     hey: { svgIcon: HeyIcon }
   }
 
@@ -78,17 +78,26 @@ const TwitterIcon = (props: { className?: string }) => (
   </svg>
 )
 
-const WarpcastIcon = (props: { className?: string }) => (
+const FarcasterIcon = (props: { className?: string }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    viewBox='0 0 1260 1260'
+    width='24px'
+    height='24px'
+    viewBox='0 0 24 24'
     fill='none'
-    className={props.className}
   >
     <path
-      d='M826.513 398.633L764.404 631.889L702.093 398.633H558.697L495.789 633.607L433.087 398.633H269.764L421.528 914.36H562.431L629.807 674.876L697.181 914.36H838.388L989.819 398.633H826.513Z'
       fill='#DECEFF'
-    ></path>
+      d='M 6.1875 3.734375 L 17.8125 3.734375 L 17.8125 20.265625 L 16.105469 20.265625 L 16.105469 12.691406 L 16.089844 12.691406 C 15.902344 10.601562 14.140625 8.960938 12 8.960938 C 9.859375 8.960938 8.097656 10.601562 7.910156 12.691406 L 7.894531 12.691406 L 7.894531 20.265625 L 6.1875 20.265625 Z M 6.1875 3.734375 '
+    />
+    <path
+      fill='#DECEFF'
+      d='M 3.09375 6.078125 L 3.785156 8.425781 L 4.375 8.425781 L 4.375 17.921875 C 4.078125 17.921875 3.839844 18.160156 3.839844 18.453125 L 3.839844 19.09375 L 3.734375 19.09375 C 3.4375 19.09375 3.199219 19.332031 3.199219 19.625 L 3.199219 20.265625 L 9.171875 20.265625 L 9.171875 19.625 C 9.171875 19.332031 8.933594 19.09375 8.640625 19.09375 L 8.535156 19.09375 L 8.535156 18.453125 C 8.535156 18.160156 8.292969 17.921875 8 17.921875 L 7.359375 17.921875 L 7.359375 6.078125 Z M 3.09375 6.078125 '
+    />
+    <path
+      fill='#DECEFF'
+      d='M 16.214844 17.921875 C 15.917969 17.921875 15.679688 18.160156 15.679688 18.453125 L 15.679688 19.09375 L 15.574219 19.09375 C 15.277344 19.09375 15.039062 19.332031 15.039062 19.625 L 15.039062 20.265625 L 21.011719 20.265625 L 21.011719 19.625 C 21.011719 19.332031 20.773438 19.09375 20.480469 19.09375 L 20.375 19.09375 L 20.375 18.453125 C 20.375 18.160156 20.132812 17.921875 19.839844 17.921875 L 19.839844 8.425781 L 20.425781 8.425781 L 21.121094 6.078125 L 16.851562 6.078125 L 16.851562 17.921875 Z M 16.214844 17.921875 '
+    />
   </svg>
 )
 
