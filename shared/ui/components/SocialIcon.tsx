@@ -85,6 +85,7 @@ const FarcasterIcon = (props: { className?: string }) => (
     height='24px'
     viewBox='0 0 24 24'
     fill='none'
+    className={props.className}
   >
     <path
       fill='#DECEFF'
