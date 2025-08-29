@@ -2,12 +2,12 @@ import { Button, ButtonProps, SocialIcon } from '@shared/ui'
 import { LINKS } from '@shared/utilities'
 
 export interface SocialShareButtonProps extends Omit<ButtonProps, 'onClick' | 'href' | 'target'> {
-  platform: 'twitter' | 'warpcast' | 'hey'
+  platform: 'twitter' | 'farcaster' | 'hey'
   text?: string
   hashTags?: string[]
 }
 
-const getHrefUrl = (platform: 'twitter' | 'warpcast' | 'hey') => {
+const getHrefUrl = (platform: 'twitter' | 'farcaster' | 'hey') => {
   let url
 
   switch (platform) {
@@ -15,8 +15,8 @@ const getHrefUrl = (platform: 'twitter' | 'warpcast' | 'hey') => {
       url = 'https://twitter.com/intent/tweet'
       break
     }
-    case 'warpcast': {
-      url = 'https://warpcast.com/~/compose'
+    case 'farcaster': {
+      url = 'https://farcaster.xyz/~/compose'
       break
     }
     case 'hey': {

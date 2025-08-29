@@ -595,7 +595,6 @@ export const LINKS = {
   hey: `https://hey.xyz/u/pooltogether`,
   farcaster: `https://farcaster.xyz/pooltogether`,
   mirror: `https://pooltogether.mirror.xyz/`,
-  warpcast: `https://warpcast.com/~/channel/pool-together`,
   clientJs: `https://www.npmjs.com/package/@generationsoftware/hyperstructure-client-js`,
   clientJs_v4: `https://www.npmjs.com/package/@pooltogether/v4-client-js`,
   reactHooks: `https://www.npmjs.com/package/@generationsoftware/hyperstructure-react-hooks`
