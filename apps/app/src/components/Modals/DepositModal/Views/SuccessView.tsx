@@ -20,6 +20,7 @@ import ConfettiExplosion from 'react-confetti-explosion'
 import { Address, decodeEventLog, TransactionReceipt } from 'viem'
 import { useAccount } from 'wagmi'
 import { useTransactionReceipt } from 'wagmi'
+import { ComposeCastButton } from '@components/ComposeCastButton'
 
 interface SuccessViewProps {
   vault: Vault
@@ -132,7 +133,8 @@ const ShareButtons = (props: ShareButtonsProps) => {
       return {
         twitter: getShareText(vaultToken.symbol, 'twitter'),
         farcaster: getShareText(vaultToken.symbol, 'farcaster'),
-        hey: getShareText(vaultToken.symbol, 'hey')
+        hey: getShareText(vaultToken.symbol, 'hey'),
+        base: getShareText(vaultToken.symbol, 'base')
       }
     } else {
       return {}
@@ -142,22 +144,22 @@ const ShareButtons = (props: ShareButtonsProps) => {
   return (
     <div className='flex flex-col items-center'>
       <h1 className='py-1 text-sm sm:text-md font-medium'>{t('shareOn')}:</h1>
-      <div className='flex flex-col sm:flex-row gap-2'>
+      <div className='flex flex-col gap-2'>
         <SocialShareButton platform='twitter' text={text.twitter} hashTags={hashTags} />
-        <SocialShareButton platform='farcaster' text={text.farcaster} />
-        <SocialShareButton platform='hey' text={text.hey} hashTags={hashTags} />
+        <ComposeCastButton text={text.base} />
       </div>
     </div>
   )
 }
 
-type SharePlatform = 'twitter' | 'farcaster' | 'hey'
+type SharePlatform = 'twitter' | 'farcaster' | 'hey' | 'base'
 
 const getShareText = (tokenSymbol: string, platform: SharePlatform) => {
   const protocolAccounts: Record<SharePlatform, string> = {
     twitter: '@PoolTogether_',
     farcaster: 'PoolTogether',
-    hey: '@pooltogether'
+    hey: '@pooltogether',
+    base: 'PoolTogether'
   }
 
   const pooltogether = protocolAccounts[platform]

@@ -1,10 +1,9 @@
-import { MODAL_KEYS, useIsModalOpen, useIsTestnets } from '@shared/generic-react-hooks'
+import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { SocialIcon } from '@shared/ui'
 import { LINKS } from '@shared/utilities'
 import classNames from 'classnames'
 import { Footer as FlowbiteFooter } from 'flowbite-react'
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/router'
 import { ReactNode, useEffect, useState } from 'react'
 import { useSettingsModalView } from '@hooks/useSettingsModalView'
 
@@ -17,12 +16,8 @@ interface FooterItem {
 }
 
 export const Footer = () => {
-  const router = useRouter()
-
   const t_settings = useTranslations('Settings')
   const t_footer = useTranslations('Footer')
-
-  const { isTestnets, setIsTestnets } = useIsTestnets()
 
   const { setIsModalOpen: setIsSettingsModalOpen } = useIsModalOpen(MODAL_KEYS.settings)
   const { setView: setSettingsModalView } = useSettingsModalView()
