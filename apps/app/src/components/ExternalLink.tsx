@@ -27,7 +27,9 @@ export const ExternalLink = (props: ExternalLinkProps) => {
 
   return (
     <button
-      onClick={() => openUrl(ensPaddedHref ?? href) || undefined}
+      onClick={() => {
+        openUrl(ensPaddedHref ?? href)
+      }}
       rel='noreferrer'
       className={classNames(
         'inline-flex items-center gap-1',
