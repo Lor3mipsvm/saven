@@ -5,7 +5,7 @@ import {
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { PrizePoolBadge, SocialShareButton, SuccessPooly } from '@shared/react-components'
 import { Token } from '@shared/types'
-import { ExternalLink, Spinner } from '@shared/ui'
+import { Spinner } from '@shared/ui'
 import {
   erc20ABI,
   formatBigIntForDisplay,
@@ -21,6 +21,7 @@ import { Address, decodeEventLog, TransactionReceipt } from 'viem'
 import { useAccount } from 'wagmi'
 import { useTransactionReceipt } from 'wagmi'
 import { ComposeCastButton } from '@components/ComposeCastButton'
+import { ExternalLink } from '@components/ExternalLink'
 
 interface SuccessViewProps {
   vault: Vault

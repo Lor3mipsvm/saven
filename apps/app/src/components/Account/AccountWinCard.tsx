@@ -2,11 +2,11 @@ import { PrizePool } from '@generationsoftware/hyperstructure-client-js'
 import { useVault } from '@generationsoftware/hyperstructure-react-hooks'
 import { VaultBadge } from '@shared/react-components'
 import { Win } from '@shared/types'
-import { ExternalLink } from '@shared/ui'
 import { getSimpleDate } from '@shared/utilities'
 import { getBlockExplorerUrl } from '@shared/utilities'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
+import { ExternalLink } from '@components/ExternalLink'
 import { AccountWinAmount } from './AccountWinAmount'
 
 interface AccountWinCardProps {

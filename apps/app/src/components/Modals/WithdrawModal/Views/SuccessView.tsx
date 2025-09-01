@@ -2,7 +2,7 @@ import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import { useToken, useVaultTokenAddress } from '@generationsoftware/hyperstructure-react-hooks'
 import { PrizePoolBadge, SuccessPooly } from '@shared/react-components'
 import { Token } from '@shared/types'
-import { Button, ExternalLink, Spinner } from '@shared/ui'
+import { Button, Spinner } from '@shared/ui'
 import {
   erc20ABI,
   formatBigIntForDisplay,
@@ -17,6 +17,7 @@ import { useMemo } from 'react'
 import { Address, decodeEventLog, TransactionReceipt } from 'viem'
 import { useAccount } from 'wagmi'
 import { useTransactionReceipt } from 'wagmi'
+import { ExternalLink } from '@components/ExternalLink'
 import { withdrawFormTokenAddressAtom } from '../WithdrawForm'
 
 interface SuccessViewProps {

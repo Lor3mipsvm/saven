@@ -1,11 +1,11 @@
 import { useSelectedVault, useSelectedVaults } from '@generationsoftware/hyperstructure-react-hooks'
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline'
-import { ExternalLink } from '@shared/ui'
 import { LINKS, NETWORK } from '@shared/utilities'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { ExternalLink } from '@components/ExternalLink'
 import { useSupportedPrizePools } from '@hooks/useSupportedPrizePools'
 import { PrizePoolPrizesCard } from './PrizePoolPrizesCard'
 

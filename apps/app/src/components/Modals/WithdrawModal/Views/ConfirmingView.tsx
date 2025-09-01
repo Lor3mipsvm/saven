@@ -1,9 +1,10 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import { useVaultShareData } from '@generationsoftware/hyperstructure-react-hooks'
 import { PrizePoolBadge } from '@shared/react-components'
-import { Button, ExternalLink, Spinner } from '@shared/ui'
+import { Button, Spinner } from '@shared/ui'
 import { getBlockExplorerName, getBlockExplorerUrl } from '@shared/utilities'
 import { useTranslations } from 'next-intl'
+import { ExternalLink } from '@components/ExternalLink'
 
 interface ConfirmingViewProps {
   vault: Vault

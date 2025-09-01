@@ -1,7 +1,8 @@
 import HCaptcha from '@hcaptcha/react-hcaptcha'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
-import { ExternalLink, Modal } from '@shared/ui'
+import { Modal } from '@shared/ui'
 import { ReactNode, useRef } from 'react'
+import { ExternalLink } from '@components/ExternalLink'
 
 export interface CaptchaModalProps {
   hCaptchaSiteKey: string

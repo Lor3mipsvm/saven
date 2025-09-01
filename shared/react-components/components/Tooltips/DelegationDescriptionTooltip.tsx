@@ -1,8 +1,9 @@
 import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import { Intl } from '@shared/types'
-import { ExternalLink, Tooltip } from '@shared/ui'
+import { Tooltip } from '@shared/ui'
 import { LINKS } from '@shared/utilities'
 import classNames from 'classnames'
+import { ExternalLink } from '@components/ExternalLink'
 
 export interface DelegationDescriptionTooltipProps {
   iconSize?: 'sm' | 'md' | 'lg'
