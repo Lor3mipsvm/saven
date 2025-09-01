@@ -1,15 +1,10 @@
-import {
-  ArrowTopRightOnSquareIcon,
-  CubeTransparentIcon,
-  SparklesIcon
-} from '@heroicons/react/24/outline'
-import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline'
+import { useOpenUrl } from '@coinbase/onchainkit/minikit'
+import { ArrowTopRightOnSquareIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import {
   SUPPORTED_CURRENCIES,
   useSelectedCurrency,
   useSelectedLanguage
 } from '@shared/generic-react-hooks'
-import { ClipboardListIcon } from '@shared/react-components'
 import { BasicIcon } from '@shared/ui'
 import { LINKS } from '@shared/utilities'
 import classNames from 'classnames'
@@ -25,6 +20,8 @@ interface MenuViewProps {
 
 export const MenuView = (props: MenuViewProps) => {
   const { disable, hide } = props
+
+  const openUrl = useOpenUrl()
 
   const t = useTranslations('Settings')
 
@@ -56,7 +53,7 @@ export const MenuView = (props: MenuViewProps) => {
           {
             iconContent: <SparklesIcon className='h-6 w-6 text-pt-purple-100' />,
             title: t('viewEcosystem'),
-            onClick: () => window.open(LINKS.ecosystem),
+            onClick: () => openUrl(LINKS.ecosystem),
             isExternalLink: true
           }
         ]}
@@ -68,7 +65,7 @@ export const MenuView = (props: MenuViewProps) => {
             iconContent: '?',
             iconClassName: 'font-semibold',
             title: t('getHelpWithCabana'),
-            onClick: () => window.open(LINKS.docs),
+            onClick: () => openUrl(LINKS.docs),
             isExternalLink: true
           }
         ]}

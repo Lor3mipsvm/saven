@@ -1,3 +1,4 @@
+import { useOpenUrl } from '@coinbase/onchainkit/minikit'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { SocialIcon } from '@shared/ui'
 import { LINKS } from '@shared/utilities'
@@ -24,6 +25,8 @@ export const Footer = () => {
 
   const { setIsModalOpen: setIsCaptchaModalOpen } = useIsModalOpen(MODAL_KEYS.captcha)
 
+  const openUrl = useOpenUrl()
+
   // NOTE: This is necessary due to hydration errors otherwise.
   const [isBrowser, setIsBrowser] = useState(false)
   useEffect(() => setIsBrowser(true), [])
@@ -32,15 +35,15 @@ export const Footer = () => {
     {
       title: t_footer('titles.getHelp'),
       content: [
-        { content: t_footer('userDocs'), href: LINKS.docs },
-        { content: t_footer('devDocs'), href: LINKS.protocolDevDocs }
+        { content: t_footer('userDocs'), onClick: () => openUrl(LINKS.docs) },
+        { content: t_footer('devDocs'), onClick: () => openUrl(LINKS.protocolDevDocs) }
       ]
     },
     {
       title: t_footer('titles.ecosystem'),
       content: [
-        { content: t_footer('extensions'), href: LINKS.ecosystem },
-        { content: t_footer('security'), href: LINKS.audits }
+        { content: t_footer('extensions'), onClick: () => openUrl(LINKS.ecosystem) },
+        { content: t_footer('security'), onClick: () => openUrl(LINKS.audits) }
       ]
     },
     {
@@ -48,12 +51,12 @@ export const Footer = () => {
       content: [
         {
           content: 'Twitter',
-          href: LINKS.twitter,
+          onClick: () => openUrl(LINKS.twitter),
           icon: <SocialIcon platform='twitter' className='w-6 h-auto shrink-0' />
         },
         {
           content: 'Farcaster',
-          href: LINKS.farcaster,
+          onClick: () => openUrl(LINKS.farcaster),
           icon: <SocialIcon platform='farcaster' className='w-6 h-auto shrink-0' />
         },
         {
@@ -63,12 +66,12 @@ export const Footer = () => {
         },
         {
           content: 'GitHub',
-          href: LINKS.github,
+          onClick: () => openUrl(LINKS.github),
           icon: <SocialIcon platform='github' className='w-6 h-auto shrink-0' />
         },
         {
           content: 'Mirror',
-          href: LINKS.mirror,
+          onClick: () => openUrl(LINKS.mirror),
           icon: <SocialIcon platform='mirror' className='w-6 h-auto shrink-0' />
         }
       ]
@@ -131,12 +134,10 @@ export const Footer = () => {
         })}
       </div>
       <div className='flex flex-col gap-1 items-center text-center text-sm text-pt-purple-100'>
-        <a href={LINKS.termsOfService} target='_blank' className='hover:underline'>
+        <button onClick={() => openUrl(LINKS.termsOfService)}>
           {t_footer('termsAndConditions')}
-        </a>
-        <a href={LINKS.privacyPolicy} target='_blank' className='hover:underline'>
-          {t_footer('privacyPolicy')}
-        </a>
+        </button>
+        <button onClick={() => openUrl(LINKS.privacyPolicy)}>{t_footer('privacyPolicy')}</button>
       </div>
     </FlowbiteFooter>
   )

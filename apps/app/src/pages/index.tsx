@@ -1,3 +1,4 @@
+import { useOpenUrl } from '@coinbase/onchainkit/minikit'
 import { Button } from '@shared/ui'
 import { LINKS, SECONDS_PER_DAY } from '@shared/utilities'
 import classNames from 'classnames'
@@ -43,10 +44,12 @@ const CabanaPoweredBy = (props: { className?: string }) => {
 
   const t = useTranslations('Common')
 
+  const openUrl = useOpenUrl()
+
   return (
     <div className={classNames('flex gap-2 items-center', className)}>
       {t('cabanaPoweredBy')}
-      <Link href={LINKS.protocolLandingPage} target='_blank'>
+      <button onClick={() => openUrl(LINKS.protocolLandingPage)}>
         <img
           src='/pooltogether-logo.svg'
           alt='PoolTogether Logo'
@@ -54,7 +57,7 @@ const CabanaPoweredBy = (props: { className?: string }) => {
           height={72}
           className='w-24 h-auto'
         />
-      </Link>
+      </button>
     </div>
   )
 }

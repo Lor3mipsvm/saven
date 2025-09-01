@@ -6,13 +6,11 @@ export interface ComposeCastButtonProps {
   text?: string
 }
 
+// When I implemented this it was not working in my beta Base app, however I followed the docs precisely
+// so I assume it should start working soon. If not I will update it when it's properly implemented by Coinbase
 export const ComposeCastButton = (props: ComposeCastButtonProps) => {
   const { composeCast } = useComposeCast()
   const { text } = props
-
-  // const handleCompose = () => {
-  //   composeCast({ text })
-  // }
 
   const handleComposeWithEmbed = () => {
     composeCast({
@@ -26,7 +24,6 @@ export const ComposeCastButton = (props: ComposeCastButtonProps) => {
       <span className='flex items-center transition-all duration-200 rounded-md text-xs px-2 py-1'>
         <SocialIcon platform={'base'} className='w-4 h-auto shrink-0 mr-1' />
 
-        {/* <button onClick={handleCompose}>Share</button> */}
         <button onClick={handleComposeWithEmbed}>Base</button>
       </span>
     </div>
