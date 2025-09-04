@@ -10,6 +10,7 @@ import { LINKS } from '@shared/utilities'
 import classNames from 'classnames'
 import { useTranslations } from 'next-intl'
 import { ReactNode } from 'react'
+import { useAcceptHeaderLanguage } from '@hooks/useAcceptHeaderLanguage'
 import { useSettingsModalView } from '@hooks/useSettingsModalView'
 import { SettingsModalOption } from '..'
 
@@ -29,6 +30,7 @@ export const MenuView = (props: MenuViewProps) => {
 
   const { selectedCurrency } = useSelectedCurrency()
   const { selectedLanguage } = useSelectedLanguage()
+  const { acceptHeaderLanguage } = useAcceptHeaderLanguage()
 
   return (
     <div className='flex flex-col gap-4'>
@@ -36,7 +38,7 @@ export const MenuView = (props: MenuViewProps) => {
         title={t('customizeExperience')}
         items={[
           {
-            iconContent: selectedLanguage?.toUpperCase(),
+            iconContent: selectedLanguage?.toUpperCase() || acceptHeaderLanguage.toUpperCase(),
             iconClassName: '!text-base font-semibold',
             title: t('changeLanguage'),
             onClick: () => setSettingsModalView('language'),
