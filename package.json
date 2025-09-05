@@ -1,0 +1,21 @@
+{
+  "name": "saven",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "pages/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:landing": "cd pages/landing && npm run dev",
+    "dev:app": "cd pages/app && npm run dev",
+    "dev:all": "concurrently \"npm run dev:landing\" \"npm run dev:app\"",
+    "build:landing": "cd pages/landing && npm run build",
+    "build:app": "cd pages/app && npm run build",
+    "build:all": "npm run build:landing && npm run build:app",
+    "lint": "eslint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

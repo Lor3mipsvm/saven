@@ -1,0 +1,46 @@
+{
+    "name": "saven-app",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev -p 3001 --experimental-https --experimental-https-key ../../localhost+3-key.pem --experimental-https-cert ../../localhost+3.pem",
+        "build": "next build",
+        "start": "next start -p 3001",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@saven/ui": "*",
+        "@privy-io/react-auth": "1.86.0",
+        "@privy-io/wagmi": "0.1.0",
+        "@radix-ui/react-dialog": "^1.0.5",
+        "@radix-ui/react-progress": "^1.0.3",
+        "@radix-ui/react-separator": "^1.0.3",
+        "@radix-ui/react-slot": "^1.0.2",
+        "@radix-ui/react-tooltip": "^1.0.3",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "lucide-react": "^0.542.0",
+        "next": "14.2.5",
+        "react": "18.3.1",
+        "react-dom": "18.3.1",
+        "tailwind-merge": "^3.3.1",
+        "viem": "^2.0.0",
+        "wagmi": "^2.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "^18.3.24",
+        "@types/react-dom": "^18.3.7",
+        "autoprefixer": "^10.4.16",
+        "eslint": "^8",
+        "eslint-config-next": "14.2.5",
+        "postcss": "^8",
+        "tailwindcss": "^3.4.1",
+        "tailwindcss-animate": "^1.0.7",
+        "typescript": "^5"
+    },
+    "resolutions": {
+        "@types/react": "^18.3.24",
+        "@types/react-dom": "^18.3.7"
+    }
+}
