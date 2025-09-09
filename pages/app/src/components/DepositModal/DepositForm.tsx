@@ -167,7 +167,7 @@ export const DepositForm = (props: DepositFormProps) => {
         ) {
             setCachedZapAmountOut(zapAmountOut)
         }
-    }, [isZapping, zapAmountOut, cachedZapAmountOut])
+    }, [isZapping, zapAmountOut]) // Removed cachedZapAmountOut from deps to prevent infinite loop
 
     useEffect(() => {
         if (isZapping && !!cachedZapAmountOut && vaultDecimals !== undefined) {
@@ -179,7 +179,7 @@ export const DepositForm = (props: DepositFormProps) => {
             setFormShareAmount(slicedShares)
             formMethods.setValue('shareAmount', slicedShares, { shouldValidate: true })
         }
-    }, [cachedZapAmountOut, isZapping, vaultDecimals, formMethods])
+    }, [cachedZapAmountOut, isZapping, vaultDecimals]) // Removed formMethods from deps
 
     const handleTokenAmountChange = (tokenAmount: string) => {
         if (!!vaultExchangeRate && token?.decimals !== undefined && share?.decimals !== undefined) {

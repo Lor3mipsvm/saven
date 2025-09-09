@@ -55,6 +55,9 @@ export const DepositModal = (props: DepositModalProps) => {
     const setFormTokenAmount = useSetAtom(depositFormTokenAmountAtom)
     const setFormShareAmount = useSetAtom(depositFormShareAmountAtom)
 
+    // Guard against opening modal without vault
+    const canOpen = isModalOpen && vault
+
     const { data: vaultToken } = useVaultTokenData(vault!)
     const { data: vaultExchangeRate } = useVaultExchangeRate(vault!)
     const prizePools = useSupportedPrizePools()

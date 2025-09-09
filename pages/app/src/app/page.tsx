@@ -350,8 +350,15 @@ export default function AppPage() {
                     {/* Deposit Section */}
                     <div className="text-center space-y-4">
                       <Button
-                        onClick={() => setIsDepositModalOpen(true)}
-                        className="px-8 py-4 bg-gradient-to-r from-amber-600/90 to-yellow-600/90 hover:from-amber-500 hover:to-yellow-500 border border-amber-500/30 rounded-xl text-white font-semibold text-lg tracking-wide transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl hover:scale-105 transform"
+                        onClick={() => {
+                          if (vault) {
+                            setIsDepositModalOpen(true)
+                          } else {
+                            console.warn('Cannot open deposit modal: vault not available')
+                          }
+                        }}
+                        disabled={!vault}
+                        className="px-8 py-4 bg-gradient-to-r from-amber-600/90 to-yellow-600/90 hover:from-amber-500 hover:to-yellow-500 border border-amber-500/30 rounded-xl text-white font-semibold text-lg tracking-wide transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl hover:scale-105 transform disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         Deposit {selectedExposureAsset}
                       </Button>
