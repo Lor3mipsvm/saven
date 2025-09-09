@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { PrivyProviderWrapper } from '@/components/PrivyProviderWrapper';
+import { DynamicProviderWrapper } from '@/components/DynamicProviderWrapper';
+import { VaultsProvider } from '@/providers/VaultsProvider';
+// Import async storage mock to fix Dynamic Labs compatibility
+import '@/lib/mock-async-storage';
 
 export const metadata: Metadata = {
   title: "Saven - Financial Savings App",
@@ -15,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <PrivyProviderWrapper>
-          {children}
-        </PrivyProviderWrapper>
+        <DynamicProviderWrapper>
+          <VaultsProvider>
+            {children}
+          </VaultsProvider>
+        </DynamicProviderWrapper>
       </body>
     </html>
   );
