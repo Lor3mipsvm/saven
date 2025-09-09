@@ -11,9 +11,10 @@ import {
 } from '@/lib/hooks'
 import { Button } from '@/components/ui/button'
 import { useAtomValue } from 'jotai'
+import { useEffect } from 'react'
 import { Address, Hash, parseUnits } from 'viem'
 import { DepositModalView } from '.'
-import { depositFormTokenAmountAtom } from './DepositForm'
+import { depositFormTokenAmountAtom } from '@/lib/atoms/depositAtoms'
 
 interface DepositTxButtonProps {
     vault: Vault
@@ -110,9 +111,11 @@ export const DepositTxButton = (props: DepositTxButtonProps) => {
     const depositTxHash = data5792DepositTx.txHashes?.at(-1)
     const sendDepositTransaction = data5792DepositTx.send5792DepositTransaction
 
-    if (!!depositTxHash && !isWaitingDeposit) {
-        setDepositTxHash(depositTxHash)
-    }
+    useEffect(() => {
+        if (depositTxHash && !isWaitingDeposit) {
+            setDepositTxHash(depositTxHash)
+        }
+    }, [depositTxHash, isWaitingDeposit])
 
     const isDataFetched =
         !isDisconnected &&

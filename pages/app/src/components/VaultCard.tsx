@@ -12,6 +12,7 @@ interface VaultCardProps {
     vaultDescription?: string
     vaultLogo?: string
     apr?: number
+    onDeposit?: (vaultAddress: string) => void
 }
 
 export function VaultCard({
@@ -20,7 +21,8 @@ export function VaultCard({
     vaultSymbol,
     vaultDescription,
     vaultLogo,
-    apr
+    apr,
+    onDeposit
 }: VaultCardProps) {
     // Early return if vaultAddress is invalid
     if (!vaultAddress) {
@@ -139,6 +141,7 @@ export function VaultCard({
                     <Button
                         className="flex-1 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white border-0"
                         disabled={!isLoggedIn} // Enable when wallet is connected
+                        onClick={() => onDeposit?.(vaultAddress)}
                     >
                         Deposit
                     </Button>

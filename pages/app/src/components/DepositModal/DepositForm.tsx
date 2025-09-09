@@ -18,17 +18,20 @@ import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { Separator } from '@/components/ui/separator'
-import { atom, useAtom, useSetAtom } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
 import { useEffect, useMemo, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Address, formatUnits, parseUnits } from 'viem'
 import { useZapTokenOptions } from '@/lib/hooks/useZapTokenOptions'
+import {
+    depositFormTokenAddressAtom,
+    depositFormTokenAmountAtom,
+    depositFormShareAmountAtom,
+    depositZapPriceImpactAtom,
+    depositZapMinReceivedAtom
+} from '@/lib/atoms/depositAtoms'
 
-export const depositFormTokenAddressAtom = atom<Address | undefined>(undefined)
-export const depositFormTokenAmountAtom = atom<string>('')
-export const depositFormShareAmountAtom = atom<string>('')
-export const depositZapPriceImpactAtom = atom<number | undefined>(undefined)
-export const depositZapMinReceivedAtom = atom<bigint | undefined>(undefined)
+// Atoms moved to @/lib/atoms/depositAtoms.ts
 
 export interface DepositFormProps {
     vault: Vault

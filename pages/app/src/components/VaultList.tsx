@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, useRef } from 'react'
 
 interface VaultListProps {
     selectedExposureAsset?: string;
+    onDeposit?: (vaultAddress: string) => void;
 }
 
 // Asset mapping configuration
@@ -44,7 +45,7 @@ function mapVaultToExposureAsset(vault: any): string {
 const highestAPRCache = new Map<string, { data: any; timestamp: number }>()
 const CACHE_DURATION = 30 * 60 * 1000 // 30 minutes
 
-export function VaultList({ selectedExposureAsset = 'ETH' }: VaultListProps) {
+export function VaultList({ selectedExposureAsset = 'ETH', onDeposit }: VaultListProps) {
     const { vaultLists, isLoading, error } = useVaultListData()
     const [highestAPRVault, setHighestAPRVault] = useState<any>(null)
     const [isCalculating, setIsCalculating] = useState(false)
@@ -288,6 +289,7 @@ export function VaultList({ selectedExposureAsset = 'ETH' }: VaultListProps) {
                             vaultDescription={`Best ${selectedExposureAsset} vault with highest APR on Base network`}
                             vaultLogo={highestAPRVault.logoURI}
                             apr={vaultAPRs[highestAPRVault.address]?.totalAPR || 0}
+                            onDeposit={onDeposit}
                         />
                     </div>
                 </div>

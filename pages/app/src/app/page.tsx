@@ -78,9 +78,10 @@ export default function AppPage() {
     address: selectedVaultAddress as `0x${string}`
   });
 
-
-  // Get Vaults collection from context
+  // Get the actual Cabana vault from VaultsProvider
   const vaults = useVaults();
+  const selectedCabanaVault = vaults?.vaults ? Object.values(vaults.vaults)
+    .find(v => v.chainId === 8453 && v.address.toLowerCase() === selectedVaultAddress?.toLowerCase()) : undefined;
 
   // Get user vault balances using the Vaults collection
   const userVaultBalances = useAllUserVaultBalances(
@@ -488,7 +489,19 @@ export default function AppPage() {
             </div>
 
             {/* Vault List Section */}
-            <VaultList selectedExposureAsset={selectedExposureAsset} />
+            <VaultList 
+              selectedExposureAsset={selectedExposureAsset} 
+              onDeposit={(vaultAddress) => {
+                // Find the vault by address and open modal
+                if (vaults?.vaults) {
+                  const vault = Object.values(vaults.vaults)
+                    .find(v => v.address.toLowerCase() === vaultAddress.toLowerCase());
+                  if (vault) {
+                    setIsDepositModalOpen(true);
+                  }
+                }
+              }}
+            />
           </div>
         </div>
       </div>
@@ -499,6 +512,7 @@ export default function AppPage() {
 
       {/* Deposit Modal */}
       <DepositModal
+        vault={selectedCabanaVault}
         onClose={() => setIsDepositModalOpen(false)}
         onSuccessfulDeposit={(chainId, txHash) => {
           console.log('Deposit successful:', { chainId, txHash })

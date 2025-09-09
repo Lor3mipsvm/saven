@@ -29,6 +29,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 export type DepositModalView = 'main' | 'review' | 'waiting' | 'confirming' | 'success' | 'error'
 
 export interface DepositModalProps {
+    vault?: Vault
     onClose?: () => void
     refetchUserBalances?: () => void
     onSuccessfulApproval?: () => void
@@ -38,6 +39,7 @@ export interface DepositModalProps {
 
 export const DepositModal = (props: DepositModalProps) => {
     const {
+        vault: propVault,
         onClose,
         refetchUserBalances,
         onSuccessfulApproval,
@@ -45,7 +47,8 @@ export const DepositModal = (props: DepositModalProps) => {
         onSuccessfulDepositWithZap
     } = props
 
-    const { vault } = useSelectedVault()
+    const { vault: contextVault } = useSelectedVault()
+    const vault = propVault || contextVault
 
     const [isModalOpen, setIsModalOpen] = useAtom(depositModalOpenAtom)
     const [view, setView] = useAtom(depositModalViewAtom)

@@ -57,7 +57,7 @@ export const DepositZapTxButton = (props: DepositZapTxButtonProps) => {
     } = useTokenAllowance(
         vault.chainId,
         userAddress!,
-        '0x1234567890123456789012345678901234567890', // Zap token manager address - would need to be configured
+        vault.address, // Use vault address as spender for now
         inputToken?.address!
     )
 
