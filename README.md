@@ -6,9 +6,9 @@
 
 <br />
 
-# 💻 &nbsp; Saven - PoolTogether Cabana Fork
+# 💻 &nbsp; Saven - PoolTogether / Cabana Fork
 
-This monorepo includes Saven's fork of PoolTogether's Cabana Base miniapp, featuring a custom landing page and enhanced deposit functionality with zap support.
+This monorepo includes Saven's fork of PoolTogether's Cabana UI.
 
 ## 💾 &nbsp; Installation
 
