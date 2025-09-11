@@ -1,0 +1,71 @@
+{
+    "name": "Saven Vaults",
+    "version": {
+        "major": 0,
+        "minor": 1,
+        "patch": 0
+    },
+    "timestamp": "2025-01-08T00:00:00Z",
+    "tokens": [
+        {
+            "chainId": 8453,
+            "address": "0x6B5a5c55E9dD4bb502Ce25bBfbaA49b69cf7E4dd",
+            "symbol": "przPOOL",
+            "name": "Prize POOL",
+            "decimals": 18,
+            "logoURI": "https://cabana.fi/icons/przPOOL.svg",
+            "extensions": {
+                "underlyingAsset": {
+                    "address": "0xd652C5425aea2Afd5fb142e120FeCf79e18fafc3",
+                    "symbol": "POOL",
+                    "name": "PoolTogether"
+                },
+                "yieldSource": {
+                    "name": "PoolTogether"
+                }
+            }
+        },
+        {
+            "chainId": 8453,
+            "address": "0x7f5C2b379b88499aC2B997Db583f8079503f25b9",
+            "symbol": "przUSDC",
+            "name": "Prize USDC",
+            "decimals": 6,
+            "logoURI": "https://cabana.fi/icons/przUSDC.svg",
+            "tags": [
+                "moonwell"
+            ],
+            "extensions": {
+                "underlyingAsset": {
+                    "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                    "symbol": "USDC",
+                    "name": "USD Coin"
+                },
+                "yieldSource": {
+                    "name": "Moonwell"
+                }
+            }
+        },
+        {
+            "chainId": 8453,
+            "address": "0x4200000000000000000000000000000000000006",
+            "symbol": "przWETH",
+            "name": "Prize WETH",
+            "decimals": 18,
+            "logoURI": "https://cabana.fi/icons/przWETH.svg",
+            "tags": [
+                "morpho"
+            ],
+            "extensions": {
+                "underlyingAsset": {
+                    "address": "0x4200000000000000000000000000000000000006",
+                    "symbol": "WETH",
+                    "name": "Wrapped Ether"
+                },
+                "yieldSource": {
+                    "name": "Morpho"
+                }
+            }
+        }
+    ]
+}

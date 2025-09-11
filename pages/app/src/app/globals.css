@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Dynamic SDK Saven Brand Styling */
+.dynamic-shadow-dom {
+  --dynamic-font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --dynamic-font-family-numbers: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Dark theme base colors */
+  --dynamic-base-1: #000000;
+  --dynamic-base-2: #0f172a;
+  --dynamic-base-3: #1e293b;
+  --dynamic-base-4: #334155;
+  --dynamic-base-5: #475569;
+
+  /* Saven brand colors */
+  --dynamic-brand-primary-color: #f59e0b;
+  --dynamic-brand-secondary-color: rgba(245, 158, 11, 0.15);
+  --dynamic-brand-hover-color: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), #f59e0b;
+
+  /* Text colors */
+  --dynamic-text-primary: #f1f5f9;
+  --dynamic-text-secondary: #cbd5e1;
+  --dynamic-text-tertiary: #94a3b8;
+  --dynamic-text-link: #f59e0b;
+
+  /* Background colors */
+  --dynamic-overlay: rgba(0, 0, 0, 0.8);
+  --dynamic-footer-background-color: #0f172a;
+  --dynamic-footer-text-color: #f1f5f9;
+  --dynamic-footer-icon-color: #f59e0b;
+
+  /* Modal styling */
+  --dynamic-modal-border: 2px solid #f59e0b;
+  --dynamic-modal-width: 24rem;
+  --dynamic-modal-padding: 1.5rem;
+  --dynamic-border-radius: 0.75rem;
+  --dynamic-modal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(245, 158, 11, 0.2);
+  --dynamic-modal-outline: 0 0 0 3px rgba(245, 158, 11, 0.3);
+  --dynamic-modal-outline-offset: 2px;
+
+  /* Wallet list styling */
+  --dynamic-wallet-list-tile-background: #1e293b;
+  --dynamic-wallet-list-tile-border: 1px solid #475569;
+  --dynamic-wallet-list-tile-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --dynamic-wallet-list-tile-background-hover: #334155;
+  --dynamic-wallet-list-tile-border-hover: 1px solid #f59e0b;
+  --dynamic-wallet-list-tile-shadow-hover: 0 8px 25px -5px rgba(245, 158, 11, 0.25);
+  --dynamic-wallet-list-tile-padding: 1rem;
+  --dynamic-wallet-list-tile-gap: 0.5rem;
+  --dynamic-wallet-list-max-height: 20rem;
+
+  /* Connect button styling */
+  --dynamic-connect-button-background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --dynamic-connect-button-color: #0f172a;
+  --dynamic-connect-button-border: 1px solid #f59e0b;
+  --dynamic-connect-button-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.25);
+  --dynamic-connect-button-background-hover: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  --dynamic-connect-button-color-hover: #0f172a;
+  --dynamic-connect-button-border-hover: 1px solid #d97706;
+  --dynamic-connect-button-shadow-hover: 0 8px 25px -5px rgba(245, 158, 11, 0.4);
+
+  /* Post-connected modal styling */
+  --dynamic-modal-height: auto;
+  --dynamic-modal-max-height: 28rem;
+  --dynamic-modal-min-height: 20rem;
+
+  /* Badge styling */
+  --dynamic-badge-background: #334155;
+  --dynamic-badge-color: #f1f5f9;
+  --dynamic-badge-dot-background: #10b981;
+  --dynamic-badge-primary-background: #f59e0b;
+  --dynamic-badge-primary-color: #0f172a;
+
+  /* Search bar styling */
+  --dynamic-search-bar-background: #1e293b;
+  --dynamic-search-bar-background-hover: #334155;
+  --dynamic-search-bar-background-focus: #334155;
+  --dynamic-search-bar-border: 1px solid #475569;
+  --dynamic-search-bar-border-hover: 1px solid #64748b;
+  --dynamic-search-bar-border-focus: 1px solid #f59e0b;
+
+  /* Footer styling */
+  --dynamic-footer-padding: 1.25rem 1.5rem;
+  --dynamic-footer-border: 1px solid #334155;
+
+  /* Hover effects */
+  --dynamic-hover: rgba(245, 158, 11, 0.1);
+
+  /* Connection status */
+  --dynamic-connection-green: #10b981;
+
+  /* Error styling */
+  --dynamic-error-1: #ef4444;
+  --dynamic-error-2: rgba(239, 68, 68, 0.1);
+
+  /* Loading animation */
+  --dynamic-loading-animation-gradient: linear-gradient(90deg,
+      rgba(245, 158, 11, 0) 0,
+      rgba(245, 158, 11, 0.2) 20%,
+      rgba(245, 158, 11, 0.5) 60%,
+      rgba(245, 158, 11, 0));
+
+  /* Tooltip styling */
+  --dynamic-tooltip-color: #1e293b;
+  --dynamic-tooltip-text-color: #f1f5f9;
+
+  /* Post-connected modal CTA improvements */
+  --dynamic-button-primary-background: #f59e0b;
+  --dynamic-button-primary-color: #0f172a;
+  --dynamic-button-primary-border: 1px solid #f59e0b;
+  --dynamic-button-primary-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+  --dynamic-button-primary-background-hover: #d97706;
+  --dynamic-button-primary-color-hover: #0f172a;
+  --dynamic-button-primary-border-hover: 1px solid #d97706;
+  --dynamic-button-primary-shadow-hover: 0 4px 8px rgba(245, 158, 11, 0.4);
+
+  --dynamic-button-secondary-background: #334155;
+  --dynamic-button-secondary-color: #f1f5f9;
+  --dynamic-button-secondary-border: 1px solid #475569;
+  --dynamic-button-secondary-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --dynamic-button-secondary-background-hover: #475569;
+  --dynamic-button-secondary-color-hover: #f1f5f9;
+  --dynamic-button-secondary-border-hover: 1px solid #64748b;
+  --dynamic-button-secondary-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional custom styling for Dynamic modal outline */
+.dynamic-shadow-dom {
+  /* Target the modal backdrop/overlay */
+  --dynamic-overlay: rgba(15, 23, 42, 0.95);
+}
+
+/* Target the actual modal container within shadow DOM */
+.dynamic-shadow-dom [data-testid="dynamic-modal-shadow"] {
+  outline: 3px solid rgba(245, 158, 11, 0.6) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Target the modal content container */
+.dynamic-shadow-dom [data-testid="dynamic-modal-shadow"]>div:first-child {
+  outline: 2px solid #f59e0b !important;
+  outline-offset: 1px !important;
+  border-radius: 0.75rem !important;
+  position: relative !important;
+}
+
+/* Alternative targeting for modal container */
+.dynamic-shadow-dom [role="dialog"] {
+  outline: 2px solid #f59e0b !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(245, 158, 11, 0.2) !important;
+}
