@@ -1,5 +1,5 @@
 import { ErrorPooly } from '@shared/react-components'
-import { Button } from '@shared/ui'
+import { Button } from '@components/ui/button'
 import { useTranslations } from 'next-intl'
 import { DepositModalView } from '..'
 
@@ -20,10 +20,9 @@ export const ErrorView = (props: ErrorViewProps) => {
       </div>
       <ErrorPooly className='w-40 h-auto' />
       <Button
-        fullSized={true}
+        className="w-full md:mt-32"
         color='transparent'
         onClick={() => setModalView('main')}
-        className='md:mt-32'
       >
         {t('tryAgain')}
       </Button>

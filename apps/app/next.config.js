@@ -11,6 +11,16 @@ module.exports = {
     if (!isServer) {
       config.resolve.fallback = { fs: false, net: false, tls: false }
     }
+
+    // Exclude Farcaster packages to prevent ESM issues
+    config.externals = config.externals || []
+    config.externals.push({
+      '@farcaster/frame-sdk': 'commonjs @farcaster/frame-sdk',
+      '@farcaster/miniapp-sdk': 'commonjs @farcaster/miniapp-sdk',
+      '@farcaster/miniapp-wagmi-connector': 'commonjs @farcaster/miniapp-wagmi-connector',
+      '@farcaster/frame-wagmi-connector': 'commonjs @farcaster/frame-wagmi-connector'
+    })
+
     return config
   },
   i18n: {

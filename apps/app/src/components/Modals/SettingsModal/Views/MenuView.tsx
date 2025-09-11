@@ -1,4 +1,4 @@
-import { useOpenUrl } from '@coinbase/onchainkit/minikit'
+// Removed OnchainKit - using window.open instead
 import { ArrowTopRightOnSquareIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import {
   SUPPORTED_CURRENCIES,
@@ -22,7 +22,7 @@ interface MenuViewProps {
 export const MenuView = (props: MenuViewProps) => {
   const { disable, hide } = props
 
-  const openUrl = useOpenUrl()
+  const openUrl = (url: string) => window.open(url, '_blank', 'noopener,noreferrer')
 
   const t = useTranslations('Settings')
 

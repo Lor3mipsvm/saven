@@ -19,7 +19,12 @@ import {
   TokenWithPrice,
   TokenWithSupply
 } from '@shared/types'
-import { DropdownItem, Spinner } from '@shared/ui'
+import { Button } from '@components/ui/button'
+import { Input } from '@components/ui/input'
+import { Card } from '@components/ui/card'
+import { Badge } from '@components/ui/badge'
+import { Progress } from '@components/ui/progress'
+import { Skeleton } from '@components/ui/skeleton'
 import {
   formatBigIntForDisplay,
   formatNumberForDisplay,
@@ -103,23 +108,23 @@ export const DepositForm = (props: DepositFormProps) => {
   const token: (TokenWithSupply & TokenWithPrice & Partial<TokenWithLogo>) | undefined =
     !!tokenAddress && (!!tokenData || !!inputVaultWithPrice)
       ? {
-          logoURI:
-            !!vaultToken && lower(tokenAddress) === lower(vaultToken.address)
-              ? vault.tokenLogoURI
-              : inputVault?.logoURI,
-          ...tokenData!,
-          ...inputVaultWithPrice!,
-          ...(!!beefyVault && lower(tokenAddress) === lower(beefyVault.address) ? beefyVault : {}),
-          price:
-            tokenPrices?.[lower(tokenAddress)] ??
-            inputVaultWithPrice?.price ??
-            (!!beefyVault &&
+        logoURI:
+          !!vaultToken && lower(tokenAddress) === lower(vaultToken.address)
+            ? vault.tokenLogoURI
+            : inputVault?.logoURI,
+        ...tokenData!,
+        ...inputVaultWithPrice!,
+        ...(!!beefyVault && lower(tokenAddress) === lower(beefyVault.address) ? beefyVault : {}),
+        price:
+          tokenPrices?.[lower(tokenAddress)] ??
+          inputVaultWithPrice?.price ??
+          (!!beefyVault &&
             !!underlyingBeefyTokenPrices &&
             lower(tokenAddress) === lower(beefyVault.address)
-              ? (underlyingBeefyTokenPrices?.[lower(beefyVault.want)] ?? 0) *
-                parseFloat(formatUnits(beefyVault.pricePerFullShare, 18))
-              : undefined)
-        }
+            ? (underlyingBeefyTokenPrices?.[lower(beefyVault.want)] ?? 0) *
+            parseFloat(formatUnits(beefyVault.pricePerFullShare, 18))
+            : undefined)
+      }
       : undefined
 
   const { data: tokenWithAmount, isFetched: isFetchedTokenBalance } = useTokenBalance(
@@ -362,7 +367,7 @@ export const DepositForm = (props: DepositFormProps) => {
             isNotGreaterThanBalance: (v) =>
               (!!tokenInputData &&
                 parseFloat(formatUnits(tokenInputData.amount, tokenInputData.decimals)) >=
-                  parseFloat(v)) ||
+                parseFloat(v)) ||
               !isFetchedTokenBalance ||
               !tokenWithAmount ||
               t_errors('notEnoughTokens', { symbol: tokenInputData?.symbol ?? '?' })
@@ -376,19 +381,6 @@ export const DepositForm = (props: DepositFormProps) => {
             !!inputVault ? { ...inputVault.tokenData, logoURI: inputVault.tokenLogoURI } : undefined
           }
           className='mb-0.5 z-20'
-        />
-        <TxFormInput
-          token={shareInputData}
-          formKey='shareAmount'
-          onChange={handleShareAmountChange}
-          showInfoRow={showInputInfoRows}
-          priceImpact={priceImpact}
-          disabled={isZapping}
-          isLoading={isFetchingZapArgs}
-          fallbackLogoToken={vaultToken}
-          className='my-0.5 z-10'
-          inputClassName={classNames({ '!text-pt-purple-200': isZapping })}
-          disabledCoverClassName={classNames({ '!backdrop-brightness-100': isZapping })}
         />
         {isZappingAndSwapping && !!depositAmount && (
           <div className='flex flex-col p-2 text-xs text-pt-purple-100'>
@@ -442,23 +434,25 @@ const TokenPickerOption = (props: TokenPickerOptionProps) => {
   return (
     <div
       className={classNames(
-        'w-full min-w-[10rem]',
-        'flex items-center justify-between gap-8',
-        'px-2 py-1 font-semibold rounded-lg',
-        'hover:bg-pt-purple-200',
+        'w-full min-w-[12rem]',
+        'flex items-center justify-between gap-4',
+        'px-4 py-3 font-medium rounded-lg',
+        'hover:bg-amber-500/10 hover:border-amber-500/30',
+        'border border-transparent transition-all duration-200',
+        'bg-slate-800/50 backdrop-blur-sm',
         className
       )}
     >
-      <span className='flex items-center gap-1'>
+      <span className='flex items-center gap-3'>
         <TokenIcon
           token={{ ...token, logoURI: token.logoURI ?? vault?.logoURI }}
           fallbackToken={!!vault ? { ...vault.tokenData, logoURI: vault.tokenLogoURI } : undefined}
         />
-        <span className='text-lg text-pt-purple-50 md:text-2xl md:text-pt-purple-600'>
+        <span className='text-lg text-white font-semibold'>
           {token.symbol}
         </span>
       </span>
-      <span className='text-sm text-gray-300 md:text-lg md:text-gray-700'>
+      <span className='text-sm text-slate-300 font-medium'>
         {getRoundedDownFormattedTokenAmount(token.amount, token.decimals)}
       </span>
     </div>

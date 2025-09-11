@@ -1,4 +1,4 @@
-import { useOpenUrl } from '@coinbase/onchainkit/minikit'
+// Removed OnchainKit - using window.open instead
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
 import { ReactNode } from 'react'
@@ -14,14 +14,14 @@ export interface ExternalLinkProps {
 export const ExternalLink = (props: ExternalLinkProps) => {
   const { href, children, size, className, iconClassName } = props
 
-  const openUrl = useOpenUrl()
+  const openUrl = (url: string) => window.open(url, '_blank', 'noopener,noreferrer')
 
   const ensPaddedHref =
     !!href &&
-    href.endsWith('.eth') &&
-    !href.startsWith('http') &&
-    !href.startsWith('www.') &&
-    !href.startsWith('//')
+      href.endsWith('.eth') &&
+      !href.startsWith('http') &&
+      !href.startsWith('www.') &&
+      !href.startsWith('//')
       ? `//${href}`
       : undefined
 

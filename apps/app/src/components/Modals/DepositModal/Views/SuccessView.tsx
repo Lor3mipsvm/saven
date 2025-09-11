@@ -5,7 +5,7 @@ import {
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { PrizePoolBadge, SocialShareButton, SuccessPooly } from '@shared/react-components'
 import { Token } from '@shared/types'
-import { Spinner } from '@shared/ui'
+import { Skeleton } from '@components/ui/skeleton'
 import {
   erc20ABI,
   formatBigIntForDisplay,
@@ -202,6 +202,6 @@ const getSharesReceived = (userAddress: Address, share: Token, txReceipt: Transa
           return eventArgs.value
         }
       }
-    } catch {}
+    } catch { }
   }
 }

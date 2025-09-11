@@ -1,4 +1,4 @@
-import { useOpenUrl } from '@coinbase/onchainkit/minikit'
+// Removed OnchainKit - using window.open instead
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
 import { SocialIcon } from '@shared/ui'
 import { LINKS } from '@shared/utilities'
@@ -25,7 +25,7 @@ export const Footer = () => {
 
   const { setIsModalOpen: setIsCaptchaModalOpen } = useIsModalOpen(MODAL_KEYS.captcha)
 
-  const openUrl = useOpenUrl()
+  const openUrl = (url: string) => window.open(url, '_blank', 'noopener,noreferrer')
 
   // NOTE: This is necessary due to hydration errors otherwise.
   const [isBrowser, setIsBrowser] = useState(false)

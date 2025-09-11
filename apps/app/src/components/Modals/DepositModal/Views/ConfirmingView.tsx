@@ -1,7 +1,8 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import { useVaultShareData } from '@generationsoftware/hyperstructure-react-hooks'
 import { PrizePoolBadge } from '@shared/react-components'
-import { Button, Spinner } from '@shared/ui'
+import { Button } from '@components/ui/button'
+import { Skeleton } from '@components/ui/skeleton'
 import { getBlockExplorerName, getBlockExplorerUrl } from '@shared/utilities'
 import { useTranslations } from 'next-intl'
 import { ExternalLink } from '@components/ExternalLink'
@@ -45,7 +46,7 @@ export const ConfirmingView = (props: ConfirmingViewProps) => {
             {t_common('viewOn', { name })}
           </ExternalLink>
         )}
-        <Button fullSized={true} color='transparent' onClick={closeModal}>
+        <Button className="w-full" color='transparent' onClick={closeModal}>
           {t_common('close')}
         </Button>
       </div>

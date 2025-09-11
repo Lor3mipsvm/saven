@@ -1,7 +1,8 @@
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import { useVaultShareData } from '@generationsoftware/hyperstructure-react-hooks'
 import { PrizePoolBadge } from '@shared/react-components'
-import { Button, Spinner } from '@shared/ui'
+import { Button } from '@components/ui/button'
+import { Skeleton } from '@components/ui/skeleton'
 import { useTranslations } from 'next-intl'
 
 interface WaitingViewProps {
@@ -31,7 +32,7 @@ export const WaitingView = (props: WaitingViewProps) => {
       </span>
       <Spinner size='lg' className='mx-auto after:border-y-pt-teal' />
       <div className='flex items-end h-24 md:h-36'>
-        <Button fullSized={true} color='transparent' onClick={closeModal}>
+        <Button className="w-full" color='transparent' onClick={closeModal}>
           {t_common('close')}
         </Button>
       </div>

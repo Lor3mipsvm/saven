@@ -64,33 +64,33 @@ export const PRIZE_POOLS: {
     reserveShares: number
   }
 }[] = [
-  {
-    chainId: NETWORK.base,
-    address: '0x45b2010d8A4f08b53c9fa7544C51dFd9733732cb',
-    options: {
-      prizeTokenAddress: '0x4200000000000000000000000000000000000006',
-      drawManagerAddress: '0x8A2782bedC79982EBFa3b68B315a2eE40DAF6aB0',
-      twabControllerAddress: '0x7e63601F7e28C758Feccf8CDF02F6598694f44C6',
-      drawPeriodInSeconds: 86_400,
-      drawAuctionDurationInSeconds: 10_800,
-      tierShares: 100,
-      reserveShares: 30
+    {
+      chainId: NETWORK.base,
+      address: '0x45b2010d8A4f08b53c9fa7544C51dFd9733732cb',
+      options: {
+        prizeTokenAddress: '0x4200000000000000000000000000000000000006',
+        drawManagerAddress: '0x8A2782bedC79982EBFa3b68B315a2eE40DAF6aB0',
+        twabControllerAddress: '0x7e63601F7e28C758Feccf8CDF02F6598694f44C6',
+        drawPeriodInSeconds: 86_400,
+        drawAuctionDurationInSeconds: 10_800,
+        tierShares: 100,
+        reserveShares: 30
+      }
+    },
+    {
+      chainId: NETWORK.gnosis_chiado,
+      address: '0x678b5a8b958e1582b2677dc21f7fdef4476d9bd7',
+      options: {
+        prizeTokenAddress: '0xb2d0d7ad1d4b2915390dc7053b9421f735a723e7',
+        drawManagerAddress: '0x6ffe9015659a212f5b64d477511d6e32cbdb9c78',
+        twabControllerAddress: '0x8c2a569bb0fecb37258c0984c3b52b4aedcc3e8e',
+        drawPeriodInSeconds: 14_400,
+        drawAuctionDurationInSeconds: 3_600,
+        tierShares: 100,
+        reserveShares: 30
+      }
     }
-  },
-  {
-    chainId: NETWORK.gnosis_chiado,
-    address: '0x678b5a8b958e1582b2677dc21f7fdef4476d9bd7',
-    options: {
-      prizeTokenAddress: '0xb2d0d7ad1d4b2915390dc7053b9421f735a723e7',
-      drawManagerAddress: '0x6ffe9015659a212f5b64d477511d6e32cbdb9c78',
-      twabControllerAddress: '0x8c2a569bb0fecb37258c0984c3b52b4aedcc3e8e',
-      drawPeriodInSeconds: 14_400,
-      drawAuctionDurationInSeconds: 3_600,
-      tierShares: 100,
-      reserveShares: 30
-    }
-  }
-]
+  ]
 
 /**
  * Stablecoin addresses and their corresponding fiat currency
@@ -516,10 +516,19 @@ export const TOKEN_DATA_REDIRECTS: {
 export const ZAP_SETTINGS: {
   [chainId: number]: { zapRouter: Address; zapTokenManager: Address }
 } = {
-  // [NETWORK.gnosis]: {
-  //   zapRouter: '0x992Ccc9D9b8b76310E044660E96171116820F019',
-  //   zapTokenManager: '0xA59BB0da9565e03f53AeFC94fcC205c52Fc925B7'
-  // }
+  [NETWORK.base]: {
+    zapRouter: '0x59C7C832e96D2568bea6db468C1aAdcbbDa08A52', // ParaSwap v5 Augustus Swapper
+    zapTokenManager: '0x000000000022D473030F116dDEE9F6B43aC78BA3' // Uniswap Permit2
+  }
+}
+
+/**
+ * EzDepositor addresses (PoolTogether's deposit helper)
+ */
+export const EZ_DEPOSITOR_ADDRESSES: {
+  [chainId: number]: Address
+} = {
+  [NETWORK.base]: '0x4E30C0a8cCE76940D87ae62EB12f3Ac536A996F4'
 }
 
 /**

@@ -83,18 +83,9 @@ export const wagmiConfig: Config = createConfig({
 
 /**
  * Connects to a Farcaster wallet if available
+ * Note: Farcaster functionality has been removed to fix ESM issues
  */
 export const connectFarcasterWallet = async (connect: ConnectMutate<Config, unknown>) => {
-  const frameSdk = (await import('@farcaster/frame-sdk')).default
-
-  const farcasterContext = await frameSdk.context
-
-  if (!!farcasterContext?.client?.clientFid) {
-    const frameConnector = (
-      await import('@farcaster/frame-wagmi-connector')
-    ).default() as CreateConnectorFn
-
-    connect({ connector: frameConnector })
-    frameSdk.actions.ready()
-  }
+  // Farcaster functionality removed - this is a no-op
+  return
 }

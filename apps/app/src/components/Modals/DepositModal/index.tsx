@@ -1,4 +1,4 @@
-import { useOpenUrl } from '@coinbase/onchainkit/minikit'
+// Removed OnchainKit - using window.open instead
 import { Vault } from '@generationsoftware/hyperstructure-client-js'
 import {
   useSelectedVault,
@@ -6,7 +6,7 @@ import {
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { MODAL_KEYS, useIsModalOpen } from '@shared/generic-react-hooks'
-import { Modal } from '@shared/ui'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@components/ui/dialog'
 import { LINKS, lower } from '@shared/utilities'
 import classNames from 'classnames'
 import { useAtom, useSetAtom } from 'jotai'
@@ -36,6 +36,7 @@ export interface DepositModalProps {
   onSuccessfulApproval?: () => void
   onSuccessfulDeposit?: (chainId: number, txHash: Hash) => void
   onSuccessfulDepositWithZap?: (chainId: number, txHash: Hash) => void
+  selectedCabanaVault?: any
 }
 
 export const DepositModal = (props: DepositModalProps) => {
@@ -44,7 +45,8 @@ export const DepositModal = (props: DepositModalProps) => {
     refetchUserBalances,
     onSuccessfulApproval,
     onSuccessfulDeposit,
-    onSuccessfulDepositWithZap
+    onSuccessfulDepositWithZap,
+    selectedCabanaVault
   } = props
 
   const { vault } = useSelectedVault()
@@ -87,8 +89,8 @@ export const DepositModal = (props: DepositModalProps) => {
 
   if (isModalOpen && !!vault) {
     const modalViews: Record<DepositModalView, ReactNode> = {
-      main: <MainView vault={vault} prizePool={prizePool!} />,
-      review: <ReviewView vault={vault} prizePool={prizePool!} />,
+      main: <MainView vault={vault} prizePool={prizePool!} selectedCabanaVault={selectedCabanaVault} />,
+      review: <ReviewView vault={vault} prizePool={prizePool!} selectedCabanaVault={selectedCabanaVault} />,
       waiting: <WaitingView vault={vault} closeModal={handleClose} />,
       confirming: <ConfirmingView vault={vault} txHash={depositTxHash} closeModal={handleClose} />,
       success: <SuccessView vault={vault} txHash={depositTxHash} />,
@@ -130,16 +132,12 @@ export const DepositModal = (props: DepositModalProps) => {
     ) : undefined
 
     return (
-      <Modal
-        bodyContent={modalViews[view]}
-        footerContent={modalFooterContent}
-        onClose={handleClose}
-        preventClose={txInFlight}
-        label='deposit-flow'
-        mobileStyle='tab'
-        className='isolate'
-        bodyClassName='z-10'
-      />
+      <Dialog open={isModalOpen} onOpenChange={(open) => !open && handleClose()}>
+        <DialogContent className="max-w-md bg-slate-900/95 backdrop-blur-sm border border-amber-500/20 text-white shadow-2xl p-6">
+          <div className="isolate">{modalViews[view]}</div>
+          {modalFooterContent && <div className="mt-6">{modalFooterContent}</div>}
+        </DialogContent>
+      </Dialog>
     )
   }
 
@@ -153,15 +151,15 @@ interface DepositDisclaimerProps {
 const DepositDisclaimer = (props: DepositDisclaimerProps) => {
   const { vault } = props
 
-  const openUrl = useOpenUrl()
+  const openUrl = (url: string) => window.open(url, '_blank', 'noopener,noreferrer')
 
   const t_modals = useTranslations('TxModals')
 
   return (
-    <span className='text-sm text-pt-purple-100 text-center leading-normal'>
+    <span className='text-sm text-slate-300 text-center leading-normal'>
       {t_modals.rich('depositDisclaimer', {
         tosLink: (chunks) => (
-          <button onClick={() => openUrl(LINKS.termsOfService)} className='text-pt-purple-300'>
+          <button onClick={() => openUrl(LINKS.termsOfService)} className='text-amber-400 hover:text-amber-300'>
             {chunks}
           </button>
         ),
@@ -169,7 +167,7 @@ const DepositDisclaimer = (props: DepositDisclaimerProps) => {
           <a
             href={`/vault/${vault.chainId}/${vault.address}`}
             target='_blank'
-            className='text-pt-purple-300'
+            className='text-amber-400 hover:text-amber-300'
           >
             {chunks}
           </a>

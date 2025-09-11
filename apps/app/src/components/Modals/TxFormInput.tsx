@@ -22,9 +22,9 @@ const TokenBadge = (props: {
   const { token, fallbackLogoToken } = props
 
   return (
-    <div className={classNames('flex shrink-0 items-center gap-1', props.className)}>
+    <div className={classNames('flex shrink-0 items-center gap-2', props.className)}>
       <TokenIcon token={token} fallbackToken={fallbackLogoToken} />
-      <span className='text-lg font-semibold md:text-2xl'>
+      <span className='text-lg font-semibold text-white'>
         {token.symbol && token.symbol?.length > 17
           ? `${token.symbol?.slice(0, 15)}...`
           : token.symbol}
@@ -136,9 +136,9 @@ export const TxFormInput = (props: TxFormInputProps) => {
   return (
     <div
       className={classNames(
-        'relative bg-pt-transparent p-3 rounded-lg md:p-4',
-        'border border-transparent focus-within:border-pt-transparent',
-        'isolate',
+        'relative bg-slate-800/50 backdrop-blur-sm p-3 rounded-lg md:p-4',
+        'border border-amber-500/20 focus-within:border-amber-500/40',
+        'isolate transition-all duration-200',
         className
       )}
     >
@@ -168,8 +168,8 @@ export const TxFormInput = (props: TxFormInputProps) => {
               label={<TokenBadge token={token} fallbackLogoToken={fallbackLogoToken} />}
               items={tokenPickerOptions}
               inline={true}
-              className='pl-1 pr-1 border-0 rounded-lg hover:bg-pt-transparent'
-              floatingContentClassName='md:!fixed md:!inset-auto md:max-h-[50vh] md:!transform-none md:-mx-[calc(0.5rem+1px)] md:-my-[calc(2.5rem+1px)] md:overflow-auto'
+              className='pl-2 pr-2 py-2 border border-amber-500/20 rounded-lg hover:bg-amber-500/10 hover:border-amber-500/40 transition-all duration-200 bg-slate-800/50 backdrop-blur-sm'
+              floatingContentClassName='md:!fixed md:!inset-auto md:max-h-[50vh] md:!transform-none md:-mx-[calc(0.5rem+1px)] md:-my-[calc(2.5rem+1px)] md:overflow-auto bg-slate-900/95 backdrop-blur-sm border border-amber-500/20 rounded-lg shadow-2xl'
             />
           </div>
         ) : (
@@ -177,11 +177,11 @@ export const TxFormInput = (props: TxFormInputProps) => {
         )}
       </div>
       {showInfoRow && (
-        <div className='flex justify-between gap-6 text-xs text-pt-purple-100 md:text-base'>
+        <div className='flex justify-between gap-6 text-xs text-slate-300 md:text-base'>
           <div className={classNames({ '-z-20': disabled || isLoading })}>
             <CurrencyValue baseValue={amountValue} fallback={<></>} />{' '}
             {priceImpact !== undefined && (
-              <span className='text-pt-purple-300'>({formattedPriceImpact})</span>
+              <span className='text-amber-300'>({formattedPriceImpact})</span>
             )}
           </div>
           <div className='flex gap-1 ml-auto'>
@@ -191,7 +191,7 @@ export const TxFormInput = (props: TxFormInputProps) => {
             {showMaxButton && (
               <span
                 onClick={setFormAmountToMax}
-                className='text-pt-purple-200 cursor-pointer select-none'
+                className='text-amber-400 cursor-pointer select-none hover:text-amber-300 transition-colors'
               >
                 {t('max')}
               </span>
@@ -199,7 +199,7 @@ export const TxFormInput = (props: TxFormInputProps) => {
           </div>
         </div>
       )}
-      {!!error && <span className='text-sm text-pt-warning-light'>{error}</span>}
+      {!!error && <span className='text-sm text-red-400'>{error}</span>}
     </div>
   )
 }

@@ -6,9 +6,9 @@
 
 <br />
 
-# 💻 &nbsp; PoolTogether Cabana World Monorepo
+# 💻 &nbsp; Saven - PoolTogether Cabana Fork
 
-This monorepo includes the deploy of PoolTogether's Cabana Base miniapp.
+This monorepo includes Saven's fork of PoolTogether's Cabana Base miniapp, featuring a custom landing page and enhanced deposit functionality with zap support.
 
 ## 💾 &nbsp; Installation
 
@@ -20,17 +20,52 @@ Make sure you have [pnpm](https://pnpm.io/) installed, as it is the package mana
 
 ### Development
 
-`pnpm dev`
+To run all apps simultaneously:
+```bash
+pnpm dev
+```
+
+To run individual apps:
+```bash
+# Main Saven App (port 3000)
+cd apps/app && pnpm dev
+
+# Landing Page (port 3001)
+cd apps/landing && pnpm dev
+```
 
 ---
 
 ### Apps
 
-- `app`: Cabana App w/ core PoolTogether functionality on Base.
+- **`app`**: Main Saven application with enhanced deposit functionality, zap support, and Saven branding
+  - Runs on `http://localhost:3000`
+  - Features vault selection, deposit modal with zap functionality
+  - Integrated with Dynamic Labs wallet connection
+  - Supports multiple deposit assets via ParaSwap routing
 
-Cabana is a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/) support, written in [TypeScript](https://www.typescriptlang.org/).
+- **`landing`**: Saven landing page with animated hero section
+  - Runs on `http://localhost:3001`
+  - Features rotating crypto asset display (BTC, ETH, USD)
+  - Links to main app via "Open App" button
+  - Responsive design with glass morphism effects
 
-**Repo Links:** [App](https://github.com/GenerationSoftware/pooltogether-client-monorepo/tree/main/apps/app)
+Both apps are [Next.js](https://nextjs.org/) applications with [Tailwind CSS](https://tailwindcss.com/) support, written in [TypeScript](https://www.typescriptlang.org/).
+
+## ✨ &nbsp; Key Features
+
+### Saven App Enhancements
+- **Smart Vault Selection**: Automatically selects highest-yielding vault per asset category
+- **Zap Functionality**: Deposit any supported token via ParaSwap routing
+- **Enhanced UI**: Saven-branded deposit modal with improved styling
+- **Wallet Integration**: Dynamic Labs wallet connection with Base chain support
+- **Asset Support**: ETH, BTC, USD exposure with multiple token options
+
+### Landing Page
+- **Animated Hero**: Rotating crypto asset display (BTC, ETH, USD)
+- **Glass Morphism**: Modern UI with backdrop blur effects
+- **Responsive Design**: Mobile-first approach with smooth animations
+- **Direct Integration**: Seamless navigation to main app
 
 ---
 

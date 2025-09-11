@@ -1,4 +1,4 @@
-import { useMiniKit } from '@coinbase/onchainkit/minikit'
+// Removed OnchainKit - using Dynamic wallet instead
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useSelectedLanguage } from '@shared/generic-react-hooks'
 import { ErrorPooly } from '@shared/react-components'
@@ -7,7 +7,7 @@ import { Flowbite, Toaster } from '@shared/ui'
 import { NextIntlClientProvider } from 'next-intl'
 import { AppProps } from 'next/app'
 import { ReactNode, useEffect, useState } from 'react'
-import { connectFarcasterWallet } from 'src/utils'
+// import { connectFarcasterWallet } from 'src/utils' // Removed Farcaster functionality
 import { useConnect } from 'wagmi'
 // import { useConnect } from 'wagmi'
 import { CustomAppProps } from '@pages/_app'
@@ -45,14 +45,7 @@ export const AppContainer = (props: AppProps & CustomAppProps) => {
     }
   })
 
-  const { connect } = useConnect()
-  const { setFrameReady, isFrameReady } = useMiniKit()
-  useEffect(() => {
-    if (!isFrameReady) {
-      setFrameReady()
-      connectFarcasterWallet(connect)
-    }
-  }, [isFrameReady, setFrameReady])
+  // Removed OnchainKit and Farcaster functionality - using Dynamic wallet instead
 
   useEffect(() => {
     if ('serviceWorker' in navigator) {

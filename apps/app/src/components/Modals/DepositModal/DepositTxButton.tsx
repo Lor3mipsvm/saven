@@ -9,7 +9,7 @@ import {
   useVaultTokenData
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { TransactionButton } from '@shared/react-components'
-import { Button } from '@shared/ui'
+import { Button } from '@components/ui/button'
 import { useAtomValue } from 'jotai'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'

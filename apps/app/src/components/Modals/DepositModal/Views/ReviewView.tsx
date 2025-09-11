@@ -8,7 +8,7 @@ import {
 } from '@generationsoftware/hyperstructure-react-hooks'
 import { PrizePoolBadge, TokenIcon } from '@shared/react-components'
 import { Token, TokenWithLogo } from '@shared/types'
-import { Spinner } from '@shared/ui'
+import { Skeleton } from '@components/ui/skeleton'
 import {
   formatBigIntForDisplay,
   formatNumberForDisplay,
@@ -32,23 +32,26 @@ import {
 interface ReviewViewProps {
   vault: Vault
   prizePool: PrizePool
+  selectedCabanaVault?: any
 }
 
 export const ReviewView = (props: ReviewViewProps) => {
-  const { vault, prizePool } = props
+  const { vault, prizePool, selectedCabanaVault } = props
 
   const t_common = useTranslations('Common')
   const t_txModals = useTranslations('TxModals')
 
   return (
     <div className='flex flex-col gap-6'>
-      <span className='text-xl font-semibold text-center'>{t_txModals('confirmDeposit')}</span>
-      <PrizePoolBadge
-        chainId={vault.chainId}
-        hideBorder={true}
-        intl={t_common}
-        className='!py-1 mx-auto'
-      />
+      <span className='text-2xl font-bold text-center text-white'>Confirm Deposit</span>
+      <div className='flex flex-wrap gap-2 justify-center'>
+        <span className='px-3 py-1 text-sm bg-amber-500/10 text-amber-200 rounded-full border border-amber-500/30 font-medium'>
+          {selectedCabanaVault?.underlyingAssetSymbol || selectedCabanaVault?.vaultName?.replace('Prize ', '') || vault.name?.replace('Prize ', '') || vault.symbol || 'Unknown Asset'}
+        </span>
+        <span className='px-3 py-1 text-sm bg-slate-700/50 text-slate-200 rounded-full border border-slate-600/50 font-medium'>
+          {selectedCabanaVault?.yieldSource || 'Unknown Protocol'}
+        </span>
+      </div>
       <BasicDepositForm vault={vault} />
       <div className='flex flex-col gap-4 mx-auto md:flex-row md:gap-9'>
         <Odds vault={vault} prizePool={prizePool} />
@@ -107,8 +110,8 @@ const BasicDepositForm = (props: BasicDepositFormProps) => {
       !!vaultTokenAddress && lower(token.address) === lower(vaultTokenAddress)
         ? vault.tokenLogoURI
         : !!beefyVault && lower(token.address) === lower(beefyVault.address)
-        ? beefyVault.logoURI
-        : inputVault?.logoURI
+          ? beefyVault.logoURI
+          : inputVault?.logoURI
   }
 
   const shareInfo = {
@@ -120,11 +123,6 @@ const BasicDepositForm = (props: BasicDepositFormProps) => {
   return (
     <div className='w-full flex flex-col'>
       <BasicDepositFormInput token={tokenInfo} className='mb-0.5' />
-      <BasicDepositFormInput
-        token={shareInfo}
-        fallbackLogoTokenAddress={vaultTokenAddress}
-        className='my-0.5'
-      />
       {!!depositZapMinReceived && (
         <div className='flex flex-col p-2 text-xs text-pt-purple-100'>
           <div className='flex gap-2 items-center'>
