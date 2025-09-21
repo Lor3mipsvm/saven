@@ -25,17 +25,18 @@ export * from './blockchain/useTxReceipt'
 export * from './blockchain/useTxReceipts'
 
 /**
- * EIP 5792 Hooks
+ * EIP 5792 Hooks (temporarily disabled due to wagmi API changes)
  */
-export * from './eip5792/useSend5792AggregateClaimRewardsTransaction'
-export * from './eip5792/useSend5792Calls'
-export * from './eip5792/useSend5792ClaimRewardsTransaction'
-export * from './eip5792/useSend5792DelegateTransaction'
-export * from './eip5792/useSend5792DepositTransaction'
-export * from './eip5792/useSend5792DepositZapTransaction'
-export * from './eip5792/useSend5792PoolWideClaimRewardsTransaction'
-export * from './eip5792/useSend5792RedeemTransaction'
-export * from './eip5792/useSend5792WithdrawZapTransaction'
+// EIP-5792 exports temporarily disabled due to TypeScript errors
+// export * from './eip5792/useSend5792AggregateClaimRewardsTransaction'
+// export * from './eip5792/useSend5792Calls'
+// export * from './eip5792/useSend5792ClaimRewardsTransaction'
+// export * from './eip5792/useSend5792DelegateTransaction'
+// export * from './eip5792/useSend5792DepositTransaction'
+// export * from './eip5792/useSend5792DepositZapTransaction'
+// export * from './eip5792/useSend5792PoolWideClaimRewardsTransaction'
+// export * from './eip5792/useSend5792RedeemTransaction'
+// export * from './eip5792/useSend5792WithdrawZapTransaction'
 
 /**
  * Event Hooks
@@ -126,10 +127,13 @@ export * from './transactions/useSendDestroyPromotionTransaction'
 export * from './transactions/useSendEndPromotionTransaction'
 export * from './transactions/useSendExtendPromotionTransaction'
 export * from './transactions/useSendDelegateTransaction'
+export * from './transactions/useSendDepositTransaction'
 export * from './transactions/useSendGenericApproveTransaction'
 export * from './transactions/useSendPoolWideClaimRewardsTransaction'
 export * from './transactions/useSendSetClaimerTransaction'
 export * from './transactions/useSendSetLiquidationPairTransaction'
+export * from './transactions/useSendWithdrawTransaction'
+export * from './transactions/useSendRedeemTransaction'
 
 /**
  * Vault Hooks
@@ -205,6 +209,7 @@ export * from './zaps/useZapTokenInfo'
  * Utils
  */
 export * from './utils/populateCachePerId'
+// export * from './utils/useEIP5792Support' // temporarily disabled due to wagmi API changes
 
 /**
  * Constants

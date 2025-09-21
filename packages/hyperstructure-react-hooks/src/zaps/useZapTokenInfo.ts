@@ -1,3 +1,4 @@
+import { NO_REFETCH } from '@shared/generic-react-hooks'
 import { TokenWithSupply } from '@shared/types'
 import { lower, NETWORK } from '@shared/utilities'
 import { Address } from 'viem'
@@ -17,7 +18,7 @@ export const useZapTokenInfo = (chainId: NETWORK, address: Address) => {
   } = useSelectedVaults()
   const vaultsArray = Object.values(vaults).filter((v) => v.chainId === chainId)
 
-  const vault = !!address && vaultsArray.find((v) => lower(v.address) === lower(address))
+  const vault = !!address && vaultsArray.find((v) => v.address && lower(v.address) === lower(address))
 
   const { data: vaultToken, isFetched: isFetchedVaultToken } = useVaultTokenData(vault!)
   const { data: exchangeRate, isFetched: isFetchedExchangeRate } = useVaultExchangeRate(vault!)
@@ -48,6 +49,28 @@ export const useZapTokenInfo = (chainId: NETWORK, address: Address) => {
     (!vault || (isFetchedVaultToken && isFetchedExchangeRate && isFetchedBeefyVault)) &&
     (!vaultToken || (isFetchedIsVelodromeLp && isFetchedIsCurveLp)) &&
     ((!isVelodromeLp && !isCurveLp) || isFetchedLpToken)
+
+  // Debug logging
+  if (!!chainId && !!address) {
+    console.log('useZapTokenInfo Debug:', {
+      chainId,
+      address,
+      vault: !!vault,
+      vaultToken: !!vaultToken,
+      exchangeRate: !!exchangeRate,
+      beefyVault: !!beefyVault,
+      isVelodromeLp,
+      isCurveLp,
+      lpToken: !!lpToken,
+      isFetchedVaultToken,
+      isFetchedExchangeRate,
+      isFetchedBeefyVault,
+      isFetchedIsVelodromeLp,
+      isFetchedIsCurveLp,
+      isFetchedLpToken,
+      isFetched
+    })
+  }
 
   return { data, isFetched }
 }
