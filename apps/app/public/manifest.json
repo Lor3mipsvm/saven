@@ -1,0 +1,29 @@
+{
+  "name": "PoolTogether",
+  "short_name": "Pool",
+  "description": "Win prizes in any Base PoolTogether vaults.",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#8050E3",
+  "background_color": "#3D298F",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+import { atom, useAtom } from 'jotai'
+import { useEffect } from 'react'
+import { LOCAL_STORAGE_KEYS } from '../constants/keys'
+import { LANGUAGE_ID, SUPPORTED_LANGUAGES } from '../constants/languages'
+
+const getInitialSelectedLanguage = (): LANGUAGE_ID | undefined => {
+  if (typeof window === 'undefined') return 'en'
+  const cachedLanguage = localStorage.getItem(LOCAL_STORAGE_KEYS.selectedLanguage)
+  if (!!cachedLanguage && cachedLanguage in SUPPORTED_LANGUAGES) {
+    return cachedLanguage as LANGUAGE_ID
+  }
+}
+
+const selectedLanguageAtom = atom<LANGUAGE_ID | undefined>(getInitialSelectedLanguage())
+
+/**
+ * Returns the state of `selectedLanguageAtom` as well as a method to change it
+ *
+ * Stores state in local storage
+ * @returns
+ */
+export const useSelectedLanguage = (options?: {
+  onLanguageChange?: (language: LANGUAGE_ID | undefined) => void
+}) => {
+  const [selectedLanguage, _setSelectedLanguage] = useAtom(selectedLanguageAtom)
+
+  const setSelectedLanguage = (language: LANGUAGE_ID) => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.selectedLanguage, language)
+    _setSelectedLanguage(language)
+  }
+
+  useEffect(() => {
+    options?.onLanguageChange?.(selectedLanguage)
+  }, [selectedLanguage])
+
+  return { selectedLanguage, setSelectedLanguage }
+}

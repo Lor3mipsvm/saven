@@ -1,0 +1,129 @@
+import { Address } from 'viem'
+import { NETWORK } from '../constants'
+
+/**
+ * Returns the network name that maps to a provided chain ID
+ * @param chainId chain ID that maps to a network name
+ * @returns
+ */
+export const getNetworkNameByChainId = (chainId: number): string | undefined => {
+  const networkKeys = Object.keys(NETWORK) as (keyof typeof NETWORK)[]
+  const networkName = networkKeys.find((key) => NETWORK[key] === chainId)
+
+  return networkName
+}
+
+/**
+ * Returns a formatted network name to display in the UI based on the chain ID provided
+ * @param chainId chain ID to get network name for
+ * @returns
+ */
+export const getNiceNetworkNameByChainId = (chainId: number): string => {
+  switch (Number(chainId)) {
+    case NETWORK.mainnet: {
+      return 'Ethereum'
+    }
+    case NETWORK.bsc: {
+      return 'Binance Smart Chain'
+    }
+    case NETWORK.optimism_sepolia: {
+      return 'Optimism Sepolia'
+    }
+    case NETWORK.arbitrum_sepolia: {
+      return 'Arbitrum Sepolia'
+    }
+    case NETWORK.base: {
+      return 'Base Chain'
+    }
+    case NETWORK.base_sepolia: {
+      return 'Base Sepolia'
+    }
+    case NETWORK.bsc_testnet: {
+      return 'BSC Testnet'
+    }
+    case NETWORK.celo_testnet: {
+      return 'Celo Testnet'
+    }
+    case NETWORK.scroll_sepolia: {
+      return 'Scroll Sepolia'
+    }
+    case NETWORK.gnosis_chiado: {
+      return 'Gnosis Chiado'
+    }
+    case NETWORK.world_sepolia: {
+      return 'World Sepolia'
+    }
+    default: {
+      const niceName = getNetworkNameByChainId(chainId)
+      return niceName ? niceName.charAt(0).toUpperCase() + niceName.slice(1) : '--'
+    }
+  }
+}
+
+/**
+ * Returns a boolean representing if a network is a testnet or not
+ * @param chainId chain ID to check
+ * @returns
+ */
+export const isTestnet = (chainId: number) => {
+  const values: Record<number, boolean> = {
+    [NETWORK.mainnet]: false,
+    [NETWORK.sepolia]: true,
+    [NETWORK.bsc]: false,
+    [NETWORK.bsc_testnet]: true,
+    [NETWORK.polygon]: false,
+    [NETWORK.mumbai]: true,
+    [NETWORK.optimism]: false,
+    [NETWORK.optimism_sepolia]: true,
+    [NETWORK.avalanche]: false,
+    [NETWORK.fuji]: true,
+    [NETWORK.celo]: false,
+    [NETWORK.celo_testnet]: true,
+    [NETWORK.arbitrum]: false,
+    [NETWORK.arbitrum_sepolia]: true,
+    [NETWORK.base]: false,
+    [NETWORK.base_sepolia]: true,
+    [NETWORK.scroll]: false,
+    [NETWORK.scroll_sepolia]: true,
+    [NETWORK.gnosis]: false,
+    [NETWORK.gnosis_chiado]: true,
+    [NETWORK.world]: false,
+    [NETWORK.world_sepolia]: true
+  }
+
+  return values[chainId as NETWORK] ?? false
+}
+
+/**
+ * Returns a boolean representing if a network is configured as part of the OP stack or not
+ * @param chainId chain ID to check
+ * @returns
+ */
+export const isOpStack = (chainId: number) => {
+  const values: Record<number, boolean> = {
+    [NETWORK.mainnet]: false,
+    [NETWORK.sepolia]: false,
+    [NETWORK.bsc]: false,
+    [NETWORK.bsc_testnet]: false,
+    [NETWORK.polygon]: false,
+    [NETWORK.mumbai]: false,
+    [NETWORK.optimism]: true,
+    [NETWORK.optimism_sepolia]: true,
+    [NETWORK.avalanche]: false,
+    [NETWORK.fuji]: false,
+    [NETWORK.celo]: false,
+    [NETWORK.celo_testnet]: false,
+    [NETWORK.arbitrum]: false,
+    [NETWORK.arbitrum_sepolia]: false,
+    [NETWORK.base]: true,
+    [NETWORK.base_sepolia]: true,
+    [NETWORK.scroll]: false,
+    [NETWORK.scroll_sepolia]: false,
+    [NETWORK.gnosis]: false,
+    [NETWORK.gnosis_chiado]: false,
+    [NETWORK.world]: true,
+    [NETWORK.world_sepolia]: true
+  }
+
+  return values[chainId as NETWORK] ?? false
+}

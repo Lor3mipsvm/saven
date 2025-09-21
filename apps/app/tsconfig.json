@@ -1,0 +1,33 @@
+{
+  "extends": "../../shared/config/nextjs.tsconfig.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "tailwind.config.js",
+    "postcss.config.js",
+    ".next/types/**/*.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@vaultLists/*": ["./src/vaultLists/*"],
+      "@generationsoftware/hyperstructure-client-js": ["../../packages/hyperstructure-client-js"],
+      "@generationsoftware/hyperstructure-react-hooks": [
+        "../../packages/hyperstructure-react-hooks"
+      ],
+      "@shared/generic-react-hooks": ["../../shared/generic-react-hooks"],
+      "@shared/react-components": ["../../shared/react-components"],
+      "@shared/types": ["../../shared/types"],
+      "@shared/ui": ["../../shared/ui"],
+      "@shared/utilities": ["../../shared/utilities"]
+    },
+    "plugins": [{ "name": "next" }],
+    "strictNullChecks": true
+  }
+}

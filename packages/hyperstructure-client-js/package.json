@@ -1,0 +1,39 @@
+{
+  "name": "@generationsoftware/hyperstructure-client-js",
+  "description": "Lightweight library for interacting with PoolTogether contracts",
+  "version": "1.22.2",
+  "license": "MIT",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "prepare": "pnpm build",
+    "clean": "rm -rf dist"
+  },
+  "tsup": {
+    "dts": true,
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "esm"
+    ]
+  },
+  "dependencies": {
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "tslib": "^2.6.0",
+    "tsup": "^6.6.3",
+    "typescript": "^5.4.0",
+    "viem": "^2.27.2"
+  },
+  "peerDependencies": {
+    "viem": "^2.27.2"
+  }
+}
